@@ -135,7 +135,7 @@ Esclarecimentos gerais relacionados a documentação:
     - IMPORTANTE: Na "MENSAGEM EXPLICATIVA" explicar de forma resumida o que foi modificado nos arquivos que que foram adicionados no 'git add'.
 9. Executar: git push origin issue-xxx.
 10. Ir na página do repositório no GitHub na parte de branches e criar a PR (Pull Request).
-11. Mover a tarefa para a coluna Review no Waffle.
+    - IMPORTANTE: Na descrição da PR colocar: fixed #XXX, onde XXX é o numero da issue no Waffle.
 12. Comunicar no channel o link da PR pedindo review de código.
 13. Esperar pelo menos 1 ou 2 Approves e após isso realizar o merge no site do GitHub.
     - IMPORTANTE: Caso as modificações foram complexas e/ou muito imporantes requisitar mais Approves do que somente 2.
