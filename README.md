@@ -144,9 +144,9 @@ Processo manual:
 ```
 1. Comunicar no channel apropriado (backend, frontend, random) o início da tarefa
 2. Executar: git pull origin master
-3. Executar: git branch issue#xxx, onde xxx se refere ao número da tarefa no Waffle.
-4. Mover a tarefa para a coluna In-progress no Waffle caso não for movida automaticamente.
-5. Executar: git checkout issue#xxx.
+3. Executar: git checkout -b issue#xxx, onde XXX é o numero da issue no Waffle.
+4. Executar: git push --set-upstream origin issue#xxx, onde XXX é o numero da issue no Waffle.
+5. Mover a tarefa para a coluna In-progress no Waffle caso não for movida automaticamente.
 6. Efetuar as modificações do código fonte.
 7. Executar: git add [ARQUIVO INDIVIDUAL ou LISTA DE ARQUIVOS].
     - IMPORTANTE: Não recomendo o uso de: 'git add .'
