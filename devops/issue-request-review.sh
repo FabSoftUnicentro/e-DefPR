@@ -28,7 +28,7 @@ echo 'Criando Pull Request no GitHub...'
 pr=$(open_pull_request | get_pull_request_number)
 
 if [[ -z $pr ]]; then
-	echo 'Erro: Pull Request nao foi criada'
+    echo 'Erro: Pull Request nao foi criada'
     exit 1
 else
     echo 'Sucesso: https://github.com/C3DSU/e-DefPR/pull/$pr/files'
