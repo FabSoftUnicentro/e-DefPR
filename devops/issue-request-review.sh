@@ -2,16 +2,16 @@ BRANCH=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 ISSUE=${BRANCH/issue#/}
 GITHUB_REPOSITORY='https://api.github.com/repos/C3DSU/e-DefPR'
 
+echo 'Digite seu usuario do GitHub:'
+read USER
+echo 'Digite sua senha do Github ou token (https://github.com/settings/tokens/new):'
+read -s PASS
+
 open_pull_request() {
 	local head="C3DSU:$BRANCH"
 	local base="master"
 	local title="$BRANCH"
 	local body="fixed #$ISSUE"
-
-	echo 'Digite seu usuario do GitHub:'
-	read USER
-	echo 'Digite sua senha do Github ou token (https://github.com/settings/tokens/new):'
-	read -s PASS
 
 	LOGIN="$USER:$PASS"
 
@@ -31,5 +31,5 @@ if [[ -z $pr ]]; then
     echo 'Erro: Pull Request nao foi criada'
     exit 1
 else
-    echo 'Sucesso: https://github.com/C3DSU/e-DefPR/pull/$pr/files'
+    echo "Sucesso: https://github.com/C3DSU/e-DefPR/pull/$pr/files"
 fi
