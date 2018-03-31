@@ -174,3 +174,12 @@ Esclarecimentos gerais relacionados a documentação:
     Github: @Pr3d4dor
     E-mail: gian_bine@hotmail.com
     ```
+    
+    - ### Jean Pierri
+    ```
+    A science computer student ^^
+    Slack: @envikeyy
+    Github: @EnViKeyy
+    E-mail: pierre.jp@outlook.com
+    ```
+    
