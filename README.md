@@ -82,7 +82,7 @@ Esclarecimentos gerais relacionados a documentação:
     - **REVIEW**: a notificação de REVIEW, é direcionada para o channel correto, de acordo com a categoria.
 
     `Ex.: @here: gianlucabine needs a *REVIEW*: https://github.com/sices/C3DSU/e-DefPR/pull/1/files`
-    
+
 
     Para responder uma solicitação utilizamos por padrão o nome de usuário junto a resposta.
 
@@ -173,4 +173,12 @@ Esclarecimentos gerais relacionados a documentação:
     Slack: @gianlucabine
     Github: @Pr3d4dor
     E-mail: gian_bine@hotmail.com
+    ```
+
+    - ### Jean Pierri
+    ```
+    A science computer student ^^
+    Slack: @envikeyy
+    Github: @EnViKeyy
+    E-mail: pierre.jp@outlook.com
     ```
