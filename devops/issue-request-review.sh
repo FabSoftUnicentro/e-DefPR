@@ -1,5 +1,5 @@
 BRANCH=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
-ISSUE=${BRANCH/issue-#/}
+ISSUE=${BRANCH/issue#/}
 GITHUB_REPOSITORY='https://api.github.com/repos/C3DSU/e-DefPR'
 
 open_pull_request() {
