@@ -122,29 +122,47 @@ Esclarecimentos gerais relacionados a documentação:
     ```
 
 ## Execução e Gerenciamento de Tarefas
+
+Processo automatizado:
+```
+1. Executar: ./devops/issue-start.sh xxx, onde xxx se refere ao número da tarefa no Waffle.
+2. Efetuar as modificações no código-fonte.
+3. Executar: git add [ARQUIVO INDIVIDUAL ou LISTA DE ARQUIVOS].
+    - IMPORTANTE: Não recomendo o uso de: 'git add .'
+4. Executar: git commit -m "MENSAGEM EXPLICATIVA" após cada 'git add [ARQUIVO INDIVIDUAL ou LISTA DE ARQUIVOS]' do passo 6.
+    - IMPORTANTE: Na "MENSAGEM EXPLICATIVA" explicar de forma resumida o que foi modificado nos arquivos que que foram adicionados no 'git add'.
+5. Executar: git push origin issue#xxx, onde xxx se refere ao número da tarefa no Waffle.
+6. Executar: ./devops/issue-request-review
+7. Comunicar no channel o link da PR pedindo review de código.
+8. Esperar pelo menos 1 ou 2 Approves e após isso realizar o merge no site do GitHub.
+    - IMPORTANTE: Caso as modificações foram complexas e/ou muito imporantes requisitar mais Approves do que somente 2.
+9. Ir na página da Pull Request no GitHub e realizar o merge.
+10. Executar: git branch -d issue#xxx.
+```
+
+Processo manual:
 ```
 1. Comunicar no channel apropriado (backend, frontend, random) o início da tarefa
 2. Executar: git pull origin master
-3. Executar: git branch issue-xxx, onde xxx se refere ao número da tarefa no Waffle.
-4. Mover a tarefa para a coluna In-progress no Waffle.
-5. Executar: git checkout issue-xxx.
+3. Executar: git branch issue#xxx, onde xxx se refere ao número da tarefa no Waffle.
+4. Mover a tarefa para a coluna In-progress no Waffle caso não for movida automaticamente.
+5. Executar: git checkout issue#xxx.
 6. Efetuar as modificações do código fonte.
 7. Executar: git add [ARQUIVO INDIVIDUAL ou LISTA DE ARQUIVOS].
     - IMPORTANTE: Não recomendo o uso de: 'git add .'
 8. Executar: git commit -m "MENSAGEM EXPLICATIVA" após cada 'git add [ARQUIVO INDIVIDUAL ou LISTA DE ARQUIVOS]' do passo 6.
     - IMPORTANTE: Na "MENSAGEM EXPLICATIVA" explicar de forma resumida o que foi modificado nos arquivos que que foram adicionados no 'git add'.
-9. Executar: git push origin issue-xxx.
+9. Executar: git push origin issue#xxx, onde xxx se refere ao número da tarefa no Waffle..
 10. Ir na página do repositório no GitHub na parte de branches e criar a PR (Pull Request).
     - IMPORTANTE: Na descrição da PR colocar: fixed #XXX, onde XXX é o numero da issue no Waffle.
 12. Comunicar no channel o link da PR pedindo review de código.
 13. Esperar pelo menos 1 ou 2 Approves e após isso realizar o merge no site do GitHub.
     - IMPORTANTE: Caso as modificações foram complexas e/ou muito imporantes requisitar mais Approves do que somente 2.
-14. Mover a tarefa para a coluna Done no Waffle.
+14. Ir na página da Pull Request no GitHub e realizar o merge.
 15. Executar: git checkout master
 16. Executar: git pull origin master
-17. Executar: git branch -d issue-xxx.
+17. Executar: git branch -d issue#xxx.
 ```
-
 
 ## Estrutura
 
@@ -175,7 +193,7 @@ Esclarecimentos gerais relacionados a documentação:
     E-mail: gian_bine@hotmail.com
     ```
 
-    - ### Jean Pierri
+    - #### Jean Pierri
     ```
     A science computer student ^^
     Slack: @envikeyy
