@@ -20,8 +20,8 @@ open_pull_request() {
 }
 
 get_pull_request_number() {
-  read x
-  echo $x | grep \"number\" | grep -oP '(?<="number": ).*(?=, "state")'
+	read x
+	echo $x | grep \"number\" | grep -oP '(?<="number": ).*(?=, "state")'
 }
 
 echo 'Criando Pull Request no GitHub...'
