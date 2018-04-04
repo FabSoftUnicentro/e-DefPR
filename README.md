@@ -118,8 +118,35 @@ Esclarecimentos gerais relacionados a documentação:
 
     - ##### 3.1.5. *Clonando o repositório do Github*
     ```
-    $ git clone https://github.com/C3DSU/e-DefPR.git
+    $ git clone git@github.com:C3DSU/e-DefPR.git
     ```
+  <a name="aplicacao--bash"></a><a name="3.2"></a>
+   - [3.2](#aplicacao--bash) **Bash Profile**:
+  
+      - ##### 3.2.1. *Abra o Arquivo `.profile` com seu editor (Vim, Nano ou outro)*
+      ```
+      $ sudo vim ~/.profile
+      ```
+  
+      - ##### 3.2.2. *Adicione ao final do arquivo as linhas*
+      ```
+      export EDEF_PATH=[PROJECT_PATH]
+      source $EDEF_PATH/devops/config/variables             
+      export PATH=$PATH:$EDEF_PATH/devops
+      ```
+      > **Nota**: lembre-se de substitir `[PROJECT_PATH]` pelo caminho do projeto.
+      
+      - ##### 3.2.3. *Carregue as alterações do arquivo bash*
+      ```
+      $ source ~/.profile
+      ```
+  
+      - ##### 3.2.4. *Na variável `PATH` agora devem aparecer alguns caminhos relacionados a pasta do projeto*
+      ```
+      $ echo $PATH | grep edef
+      ```
+      > **Nota**: caso o comando acima não possua retorno revise os passos de instalação e reinicie o sistema operacional.  
+
 
 ## Execução e Gerenciamento de Tarefas
 
