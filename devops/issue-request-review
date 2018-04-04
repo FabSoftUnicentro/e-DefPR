@@ -24,7 +24,7 @@ open_pull_request() {
 
 get_pull_request_number() {
 	read x
-	echo $x | grep \"number\" | grep -oP '(?<="number": ).*(?=, "state")'
+	echo $x | grep number | grep -oP '(?<="number": ).*(?=, "state")'
 }
 
 echo 'Creating Pull Request in the GitHub repository...'
