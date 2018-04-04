@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export PROJECT_ROOT=$EDEF_PATH/backend
+export CLI_PATH=$EDEF_PATH/devops/
+export GITHUB_REPOSITORY='https://api.github.com/repos/C3DSU/e-DefPR'
+export PATH="$EDEF_PATH/devops:$PATH"
