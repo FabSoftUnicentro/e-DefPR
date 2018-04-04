@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+if [[ -z $1 ]] || [ $1 = '--help' ] || [ $1 = '-h' ]; then
+  printf "issue-move - help:
+  Usage:
+  issue-move [ISSUE_NUMBER] --[STAGE_TO] \n
+  Example:
+  issue-move 100 --in-progress \n"
+  exit 0;
+fi
+
+if [[ -z $2 ]]; then
+  echo 'Error: Stage argument could not be null'
+  exit 1
+fi
+
+input_format() {
+  local s=${1/--/}
+  echo ${s^}
+}
+
+get_current_stage() {
+  local state=$(echo $INFO | python -m json.tool | grep -oP '(?<="state": ").*(?=",)' | tail -n1)
+
+  if [[ $state == 'closed' ]]; then
+    echo 'Closed'
+    exit 0
+  fi
+
+  local label=$(echo $INFO | python -m json.tool | grep -oP '(?<="Stage: ).*(?=",)')
+
+  if [[ $label ]]; then
+    echo $label
+    exit 0
+  fi
+
+  echo 'Backlog-general'
+}
+
+ISSUE=$1
+STAGE=$2
+
+echo 'GitHub login:'
+read USER
+echo 'GitHub password or token (https://github.com/settings/tokens/new):'
+read -s PASS
+
+LOGIN="$USER:$PASS"
+
+STAGE_FROM=$(get_current_stage)
+STAGE_TO=$(input_format $STAGE)
+
+INFO=$(curl -s -X GET -u $LOGIN $GITHUB_REPOSITORY/issues/$ISSUE)
+
+if [[ $STAGE_FROM == $STAGE_TO ]]; then
+  exit 0
+fi
+
+echo 'Moving Github issue...'
+
+QUERY_STRING="Stage:%20$STAGE_FROM"
+JSON="[\"Stage: $STAGE_TO\"]"
+
+curl -X POST -u $LOGIN -d "$JSON" $GITHUB_REPOSITORY/issues/$ISSUE/labels > /dev/null 2>&1
+curl -X DELETE -u $LOGIN $GITHUB_REPOSITORY/issues/$ISSUE/labels/$QUERY_STRING > /dev/null 2>&1
