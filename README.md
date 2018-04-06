@@ -231,7 +231,7 @@ Processo manual:
     - #### Higor Gardin
     ```
     A science computer student ^^
-    Slack: @higorgardin
+    Slack: @higorgardin2
     Github: @hgardin
     E-mail: higorgardin@hotmail.com
     ```
