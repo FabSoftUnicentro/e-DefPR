@@ -227,3 +227,11 @@ Processo manual:
     Github: @EnViKeyy
     E-mail: pierre.jp@outlook.com
     ```
+    
+    - #### Higor Gardin
+    ```
+    A science computer student ^^
+    Slack: @higorgardin2
+    Github: @hgardin
+    E-mail: higorgardin@hotmail.com
+    ```
