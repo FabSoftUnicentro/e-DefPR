@@ -231,7 +231,15 @@ Processo manual:
     - #### Higor Gardin
     ```
     A science computer student ^^
-    Slack: @higorgardin2
+    Slack: @HGardin
     Github: @hgardin
     E-mail: higorgardin@hotmail.com
+    ```
+
+    - #### Davi Bastos
+    ```
+    
+    Slack: @Davi Bastos
+    Github: @dav3sk
+    E-mail: davibastos.v@gmail.com
     ```
