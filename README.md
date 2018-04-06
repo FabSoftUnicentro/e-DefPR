@@ -230,9 +230,9 @@ Processo manual:
     
     - #### Higor Gardin
     ```
-    A science computer student ^^
-    Slack: @higorgardin2
-    Github: @hgardin
+    A science computer student
+    Slack: @HGardin
+    Github: @HigorG
     E-mail: higorgardin@hotmail.com
     ```
     
@@ -241,4 +241,11 @@ Processo manual:
     Slack: @mmiazaki
     Github: @hmmiazaki
     E-mail: mauro.miazaki@unicentro.br
+    ```
+
+    - #### Davi Bastos
+    ```
+    Slack: @Davi Bastos
+    Github: @dav3sk
+    E-mail: davibastos.v@gmail.com
     ```
