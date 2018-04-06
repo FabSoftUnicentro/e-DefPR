@@ -235,3 +235,10 @@ Processo manual:
     Github: @hgardin
     E-mail: higorgardin@hotmail.com
     ```
+    
+    - #### Prof. Mauro Miazaki
+    ```
+    Slack: @mmiazaki
+    Github: @hmmiazaki
+    E-mail: mauro.miazaki@unicentro.br
+    ```
