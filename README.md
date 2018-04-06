@@ -230,9 +230,9 @@ Processo manual:
     
     - #### Higor Gardin
     ```
-    A science computer student ^^
+    A science computer student
     Slack: @HGardin
-    Github: @hgardin
+    Github: @HigorG
     E-mail: higorgardin@hotmail.com
     ```
 
