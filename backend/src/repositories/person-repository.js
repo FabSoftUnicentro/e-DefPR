@@ -12,7 +12,7 @@ exports.get = async () => {
 }
 
 exports.getById = async (id) => {
-  const res = await Person.find({
+  const res = await Person.findOne({
     _id: id,
     active: true
   }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active')
@@ -21,9 +21,9 @@ exports.getById = async (id) => {
 }
 
 exports.create = async (data) => {
-  var Person = new Person(data)
+  let newPerson = new Person(data)
 
-  await Person.save()
+  await newPerson.save()
 }
 
 exports.update = async (id, data) => {
@@ -48,7 +48,7 @@ exports.update = async (id, data) => {
 
 exports.delete = async (id) => {
   await Person
-    .findOneAndRemove(id)
+    .findByIdAndRemove(id)
 }
 
 exports.authenticate = async (data) => {
