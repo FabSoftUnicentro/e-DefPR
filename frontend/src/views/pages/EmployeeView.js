@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { CommandBar } from 'office-ui-fabric-react';
-
-import Fetch from "../../helpers/Fetcher";
+import employeeService from "../../services/EmployeeService";
 
 class EmployeeView extends Component
 {
@@ -16,10 +15,8 @@ class EmployeeView extends Component
 
     componentDidMount()
     {
-        Fetch.get(`/funcionario/fetch/${this.props.match.params.uid}`)
-        .then(response => response.json())
-        .then(result => this.setState({ data: result }))
-        .catch(err => console.log(err));
+        const { uid } = this.props.match.params;
+        employeeService.get(uid);
     }
 
     render()
