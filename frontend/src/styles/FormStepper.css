@@ -1,0 +1,30 @@
+.form-stepper .ms-Pivot {
+    display: flex;
+}
+
+.form-stepper .ms-Pivot .ms-Pivot-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-stepper .ms-Pivot .ms-Pivot-link .ms-Pivot-link-content {
+    display: flex;
+    align-content: flex-start;
+}
+
+.form-stepper .ms-Pivot .ms-Pivot-link .ms-Pivot-link-content span.ms-Pivot-text {
+    display: initial;
+    line-height: initial;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.form-stepper-footer {
+    display: flex;
+    margin: 30px;
+    margin-top: 0px;
+    justify-content: space-between;
+}
