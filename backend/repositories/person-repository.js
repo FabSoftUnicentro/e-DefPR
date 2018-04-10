@@ -1,10 +1,10 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const Person = mongoose.model('Person');
 
 exports.get = async() => {
-    const res = await User.find({
+    const res = await Person.find({
         active: true
     }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active');
     
@@ -12,7 +12,7 @@ exports.get = async() => {
 }
 
 exports.getById = async(id) => {
-    const res = await User.find({
+    const res = await Person.find({
         _id: id,
         active: true
     }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active');
@@ -21,13 +21,13 @@ exports.getById = async(id) => {
 }
 
 exports.create = async(data) => {
-    var User = new User(data);
+    var Person = new Person(data);
 
-    await User.save();
+    await Person.save();
 }
 
 exports.update = async(id, data) => {
-    await User
+    await Person
         .findByIdAndUpdate(id, {
             $set: {
                 type: data.type,
@@ -47,12 +47,12 @@ exports.update = async(id, data) => {
 }
 
 exports.delete = async(id) => {
-    await User
+    await Person
         .findOneAndRemove(id);
 }
 
 exports.authenticate = async(data) => {
-    const res = await User.findOne({
+    const res = await Person.findOne({
         email: data.email,
         password: data.password
     });
