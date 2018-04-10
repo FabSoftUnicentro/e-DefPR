@@ -6,13 +6,25 @@ import Fetcher from "../helpers/Fetcher";
 class Service
 {
     /**
+     * Route for the API's controller
+     */
+    route = undefined
+    
+    /**
+     * Constructor. Can receive the route to API's controller
+     * @param {string} route 
+     */
+    constructor(route = "/") {
+        this.route = route;
+    }
+
+    /**
      * Create a new object
-     * @param {service} route 
      * @param {form params} values 
      */
-    create(route, values)
+    create(values)
     {
-        Fetcher.post(`/${route}`, values)
+        Fetcher.post(`${route}`, values)
             .then(response => response.json())
             .then(response => console.log(result))
             .catch(error => console.error(error));
@@ -20,13 +32,12 @@ class Service
 
     /**
      * List all objects. Can receive a list of filters fields
-     * @param {service} route 
      * @param {array} fields 
      */
-    index(route, fields)
+    index(fields)
     {
 
-        Fetcher.get(`/${route}?fields=${fields.toString()}`)
+        Fetcher.get(`${route}?fields=${fields.toString()}`)
             .then(result => result.json())
             .then(response => console.log(response))
             .catch(err => console.log(err));
@@ -34,12 +45,11 @@ class Service
 
     /**
      * Get a single object.
-     * @param {service} route 
      * @param {UUID} uid 
      */
-    get(route, uid)
+    get(uid)
     {
-        Fetcher.get(`/${route}/${uid}`)
+        Fetcher.get(`${route}/${uid}`)
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(err => console.log(err));
@@ -47,13 +57,12 @@ class Service
 
     /**
      * Update a specific object
-     * @param {service} route 
      * @param {UUID} uid 
      * @param {form params} values 
      */
-    update(route, uid, values)
+    update(uid, values)
     {
-        Fetcher.put(`/${route}/${uid}`, values)
+        Fetcher.put(`${route}/${uid}`, values)
             .then(response => response.json())
             .then(response => console.log(result))
             .catch(error => console.error(error));
@@ -66,7 +75,7 @@ class Service
      */
     delete(route, uid)
     {
-        Fetcher.delete(`/${route}/${uid}`)
+        Fetcher.delete(`${route}/${uid}`)
             .then(response => response.json())
             .then(response => console.log(result))
             .catch(error => console.error(error));
