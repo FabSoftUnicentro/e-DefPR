@@ -1,0 +1,83 @@
+.dashboard {
+    flex: 1;
+    background: #fbfbfb;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 62px;
+    background: white;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+main {
+    flex: 1;
+    display: flex;
+}
+
+.sidebar {
+    background: white;
+    width: 279px;
+    border-right: 1px solid rgba(0,0,0,.1);
+}
+
+.sidebar .user-button {
+    margin: 20px 30px;
+}
+
+.sidebar .user-button button {
+    width: 100%;
+}
+
+.content {
+    flex: 1;
+    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-header {
+    width: 100%;
+    margin-bottom: 20px;
+    max-width: 1044px;
+}
+
+.main-page {
+    width: calc(100% - 20px);
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 1024px;
+}
+
+/* Globals. */
+
+.page {
+    background: white;
+    border: 1px solid rgba(0,0,0,.1);
+}
+
+.ms-form {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.ms-form .textfield-group {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.ms-form .textfield-group > * {
+    flex: 1;
+    margin-left: 30px;
+}
+
+.ms-form .textfield-group > *:first-child { margin-left: 0px; }
+
+.ms-form .textfield-group.small-second div:first-child {
+    flex: auto;
+}

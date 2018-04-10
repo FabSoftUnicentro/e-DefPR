@@ -1,0 +1,32 @@
+.ms-Fabric {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.Form-Select-City {
+    display: flex;
+}
+
+.Select {
+    flex: 1;
+    display: flex;
+}
+
+.Select-control {
+    flex: 1;
+    border-color: #a6a6a6;
+    border-radius: 0;
+}
+
+.Select.is-open .Select-control {
+    border-color: lightseagreen;
+}
+
+.Form-Select-City .Select:first-child {
+    flex: 0;
+}
+
+.ms-TextField-fieldGroup input[aria-invalid="true"] {
+    background: rgba(255, 0, 0, .05);
+}
