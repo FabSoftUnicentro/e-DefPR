@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { DetailsList, CommandBar, SelectionMode, MessageBar, MessageBarType } from "office-ui-fabric-react";
-
-import Fetcher from "../../helpers/Fetcher";
+import employeeService from "../../services/EmployeeService";
 
 class Employee extends Component
 {
@@ -29,18 +28,7 @@ class Employee extends Component
     refreshEmployeeList() 
     {
         this.setState({ employeeList: {} });
-        Fetcher.get("/funcionario/query?fields=pessoaId,nomeCompleto,cpf,email")
-        .then(result => result.json())
-        .then(response => {
-            console.log(response);
-            if(!response.error) {
-                this.setState({ employeeList: response.data });
-            }
-            else {
-                this.setState({ error: response.error });
-            }
-        })
-        .catch(err => console.log(err));
+        employeeService.list();
     }
 
     render()

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Form, Field } from "react-final-form";
+import employeeService from "../../services/EmployeeService";
 
 import FabricStepper from "../components/FabricStepper";
-import Fetcher from "../../helpers/Fetcher";
 import { 
     TextFieldAdapter,
     CitySelectAdapter,
@@ -13,19 +13,13 @@ import {
 
 class EmployeeNew extends Component
 {
-    onSubmit(values)
-    {
-        values.enderecos = [values.enderecos];
-        Fetcher.post("/funcionario/add", values)
-        .then(response => response.json())
-        .then(result => console.log(result))
-        .catch(error => console.error(error));
+    onSubmit(values) {
+        employeeService.create(values);
     }
 
     render()
     {
         return <div className="page">
-            
             <Form
                 onSubmit={this.onSubmit.bind(this)}
                 render={({ handleSubmit, reset, submitting, pristine, values, meta }) => (

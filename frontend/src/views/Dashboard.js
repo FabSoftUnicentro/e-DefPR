@@ -99,41 +99,4 @@ class Dashboard extends Component
     }
 }
 
-// const NavGroups =
-// [
-//     {
-//         collapseByDefault: false,
-//         forceAnchor: true,
-//         links: [
-//             { name: "Página inicial", link: "/", key: "/", isExpanded: true },
-//             { name: "Triagem inicial", link: "/employee/new", key: "NewAssistido" },
-//             { name: "Assistidos", link: "/", key: "t2" },
-//             { name: "Processos", key: "t3" },
-//             { name: "Registrar atividade", key: "t4" },
-//             {
-//                 name: 'Gerenciar Funcionários',
-//                 url: "",
-//                 links: [
-//                     { name: "Consultar", link: "/employee", key: "/employee" },
-//                     { name: "Cadastrar", link: "/employee/new", key: "/employee/new" },
-//                     { name: "Últimas atividades", link: "/employee/new", key: "empActivities" }
-//                 ],
-//                 isExpanded: true
-//             },
-//             {
-//                 name: 'Relatórios',
-//                 url: "",
-//                 links: [
-//                     { name: "Test", key: "t1" },
-//                     { name: "Test", key: "t2" },
-//                     { name: "Test", key: "t3" },
-//                     { name: "Test", key: "t4" },
-//                     { name: "Test", key: "t5" }
-//                 ],
-//                 isExpanded: false
-//             }
-//         ]
-//     }
-// ];
-
 export default Dashboard;
