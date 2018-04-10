@@ -12,7 +12,7 @@ class Service
      */
     create(route, values)
     {
-        Fetcher.post(`/${route}/add`, values)
+        Fetcher.post(`/${route}`, values)
             .then(response => response.json())
             .then(response => console.log(result))
             .catch(error => console.error(error));
@@ -26,7 +26,7 @@ class Service
     index(route, fields)
     {
 
-        Fetcher.get(`/${route}/query?fields=${fields.toString()}`)
+        Fetcher.get(`/${route}?fields=${fields.toString()}`)
             .then(result => result.json())
             .then(response => console.log(response))
             .catch(err => console.log(err));
