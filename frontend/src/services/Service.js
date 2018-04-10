@@ -70,10 +70,9 @@ class Service
 
     /**
      * Destroy an object
-     * @param {service} route 
      * @param {UUID} uid 
      */
-    delete(route, uid)
+    delete(uid)
     {
         Fetcher.delete(`${route}/${uid}`)
             .then(response => response.json())
