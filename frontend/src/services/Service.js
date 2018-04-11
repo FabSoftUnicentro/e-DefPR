@@ -34,7 +34,7 @@ class Service
      * List all objects. Can receive a list of filters fields
      * @param {array} fields 
      */
-    index(fields)
+    index(fields = "")
     {
 
         Fetcher.get(`${route}?fields=${fields.toString()}`)
