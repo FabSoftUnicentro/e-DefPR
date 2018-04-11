@@ -1,4 +1,4 @@
-import Fetcher from "../helpers/Fetcher";
+import fetcher from "../helpers/fetcher";
 
 class EmployeeService
 {
@@ -11,7 +11,7 @@ class EmployeeService
         // TODO: Add validators.
         // TODO: Return results.
         values.enderecos = [values.enderecos];
-        Fetcher.post("/funcionario/add", values)
+        fetcher.post("/funcionario/add", values)
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.error(error));
@@ -19,7 +19,7 @@ class EmployeeService
 
     list()
     {
-        Fetcher.get("/funcionario/query?fields=pessoaId,nomeCompleto,cpf,email")
+        fetcher.get("/funcionario/query?fields=pessoaId,nomeCompleto,cpf,email")
             .then(result => result.json())
             .then(response => console.log(response))
             .catch(err => console.log(err));
@@ -28,7 +28,7 @@ class EmployeeService
     get(uid)
     {
         // TODO: Return results.
-        Fetcher.get(`/funcionario/fetch/${uid}`)
+        fetcher.get(`/funcionario/fetch/${uid}`)
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(err => console.log(err));

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { CommandBar, DetailsList } from 'office-ui-fabric-react';
 
-import Fetch from "../../helpers/Fetcher";
+import fetch from "../../helpers/fetcher";
 
 class Assist extends Component
 {
@@ -16,7 +16,7 @@ class Assist extends Component
 
     componentDidMount()
     {
-        Fetch.get("/assistido/all")
+        fetch.get("/assistido/all")
         .then(response => response.json())
         .then(result => {
             this.setState({ assistedList: result.data });

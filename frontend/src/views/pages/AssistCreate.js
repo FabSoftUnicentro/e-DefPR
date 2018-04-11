@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Field } from "react-final-form";
 
 import FabricStepper from "../components/FabricStepper";
-import Fetcher from "../../helpers/Fetcher";
+import fetcher from "../../helpers/fetcher";
 import { 
     TextFieldAdapter,
     CitySelectAdapter,
@@ -29,7 +29,7 @@ class AssistCreate extends Component
 
         console.log(triagem);
 
-        Fetcher.post("/triagem-inicial/add", triagem)
+        fetcher.post("/triagem-inicial/add", triagem)
         .then(response => response.json())
         .then(result => console.log(result))
         .catch(error => console.error(error));
