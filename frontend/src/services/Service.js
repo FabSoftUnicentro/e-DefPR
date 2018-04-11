@@ -22,24 +22,31 @@ class Service
      * Create a new object
      * @param {form params} values 
      */
-    create(values)
+    async create(values)
     {
-        fetcher.post(`${route}`, values)
-            .then(response => response.json())
-            .then(response => console.log(result))
-            .catch(error => console.error(error));
+        let result = await fetcher.post(`${this.route}`, values);
+
+        if(result.status !== 200) {
+            this.catchErrors(result);
+        }
+
+        return result;
     }
 
     /**
      * List all objects. Can receive a list of filters fields
-     * @param {array} fields 
+     * @param {params | array} fields 
      */
-    index(fields = "")
+    async index(fields = "")
     {
-        fetcher.get(`${route}?fields=${fields.toString()}`)
-            .then(result => result.json())
-            .then(response => console.log(response))
-            .catch(err => console.log(err));
+        // Todo: implement IQuerable backend.
+        let result = await fetcher.get(`${this.route}`, values);
+
+        if(result.status !== 200) {
+            this.catchErrors(result);
+        }
+
+        return result;
     }
 
     /**
@@ -48,10 +55,13 @@ class Service
      */
     get(uid)
     {
-        fetcher.get(`${route}/${uid}`)
-            .then(response => response.json())
-            .then(result => console.log(result))
-            .catch(err => console.log(err));
+        let result = await fetcher.get(`${this.route}/${uid}`);
+
+        if(result.status !== 200) {
+            this.catchErrors(result);
+        }
+
+        return result;
     }
 
     /**
@@ -61,10 +71,13 @@ class Service
      */
     update(uid, values)
     {
-        fetcher.put(`${route}/${uid}`, values)
-            .then(response => response.json())
-            .then(response => console.log(result))
-            .catch(error => console.error(error));
+        let result = await fetcher.put(`${this.route}/${uid}`, value);
+
+        if(result.status !== 200) {
+            this.catchErrors(result);
+        }
+
+        return result;
     }
 
     /**
@@ -73,10 +86,17 @@ class Service
      */
     delete(uid)
     {
-        fetcher.delete(`${route}/${uid}`)
-            .then(response => response.json())
-            .then(response => console.log(result))
-            .catch(error => console.error(error));
+        let result = await fetcher.delete(`${this.route}/${uid}`);
+
+        if(result.status !== 200) {
+            this.catchErrors(result);
+        }
+
+        return result;
+    }
+
+    catchErrors(error) {
+        console.log(`SERVICE ${this.route} ERROR:`, error);
     }
 }
 
