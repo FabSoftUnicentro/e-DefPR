@@ -30,9 +30,7 @@ exports.getById = async (req, res, next) => {
 exports.post = async (req, res, next) => {
   try {
 
-    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-      passwordHash = hash
-    })
+    let passwordHash = geraPasswordHash(req.body.password)
 
     await repository.create({
       type: req.body.type,
@@ -62,9 +60,7 @@ exports.post = async (req, res, next) => {
 exports.put = async (req, res, next) => {
   try {
 
-    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-      passwordHash = hash
-    })
+    let passwordHash = geraPasswordHash(req.body.password)
 
 
     await repository.update(req.params.id, {
@@ -108,9 +104,7 @@ exports.delete = async (req, res, next) => {
 exports.authenticate = async (req, res, next) => {
   try {
 
-    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-      passwordHash = hash
-    })
+    let passwordHash = geraPasswordHash(req.body.password)
 
 
     const person = await repository.authenticate({
@@ -179,4 +173,9 @@ exports.refreshToken = async (req, res, next) => {
       message: 'Failed to process your request'
     })
   }
+}
+
+// Função geradora do password com criptografia
+function geraPasswordHash (password) {
+  return bcrypt.hashSync(password, saltRounds)
 }
