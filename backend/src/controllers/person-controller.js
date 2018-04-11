@@ -1,8 +1,9 @@
 'use strict'
 
 const repository = require('../repositories/person-repository')
-const md5 = require('md5')
+const bcrypt = require('bcrypt')
 const authService = require('../services/auth-service')
+const saltRounds = 10;
 
 exports.get = async (req, res, next) => {
   try {
@@ -28,6 +29,9 @@ exports.getById = async (req, res, next) => {
 
 exports.post = async (req, res, next) => {
   try {
+
+    let passwordHash = geraPasswordHash(req.body.password)
+
     await repository.create({
       type: req.body.type,
       cpf: req.body.cpf,
@@ -40,7 +44,7 @@ exports.post = async (req, res, next) => {
       serviceNumber: req.body.serviceNumber,
       dateOfBirth: req.body.dateOfBirth,
       active: req.body.active,
-      password: md5(req.body.password + process.env.SALT_KEY)
+      password: passwordHash
     })
 
     res.status(201).send({
@@ -55,6 +59,10 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
+
+    let passwordHash = geraPasswordHash(req.body.password)
+
+
     await repository.update(req.params.id, {
       type: req.body.type,
       cpf: req.body.cpf,
@@ -67,7 +75,8 @@ exports.put = async (req, res, next) => {
       serviceNumber: req.body.serviceNumber,
       dateOfBirth: req.body.dateOfBirth,
       active: req.body.active,
-      password: md5(req.body.password + process.env.SALT_KEY)
+      password: passwordHash
+
     })
     res.status(200).send({
       message: 'Person successfuly updated'
@@ -94,9 +103,13 @@ exports.delete = async (req, res, next) => {
 
 exports.authenticate = async (req, res, next) => {
   try {
+
+    let passwordHash = geraPasswordHash(req.body.password)
+
+
     const person = await repository.authenticate({
       cpf: req.body.cpf,
-      password: md5(req.body.password + process.env.SALT_KEY)
+      password : passwordHash
     })
 
     if (!person) {
@@ -160,4 +173,9 @@ exports.refreshToken = async (req, res, next) => {
       message: 'Failed to process your request'
     })
   }
+}
+
+// Função geradora do password com criptografia
+function geraPasswordHash (password) {
+  return bcrypt.hashSync(password, saltRounds)
 }
