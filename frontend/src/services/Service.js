@@ -1,4 +1,4 @@
-import Fetcher from "../helpers/Fetcher";
+import fetcher from "../helpers/fetcher";
 
 /**
  * Default services (aka C.R.U.D.)
@@ -24,7 +24,7 @@ class Service
      */
     create(values)
     {
-        Fetcher.post(`${route}`, values)
+        fetcher.post(`${route}`, values)
             .then(response => response.json())
             .then(response => console.log(result))
             .catch(error => console.error(error));
@@ -36,8 +36,7 @@ class Service
      */
     index(fields = "")
     {
-
-        Fetcher.get(`${route}?fields=${fields.toString()}`)
+        fetcher.get(`${route}?fields=${fields.toString()}`)
             .then(result => result.json())
             .then(response => console.log(response))
             .catch(err => console.log(err));
@@ -49,7 +48,7 @@ class Service
      */
     get(uid)
     {
-        Fetcher.get(`${route}/${uid}`)
+        fetcher.get(`${route}/${uid}`)
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(err => console.log(err));
@@ -62,7 +61,7 @@ class Service
      */
     update(uid, values)
     {
-        Fetcher.put(`${route}/${uid}`, values)
+        fetcher.put(`${route}/${uid}`, values)
             .then(response => response.json())
             .then(response => console.log(result))
             .catch(error => console.error(error));
@@ -74,12 +73,11 @@ class Service
      */
     delete(uid)
     {
-        Fetcher.delete(`${route}/${uid}`)
+        fetcher.delete(`${route}/${uid}`)
             .then(response => response.json())
             .then(response => console.log(result))
             .catch(error => console.error(error));
     }
 }
-
 
 export default Service;

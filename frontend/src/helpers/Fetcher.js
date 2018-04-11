@@ -1,104 +1,90 @@
-import OAuth from "./OAuth";
+import { API_URL, FETCH_OPTIONS } from './app.config';
 
-const Config = {
-    baseUrl: "http://localhost:8080",
-    webServiceUrl: `http://localhost:8080/api`,
-    fetchOptions: {
-        mode: "cors",
-        headers: { 
-            "Content-type": "application/json",
-            "Authorization": `Basic ${window.btoa("def_guarapuava:fsunicentro")}`
-        }
+/**
+ * Default fetcher for all controllers.
+ * Usage: fetcher.[METHOD](CONTROLLER_PATH, ...rest)
+ */
+const fetcher = 
+{
+    /**
+     * Async getter from api.
+     * @param {string | path} controllerPath 
+     * Returns { status: HTTP_CODE, data: json }
+     */
+    async get(controllerPath = "/")
+    {
+        let response = await fetch(`${API_URL}${controllerPath}`, { method: 'GET', ...FETCH_OPTIONS });
+        let data = await response.json();
+
+        return { 
+            status: response.status, 
+            data: data
+        };
+    },
+
+    /**
+     * Async post to api.
+     * @param {string | path} controllerPath 
+     * @param {object} body 
+     * Returns { status: HTTP_CODE, data: json }
+     */
+    async post(controllerPath = "/", body = {})
+    {
+        let response = await fetch(`${API_URL}${controllerPath}`, { 
+            method: 'POST',
+            body: JSON.stringify(body), 
+            ...FETCH_OPTIONS 
+        });
+
+        let data = await response.json();
+
+        return { 
+            status: response.status, 
+            data: data
+        };
+    },
+
+    /**
+     * Async put to api.
+     * @param {string | path} controllerPath 
+     * @param {object} body
+     * Returns { status: HTTP_CODE, data: json } 
+     */
+    async put(controllerPath = "/", body = {})
+    {
+        let response = await fetch(`${API_URL}${controllerPath}`, { 
+            method: 'PUT',
+            body: JSON.stringify(body), 
+            ...FETCH_OPTIONS 
+        });
+
+        let data = await response.json();
+
+        return { 
+            status: response.status, 
+            data: data
+        };
+    },
+
+    /**
+     * Async delete from api.
+     * @param {string | path} controllerPath
+     * Returns { status: HTTP_CODE, data: json } 
+     */
+    async delete(controllerPath = "/")
+    {
+        let response = await fetch(`${API_URL}${controllerPath}`, { 
+            method: 'DELETE',
+            ...FETCH_OPTIONS 
+        });
+
+        let data = await response.json();
+
+        return { 
+            status: response.status, 
+            data: data
+        };
     }
 };
 
-const Fetcher =
-{
-    get: (service, token) =>
-    {
-        if(!token) {
-            token = OAuth.__getToken();
-        }
-
-        return new Promise((resolve, reject) => 
-        {
-            if(!token || token==="") {
-                reject({});
-                return;
-            }
-
-            const hasParams = (service.indexOf("?")>0)?"&":"?";
-            fetch(`${Config.webServiceUrl}${service}${hasParams}access_token=${token}`, { 
-                method: "GET", 
-                ...Config.fetchOptions
-            })
-            .then(result => resolve(result))
-            .catch(error => {
-                reject(error)
-            });
-        });
-    },
-
-    cachedGet: (service) =>
-    {
-        return new Promise((resolve, reject) => {
-
-            let resourceFromCache = localStorage.getItem(service);
-            if(resourceFromCache) {
-                resolve(JSON.parse(resourceFromCache));
-                return;
-            }
-
-            Fetcher.get(service)
-                .then(result => result.json())
-                .then(json => {
-                    localStorage.setItem(service, JSON.stringify(json));
-                    resolve(json);
-                })
-                .catch(error => reject(error));
-        });
-    },
-
-    authenticate: (username, password) =>
-    {
-        const grantType = "password";
-
-        return new Promise((resolve, reject) => {
-            fetch(`${Config.baseUrl}/oauth/token?grant_type=${grantType}&username=${username}&password=${password}`, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Authorization": `Basic ${window.btoa("def_guarapuava:fsunicentro")}`
-                }
-            })
-            .then(result => result.json())
-            .then(json => resolve(json))
-            .catch(err => reject(err));
-        });
-    },
-
-    post: (service, body, basePath = "/api") =>
-    {
-
-        let token = OAuth.__getToken();
-
-        return new Promise((resolve, reject) => {
-            fetch(`${Config.baseUrl}${basePath}${service}?access_token=${token}`, { 
-                method: "POST", 
-                ...Config.fetchOptions,
-                body: JSON.stringify(body)
-            })
-            .then(result => resolve(result))
-            .catch(error => reject(error));
-        });
-    }
-}
-
-export function ErrorMessage(message) {
-    return {
-        status: "unavaliable",
-        message: message
-    }
-}
-
-export default Fetcher;
+export default fetcher;
