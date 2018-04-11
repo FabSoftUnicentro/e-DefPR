@@ -1,4 +1,4 @@
-import Service from "../../../frontend/src/services/Service.js"
+import Service from "./Service"
 
 class CityService extends Service{
         
@@ -7,3 +7,5 @@ class CityService extends Service{
     }
     
 }
+
+export default (new CityService());
