@@ -249,3 +249,10 @@ Processo manual:
     Github: @dav3sk
     E-mail: davibastos.v@gmail.com
     ```
+
+    - #### Luiz Gustavo de Azevedo Gomes
+    ```
+    Slack: @luizgustavoagomes
+    Github: @luizgustavoagomes
+    E-mail: luizgustavo.agomes@gmail.com
+    ```
