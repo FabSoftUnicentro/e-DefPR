@@ -30,8 +30,6 @@ exports.getById = async (req, res, next) => {
 exports.post = async (req, res, next) => {
   try {
 
-    let passwordHash = ""
-
     bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
       passwordHash = hash
     })
@@ -63,8 +61,6 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
-
-    let passwordHash = ""
 
     bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
       passwordHash = hash
@@ -111,8 +107,6 @@ exports.delete = async (req, res, next) => {
 
 exports.authenticate = async (req, res, next) => {
   try {
-
-    let passwordHash = ""
 
     bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
       passwordHash = hash
