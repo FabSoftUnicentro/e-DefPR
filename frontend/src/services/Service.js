@@ -53,7 +53,7 @@ class Service
      * Get a single object.
      * @param {UUID} uid 
      */
-    get(uid)
+    async get(uid)
     {
         let result = await fetcher.get(`${this.route}/${uid}`);
 
@@ -69,7 +69,7 @@ class Service
      * @param {UUID} uid 
      * @param {form params} values 
      */
-    update(uid, values)
+    async update(uid, values)
     {
         let result = await fetcher.put(`${this.route}/${uid}`, value);
 
@@ -84,7 +84,7 @@ class Service
      * Destroy an object
      * @param {UUID} uid 
      */
-    delete(uid)
+    async delete(uid)
     {
         let result = await fetcher.delete(`${this.route}/${uid}`);
 
