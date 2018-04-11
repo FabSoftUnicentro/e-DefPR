@@ -4,7 +4,7 @@ import Select, { Async } from "react-select";
 import VirtualizedSelect from 'react-virtualized-select';
 import { Field } from "react-final-form";
 
-import Fetcher from "../../helpers/Fetcher";
+import fetcher from "../../helpers/fetcher";
 
 export const TextFieldAdapter = ({ input, label, meta, ...rest }) => (
     <TextField 
@@ -133,7 +133,7 @@ class CitySelect extends Component
             return; // Fix bug on clear input.
         }
 
-        Fetcher.cachedGet(`/cidade/estado/${item.value}`)
+        fetcher.cachedGet(`/cidade/estado/${item.value}`)
         .then(response => {
             const cityList = response.data.map(item => ({ value: item.cidadeId, label: item.nome }))
             this.setState({ cityList: cityList })
@@ -180,7 +180,7 @@ class CitySelect extends Component
 }
 
 const LoadStateList = input => {
-    return Fetcher.cachedGet("/estado/all")
+    return fetcher.cachedGet("/estado/all")
     .then(response => {
         const selectOptions = response.data.map( item => ({ value: item.estadoId, label: item.uf }) );
         return { options: selectOptions }
