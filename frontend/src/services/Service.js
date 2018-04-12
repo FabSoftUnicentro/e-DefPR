@@ -40,7 +40,7 @@ class Service
     async index(fields = "")
     {
         // Todo: implement IQuerable backend.
-        let result = await fetcher.get(`${this.route}`, values);
+        let result = await fetcher.get(`${this.route}`);
 
         if(result.status !== 200) {
             this.catchErrors(result);
@@ -71,7 +71,7 @@ class Service
      */
     async update(uid, values)
     {
-        let result = await fetcher.put(`${this.route}/${uid}`, value);
+        let result = await fetcher.put(`${this.route}/${uid}`, values);
 
         if(result.status !== 200) {
             this.catchErrors(result);
