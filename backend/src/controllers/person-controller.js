@@ -29,7 +29,7 @@ exports.getById = async (req, res, next) => {
 
 exports.post = async (req, res, next) => {
   try {
-    let passwordHash = geraPasswordHash(req.body.password)
+    let passwordHash = encryptPassword(req.body.password)
 
     await repository.create({
       type: req.body.type,
@@ -58,7 +58,7 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
-    let passwordHash = geraPasswordHash(req.body.password)
+    let passwordHash = encryptPassword(req.body.password)
 
     await repository.update(req.params.id, {
       type: req.body.type,
@@ -100,7 +100,7 @@ exports.delete = async (req, res, next) => {
 
 exports.authenticate = async (req, res, next) => {
   try {
-    let passwordHash = geraPasswordHash(req.body.password)
+    let passwordHash = encryptPassword(req.body.password)
 
     const person = await repository.authenticate({
       cpf: req.body.cpf,
@@ -170,7 +170,7 @@ exports.refreshToken = async (req, res, next) => {
   }
 }
 
-// Função geradora do password com criptografia
-function geraPasswordHash (password) {
+// Function to encrypt the password
+function encryptPassword(password) {
   return bcrypt.hashSync(password, saltRounds)
 }
