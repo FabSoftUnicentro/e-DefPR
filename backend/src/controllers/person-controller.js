@@ -1,7 +1,7 @@
 'use strict'
 
 const repository = require('../repositories/person-repository')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const authService = require('../services/auth-service')
 const saltRounds = 10
 
