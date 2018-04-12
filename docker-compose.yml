@@ -1,27 +1,38 @@
 version: '2'
 services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
   backend:
     build:
       context: ./backend/
     command: yarn start
-    # command: /usr/app/node_modules/.bin/nodemon ./src/app
     volumes:
       - ./backend/:/usr/app/backend
       - /usr/app/backend/node_modules
     ports:
       - "3000:3000"
-    # env_file: ./backend/.env # TODO - uncomment this to auto-load your .env file!
+    env_file: ./backend/.env.docker # auto-load .env file!
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
+    links:
+      - mongo
   frontend:
     build:
       context: ./frontend/
-    command: yarn build start
+    command: serve build
     volumes:
       - ./frontend/:/usr/app/frontend
       - /usr/app/node_modules
     depends_on:
       - backend
     ports:
-      - "3001:3001"
+      - "5000:5000"

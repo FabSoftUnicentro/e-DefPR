@@ -6,7 +6,7 @@ WORKDIR /usr/app/frontend/
 COPY frontend/package*.json ./
 RUN yarn install -qy
 COPY frontend/ ./
-RUN yarn run build
+RUN yarn build
 
 # Setup the server
 
