@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-echo "Applying http_proxy for yarn..."
+echo "Removing http_proxy for yarn..."
 yarn config delete proxy
-echo "Applying http_proxy for yarn..."
+echo "Removing http_proxy for yarn..."
 yarn config delete https-proxy
 
 echo "Removing http_proxy from GIT..."
