@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+echo "Removing http_proxy from yarn..."
+yarn config delete proxy
+echo "Removing http_proxy from yarn..."
+yarn config delete https-proxy
+
+echo "Removing http_proxy from GIT..."
+git config --global --unset http.proxy
+echo "Removing https_proxy from GIT..."
+git config --global --unset https.proxy
+
+echo "Removing http_proxy from Linux terminal..."
+unset http_proxy
+echo "Removing https_proxy from Linux terminal..."
+unset https_proxy
+echo "All done, proxies removed."

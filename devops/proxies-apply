@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+echo "Applying http_proxy for yarn..."
+yarn config set proxy http://proxy:8080
+echo "Applying https_proxy for yarn..."
+yarn config set https-proxy http://proxy:8080
+
+echo "Applying http_proxy for GIT..."
+git config --global http.proxy http://proxy:8080
+echo "Applying https_proxy for GIT..."
+git config --global https.proxy http://proxy:8080
+
+echo "Applying http_proxy for Linux terminal..."
+export http_proxy="http://proxy:8080"
+echo "Applying https_proxy for Linux terminal..."
+export https_proxy="http://proxy:8080"
+echo "All done, proxies applied."
