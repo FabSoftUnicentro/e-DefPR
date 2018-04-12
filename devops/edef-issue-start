@@ -32,4 +32,6 @@ else
 	git push --set-upstream origin issue#$1
 fi
 
+git pull origin master
+
 echo "Everything done, now on Branch: issue#$1"
