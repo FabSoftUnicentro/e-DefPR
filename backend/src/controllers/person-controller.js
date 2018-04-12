@@ -3,7 +3,7 @@
 const repository = require('../repositories/person-repository')
 const bcrypt = require('bcrypt')
 const authService = require('../services/auth-service')
-const saltRounds = 10;
+const saltRounds = 10
 
 exports.get = async (req, res, next) => {
   try {
@@ -29,7 +29,6 @@ exports.getById = async (req, res, next) => {
 
 exports.post = async (req, res, next) => {
   try {
-
     let passwordHash = geraPasswordHash(req.body.password)
 
     await repository.create({
@@ -59,9 +58,7 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
-
     let passwordHash = geraPasswordHash(req.body.password)
-
 
     await repository.update(req.params.id, {
       type: req.body.type,
@@ -103,13 +100,11 @@ exports.delete = async (req, res, next) => {
 
 exports.authenticate = async (req, res, next) => {
   try {
-
     let passwordHash = geraPasswordHash(req.body.password)
-
 
     const person = await repository.authenticate({
       cpf: req.body.cpf,
-      password : passwordHash
+      password: passwordHash
     })
 
     if (!person) {
