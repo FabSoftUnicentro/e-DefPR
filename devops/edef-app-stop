@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+cd $EDEF_PATH
+
+set -e
+if [ "$#" -lt 1 ]; then
+  echo  "Please insert at least one or more arguments [-frontend, -backend, -mongo]"
+  exit
+else
+  echo -e "\c"
+fi
+
+for arg
+do
+    case "$arg" in
+        -mongo)
+            docker-compose -f docker-compose.yml -f docker-compose.dev.yml stop mongo
+            ;;
+        -frontend)
+            docker-compose -f docker-compose.yml -f docker-compose.dev.yml stop frontend
+            ;;
+        -backend)
+            docker-compose -f docker-compose.yml -f docker-compose.dev.yml stop backend
+            ;;
+        *)
+            echo "Unknown argument"
+            exit 1
+            ;;
+     esac
+done
+
+echo "All done, services stopped."
