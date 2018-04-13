@@ -1,100 +1,94 @@
-import fetcher from "./fetcher";
-import BuildEmployeeLinks from "./AuthLinks";
+import fetcher from './fetcher'
+import BuildEmployeeLinks from './AuthLinks'
 
-const OAuth = 
+const OAuth =
 {
-    /** PRIVATE */
+  /** PRIVATE */
 
-    __isAuthenticated: false,
+  __isAuthenticated: false,
 
-    __authSuccess(result)
-    {
-        sessionStorage.setItem("oauth_edefpr", window.btoa(JSON.stringify(result)));
-        this.__isAuthenticated = true;
-    },
+  __authSuccess (result) {
+    sessionStorage.setItem('oauth_edefpr', window.btoa(JSON.stringify(result)))
+    this.__isAuthenticated = true
+  },
 
-    __getToken() {
-        return JSON.parse(window.atob(sessionStorage.getItem("oauth_edefpr")))["access_token"];
-    },
+  __getToken () {
+    return JSON.parse(window.atob(sessionStorage.getItem('oauth_edefpr')))['access_token']
+  },
 
-    /** PUBLIC */
+  /** PUBLIC */
 
-    isAuthenticated()
-    {
-        // if(sessionStorage.getItem("oauth_edefpr")) {
-        //     this.__isAuthenticated = true;
-        // }
+  isAuthenticated () {
+    // if(sessionStorage.getItem("oauth_edefpr")) {
+    //     this.__isAuthenticated = true;
+    // }
 
-        // return this.__isAuthenticated;
+    // return this.__isAuthenticated;
 
-        return true;
-    },
+    return true
+  },
 
-    isTokenValid()
-    {
-        return new Promise((resolve, reject) => {
-            fetcher.post(`/check_token?token=${this.__getToken()}`, {}, "/oauth")
-            .then(result => result.json())
-            .then(response => {
-                if(response.error) {
-                    resolve("INVALID_TOKEN");
-                    return;
-                }
+  isTokenValid () {
+    return new Promise((resolve, reject) => {
+      fetcher.post(`/check_token?token=${this.__getToken()}`, {}, '/oauth')
+        .then(result => result.json())
+        .then(response => {
+          if (response.error) {
+            resolve('INVALID_TOKEN')
+            return
+          }
 
-                resolve("OK");
-            })
-            .catch(err => console.log(err));
-        });
-    },
+          resolve('OK')
+        })
+        .catch(err => console.log(err))
+    })
+  },
 
-    async getEmployeeData() {
-        // return new Promise((resolve, reject) => {
-        //     fetcher.get("/account", this.__getToken())
-        //     .then(result => result.json())
-        //     .then(response => {
-        //         response.authorizedLinks = BuildEmployeeLinks(response.authorities);
-        //         console.log(response);
-        //         resolve(response)
-        //     })
-        //     .catch(err => {
-        //         this.isTokenValid().then(response => {
-        //             this.logout();
-        //         });
-        //         reject(err)
-        //     });
-        // });
+  async getEmployeeData () {
+    // return new Promise((resolve, reject) => {
+    //     fetcher.get("/account", this.__getToken())
+    //     .then(result => result.json())
+    //     .then(response => {
+    //         response.authorizedLinks = BuildEmployeeLinks(response.authorities);
+    //         console.log(response);
+    //         resolve(response)
+    //     })
+    //     .catch(err => {
+    //         this.isTokenValid().then(response => {
+    //             this.logout();
+    //         });
+    //         reject(err)
+    //     });
+    // });
 
-        return await ({})
-    },
+    return await ({})
+  },
 
-    logout()
-    {
-        this.__isAuthenticated = false;
-        sessionStorage.clear();
-        window.location.reload();
-    },
+  logout () {
+    this.__isAuthenticated = false
+    sessionStorage.clear()
+    window.location.reload()
+  },
 
-    authenticate(username, password) 
-    {
-        return new Promise((resolve, reject) => 
-        {
-            // Fetcher.authenticate(username, password)
-            // .then(result => {
+  authenticate (username, password) {
+    return new Promise((resolve, reject) => {
+      // Fetcher.authenticate(username, password)
+      // .then(result => {
 
-            //     if(result.error) {
-            //         reject(ErrorMessage("Dados de acesso inválido(s)."));
-            //         return;
-            //     }
+      //     if(result.error) {
+      //         reject(ErrorMessage("Dados de acesso inválido(s)."));
+      //         return;
+      //     }
 
-            //     this.__authSuccess(result);
-            //     resolve(result);
-            // })
-            // .catch(err => {
-            //     console.error(err);
-            //     reject(ErrorMessage("O servidor não está disponível."));
-            // });
-        });
-    }
-};
+      //     this.__authSuccess(result);
+      //     resolve(result);
+      // })
+      // .catch(err => {
+      //     console.error(err);
+      //     reject(ErrorMessage("O servidor não está disponível."));
+      // });
+    })
+  }
+}
 
-export default OAuth;
+export default OAuth

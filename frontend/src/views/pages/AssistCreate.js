@@ -1,127 +1,124 @@
-import React, { Component } from "react";
-import { Form, Field } from "react-final-form";
+import React, { Component } from 'react'
+import { Form, Field } from 'react-final-form'
 
-import FabricStepper from "../components/FabricStepper";
-import fetcher from "../../helpers/fetcher";
-import { 
-    TextFieldAdapter,
-    CitySelectAdapter,
-    DatePickerAdapter,
-    GenderSelect,
-    CivilStateSelect
-} from "../components/Adapters";
+import FabricStepper from '../components/FabricStepper'
+import fetcher from '../../helpers/fetcher'
+import {
+  TextFieldAdapter,
+  CitySelectAdapter,
+  DatePickerAdapter,
+  GenderSelect,
+  CivilStateSelect
+} from '../components/Adapters'
 
-class AssistCreate extends Component
-{
-    componentDidMount() {
-        console.log(this.props.user);
+class AssistCreate extends Component {
+  componentDidMount () {
+    console.log(this.props.user)
+  }
+
+  onSubmit (values) {
+    values.enderecos = [values.enderecos]
+    const triagem = {
+      assistido: values,
+      responsavel: {
+        pessoaId: 5609
+      }
     }
 
-    onSubmit(values)
-    {
-        values.enderecos = [values.enderecos];
-        const triagem = {
-            assistido: values,
-            responsavel: {
-                pessoaId: 5609
-            }
-        }
+    console.log(triagem)
 
-        console.log(triagem);
+    fetcher.post('/triagem-inicial/add', triagem)
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(error => console.error(error))
+  }
 
-        fetcher.post("/triagem-inicial/add", triagem)
-        .then(response => response.json())
-        .then(result => console.log(result))
-        .catch(error => console.error(error));
-    }
+  render () {
+    return <div className='page'>
+      <Form
+        onSubmit={this.onSubmit.bind(this)}
+        render={({ handleSubmit, reset, submitting, pristine, values, meta }) => (
+          <div>
+            <FabricStepper
+              onSubmit={handleSubmit}
+              isSubmitting={submitting}
+            >
+              <FabricStepper.Step
+                title='Informações pessoais'
+              >
+                <div className='textfield-group'>
+                  <Field name='nome' label='Nome' required component={TextFieldAdapter} />
+                  <Field name='sobrenome' label='Sobrenome' required component={TextFieldAdapter} />
+                </div>
 
-    render()
-    {
-        return <div className="page">
-            <Form
-                onSubmit={this.onSubmit.bind(this)}
-                render={({ handleSubmit, reset, submitting, pristine, values, meta }) => (
-                    <div>
-                        <FabricStepper 
-                            onSubmit={handleSubmit} 
-                            isSubmitting={submitting}
-                        >
-                            <FabricStepper.Step
-                                title="Informações pessoais"
-                            >
-                                <div className="textfield-group">
-                                    <Field name="nome" label="Nome" required={true} component={TextFieldAdapter} />
-                                    <Field name="sobrenome" label="Sobrenome" required={true} component={TextFieldAdapter} />
-                                </div>
+                <div className='textfield-group'>
+                  <Field name='cpf' label='CPF' required component={TextFieldAdapter} />
+                  <div />
+                </div>
 
-                                <div className="textfield-group">
-                                    <Field name="cpf" label="CPF" required={true} component={TextFieldAdapter} />
-                                    <div />
-                                </div>
+                <div className='textfield-group'>
+                  <Field name='nascimento' label='Data de nascimento' component={DatePickerAdapter} />
+                  <div />
+                </div>
 
-                                <div className="textfield-group">
-                                    <Field name="nascimento" label="Data de nascimento" component={DatePickerAdapter} />
-                                    <div />
-                                </div>
+                <div className='textfield-group'>
+                  <Field name='rg' label='RG' required component={TextFieldAdapter} />
+                  <Field name='orgaoEmissor' label='Orgão emissor' required component={TextFieldAdapter} />
+                </div>
 
-                                <div className="textfield-group">
-                                    <Field name="rg" label="RG" required={true} component={TextFieldAdapter} />
-                                    <Field name="orgaoEmissor" label="Orgão emissor" required={true} component={TextFieldAdapter} />
-                                </div>
+                <div className='textfield-group'>
+                  <Field name='genero' label='Genêro' searchable={false} component={GenderSelect} />
+                  <div />
+                </div>
 
-                                <div className="textfield-group">
-                                    <Field name="genero" label="Genêro" searchable={false} component={GenderSelect} />
-                                    <div />
-                                </div>
+                <div className='textfield-group'>
+                  <Field name='naturalidade' label='Cidade natal' component={CitySelectAdapter} />
+                  <div />
+                </div>
 
-                                <div className="textfield-group">
-                                    <Field name="naturalidade" label="Cidade natal" component={CitySelectAdapter} />
-                                    <div />
-                                </div>
+                <div className='textfield-group'>
+                  <Field name='estadoCivil' label='Estado civil' searchable={false} component={CivilStateSelect} />
+                  <div />
+                </div>
 
-                                <div className="textfield-group">
-                                    <Field name="estadoCivil" label="Estado civil" searchable={false} component={CivilStateSelect} />
-                                    <div />
-                                </div>
+                <div className='textfield-group'>
+                  <Field name='profissao' label='Profissão' component={TextFieldAdapter} />
+                  <div />
+                </div>
 
-                                <div className="textfield-group">
-                                    <Field name="profissao" label="Profissão" component={TextFieldAdapter} />
-                                    <div />
-                                </div>
+                <div className='textfield-group'>
+                  <Field name='relatorio' label='Relatório' multiline component={TextFieldAdapter} />
+                </div>
+              </FabricStepper.Step>
 
-                                <div className="textfield-group">
-                                    <Field name="relatorio" label="Relatório" multiline component={TextFieldAdapter} />
-                                </div>
-                            </FabricStepper.Step>
+              <FabricStepper.Step
+                title='Endereços'
+              >
+                <div className='textfield-group'>
+                  <Field name='enderecos[cep]' label='CEP' required component={TextFieldAdapter} />
+                  <div /> <div />
+                </div>
 
-                            <FabricStepper.Step
-                                title="Endereços"
-                            >
-                                <div className="textfield-group">
-                                    <Field name="enderecos[cep]" label="CEP" required={true} component={TextFieldAdapter} />
-                                    <div /> <div />
-                                </div>
+                <div className='textfield-group'>
+                  <Field name='enderecos[rua]' label='Rua' required component={TextFieldAdapter} />
+                  <Field name='enderecos[numero]' label='Número' required component={TextFieldAdapter} />
+                </div>
 
-                                <div className="textfield-group">
-                                    <Field name="enderecos[rua]" label="Rua" required={true} component={TextFieldAdapter} />
-                                    <Field name="enderecos[numero]" label="Número" required={true} component={TextFieldAdapter} />
-                                </div>
+                <div className='textfield-group'>
+                  <Field name='enderecos[cidade]' label='Cidade' required component={CitySelectAdapter} />
+                  <Field name='enderecos[bairro]' label='Bairro' required component={TextFieldAdapter} />
+                </div>
 
-                                <div className="textfield-group">
-                                    <Field name="enderecos[cidade]" label="Cidade" required={true} component={CitySelectAdapter} />
-                                    <Field name="enderecos[bairro]" label="Bairro" required={true} component={TextFieldAdapter} />
-                                </div>
-
-                                <div className="textfield-group">
-                                    <Field name="enderecos[complemento]" label="Complemento" component={TextFieldAdapter} />
-                                </div>
-                            </FabricStepper.Step>
-                        </FabricStepper>
-                    </div>
-                )}
-            />
-        </div>;
-    }
+                <div className='textfield-group'>
+                  <Field name='enderecos[complemento]' label='Complemento' component={TextFieldAdapter} />
+                </div>
+              </FabricStepper.Step>
+            </FabricStepper>
+          </div>
+        )}
+      />
+    </div>
+  }
 }
 
-export default AssistCreate;
+export default AssistCreate
