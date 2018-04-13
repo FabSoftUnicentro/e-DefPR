@@ -1,11 +1,9 @@
-import Service from "./Service"
+import Service from './Service'
 
-class CityService extends Service{
-        
-    constructor() {
-        super("/cities");
-    }
-    
+class CityService extends Service {
+  constructor () {
+    super('/cities')
+  }
 }
 
-export default (new CityService());
+export default (new CityService())

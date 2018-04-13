@@ -1,11 +1,9 @@
-import Service from "./Service"
+import Service from './Service'
 
-class StatesService extends Service{
-        
-    constructor() {
-        super("/states");
-    }
-    
+class StatesService extends Service {
+  constructor () {
+    super('/states')
+  }
 }
 
-export default (new StatesService());
+export default (new StatesService())

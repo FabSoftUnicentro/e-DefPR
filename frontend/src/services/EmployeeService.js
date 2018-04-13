@@ -1,11 +1,10 @@
-import Service from "./Service";
-import fetcher from "../helpers/fetcher";
+import Service from './Service'
+import fetcher from '../helpers/fetcher'
 
-class EmployeeService extends Service
-{
-    constructor() {
-        super('/person');
-    }
+class EmployeeService extends Service {
+  constructor () {
+    super('/person')
+  }
 }
 
-export default (new EmployeeService());
+export default (new EmployeeService())
