@@ -1,0 +1,26 @@
+version: '2'
+services:
+  backend:
+    build:
+      context: ./backend/
+    command: yarn start
+    volumes:
+      - ./backend/:/usr/app/backend
+      - /usr/app/backend/node_modules
+    ports:
+      - "3000:3000"
+    env_file: ./backend/.env # auto-load .env file!
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+  frontend:
+    build:
+      context: ./frontend/
+    command: serve build
+    volumes:
+      - ./frontend/:/usr/app/frontend
+      - /usr/app/node_modules
+    depends_on:
+      - backend
+    ports:
+      - "5000:5000"

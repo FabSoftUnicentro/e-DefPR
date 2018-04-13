@@ -1,0 +1,21 @@
+version: '2'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+  backend:
+    ports:
+      - "3000:3000"
+    env_file: ./backend/.env.dev
+    links:
+      - mongo
+  frontend:
+    ports:
+      - "5000:5000"

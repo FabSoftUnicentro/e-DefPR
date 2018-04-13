@@ -1,3 +1,4 @@
+import Service from "./Service";
 import fetcher from "../helpers/fetcher";
 
 class EmployeeService extends Service
