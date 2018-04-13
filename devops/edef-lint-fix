@@ -1,0 +1,11 @@
+cd $EDEF_PATH/backend
+
+echo "Fixing code indentation and spacing on backend..."
+yarn standard --fix
+
+cd $EDEF_PATH/frontend
+
+echo "Fixing code indentation and spacing on frontend..."
+yarn standard --fix
+
+echo "All done, code linted."
