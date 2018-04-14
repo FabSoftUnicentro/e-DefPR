@@ -1,0 +1,16 @@
+# colors consts
+PURPLE='\033[0;35m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+cd $EDEF_PATH/backend
+
+echo -e "${PURPLE}Installing dependencies${NC} on backend..."
+yarn install
+
+cd $EDEF_PATH/frontend
+
+echo -e "${PURPLE}Installing dependencies${NC} on frontend..."
+yarn install
+
+echo -e "${GREEN}All done, dependencies installed.${NC}"
