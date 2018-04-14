@@ -32,6 +32,7 @@ class SignIn extends Component {
     this.toggleHelpBubble = this.toggleHelpBubble.bind(this)
     this.onSignIn = this.onSignIn.bind(this)
     this.onTextfieldChange = this.onTextfieldChange.bind(this)
+    this.displayMessage = this.displayMessage.bind(this)
   }
 
   onTextfieldChange (name, value) {
@@ -75,22 +76,46 @@ class SignIn extends Component {
 
   onSignIn () {
     this.setState({ isLoading: true, messageBarProps: null })
-    this.props.oauth.authenticate(this.state.form.username, this.state.form.password)
-      .then(result => this.setState({
-        redirectToReferrer: true,
-        messageBarProps: {
-          type: MessageBarType.success,
-          text: 'Você entrou. Vamos levar você até o sistema.'
+    
+    this.props.authService.login(this.state.form.username, this.state.form.password)
+      .then(result => {
+        console.log(result, result.status === 404)
+        if(result.status === 200){
+          this.displayMessage(MessageBarType.success, 'Você entrou. Vamos levar você até o sistema.')
+        }else if(result.status === 404){
+          this.displayMessage(MessageBarType.severeWarning, 'CPF ou senha inválido')
         }
-      }))
+      })
       .catch(err => this.setState({
         isLoading: false,
         messageBarProps: {
-          type: MessageBarType.severeWarning,
+          type: MessageBarType.error,
           text: err.message
         }
       }))
   }
+
+  displayMessage(typeMsg, message){
+    this.setState({
+      redirectToReferrer: true,
+      messageBarProps: {
+        type: typeMsg,
+        text: message
+      }
+    })
+  }
+
+  /*
+  displayMessage(type, message){
+    this.setState({
+      redirectToReferrer: true,
+      messageBarProps: {
+        type: MessageBarType.success,
+        text: 'Você entrou. Vamos levar você até o sistema.'
+      }
+    })
+  }
+  */
 
   render () {
     if (this.state.redirectToReferrer) {
