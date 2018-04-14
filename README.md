@@ -256,3 +256,11 @@ Processo manual:
     Github: @luizgustavoagomes
     E-mail: luizgustavo.agomes@gmail.com
     ```
+
+    - #### Paulo Henrique Pieczarka da Silva
+    ```
+    Fullstack developer
+    Slack: @paulopieczarka
+    Github: @paulopieczarka
+    E-mail: paulopieczarka@gmail.com
+    ```
