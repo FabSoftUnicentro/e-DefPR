@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ${CLI_PATH}config/colors
+
 SLACK_CHANNEL=${1/--/}
 SLACK_URI=$(eval "echo \$SLACK_HOOK_${SLACK_CHANNEL^^}")
 INPUT_TYPE=${3/--/}
@@ -12,12 +14,12 @@ else
 fi
 
 if [[ -n $SLACK_URI ]]; then
-  echo "Sending Slack notification..."
+  echo -e "${YELLOW}Sending Slack notification...${NC}"
 
   curl -s -X POST \
     -H "Content-type:application/json" \
     -d "${JSON}" $SLACK_URI > /dev/null 2>&1
 else
-  echo "Error: something unexpected occurred, \
-    make sure channel ${SLACK_CHANNEL} is valid channel option"
+  echo -e "${RED}Error: something unexpected occurred, \
+    make sure channel ${SLACK_CHANNEL} is valid channel option${NC}"
 fi

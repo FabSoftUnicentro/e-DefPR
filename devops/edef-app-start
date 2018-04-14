@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+source ${CLI_PATH}config/colors
+
 cd $EDEF_PATH
 
 set -e
 if [ "$#" -lt 1 ]; then
-  echo  "Please insert at least one or more arguments [-frontend, -backend, -mongo]"
+  echo -e "${RED}Please insert at least one or more arguments${NC} ${CYAN}[-frontend, -backend, -mongo]${NC}"
   exit
 else
   echo -e "\c"
@@ -23,10 +25,10 @@ do
             docker-compose -f docker-compose.yml -f docker-compose.dev.yml up backend
             ;;
         *)
-            echo "Unknown argument"
+            echo -e "${RED}Unknown argument${NC}"
             exit 1
             ;;
      esac
 done
 
-echo "All done, services started."
+echo -e "${GREEN}All done, services started.${NC}"

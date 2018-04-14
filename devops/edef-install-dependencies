@@ -1,7 +1,4 @@
-# colors consts
-PURPLE='\033[0;35m'
-GREEN='\033[0;32m'
-NC='\033[0m' # No Color
+source ${CLI_PATH}config/colors
 
 cd $EDEF_PATH/backend
 
