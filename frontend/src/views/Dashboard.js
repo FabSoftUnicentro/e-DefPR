@@ -6,7 +6,6 @@ import {
   Breadcrumb
 } from 'office-ui-fabric-react'
 
-import OAuth from '../helpers/OAuth'
 import Header from './Header'
 import Schedule from './pages/Schedule'
 import Employee from './pages/Employee'
@@ -41,10 +40,10 @@ class Dashboard extends Component {
   componentDidMount () {
     this.setState({ selectedKey: window.location.pathname })
 
-    OAuth.getEmployeeData()
-      .then(result => {
-        this.setState({ authenticatedEmployee: result })
-      })
+    // OAuth.getEmployeeData()
+    //   .then(result => {
+    //     this.setState({ authenticatedEmployee: result })
+    //   })
   }
 
   render () {

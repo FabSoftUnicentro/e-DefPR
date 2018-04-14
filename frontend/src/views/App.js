@@ -4,9 +4,9 @@ import { Fabric } from 'office-ui-fabric-react/lib/Fabric'
 import { loadTheme } from 'office-ui-fabric-react/lib/Styling'
 import { initializeIcons } from '@uifabric/icons'
 
-import OAuth from '../helpers/OAuth'
 import Dashboard from './Dashboard'
 import SignIn from './SignIn'
+import authService from '../services/AuthService'
 
 import 'react-select/dist/react-select.css'
 import '../styles/App.css'
@@ -26,7 +26,7 @@ class App extends Component {
   render () {
     return <Router>
       <Fabric>
-        <Route path='/signin' component={() => <SignIn oauth={OAuth} />} />
+        <Route path='/signin' component={() => <SignIn authService={authService} />} />
         <PrivateRoute path='/' component={Dashboard} />
       </Fabric>
     </Router>
@@ -35,7 +35,7 @@ class App extends Component {
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    OAuth.isAuthenticated() ? (
+    authService.isAuthenticated() ? (
       <Component {...props} />
     ) : (
       (props.history.location.pathname !== '/signin')
