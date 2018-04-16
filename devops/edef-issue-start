@@ -17,6 +17,7 @@ LAST_ISSUE=${LAST_BRANCH/issue#/}
 LAST_MODIF=$(git log origin/master..HEAD)
 
 # Branch Master
+git branch -D LAST_BRANCH
 git checkout master
 git fetch origin
 git pull origin master
