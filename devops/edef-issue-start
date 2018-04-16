@@ -5,10 +5,10 @@ cd $EDEF_PATH
 if [[ $1 = '--help' ]] || [[ $1 = '-h' ]]; then
   printf "issue-start - help:
   Usage:
-  issue-start [ISSUE_NUMBER] \n
+  edef-issue-start [ISSUE_NUMBER] \n
   (start the issue [ISSUE_NUMBER]):
   Example:
-  issue-start 100 \n"
+  edef-issue-start 100 \n"
   exit 0;
 fi
 
