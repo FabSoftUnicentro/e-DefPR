@@ -43,7 +43,7 @@ const schema = new Schema({
     trim: true
   },
   password: {
-    trype: String,
+    type: String,
     required: false
   },
   profession: {
