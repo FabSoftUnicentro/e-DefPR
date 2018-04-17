@@ -1,4 +1,5 @@
 'use strict'
+import default from './../../../frontend/src/services/StatesService';
 
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
@@ -63,6 +64,11 @@ const schema = new Schema({
     type: Boolean,
     required: true,
     default: true
+  },
+  mustChangePassword: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 
