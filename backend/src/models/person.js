@@ -1,5 +1,4 @@
 'use strict'
-import default from './../../../frontend/src/services/StatesService';
 
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
