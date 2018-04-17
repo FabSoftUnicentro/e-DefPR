@@ -1,5 +1,7 @@
 import { API_URL, FETCH_OPTIONS } from './app.config'
 
+const { fetch } = window
+
 /**
  * Default fetcher for all controllers.
  * Usage: fetcher.[METHOD](CONTROLLER_PATH, ...rest)
