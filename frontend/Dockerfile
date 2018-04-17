@@ -9,6 +9,6 @@ RUN yarn global add serve
 
 COPY . .
 
-EXPOSE 5000
+EXPOSE PORT
 
 CMD ["yarn", "start"]
