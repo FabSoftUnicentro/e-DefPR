@@ -8,6 +8,6 @@ RUN yarn install
 
 COPY . .
 
-EXPOSE PORT
+EXPOSE 3000
 
 CMD ["yarn", "start"]
