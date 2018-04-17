@@ -19,7 +19,9 @@
     "http": "0.0.0",
     "jsonwebtoken": "^8.1.1",
     "md5": "^2.2.1",
-    "mongoose": "^5.0.1"
+    "mongoose": "^5.0.1",
+    "supertest": "^3.0.0",
+    "tape": "^4.9.0"
   },
   "devDependencies": {
     "nodemon": "^1.14.11",
