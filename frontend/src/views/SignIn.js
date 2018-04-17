@@ -76,13 +76,13 @@ class SignIn extends Component {
 
   onSignIn () {
     this.setState({ isLoading: true, messageBarProps: null })
-    
+
     this.props.authService.login(this.state.form.username, this.state.form.password)
       .then(result => {
         console.log(result, result.status === 404)
-        if(result.status === 200){
+        if (result.status === 200) {
           this.displayMessage(MessageBarType.success, 'Você entrou. Vamos levar você até o sistema.')
-        }else if(result.status === 404){
+        } else if (result.status === 404) {
           this.displayMessage(MessageBarType.severeWarning, 'CPF ou senha inválido')
         }
       })
@@ -95,7 +95,7 @@ class SignIn extends Component {
       }))
   }
 
-  displayMessage(typeMsg, message){
+  displayMessage (typeMsg, message) {
     this.setState({
       redirectToReferrer: true,
       messageBarProps: {
