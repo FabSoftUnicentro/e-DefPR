@@ -100,11 +100,10 @@ exports.delete = async (req, res, next) => {
 
 exports.authenticate = async (req, res, next) => {
   try {
-    let passwordHash = encryptPassword(req.body.password)
 
     const person = await repository.authenticate({
       cpf: req.body.cpf,
-      password: passwordHash
+      password: req.body.password
     })
 
     if (!person) {
@@ -117,7 +116,7 @@ exports.authenticate = async (req, res, next) => {
     const token = await authService.generateToken({
       id: person._id,
       cpf: person.cpf,
-      rg: person.name
+      name: person.name
     })
 
     res.status(200).send({
@@ -159,7 +158,7 @@ exports.refreshToken = async (req, res, next) => {
     res.status(201).send({
       token: tokenData,
       data: {
-        email: person.email,
+        cpf: person.cpf,
         name: person.name
       }
     })
