@@ -1,8 +1,6 @@
 'use strict'
 
-const repository = require('../repositories/state-repository.js')
-const authService = require('../services/auth-service')
-
+const repository = require('../repositories/state-repository')
 
 exports.get = async (req, res, next) => {
   try {
@@ -28,11 +26,10 @@ exports.getById = async (req, res, next) => {
 
 exports.post = async (req, res, next) => {
   try {
-
     await repository.create({
       ibgeCode: req.body.ibgeCode,
       name: req.body.name,
-      initials: req.body.initials,
+      initials: req.body.initials
     })
 
     res.status(201).send({
@@ -47,11 +44,10 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
-
     await repository.update(req.params.id, {
-        ibgeCode: req.body.ibgeCode,
-        name: req.body.name,
-        initials: req.body.initials,
+      ibgeCode: req.body.ibgeCode,
+      name: req.body.name,
+      initials: req.body.initials
     })
     res.status(200).send({
       message: 'State successfuly updated'

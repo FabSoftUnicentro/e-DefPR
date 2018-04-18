@@ -171,6 +171,6 @@ exports.refreshToken = async (req, res, next) => {
 }
 
 // Function to encrypt the password
-function encryptPassword(password) {
+function encryptPassword (password) {
   return bcrypt.hashSync(password, saltRounds)
 }

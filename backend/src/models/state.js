@@ -7,7 +7,7 @@ const schema = new Schema({
   // _id
   ibgeCode: {
     type: Number,
-    required: true,
+    required: true
   },
   name: {
     type: String,
@@ -15,8 +15,8 @@ const schema = new Schema({
     trim: true
   },
   initials: {
-      type: String,
-      required: true,
+    type: String,
+    required: true
   }
 })
 

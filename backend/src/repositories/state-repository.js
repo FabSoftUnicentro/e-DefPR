@@ -12,7 +12,7 @@ exports.get = async () => {
 
 exports.getById = async (id) => {
   const res = await State.findOne({
-    _id: id,
+    _id: id
   }, 'ibgeCode name initials')
 
   return res
@@ -30,7 +30,7 @@ exports.update = async (id, data) => {
       $set: {
         ibgeCode: data.ibgeCode,
         name: data.name,
-        initials: data.initials,
+        initials: data.initials
       }
     })
 }

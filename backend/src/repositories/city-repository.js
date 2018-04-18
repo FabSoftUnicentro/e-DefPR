@@ -12,7 +12,7 @@ exports.get = async () => {
 
 exports.getById = async (id) => {
   const res = await City.findOne({
-    _id: id,
+    _id: id
   }, 'ibgeCode name ufCode latitude longitude')
 
   return res

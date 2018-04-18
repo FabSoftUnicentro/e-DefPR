@@ -1,8 +1,6 @@
 'use strict'
 
-const repository = require('../repositories/city-repository.js')
-const authService = require('../services/auth-service')
-
+const repository = require('../repositories/city-repository')
 
 exports.get = async (req, res, next) => {
   try {
@@ -28,15 +26,14 @@ exports.getById = async (req, res, next) => {
 
 exports.post = async (req, res, next) => {
   try {
-
     await repository.create({
-        ibgeCode: req.body.ibgeCode,
-        name: req.body.name,
-        ufCode: req.body.ufCode,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude
+      ibgeCode: req.body.ibgeCode,
+      name: req.body.name,
+      ufCode: req.body.ufCode,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude
     })
-    
+
     res.status(201).send({
       message: 'State successfully registered'
     })
@@ -49,13 +46,12 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
-
     await repository.update(req.params.id, {
-        ibgeCode: req.body.ibgeCode,
-        name: req.body.name,
-        ufCode: req.body.ufCode,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude
+      ibgeCode: req.body.ibgeCode,
+      name: req.body.name,
+      ufCode: req.body.ufCode,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude
     })
     res.status(200).send({
       message: 'State successfuly updated'
