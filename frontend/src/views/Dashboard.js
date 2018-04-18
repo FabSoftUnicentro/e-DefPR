@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import {
   Nav,
   DefaultButton,
@@ -13,6 +13,7 @@ import EmployeeNew from './pages/EmployeeNew'
 import EmployeeView from './pages/EmployeeView'
 import Assist from './pages/Assist'
 import AssistCreate from './pages/AssistCreate'
+import authService from 'services/AuthService'
 
 import '../styles/Dashboard.css'
 
@@ -40,13 +41,17 @@ class Dashboard extends Component {
   componentDidMount () {
     this.setState({ selectedKey: window.location.pathname })
 
-    // OAuth.getEmployeeData()
-    //   .then(result => {
-    //     this.setState({ authenticatedEmployee: result })
-    //   })
+    console.log(authService.getToken())
   }
 
   render () {
+    // Get user from server.
+    if (!this.state.authenticatedEmployee) {
+      return <div>
+        Loading user..
+      </div>
+    }
+
     const authAccount = this.state.authenticatedEmployee
     const navMenuItems = authAccount ? authAccount.authorizedLinks : []
 
@@ -60,7 +65,7 @@ class Dashboard extends Component {
               primary
               iconProps={{ iconName: 'CalendarAgenda' }}
             >
-                            Agenda
+              Agenda
             </DefaultButton>
           </div>
 
@@ -80,12 +85,14 @@ class Dashboard extends Component {
           </div>
 
           <div className='main-page'>
-            <Route exact path='/' component={Schedule} />
-            <Route exact path='/employee' component={Employee} />
-            <Route exact path='/employee/new' component={EmployeeNew} />
-            <Route exact path='/employee/v/:uid' component={EmployeeView} />
-            <Route exact path='/assist' component={Assist} />
-            <Route exact path='/assist/create' component={AssistCreate} user={this.state.authenticatedEmployee} />
+            <Switch>
+              <Route exact path='/' component={Schedule} />
+              <Route path='/employee' component={Employee} />
+              <Route path='/employee/new' component={EmployeeNew} />
+              <Route path='/employee/v/:uid' component={EmployeeView} />
+              <Route path='/assist' component={Assist} />
+              <Route path='/assist/create' component={AssistCreate} user={this.state.authenticatedEmployee} />
+            </Switch>
           </div>
         </div>
       </main>
