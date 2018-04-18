@@ -14,7 +14,6 @@ cd $EDEF_PATH
 
 BRANCH=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 ISSUE=${BRANCH/issue#/}
-USER=$($EDEF_PATH/devops/edef-github-credentials --user)
 LOGIN=$($EDEF_PATH/devops/edef-github-credentials --login)
 
 open_pull_request_manual() {
@@ -50,8 +49,6 @@ open_pull_request_auto() {
 	local base="master"
 	local title="$BRANCH"
 	local body="fixed #$ISSUE"
-
-	LOGIN="$USER:$LOGIN"
 
 	json="{\"head\":\"$head\",\"base\":\"$base\",\"title\":\"$title\",\"body\":\"$body\"}"
 	echo $(curl -s -X POST -u $LOGIN -d "$json" $GITHUB_REPOSITORY/pulls)
