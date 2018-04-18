@@ -13,6 +13,7 @@ import EmployeeNew from './pages/EmployeeNew'
 import EmployeeView from './pages/EmployeeView'
 import Assist from './pages/Assist'
 import AssistCreate from './pages/AssistCreate'
+import authService from 'services/AuthService'
 
 import '../styles/Dashboard.css'
 
@@ -40,13 +41,17 @@ class Dashboard extends Component {
   componentDidMount () {
     this.setState({ selectedKey: window.location.pathname })
 
-    // OAuth.getEmployeeData()
-    //   .then(result => {
-    //     this.setState({ authenticatedEmployee: result })
-    //   })
+    console.log(authService.getToken())
   }
 
   render () {
+    // Get user from server.
+    if (!this.state.authenticatedEmployee) {
+      return <div>
+        Loading user..
+      </div>
+    }
+
     const authAccount = this.state.authenticatedEmployee
     const navMenuItems = authAccount ? authAccount.authorizedLinks : []
 
@@ -60,7 +65,7 @@ class Dashboard extends Component {
               primary
               iconProps={{ iconName: 'CalendarAgenda' }}
             >
-                            Agenda
+              Agenda
             </DefaultButton>
           </div>
 

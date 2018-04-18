@@ -30,3 +30,7 @@
 .ms-TextField-fieldGroup input[aria-invalid="true"] {
     background: rgba(255, 0, 0, .05);
 }
+
+a {
+    text-decoration: none;
+}
