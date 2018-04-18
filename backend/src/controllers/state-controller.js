@@ -8,7 +8,8 @@ exports.get = async (req, res, next) => {
     res.status(200).send(data)
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
@@ -19,7 +20,8 @@ exports.getById = async (req, res, next) => {
     res.status(200).send(data)
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
@@ -37,7 +39,8 @@ exports.post = async (req, res, next) => {
     })
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
@@ -54,7 +57,8 @@ exports.put = async (req, res, next) => {
     })
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
@@ -67,7 +71,8 @@ exports.delete = async (req, res, next) => {
     })
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
