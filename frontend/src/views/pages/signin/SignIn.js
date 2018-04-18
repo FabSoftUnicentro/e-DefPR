@@ -8,9 +8,11 @@ import RecoveryPassword from './RecoveryPassword'
 import authService from 'services/AuthService'
 
 import 'styles/SignIn.css'
+import ChangePassword from './ChangePassword'
 
 const PATH = '/signin'
 const PATH_RECOVERY = `${PATH}/recovery-password`
+const PATH_CHANGE = `${PATH}/change-password`
 
 const InvalidCpfOrPasswordMessage = (
   <MessageBar messageBarType={MessageBarType.blocked}>
@@ -81,17 +83,26 @@ class SignIn extends Component {
       })
   }
 
-  onSignInSuccess (data) {
+  onSignInSuccess (result) {
+    const {mustChangePassword} = result.data
+    console.log(mustChangePassword, result)
+
     this.setState({
-      redirectToReferrer: true,
+      redirectToReferrer: mustChangePassword ? PATH_CHANGE : '/',
       messageComponent: SuccessSignInMessage
     })
   }
 
+  componentWillMount(){
+    this.setState({ redirectToReferrer: false})
+    console.log("aas")
+  } 
+
   render () {
     /** Must redirect to home. */
     if (this.state.redirectToReferrer) {
-      return <Redirect to='/' />
+      console.log("aa")
+      return <Redirect to={this.state.redirectToReferrer} />
     }
 
     const { messageComponent, isLoading } = this.state
@@ -111,6 +122,11 @@ class SignIn extends Component {
           <PropsRoute
             path={PATH_RECOVERY}
             component={RecoveryPassword}
+            isLoading={isLoading}
+          />
+          <PropsRoute
+            path={PATH_CHANGE}
+            component={ChangePassword}
             isLoading={isLoading}
           />
         </Switch>

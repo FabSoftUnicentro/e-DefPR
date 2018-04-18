@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import {
   Nav,
   DefaultButton,
@@ -22,6 +22,7 @@ class Dashboard extends Component {
     super(props)
 
     this.state = {
+      redirect: false,
       selectedKey: '/',
       authenticatedEmployee: null
     }
@@ -38,14 +39,22 @@ class Dashboard extends Component {
     this.setState({ selectedKey: nextProps.location.pathname })
   }
 
+  componentWillMount() {
+    const { mustChangePassword } = authService.localSession.data
+    console.log(authService.localSession.data)
+    this.setState({ redirect: mustChangePassword ? "/signin/change-password" : false})
+  }
+
   componentDidMount () {
     this.setState({ selectedKey: window.location.pathname })
-
-    console.log(authService.getToken())
   }
 
   render () {
     // Get user from server.
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />
+    }
+
     if (!this.state.authenticatedEmployee) {
       return <div>
         Loading user..

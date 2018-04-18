@@ -1,6 +1,8 @@
 import fetcher from '../helpers/fetcher'
 import { SESSION_NAME } from '../helpers/app.config'
 
+const {localStorage} = window
+
 class AuthService {
   constructor () {
     this.route = '/person'
@@ -21,19 +23,27 @@ class AuthService {
   }
 
   authSucess (data) {
-    window.sessionStorage.setItem(SESSION_NAME, data)
+    localStorage.setItem(SESSION_NAME, JSON.stringify(data))
   }
 
-  getToken () {
-    return window.sessionStorage.getItem(SESSION_NAME)
+  get localSession () {
+    return JSON.parse(localStorage.getItem(SESSION_NAME))
+  }
+
+  get token () {
+    if (!this.localSession) {
+      return false
+    }
+
+    return this.localSession.token
   }
 
   logout () {
-    window.sessionStorage.clear()
+    localStorage.clear()
   }
 
   isAuthenticated () {
-    return !!window.sessionStorage.getItem(SESSION_NAME)
+    return !!this.token && this.localSession.data.mustChangePassword === false 
   }
 
   /*
