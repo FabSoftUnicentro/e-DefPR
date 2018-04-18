@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SignInHeader from './SignInHeader'
-import { Label, TextField, DefaultButton } from 'office-ui-fabric-react';
+import { Label, TextField, DefaultButton } from 'office-ui-fabric-react'
 
 class RecoveryPassword extends Component {
   constructor (props) {
