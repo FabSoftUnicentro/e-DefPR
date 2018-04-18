@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import {
   Nav,
   DefaultButton,
@@ -80,12 +80,14 @@ class Dashboard extends Component {
           </div>
 
           <div className='main-page'>
-            <Route exact path='/' component={Schedule} />
-            <Route exact path='/employee' component={Employee} />
-            <Route exact path='/employee/new' component={EmployeeNew} />
-            <Route exact path='/employee/v/:uid' component={EmployeeView} />
-            <Route exact path='/assist' component={Assist} />
-            <Route exact path='/assist/create' component={AssistCreate} user={this.state.authenticatedEmployee} />
+            <Switch>
+              <Route exact path='/' component={Schedule} />
+              <Route path='/employee' component={Employee} />
+              <Route path='/employee/new' component={EmployeeNew} />
+              <Route path='/employee/v/:uid' component={EmployeeView} />
+              <Route path='/assist' component={Assist} />
+              <Route path='/assist/create' component={AssistCreate} user={this.state.authenticatedEmployee} />
+            </Switch>
           </div>
         </div>
       </main>
