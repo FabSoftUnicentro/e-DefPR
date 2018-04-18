@@ -6,12 +6,16 @@ const mongoose = require('mongoose')
 
 const app = express()
 const router = express.Router()
+const mongooseExpressErrorHandler = require('mongoose-express-error-handler')
 
 // Environment variables
 require('dotenv').config()
 
 // DB Connection
 mongoose.connect(process.env.DB_CONNECTION_STRING)
+
+// Mongoose error handler
+app.use(mongooseExpressErrorHandler)
 
 // Models
 const Person = require('./models/person')
