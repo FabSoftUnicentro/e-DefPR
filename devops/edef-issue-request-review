@@ -1,22 +1,46 @@
 #!/usr/bin/env bash
 
+if [[ -z $1 ]] || [ $1 = '--help' ] || [ $1 = '-h' ]; then
+  printf "edef-issue-request - help:
+  Usage:
+  edef-issue-request --[REQUEST_TYPE] [AUTOMATIC or MANUAL] \n
+  Exemple:
+  edef-issue-request-review auto \n
+  edef-issue-request-review manual \n"
+  exit 0;
+fi
+
 cd $EDEF_PATH
 
 BRANCH=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 ISSUE=${BRANCH/issue#/}
+USER=$($EDEF_PATH/devops/edef-github-credentials --user)
+LOGIN=$($EDEF_PATH/devops/edef-github-credentials --login)
 
-echo 'GitHub login:'
-read USER
-echo 'GitHub password or token (https://github.com/settings/tokens/new):'
-read -s PASS
+open_pull_request_manual() {
+	to_branch="master"
+  
+	# try the upstream branch if possible, otherwise origin will do
+	upstream=$(git config --get remote.upstream.url)
+	origin=$(git config --get remote.origin.url)
+	if [ -z $upstream ]; then
+		upstream=$origin
+	fi
+	
+	to_user=$(echo $upstream | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
+	from_user=$(echo $origin | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
+	repo=$(basename `git rev-parse --show-toplevel`)
+	from_branch=$(git rev-parse --abbrev-ref HEAD)
+	open "https://github.com/$to_user/$repo/pull/new/$to_user:$to_branch...$from_user:$from_branch"
+}
 
-open_pull_request() {
+open_pull_request_auto() {
 	local head="C3DSU:$BRANCH"
 	local base="master"
 	local title="$BRANCH"
 	local body="fixed #$ISSUE"
 
-	LOGIN="$USER:$PASS"
+	LOGIN="$USER:$LOGIN"
 
 	json="{\"head\":\"$head\",\"base\":\"$base\",\"title\":\"$title\",\"body\":\"$body\"}"
 	echo $(curl -s -X POST -u $LOGIN -d "$json" $GITHUB_REPOSITORY/pulls)
@@ -28,11 +52,17 @@ get_pull_request_number() {
 }
 
 echo 'Creating Pull Request in the GitHub repository...'
-pr=$(open_pull_request | get_pull_request_number)
+if [ $1 = 'auto' ]; then
+	pr=$(open_pull_request_auto | get_pull_request_number)
 
-if [[ -z $pr ]]; then
-    echo 'Error: Pull Request could not be processed'
-    exit 1
+	if [[ -z $pr ]]; then
+		echo 'Error: Pull Request could not be processed'
+		exit 1
+	else
+		echo "Sucess: https://github.com/C3DSU/e-DefPR/pull/$pr/files"
+	fi
 else
-    echo "Sucess: https://github.com/C3DSU/e-DefPR/pull/$pr/files"
+	pr=$(open_pull_request_manual)
 fi
+
+
