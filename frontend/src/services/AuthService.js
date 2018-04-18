@@ -3,11 +3,11 @@ import { SESSION_NAME } from '../helpers/app.config'
 
 class AuthService {
   constructor () {
-    this.route = '/person/authenticate'
+    this.route = '/person'
   }
 
   async login (cpf, password) {
-    let result = await fetcher.post(`${this.route}`, { cpf, password })
+    let result = await fetcher.post(`${this.route}/authenticate`, { cpf, password })
 
     if (result.status !== 200) {
       console.log('ERROR', result)
@@ -21,7 +21,11 @@ class AuthService {
   }
 
   authSucess (data) {
-    window.sessionStorage.setItem(SESSION_NAME, data.token)
+    window.sessionStorage.setItem(SESSION_NAME, data)
+  }
+
+  getToken () {
+    return window.sessionStorage.getItem(SESSION_NAME)
   }
 
   logout () {
@@ -29,7 +33,7 @@ class AuthService {
   }
 
   isAuthenticated () {
-    return window.sessionStorage.getItem(SESSION_NAME) === true
+    return !!window.sessionStorage.getItem(SESSION_NAME)
   }
 
   /*
