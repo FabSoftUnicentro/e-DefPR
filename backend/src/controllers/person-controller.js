@@ -127,7 +127,9 @@ exports.authenticate = async (req, res, next) => {
     res.status(200).send({
       token: token,
       data: {
-        name: person.name
+        _id: person._id,
+        name: person.name,
+        mustChangePassword: person.mustChangePassword
       }
     })
   } catch (e) {
