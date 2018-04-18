@@ -19,6 +19,8 @@ app.use(mongooseExpressErrorHandler)
 
 // Models
 const Person = require('./models/person')
+const State = require('./models/state')
+const City = require('./models/city')
 
 // Routes
 const routes = require('./routes/app-routes')
