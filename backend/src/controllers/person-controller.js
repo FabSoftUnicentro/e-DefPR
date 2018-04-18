@@ -22,7 +22,7 @@ exports.getById = async (req, res, next) => {
     res.status(200).send(data)
   } catch (e) {
     res.status(500).send({
-      message: 'Falha ao processar sua requisição!'
+      message: 'Failed to process your request'
     })
   }
 }
@@ -170,6 +170,6 @@ exports.refreshToken = async (req, res, next) => {
 }
 
 // Function to encrypt the password
-function encryptPassword(password) {
+function encryptPassword (password) {
   return bcrypt.hashSync(password, saltRounds)
 }

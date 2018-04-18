@@ -15,6 +15,8 @@ mongoose.connect(process.env.DB_CONNECTION_STRING)
 
 // Models
 const Person = require('./models/person')
+const State = require('./models/state')
+const City = require('./models/city')
 
 // Routes
 const routes = require('./routes/app-routes')
