@@ -31,7 +31,18 @@ open_pull_request_manual() {
 	from_user=$(echo $origin | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
 	repo=$(basename `git rev-parse --show-toplevel`)
 	from_branch=$(git rev-parse --abbrev-ref HEAD)
-	open "https://github.com/$to_user/$repo/pull/new/$to_user:$to_branch...$from_user:$from_branch"
+
+	platform='unknown'
+	unamestr='uname'
+	if [[ "$unamestr" == 'Linux' ]]; then
+		platform='linux'
+	fi
+
+	if  [ "$platform" = 'unknown' ]; then
+		start "https://github.com/$to_user/$repo/compare/issue%23$ISSUE?expand=1"
+	else 
+		open "https://github.com/$to_user/$repo/compare/issue%23$ISSUE?expand=1"	
+	fi
 }
 
 open_pull_request_auto() {
