@@ -11,7 +11,8 @@ exports.get = async (req, res, next) => {
     res.status(200).send(data)
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
@@ -22,7 +23,8 @@ exports.getById = async (req, res, next) => {
     res.status(200).send(data)
   } catch (e) {
     res.status(500).send({
-      message: 'Falha ao processar sua requisição!'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
@@ -51,7 +53,8 @@ exports.post = async (req, res, next) => {
     })
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
@@ -80,7 +83,8 @@ exports.put = async (req, res, next) => {
     })
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
@@ -93,18 +97,18 @@ exports.delete = async (req, res, next) => {
     })
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
 
 exports.authenticate = async (req, res, next) => {
   try {
-    let passwordHash = encryptPassword(req.body.password)
 
     const person = await repository.authenticate({
       cpf: req.body.cpf,
-      password: passwordHash
+      password: req.body.password
     })
 
     if (!person) {
@@ -117,7 +121,7 @@ exports.authenticate = async (req, res, next) => {
     const token = await authService.generateToken({
       id: person._id,
       cpf: person.cpf,
-      rg: person.name
+      name: person.name
     })
 
     res.status(200).send({
@@ -128,7 +132,8 @@ exports.authenticate = async (req, res, next) => {
     })
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
@@ -159,18 +164,19 @@ exports.refreshToken = async (req, res, next) => {
     res.status(201).send({
       token: tokenData,
       data: {
-        email: person.email,
+        cpf: person.cpf,
         name: person.name
       }
     })
   } catch (e) {
     res.status(500).send({
-      message: 'Failed to process your request'
+      message: 'Failed to process your request',
+      errors: e.errors
     })
   }
 }
 
 // Function to encrypt the password
-function encryptPassword(password) {
+function encryptPassword (password) {
   return bcrypt.hashSync(password, saltRounds)
 }

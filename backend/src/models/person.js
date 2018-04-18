@@ -43,7 +43,7 @@ const schema = new Schema({
     trim: true
   },
   password: {
-    trype: String,
+    type: String,
     required: false
   },
   profession: {
@@ -63,6 +63,11 @@ const schema = new Schema({
     type: Boolean,
     required: true,
     default: true
+  },
+  mustChangePassword: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 

@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose')
 const Person = mongoose.model('Person')
+const bcrypt = require('bcryptjs')
 
 exports.get = async () => {
   const res = await Person.find({
@@ -22,7 +23,7 @@ exports.getById = async (id) => {
 
 exports.create = async (data) => {
   let newPerson = new Person(data)
-
+ 
   await newPerson.save()
 }
 
@@ -53,9 +54,14 @@ exports.delete = async (id) => {
 
 exports.authenticate = async (data) => {
   const res = await Person.findOne({
-    email: data.email,
-    password: data.password
+    cpf: data.cpf
   })
+
+  let result = bcrypt.compareSync(data.password, res.password)
+
+  if (!result) {
+    return null
+  }
 
   return res
 }
