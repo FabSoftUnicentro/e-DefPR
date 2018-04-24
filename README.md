@@ -267,6 +267,7 @@ Processo manual:
 
     - #### Alexandre Gueths
     ```
+    Frontend developer
     Slack: @agueths
     Github: @agueths
     E-mail: agueths@gmail.com
