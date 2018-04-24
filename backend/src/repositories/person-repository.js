@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs')
 exports.get = async () => {
   const res = await Person.find({
     active: true
-  }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active mustChangePassword ')
+  }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active mustChangePassword')
 
   return res
 }
@@ -16,7 +16,7 @@ exports.getById = async (id) => {
   const res = await Person.findOne({
     _id: id,
     active: true
-  }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active mustChangePassword ')
+  }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active mustChangePassword')
   return res
 }
 
