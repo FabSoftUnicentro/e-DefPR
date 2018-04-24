@@ -23,7 +23,6 @@ exports.getById = async (id) => {
 
 exports.create = async (data) => {
   let newPerson = new Person(data)
- 
   await newPerson.save()
 }
 

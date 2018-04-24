@@ -105,7 +105,6 @@ exports.delete = async (req, res, next) => {
 
 exports.authenticate = async (req, res, next) => {
   try {
-
     const person = await repository.authenticate({
       cpf: req.body.cpf,
       password: req.body.password
