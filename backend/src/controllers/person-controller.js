@@ -61,23 +61,13 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
-    let passwordHash = encryptPassword(req.body.password)
+    let data = []
 
-    await repository.update(req.params.id, {
-      type: req.body.type,
-      cpf: req.body.cpf,
-      rg: req.body.rg,
-      name: req.body.name,
-      gender: req.body.gender,
-      placeOfBirth: req.body.placeOfBirth,
-      maritalStatus: req.body.maritalStatus,
-      profession: req.body.profession,
-      serviceNumber: req.body.serviceNumber,
-      dateOfBirth: req.body.dateOfBirth,
-      active: req.body.active,
-      password: passwordHash
+    for (var key in req.body) {
+      data[key] = req.body[key]
+    }
 
-    })
+    await repository.update(req.params.id, data)
     res.status(200).send({
       message: 'Person successfuly updated'
     })
@@ -120,13 +110,15 @@ exports.authenticate = async (req, res, next) => {
     const token = await authService.generateToken({
       id: person._id,
       cpf: person.cpf,
-      name: person.name
+      name: person.name,
+      mustChangePassword: person.mustChangePassword
     })
 
     res.status(200).send({
       token: token,
       data: {
         _id: person._id,
+        cpf: person.cpf,
         name: person.name,
         mustChangePassword: person.mustChangePassword
       }
@@ -148,7 +140,6 @@ exports.refreshToken = async (req, res, next) => {
     const data = await authService.decodeToken(token)
 
     const person = await repository.getById(data.id)
-
     if (!person) {
       res.status(404).send({
         message: 'Person not found'
@@ -159,14 +150,16 @@ exports.refreshToken = async (req, res, next) => {
     const tokenData = await authService.generateToken({
       id: person._id,
       cpf: person.cpf,
-      name: person.name
+      name: person.name,
+      mustChangePassword: person.mustChangePassword
     })
-
     res.status(201).send({
       token: tokenData,
       data: {
+        id: person._id,
         cpf: person.cpf,
-        name: person.name
+        name: person.name,
+        mustChangePassword: person.mustChangePassword
       }
     })
   } catch (e) {
