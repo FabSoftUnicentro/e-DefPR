@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs')
 exports.get = async () => {
   const res = await Person.find({
     active: true
-  }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active')
+  }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active mustChangePassword')
 
   return res
 }
@@ -16,35 +16,23 @@ exports.getById = async (id) => {
   const res = await Person.findOne({
     _id: id,
     active: true
-  }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active')
-
+  }, 'type cpf rg name gender placeOfBirth maritalStatus profession salary serviceNumber dateOfBirth active mustChangePassword')
   return res
 }
 
 exports.create = async (data) => {
   let newPerson = new Person(data)
- 
   await newPerson.save()
 }
 
 exports.update = async (id, data) => {
-  await Person
-    .findByIdAndUpdate(id, {
-      $set: {
-        type: data.type,
-        cpf: data.cpf,
-        rg: data.rg,
-        name: data.name,
-        gender: data.gender,
-        placeOfBirth: data.placeOfBirth,
-        maritalStatus: data.maritalStatus,
-        password: data.password,
-        profession: data.profession,
-        serviceNumber: data.serviceNumber,
-        dateOfBirth: data.dateOfBirth,
-        active: data.active
-      }
-    })
+  let person = await Person.findById(id)
+
+  for (var key in data) {
+    person[key] = data[key]
+  }
+
+  await person.save()
 }
 
 exports.delete = async (id) => {
