@@ -264,3 +264,10 @@ Processo manual:
     Github: @paulopieczarka
     E-mail: paulopieczarka@gmail.com
     ```
+
+    - #### Alexandre Gueths
+    ```
+    Slack: @agueths
+    Github: @agueths
+    E-mail: agueths@gmail.com
+    ```
