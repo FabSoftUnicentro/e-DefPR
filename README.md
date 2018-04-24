@@ -272,4 +272,11 @@ Processo manual:
     Github: @agueths
     E-mail: agueths@gmail.com
     ```
+        
+    - #### Gabriel Pimenta
+    ```
+    Slack: @Pimenta
+    Github: @Pimenta1
+    E-mail: pimenta@programmer.net
+    ```
     
