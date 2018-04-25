@@ -12,13 +12,11 @@ fi
 
 cd $EDEF_PATH
 
-BRANCH=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+BRANCH_CURRENT=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+BRANCH=$([[ $2 ]] && echo "issue#$2" || echo $BRANCH_CURRENT)
 ISSUE=${BRANCH/issue#/}
 
-echo 'GitHub login:'
-read USER
-echo 'GitHub password or token (https://github.com/settings/tokens/new):'
-read -s PASS
+CREDENTIAL=$($EDEF_PATH/edef-github-credentials --login)
 
 open_pull_request_manual() {
 	to_branch="master"
@@ -54,7 +52,7 @@ open_pull_request_auto() {
 	local title="$BRANCH"
 	local body="fixed #$ISSUE"
 
-	LOGIN="$USER:$PASS"
+	LOGIN="$CREDENTIAL"
 
 	json="{\"head\":\"$head\",\"base\":\"$base\",\"title\":\"$title\",\"body\":\"$body\"}"
 	echo $(curl -s -X POST -u $LOGIN -d "$json" $GITHUB_REPOSITORY/pulls)
@@ -65,9 +63,48 @@ get_pull_request_number() {
 	echo $x | grep \"number\" | grep -oP '(?<="number": ).*(?=, "state")'
 }
 
+get_pull_request_state() {
+  local info=$(curl -s -X GET -u $CREDENTIAL $GITHUB_REPOSITORY/pulls/$1)
+  echo $info | python -m json.tool | grep -oP '(?<="state": ").*(?=",)'
+}
+
+get_pull_request_current() {
+  local number=$(tail -n1 $PR_FILE | tr -d "[:space:]")
+  local state=$(get_pull_request_state $number)
+
+  if [[ $state != 'closed' ]]; then
+    echo $number
+  else
+    > $PR_FILE
+    echo
+  fi
+}
+
+PR_FILE=$EDEF_PATH/stash/temp/.ces-pull-request
+[[ -f $PR_FILE ]] && PR_CURRENT=$(get_pull_request_current)
+
 echo 'Creating Pull Request in the GitHub repository...'
 if [ $1 = 'auto' ]; then
-	pr=$(open_pull_request_auto | get_pull_request_number)
+	if [[ $BRANCH != $BRANCH_CURRENT ]]; then
+		git stash
+		git checkout -b $BRANCH
+		git push origin $BRANCH
+		git checkout -b $BRANCH_CURRENT
+		git stash apply
+	else
+		git push origin $BRANCH
+	fi
+
+	if [[ -z $PR_CURRENT ]]; then
+		echo 'Creating Github pull request...'
+			if [[ -z $PR_CURRENT ]]; then
+				pr=$(open_pull_request | get_pull_request_number)
+			else
+				pr=$PR_CURRENT
+			fi
+  	else
+    	pr=$PR_CURRENT
+	fi
 
 	if [[ -z $pr ]]; then
 		echo 'Error: Pull Request could not be processed'
