@@ -108,6 +108,7 @@ if [ $1 = 'auto' ]; then
 		exit 1
 	else
 		echo "Sucess: https://github.com/C3DSU/e-DefPR/pull/$pr/files"
+		echo $pr > $PR_FILE
 	fi
 else
 	pr=$(open_pull_request_manual)
