@@ -1,25 +1,59 @@
 #!/usr/bin/env bash
 
+if [[ -z $1 ]] || [ $1 = '--help' ] || [ $1 = '-h' ]; then
+  printf "edef-issue-request - help:
+  Usage:
+  edef-issue-request --[REQUEST_TYPE] [AUTOMATIC or MANUAL] \n
+  Exemple:
+  edef-issue-request-review auto \n
+  edef-issue-request-review manual \n"
+  exit 0;
+fi
+
 cd $EDEF_PATH
 
-BRANCH=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+BRANCH_CURRENT=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+BRANCH=$([[ $2 ]] && echo "issue#$2" || echo $BRANCH_CURRENT)
 ISSUE=${BRANCH/issue#/}
 
-echo 'GitHub login:'
-read USER
-echo 'GitHub password or token (https://github.com/settings/tokens/new):'
-read -s PASS
+CREDENTIAL=$($CLI_PATH/edef-github-credentials --login)
 
-open_pull_request() {
+open_pull_request_auto() {
 	local head="C3DSU:$BRANCH"
 	local base="master"
 	local title="$BRANCH"
 	local body="fixed #$ISSUE"
 
-	LOGIN="$USER:$PASS"
-
 	json="{\"head\":\"$head\",\"base\":\"$base\",\"title\":\"$title\",\"body\":\"$body\"}"
-	echo $(curl -s -X POST -u $LOGIN -d "$json" $GITHUB_REPOSITORY/pulls)
+	echo $(curl -s -X POST -u "$CREDENTIAL" -d "$json" $GITHUB_REPOSITORY/pulls)
+}
+
+open_pull_request_manual() {
+	to_branch="master"
+  
+	# try the upstream branch if possible, otherwise origin will do
+	upstream=$(git config --get remote.upstream.url)
+	origin=$(git config --get remote.origin.url)
+	if [ -z $upstream ]; then
+		upstream=$origin
+	fi
+	
+	to_user=$(echo $upstream | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
+	from_user=$(echo $origin | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
+	repo=$(basename `git rev-parse --show-toplevel`)
+	from_branch=$(git rev-parse --abbrev-ref HEAD)
+
+	platform='unknown'
+	unamestr='uname'
+	if [[ "$unamestr" == 'Linux' ]]; then
+		platform='linux'
+	fi
+
+	if  [ "$platform" = 'unknown' ]; then
+		start "https://github.com/$to_user/$repo/compare/issue%23$ISSUE?expand=1"
+	else 
+		open "https://github.com/$to_user/$repo/compare/issue%23$ISSUE?expand=1"	
+	fi
 }
 
 get_pull_request_number() {
@@ -27,12 +61,56 @@ get_pull_request_number() {
 	echo $x | grep \"number\" | grep -oP '(?<="number": ).*(?=, "state")'
 }
 
-echo 'Creating Pull Request in the GitHub repository...'
-pr=$(open_pull_request | get_pull_request_number)
+get_pull_request_state() {
+  local info=$(curl -s -X GET -u "$CREDENTIAL" $GITHUB_REPOSITORY/pulls/$1)
+  echo $info | python -m json.tool | grep -oP '(?<="state": ").*(?=",)'
+}
 
-if [[ -z $pr ]]; then
-    echo 'Error: Pull Request could not be processed'
-    exit 1
+get_pull_request_current() {
+  local number=$(tail -n1 $PR_FILE | tr -d "[:space:]")
+  local state=$(get_pull_request_state $number)
+
+  if [[ $state != 'closed' ]]; then
+    echo $number
+  else
+    > $PR_FILE
+    echo
+  fi
+}
+
+PR_FILE=$CLI_PATH/.edef-pull-request
+PR_CURRENT=$(get_pull_request_current)
+echo 'Creating Pull Request in the GitHub repository...'
+if [ $1 = 'auto' ]; then
+	if [[ $BRANCH != $BRANCH_CURRENT ]]; then
+		git stash
+		git checkout -b $BRANCH
+		git push origin $BRANCH
+		git checkout -b $BRANCH_CURRENT
+		git stash apply
+	else
+		git push origin $BRANCH
+	fi
+
+	if [[ -z $PR_CURRENT ]]; then
+		echo 'Creating Github pull request...'
+			if [[ -z $PR_CURRENT ]]; then
+				pr=$(open_pull_request_auto)
+			else
+				pr=$PR_CURRENT
+			fi	
+  	else
+    	pr=$PR_CURRENT
+	fi
+
+	if [[ -z $pr ]]; then
+		echo 'Error: Pull Request could not be processed'
+		exit 1
+	else
+		echo "Sucess: https://github.com/C3DSU/e-DefPR/pull/$pr/files"
+	fi
 else
-    echo "Sucess: https://github.com/C3DSU/e-DefPR/pull/$pr/files"
+	pr=$(open_pull_request_manual)
 fi
+
+
