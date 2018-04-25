@@ -95,7 +95,7 @@ if [ $1 = 'auto' ]; then
 	if [[ -z $PR_CURRENT ]]; then
 		echo 'Creating Github pull request...'
 			if [[ -z $PR_CURRENT ]]; then
-				pr=$(open_pull_request_auto)
+				pr=$(open_pull_request_auto | get_pull_request_number)
 			else
 				pr=$PR_CURRENT
 			fi	
