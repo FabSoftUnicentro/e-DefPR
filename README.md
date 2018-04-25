@@ -264,3 +264,19 @@ Processo manual:
     Github: @paulopieczarka
     E-mail: paulopieczarka@gmail.com
     ```
+
+    - #### Alexandre Gueths
+    ```
+    Frontend developer
+    Slack: @agueths
+    Github: @agueths
+    E-mail: agueths@gmail.com
+    ```
+        
+    - #### Gabriel Pimenta
+    ```
+    Slack: @Pimenta
+    Github: @Pimenta1
+    E-mail: pimenta@programmer.net
+    ```
+    
