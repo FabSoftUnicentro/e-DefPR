@@ -178,6 +178,20 @@ exports.refreshToken = async (req, res, next) => {
   }
 }
 
+exports.resetPassword = async (req, res, next) => {
+  try {
+    await repository.resetPassword(req.params.id)
+    res.status(200).send({
+      message: 'Password successfully reseted'
+    })
+  } catch (e) {
+    res.status(500).send({
+      message: 'Failed to process your request',
+      errors: e.errors
+    })
+  }
+}
+
 // Function to encrypt the password
 function encryptPassword (password) {
   return bcrypt.hashSync(password, saltRounds)
