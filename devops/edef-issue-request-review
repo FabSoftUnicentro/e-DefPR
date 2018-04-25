@@ -25,7 +25,7 @@ open_pull_request_auto() {
 	local body="fixed #$ISSUE"
 
 	json="{\"head\":\"$head\",\"base\":\"$base\",\"title\":\"$title\",\"body\":\"$body\"}"
-	echo $(curl -s -X POST -u $CREDENTIAL -d "$json" $GITHUB_REPOSITORY/pulls)
+	echo $(curl -s -X POST -u "$CREDENTIAL" -d "$json" $GITHUB_REPOSITORY/pulls)
 }
 
 open_pull_request_manual() {
@@ -62,7 +62,7 @@ get_pull_request_number() {
 }
 
 get_pull_request_state() {
-  local info=$(curl -s -X GET -u $CREDENTIAL $GITHUB_REPOSITORY/pulls/$1)
+  local info=$(curl -s -X GET -u "$CREDENTIAL" $GITHUB_REPOSITORY/pulls/$1)
   echo $info | python -m json.tool | grep -oP '(?<="state": ").*(?=",)'
 }
 
@@ -78,9 +78,8 @@ get_pull_request_current() {
   fi
 }
 
-PR_FILE=$CLI_PATH/temp/.edef-pull-request
-[[ -f $PR_FILE ]] && PR_CURRENT=$(get_pull_request_current)
-
+PR_FILE=$CLI_PATH/.edef-pull-request
+PR_CURRENT=$(get_pull_request_current)
 echo 'Creating Pull Request in the GitHub repository...'
 if [ $1 = 'auto' ]; then
 	if [[ $BRANCH != $BRANCH_CURRENT ]]; then
@@ -94,12 +93,14 @@ if [ $1 = 'auto' ]; then
 	fi
 
 	if [[ -z $PR_CURRENT ]]; then
+		echo $PR_CURRENT
 		echo 'Creating Github pull request...'
 			if [[ -z $PR_CURRENT ]]; then
-				pr=$(open_pull_request_auto | get_pull_request_number)
+				pr=$(open_pull_request_auto)
 			else
 				pr=$PR_CURRENT
 			fi
+			echo $pr		
   	else
     	pr=$PR_CURRENT
 	fi
