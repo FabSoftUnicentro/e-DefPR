@@ -3,6 +3,7 @@
 const mongoose = require('mongoose')
 const Person = mongoose.model('Person')
 const bcrypt = require('bcryptjs')
+const saltRounds = 10
 
 exports.get = async () => {
   const res = await Person.find({
@@ -52,4 +53,18 @@ exports.authenticate = async (data) => {
   }
 
   return res
+}
+
+exports.resetPassword = async(id) => {
+  let person = await Person.findById(id)
+
+  person.password = encryptPassword("edef123456")
+  person.mustChangePassword = true;
+
+  await person.save()
+}
+
+// Function to encrypt the password
+function encryptPassword (password) {
+  return bcrypt.hashSync(password, saltRounds)
 }
