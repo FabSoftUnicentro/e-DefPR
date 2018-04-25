@@ -95,7 +95,7 @@ if [ $1 = 'auto' ]; then
 	if [[ -z $PR_CURRENT ]]; then
 		echo 'Creating Github pull request...'
 			if [[ -z $PR_CURRENT ]]; then
-				pr=$(open_pull_request_auto)
+				pr=$(open_pull_request_auto | get_pull_request_number)
 			else
 				pr=$PR_CURRENT
 			fi	
@@ -108,6 +108,7 @@ if [ $1 = 'auto' ]; then
 		exit 1
 	else
 		echo "Sucess: https://github.com/C3DSU/e-DefPR/pull/$pr/files"
+		echo $pr > $PR_FILE
 	fi
 else
 	pr=$(open_pull_request_manual)

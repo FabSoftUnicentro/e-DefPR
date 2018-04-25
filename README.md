@@ -152,19 +152,18 @@ Esclarecimentos gerais relacionados a documentação:
 
 Processo automatizado:
 ```
-1. Executar: ./devops/issue-start.sh xxx, onde xxx se refere ao número da tarefa no Waffle.
+1. Executar: edef-issue-start xxx, onde xxx se refere ao número da tarefa no Waffle.
 2. Efetuar as modificações no código-fonte.
 3. Executar: git add [ARQUIVO INDIVIDUAL ou LISTA DE ARQUIVOS].
     - IMPORTANTE: Não recomendo o uso de: 'git add .'
 4. Executar: git commit -m "MENSAGEM EXPLICATIVA" após cada 'git add [ARQUIVO INDIVIDUAL ou LISTA DE ARQUIVOS]' do passo 6.
     - IMPORTANTE: Na "MENSAGEM EXPLICATIVA" explicar de forma resumida o que foi modificado nos arquivos que que foram adicionados no 'git add'.
 5. Executar: git push origin issue#xxx, onde xxx se refere ao número da tarefa no Waffle.
-6. Executar: ./devops/issue-request-review
+6. Executar: edef-issue-request-review auto ou edef-issue-request-review manual (auto cria a PR automaticamente e o manual redirecionada para a página do GitHub)
 7. Comunicar no channel o link da PR pedindo review de código.
 8. Esperar pelo menos 1 ou 2 Approves e após isso realizar o merge no site do GitHub.
     - IMPORTANTE: Caso as modificações foram complexas e/ou muito imporantes requisitar mais Approves do que somente 2.
 9. Ir na página da Pull Request no GitHub e realizar o merge.
-10. Executar: git branch -d issue#xxx.
 ```
 
 Processo manual:
