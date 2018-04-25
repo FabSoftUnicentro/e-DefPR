@@ -3,3 +3,4 @@
 data/
 .vscode/
 devops/.edef-github-credentials
+devops/.edef-pull-request
