@@ -16,7 +16,17 @@ BRANCH_CURRENT=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 BRANCH=$([[ $2 ]] && echo "issue#$2" || echo $BRANCH_CURRENT)
 ISSUE=${BRANCH/issue#/}
 
-CREDENTIAL=$($EDEF_PATH/edef-github-credentials --login)
+CREDENTIAL=$($CLI_PATH/edef-github-credentials --login)
+
+open_pull_request_auto() {
+	local head="C3DSU:$BRANCH"
+	local base="master"
+	local title="$BRANCH"
+	local body="fixed #$ISSUE"
+
+	json="{\"head\":\"$head\",\"base\":\"$base\",\"title\":\"$title\",\"body\":\"$body\"}"
+	echo $(curl -s -X POST -u $CREDENTIAL -d "$json" $GITHUB_REPOSITORY/pulls)
+}
 
 open_pull_request_manual() {
 	to_branch="master"
@@ -46,18 +56,6 @@ open_pull_request_manual() {
 	fi
 }
 
-open_pull_request_auto() {
-	local head="C3DSU:$BRANCH"
-	local base="master"
-	local title="$BRANCH"
-	local body="fixed #$ISSUE"
-
-	LOGIN="$CREDENTIAL"
-
-	json="{\"head\":\"$head\",\"base\":\"$base\",\"title\":\"$title\",\"body\":\"$body\"}"
-	echo $(curl -s -X POST -u $LOGIN -d "$json" $GITHUB_REPOSITORY/pulls)
-}
-
 get_pull_request_number() {
 	read x
 	echo $x | grep \"number\" | grep -oP '(?<="number": ).*(?=, "state")'
@@ -80,7 +78,7 @@ get_pull_request_current() {
   fi
 }
 
-PR_FILE=$EDEF_PATH/stash/temp/.ces-pull-request
+PR_FILE=$CLI_PATH/temp/.edef-pull-request
 [[ -f $PR_FILE ]] && PR_CURRENT=$(get_pull_request_current)
 
 echo 'Creating Pull Request in the GitHub repository...'
@@ -98,7 +96,7 @@ if [ $1 = 'auto' ]; then
 	if [[ -z $PR_CURRENT ]]; then
 		echo 'Creating Github pull request...'
 			if [[ -z $PR_CURRENT ]]; then
-				pr=$(open_pull_request | get_pull_request_number)
+				pr=$(open_pull_request_auto | get_pull_request_number)
 			else
 				pr=$PR_CURRENT
 			fi
