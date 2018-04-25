@@ -26,6 +26,19 @@ exports.getById = async (req, res, next) => {
   }
 }
 
+exports.getByState = async (req, res, next) => {
+  try {
+    var data = await repository.getByState(req.params.id)
+    res.status(200).send(data)
+  } catch (e) {
+    res.status(500).send({
+      message: 'Failed to process your request',
+      errors: e.errors
+    })
+  }
+
+}
+
 exports.post = async (req, res, next) => {
   try {
     await repository.create({
