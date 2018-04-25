@@ -6,6 +6,7 @@ const controller = require('../controllers/person-controller')
 const authService = require('../services/auth-service')
 
 router.get('/', authService.authorize, controller.get)
+router.get('/reset-password/:id', authService.authorize, controller.resetPassword)
 router.get('/:id', authService.authorize, controller.getById)
 router.post('/', authService.authorize, controller.post)
 router.post('/authenticate', controller.authenticate)
