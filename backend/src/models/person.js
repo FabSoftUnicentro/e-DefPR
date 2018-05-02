@@ -67,7 +67,7 @@ const schema = new Schema({
   mustChangePassword: {
     type: Boolean,
     required: false,
-    default: false
+    default: true
   }
 })
 

@@ -18,6 +18,14 @@ exports.getById = async (id) => {
   return res
 }
 
+exports.getByState = async (ufCode) => {
+  const res = await City.find({
+    ufCode: ufCode
+  }, 'ibgeCode name ufCode latitude longitude')
+
+  return res
+}
+
 exports.create = async (data) => {
   let newCity = new City(data)
 

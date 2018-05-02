@@ -1,0 +1,17 @@
+APP_NAME = "e-defpr"
+TIMESTAMP = `date +%F-%H%M`
+MONGODUMP_PATH="/usr/bin/mongodump"
+BACKUP_NAME="$APP_NAME-$TIMESTAMP"
+
+$MONGODUMP_PATH -d $MONGO_DATABASE
+
+mkdir -p $BACKUPS_DIR
+mv dump $BACKUP_NAME
+tar -zcvf $BACKUPS_DIR/$BACKUP_NAME.tgz $BACKUP_NAME
+rm -rf $BACKUP_NAME
+
+cd $BACKUPS_DIR
+# note: make sure the dir is setup correctly for the bitbucket repository
+#git add $BACKUP_NAME.tgz
+#git commit -m "Daily backup"
+#git push -u origin master
