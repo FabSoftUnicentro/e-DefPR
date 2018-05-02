@@ -20,18 +20,18 @@ class Schedule extends Component {
           <DocumentCardActivity
             activity='Criado em 10 Jan, 2017'
             people={[
-              { name: 'Paulo Henrique Pieczarka da Silva' }
+              { name: 'Some One' }
             ]}
           />
         </DocumentCard>
 
         <DocumentCard>
           <DocumentCardLocation location='Será arquivado em 10 dias' />
-          <DocumentCardTitle title='Roubou o coração do Paulo.' />
+          <DocumentCardTitle title='Example card 1.' />
           <DocumentCardActivity
             activity='Criado em 10 Jan, 2017'
             people={[
-              { name: 'Janaíne Meira' }
+              { name: 'Person Linda' }
             ]}
           />
         </DocumentCard>
@@ -105,7 +105,7 @@ const ProcessList =
   {
     key: 'p1',
     id: '54313',
-    assistido: 'Paulo Henrique Pieczarka da Silva',
+    assistido: 'Person One',
     dtCreation: new Date(),
     dtUpdate: new Date(),
     status: 'Aguardando avaliação psicológica.'
@@ -113,7 +113,7 @@ const ProcessList =
   {
     key: 'p2',
     id: '54313',
-    assistido: 'Janaíne Meira',
+    assistido: 'Person Linda',
     dtCreation: new Date(),
     dtUpdate: new Date(),
     status: 'Aguardando avaliação psicológica.'

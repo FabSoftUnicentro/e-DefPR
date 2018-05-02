@@ -6,6 +6,7 @@ import {
   Panel,
   Link
 } from 'office-ui-fabric-react'
+import authService from 'services/AuthService'
 
 import '../styles/Header.css'
 
@@ -20,12 +21,11 @@ class Header extends Component {
 
     this.toggleAccountMenu = this.toggleAccountMenu.bind(this)
     this.closeAccountMenu = this.closeAccountMenu.bind(this)
+    this.onSignout = this.onLogout.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.account) {
-      this.setState({ userAccount: nextProps.account })
-    }
+  componentDidMount () {
+    this.setState({ userAccount: this.props.account })
   }
 
   toggleAccountMenu () {
@@ -34,6 +34,10 @@ class Header extends Component {
 
   closeAccountMenu () {
     this.setState({ accountMenuIsOpen: false })
+  }
+
+  onLogout () {
+    authService.logout()
   }
 
   render () {
@@ -52,7 +56,7 @@ class Header extends Component {
 
         { userAccount && <Persona
           className='ms-Custom-Persona'
-          primaryText={userAccount.displayName}
+          primaryText={userAccount.name}
           size={PersonaSize.size32}
           onClick={this.toggleAccountMenu}
         /> }
@@ -65,11 +69,11 @@ class Header extends Component {
           isLightDismiss
           onDismissed={this.closeAccountMenu}
         >
-          <p>{ userAccount && userAccount.nomeCompleto }</p><br /><br />
+          <p>{ userAccount && userAccount.name }</p><br /><br />
           <Link>Editar dados</Link><br /><br />
-          { userAccount && <Link to={`/employee/v/${userAccount.pessoaId}`}>Ver meus dados</Link> }
+          { userAccount && <Link to={`/employee/v/${userAccount._id}`}>Ver meus dados</Link> }
           <br /><br />
-          <Link>Sair</Link>
+          <Link onClick={this.onLogout}>Sair</Link>
         </Panel>
       </div>
 
