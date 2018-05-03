@@ -36,7 +36,6 @@ exports.getByState = async (req, res, next) => {
       errors: e.errors
     })
   }
-
 }
 
 exports.post = async (req, res, next) => {

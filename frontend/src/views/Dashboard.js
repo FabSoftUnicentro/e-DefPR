@@ -41,7 +41,9 @@ class Dashboard extends Component {
   componentDidMount () {
     this.setState({ selectedKey: window.location.pathname })
 
-    console.log(authService.getToken())
+    if (authService.isAuthenticated()) {
+      this.setState({authenticatedEmployee: authService.loginInfo.data})
+    }
   }
 
   render () {
@@ -56,7 +58,7 @@ class Dashboard extends Component {
     const navMenuItems = authAccount ? authAccount.authorizedLinks : []
 
     return <div className='dashboard'>
-      <Header account={this.state.authenticatedEmployee} />
+      <Header account={authAccount} />
 
       <main>
         <div className='sidebar'>
