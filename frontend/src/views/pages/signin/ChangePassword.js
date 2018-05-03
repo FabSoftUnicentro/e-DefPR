@@ -14,7 +14,7 @@ class ChangePassword extends Component {
   render () {
     const { isLoading } = this.state
 
-    return <div>
+    return (<div>
       <SignInHeader isLoading={isLoading} />
       <Label>Se o cpf estiver cadastrado você reberá um e-mail com instruções para recurar sua senha.</Label>
       <TextField label='Senha' />
@@ -24,7 +24,7 @@ class ChangePassword extends Component {
         <div />
         <DefaultButton primary text='Alterar Senha' />
       </div>
-    </div>
+    </div>)
   }
 }
 
