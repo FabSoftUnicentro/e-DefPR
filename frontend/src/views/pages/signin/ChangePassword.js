@@ -16,8 +16,7 @@ class ChangePassword extends Component {
 
     return <div>
       <SignInHeader isLoading={isLoading} />
-      <Label>Se o cpf estiver cadastrado você reberá um e-mail com
-        instruções para recurar sua senha.</Label>
+      <Label>Se o cpf estiver cadastrado você reberá um e-mail com instruções para recurar sua senha.</Label>
       <TextField label='Senha' />
       <TextField label='Confirmar Senha' />
 
