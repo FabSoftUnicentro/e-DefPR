@@ -96,7 +96,7 @@ class SignIn extends Component {
 
     const { messageComponent, isLoading } = this.state
 
-    return <div className='login'>
+    return (<div className='login'>
       <div className='login-box'>
         <Switch>
           <PropsRoute
@@ -126,7 +126,7 @@ class SignIn extends Component {
           />
         </div>
       </div>
-    </div>
+    </div>)
   }
 }
 
@@ -135,26 +135,27 @@ const SignInForm = ({isLoading, onChange, onSignIn, ...rest}) => (
     <SignInHeader isLoading={isLoading} />
 
     { rest.message }
+    <form onSubmit={e => e.preventDefault()}>
+      <TextField
+        label='CPF'
+        onChanged={val => onChange('cpf', val)}
+        validateOnFocusOut
+        validateOnLoad={false}
+        onGetErrorMessage={value => {
+          return value.match(/[0-9]{11}/g) && value.length === 11
+            ? ''
+            : 'Deve ser um CPF. Somente números.'
+        }}
+      />
+      <TextField type='password' label='Senha' onChanged={val => onChange('password', val)} />
 
-    <TextField
-      label='CPF'
-      onChanged={val => onChange('cpf', val)}
-      validateOnFocusOut
-      validateOnLoad={false}
-      onGetErrorMessage={value => {
-        return value.match(/[0-9]{11}/g) && value.length === 11
-          ? ''
-          : 'Deve ser um CPF. Somente números.'
-      }}
-    />
-    <TextField type='password' label='Senha' onChanged={val => onChange('password', val)} />
-
-    <div className='login-action'>
-      <RouterLink to={PATH_RECOVERY}>
-        <Link>Esqueci minha senha</Link>
-      </RouterLink>
-      <DefaultButton primary text='Acessar' onClick={onSignIn} />
-    </div>
+      <div className='login-action'>
+        <RouterLink to={PATH_RECOVERY}>
+          <Link type='button'>Esqueci minha senha</Link>
+        </RouterLink>
+        <DefaultButton type='submit' primary text='Acessar' onClick={onSignIn} />
+      </div>
+    </form>
   </div>
 )
 
