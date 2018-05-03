@@ -55,11 +55,11 @@ exports.authenticate = async (data) => {
   return res
 }
 
-exports.resetPassword = async(id) => {
+exports.resetPassword = async (id) => {
   let person = await Person.findById(id)
 
-  person.password = encryptPassword("edef123456")
-  person.mustChangePassword = true;
+  person.password = encryptPassword('edef123456')
+  person.mustChangePassword = true
 
   await person.save()
 }
