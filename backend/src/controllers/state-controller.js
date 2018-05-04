@@ -54,7 +54,7 @@ exports.put = async (req, res, next) => {
     }
 
     await repository.update(req.params.id, data)
-    
+
     res.status(200).send({
       message: 'State successfuly updated'
     })

@@ -36,7 +36,6 @@ exports.getByState = async (req, res, next) => {
       errors: e.errors
     })
   }
-
 }
 
 exports.post = async (req, res, next) => {
@@ -61,8 +60,7 @@ exports.post = async (req, res, next) => {
 }
 
 exports.put = async (req, res, next) => {
-  try {    
-
+  try {
     let data = []
 
     for (var key in req.body) {

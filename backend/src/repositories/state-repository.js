@@ -34,7 +34,6 @@ exports.update = async (id, data) => {
   await state.save()
 }
 
-
 exports.delete = async (id) => {
   await State
     .findByIdAndRemove(id)
