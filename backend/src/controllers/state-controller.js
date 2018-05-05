@@ -47,11 +47,14 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
-    await repository.update(req.params.id, {
-      ibgeCode: req.body.ibgeCode,
-      name: req.body.name,
-      initials: req.body.initials
-    })
+    let data = []
+
+    for (var key in req.body) {
+      data[key] = req.body[key]
+    }
+
+    await repository.update(req.params.id, data)
+
     res.status(200).send({
       message: 'State successfuly updated'
     })

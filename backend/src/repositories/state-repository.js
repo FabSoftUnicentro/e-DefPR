@@ -25,14 +25,13 @@ exports.create = async (data) => {
 }
 
 exports.update = async (id, data) => {
-  await State
-    .findByIdAndUpdate(id, {
-      $set: {
-        ibgeCode: data.ibgeCode,
-        name: data.name,
-        initials: data.initials
-      }
-    })
+  let state = await State.findById(id)
+
+  for (var key in data) {
+    state[key] = data[key]
+  }
+
+  await state.save()
 }
 
 exports.delete = async (id) => {
