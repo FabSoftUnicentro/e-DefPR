@@ -45,7 +45,10 @@ class Header extends Component {
 
     return <header className='header'>
 
-      <div />
+      <div className='header-logo'>
+        <span id='app-name'>Defensoria Pública</span>
+        <span id='location'>Guarapuava, PR</span>
+      </div>
 
       <div className='header-account'>
 

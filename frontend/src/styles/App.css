@@ -34,3 +34,7 @@
 a {
     text-decoration: none;
 }
+
+.ms-Button-flexContainer i.ms-Button-icon {
+    margin-left: 14px;
+}
