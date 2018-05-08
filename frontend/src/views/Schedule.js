@@ -7,8 +7,7 @@ import {
   DetailsList,
   CommandBar
 } from 'office-ui-fabric-react'
-
-import '../../styles/Schedule.css'
+import 'styles/Schedule.css'
 
 class Schedule extends Component {
   render () {

@@ -10,6 +10,23 @@ header.header {
     align-items: center;
 }
 
+.header-logo {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-logo #app-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(0,0,0,.8);
+}
+
+.header-logo #location {
+    font-size: 12px;
+    color: rgba(0,0,0,.8);
+}
+
 header.header .ms-Custom-Persona {
     height: 100%;
     flex-direction: row-reverse;
