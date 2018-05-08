@@ -64,7 +64,6 @@ exports.resetPassword = async (id) => {
   try {
     person.password = await encryptService.encryptPassword('edef123456')
     person.mustChangePassword = true
-  
     await person.save()
   } catch (e) {
     return null
