@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Label } from 'office-ui-fabric-react'
 import Select, { Async } from 'react-select'
-import CitiesService from '/services/CitiesService'
-import StatesService from '/services/StatesService'
+import CitiesService from 'services/CitiesService'
+import StatesService from 'services/StatesService'
 
 class CitySelect extends Component {
   constructor (props) {
