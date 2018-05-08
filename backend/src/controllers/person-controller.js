@@ -1,9 +1,8 @@
 'use strict'
 
 const repository = require('../repositories/person-repository')
-const bcrypt = require('bcryptjs')
 const authService = require('../services/auth-service')
-const saltRounds = 10
+const encryptService = require('../services/encrypt-service')
 
 exports.get = async (req, res, next) => {
   try {
@@ -31,7 +30,7 @@ exports.getById = async (req, res, next) => {
 
 exports.post = async (req, res, next) => {
   try {
-    let passwordHash = encryptPassword(req.body.password)
+    let passwordHash = await encryptService.encryptPassword(req.body.password)
 
     await repository.create({
       type: req.body.type,
@@ -182,9 +181,4 @@ exports.resetPassword = async (req, res, next) => {
       errors: e.errors
     })
   }
-}
-
-// Function to encrypt the password
-function encryptPassword (password) {
-  return bcrypt.hashSync(password, saltRounds)
 }
