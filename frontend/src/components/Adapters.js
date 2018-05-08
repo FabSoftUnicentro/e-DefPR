@@ -5,7 +5,6 @@ import { Field } from 'react-final-form'
 import BasicSelect from './BasicSelect'
 import CitySelect from './CitySelect'
 
-
 export const TextFieldAdapter = ({ input, label, meta, ...rest }) => (
   <TextField
     label={label}
