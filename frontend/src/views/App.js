@@ -5,8 +5,8 @@ import { loadTheme } from 'office-ui-fabric-react/lib/Styling'
 import { initializeIcons } from '@uifabric/icons'
 
 import Dashboard from './Dashboard'
-import SignIn from './pages/signin/SignIn'
-import authService from '../services/AuthService'
+import SignIn from './signin/SignIn'
+import authService from 'services/AuthService'
 
 import 'react-select/dist/react-select.css'
 import '../styles/App.css'

@@ -33,16 +33,13 @@ exports.create = async (data) => {
 }
 
 exports.update = async (id, data) => {
-  await City
-    .findByIdAndUpdate(id, {
-      $set: {
-        ibgeCode: data.ibgeCode,
-        name: data.name,
-        ufCode: data.ufCode,
-        latitude: data.latitude,
-        longitude: data.longitude
-      }
-    })
+  let city = await City.findById(id)
+
+  for (var key in data) {
+    city[key] = data[key]
+  }
+
+  await city.save()
 }
 
 exports.delete = async (id) => {
