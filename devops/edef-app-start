@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${CLI_PATH}config/colors
+source ${CLI_PATH}/config/colors
 
 cd $EDEF_PATH
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Label } from 'office-ui-fabric-react'
-import BasicSelect from '../components/BasicSelect'
+import BasicSelect from 'components/BasicSelect'
 
 const SelectAdapter = ({ input, label, options, ...rest }) => (
   <div className='md-TextField-wrapper'>
