@@ -45,7 +45,7 @@ class CitySelect extends Component {
   }
 
   render () {
-    return <div className='ms-TextField-wrapper'>
+    return (<div className='ms-TextField-wrapper'>
       <Label>{ this.props.label }</Label>
       <div className='Form-Select-City'>
         <Async
@@ -65,7 +65,7 @@ class CitySelect extends Component {
           onChange={this.selectCity}
         />
       </div>
-    </div>
+    </div>)
   }
 }
 

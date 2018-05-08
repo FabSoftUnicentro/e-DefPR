@@ -16,11 +16,11 @@ class BasicSelect extends Component {
   }
 
   render () {
-    return <Select
+    return (<Select
       {...this.props}
       value={this.state.value}
       onChange={value => this.onChange(value, this.props.name)}
-      />
+      />)
   }
 }
 
