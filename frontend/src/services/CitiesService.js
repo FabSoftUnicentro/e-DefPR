@@ -1,4 +1,5 @@
 import Service from './Service'
+import fetcher from '../helpers/fetcher'
 
 class CityService extends Service {
   constructor () {
