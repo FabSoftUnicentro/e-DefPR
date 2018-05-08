@@ -43,7 +43,7 @@ class Header extends Component {
   render () {
     const { userAccount } = this.state
 
-    return <header className='header'>
+    return (<header className='header'>
 
       <div className='header-logo'>
         <span id='app-name'>Defensoria Pública</span>
@@ -79,8 +79,7 @@ class Header extends Component {
           <Link onClick={this.onLogout}>Sair</Link>
         </Panel>
       </div>
-
-    </header>
+    </header>)
   }
 }
 
