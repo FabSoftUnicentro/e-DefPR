@@ -45,20 +45,28 @@ exports.authenticate = async (data) => {
     cpf: data.cpf
   })
 
-  let result = encryptService.checkPassword(data.password, res.password)
+  try {
+    let result = encryptService.checkPassword(data.password, res.password)
 
-  if (!result) {
+    if (result) {
+      return res
+    }
+
+    return null
+  } catch (e) {
     return null
   }
-
-  return res
 }
 
 exports.resetPassword = async (id) => {
   let person = await Person.findById(id)
 
-  person.password = await encryptService.encryptPassword('edef123456')
-  person.mustChangePassword = true
-
-  await person.save()
+  try {
+    person.password = await encryptService.encryptPassword('edef123456')
+    person.mustChangePassword = true
+  
+    await person.save()
+  } catch (e) {
+    return null
+  }
 }
