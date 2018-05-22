@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 APP_NAME = "e-defpr"
 TIMESTAMP = `date +%F-%H%M`
 MONGODUMP_PATH="/usr/bin/mongodump"
