@@ -1,9 +1,6 @@
+#!/usr/bin/env bash
+
 source ${CLI_PATH}config/colors
-
-cd $EDEF_PATH/backend
-
-echo -e "${PURPLE}Fixing code indentation and spacing on backend...${NC}"
-yarn standard --fix
 
 cd $EDEF_PATH/frontend
 

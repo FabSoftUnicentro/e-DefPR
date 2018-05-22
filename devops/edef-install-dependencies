@@ -1,9 +1,11 @@
+#!/usr/bin/env bash
+
 source ${CLI_PATH}config/colors
 
 cd $EDEF_PATH/backend
 
 echo -e "${PURPLE}Installing dependencies${NC} on backend..."
-yarn install
+composer install
 
 cd $EDEF_PATH/frontend
 
