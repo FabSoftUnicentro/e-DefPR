@@ -14,13 +14,13 @@ const PATH_RECOVERY = `${PATH}/recovery-password`
 
 const InvalidCpfOrPasswordMessage = (
   <MessageBar messageBarType={MessageBarType.blocked}>
-    CPF ou senha inválidos.
+    E-mail ou senha inválidos.
   </MessageBar>
 )
 
 const WarningSignInMessage = (
   <MessageBar messageBarType={MessageBarType.warning}>
-    Campos CPF e senha são obrigatórios.
+    Campos E-mail e senha são obrigatórios.
   </MessageBar>
 )
 
@@ -54,9 +54,9 @@ class SignIn extends Component {
   }
 
   onSignIn () {
-    const { cpf, password } = this.state.form
+    const { email, password } = this.state.form
 
-    if (!cpf || !password) {
+    if (!email || !password) {
       this.setState({
         messageComponent: WarningSignInMessage
       })
@@ -65,18 +65,19 @@ class SignIn extends Component {
 
     this.setState({ isLoading: true })
 
-    authService.login(cpf, password)
+    authService.login(email, password)
       .then(result => {
         this.setState({ isLoading: false }) // stop loading animation
-        if (result.status === 404) {
+        if (result.status !== 200) {
           this.setState({
             messageComponent: InvalidCpfOrPasswordMessage
           })
-        } else if (result.status === 200) {
+        } else {
           this.onSignInSuccess(result.data)
         }
       })
       .catch(err => {
+        // TODO: log this error
         console.log('Error', err)
       })
   }
@@ -137,15 +138,15 @@ const SignInForm = ({isLoading, onChange, onSignIn, ...rest}) => (
     { rest.message }
     <form onSubmit={e => e.preventDefault()}>
       <TextField
-        label='CPF'
-        onChanged={val => onChange('cpf', val)}
+        label='E-mail'
+        onChanged={val => onChange('email', val)}
         validateOnFocusOut
         validateOnLoad={false}
-        onGetErrorMessage={value => {
-          return value.match(/[0-9]{11}/g) && value.length === 11
-            ? ''
-            : 'Deve ser um CPF. Somente números.'
-        }}
+        // onGetErrorMessage={value => {
+        //   return value.match(/[0-9]{11}/g) && value.length === 11
+        //     ? ''
+        //     : 'Deve ser um CPF. Somente números.'
+        // }}
       />
       <TextField type='password' label='Senha' onChanged={val => onChange('password', val)} />
 

@@ -1,17 +1,18 @@
-import fetcher from '../helpers/fetcher'
-import { SESSION_NAME } from '../helpers/app.config'
+import fetcher from 'helpers/fetcher'
+import { SESSION_NAME } from 'helpers/app.config'
 
 class AuthService {
   constructor () {
-    this.route = '/person'
+    this.route = '/user'
   }
 
-  async login (cpf, password) {
-    let result = await fetcher.post(`${this.route}/authenticate`, { cpf, password })
+  async login (email, password) {
+    let result = await fetcher.post(`${this.route}/authenticate`, { email, password })
 
     if (result.status === 200) {
       this.authSucess(result.data)
-    } else if (result.status !== 404) {
+    } else {
+      // TODO: log this error
       console.log('ERROR', result.data)
     }
 
@@ -19,13 +20,12 @@ class AuthService {
   }
 
   authSucess (data) {
-    window.sessionStorage.setItem(SESSION_NAME, JSON.stringify(data))
+    window.sessionStorage.setItem(SESSION_NAME, data)
   }
 
   get loginInfo () {
     try {
-      const info = window.sessionStorage.getItem(SESSION_NAME)
-      return JSON.parse(info)
+      return window.sessionStorage.getItem(SESSION_NAME)
     } catch (e) {
       this.logout()
       return null
@@ -33,7 +33,7 @@ class AuthService {
   }
 
   get token () {
-    return this.loginInfo ? null : this.loginInfo.token
+    return this.loginInfo ? null : this.loginInfo
   }
 
   logout () {
