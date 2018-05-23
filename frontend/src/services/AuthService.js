@@ -1,5 +1,5 @@
-import fetcher from '../helpers/fetcher'
-import { SESSION_NAME } from '../helpers/app.config'
+import fetcher from 'helpers/fetcher'
+import { SESSION_NAME } from 'helpers/app.config'
 
 class AuthService {
   constructor () {
@@ -7,14 +7,12 @@ class AuthService {
   }
 
   async login (email, password) {
-    console.log(`${this.route}/authenticate`)
-    console.log({ email, password })
-    let result = await fetcher.post(`${this.route}/authenticate/`, { email, password })
+    let result = await fetcher.post(`${this.route}/authenticate`, { email, password })
 
-    
     if (result.status === 200) {
       this.authSucess(result.data)
-    } else if (result.status >= 400 && result.status <= 404) {
+    } else {
+      // TODO: log this error
       console.log('ERROR', result.data)
     }
 

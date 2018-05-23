@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import {
-  Breadcrumb
-} from 'office-ui-fabric-react'
+import { Breadcrumb } from 'office-ui-fabric-react'
 import Header from './Header'
 import Schedule from './Schedule'
 import authService from 'services/AuthService'

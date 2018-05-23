@@ -65,8 +65,6 @@ class SignIn extends Component {
 
     this.setState({ isLoading: true })
 
-    console.log(email, password)
-
     authService.login(email, password)
       .then(result => {
         this.setState({ isLoading: false }) // stop loading animation
@@ -74,11 +72,12 @@ class SignIn extends Component {
           this.setState({
             messageComponent: InvalidCpfOrPasswordMessage
           })
-        } else if (result.status === 200) {
+        } else {
           this.onSignInSuccess(result.data)
         }
       })
       .catch(err => {
+        // TODO: log this error
         console.log('Error', err)
       })
   }
