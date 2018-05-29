@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+cd $EDEF_PATH/devops
+
+./edef-install-dependencies
+
+cd $EDEF_PATH/backend
+
+php artisan migrate
+
+php artisan passport:install
+
+php artisan passport:keys
+
