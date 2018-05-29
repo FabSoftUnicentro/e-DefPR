@@ -78,7 +78,7 @@ get_pull_request_current() {
   fi
 }
 
-PR_FILE=$CLI_PATH/.edef-github-credentials
+PR_FILE=$CLI_PATH/.edef-pull-request
 PR_CURRENT=$(get_pull_request_current)
 echo 'Creating Pull Request in the GitHub repository...'
 if [ $1 = 'auto' ]; then
