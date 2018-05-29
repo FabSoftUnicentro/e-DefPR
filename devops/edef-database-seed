@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+cd $EDEF_PATH/backend
+
+php artisan db:seed
+
