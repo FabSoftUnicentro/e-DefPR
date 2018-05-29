@@ -30,14 +30,14 @@ open_pull_request_auto() {
 
 open_pull_request_manual() {
 	to_branch="master"
-  
+
 	# try the upstream branch if possible, otherwise origin will do
 	upstream=$(git config --get remote.upstream.url)
 	origin=$(git config --get remote.origin.url)
 	if [ -z $upstream ]; then
 		upstream=$origin
 	fi
-	
+
 	to_user=$(echo $upstream | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
 	from_user=$(echo $origin | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
 	repo=$(basename `git rev-parse --show-toplevel`)
@@ -51,8 +51,8 @@ open_pull_request_manual() {
 
 	if  [ "$platform" = 'unknown' ]; then
 		start "https://github.com/$to_user/$repo/compare/issue%23$ISSUE?expand=1"
-	else 
-		open "https://github.com/$to_user/$repo/compare/issue%23$ISSUE?expand=1"	
+	else
+		open "https://github.com/$to_user/$repo/compare/issue%23$ISSUE?expand=1"
 	fi
 }
 
@@ -98,7 +98,7 @@ if [ $1 = 'auto' ]; then
 				pr=$(open_pull_request_auto | get_pull_request_number)
 			else
 				pr=$PR_CURRENT
-			fi	
+			fi
   	else
     	pr=$PR_CURRENT
 	fi
