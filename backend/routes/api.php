@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 // User routes
 Route::prefix('user')->group(function () {
-    Route::post('authenticate', 'Api\UserController@authenticate');
+    Route::post('/authenticate', 'Api\UserController@authenticate');
     Route::get('/{id}', 'Api\UserController@show')->middleware('auth:api');
     Route::put('/{id}', 'Api\UserController@update')->middleware('auth:api');
     Route::delete('/{id}', 'Api\UserController@destroy')->middleware('auth:api');
