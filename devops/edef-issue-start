@@ -33,6 +33,13 @@ else
 fi
 
 git branch -D $LAST_BRANCH
+git push origin --delete $LAST_BRANCH
 git pull origin master
+
+cd $EDEF_PATH/backend
+
+php artisan migrate:refresh --seed
+
+./edef-configure
 
 echo "Everything done, now on Branch: issue#$1"
