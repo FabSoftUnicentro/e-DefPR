@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Form, Field } from 'react-final-form'
-import employeeService from '../../services/EmployeeService'
+import employeeService from 'services/UserService'
 
-import FabricStepper from '../components/FabricStepper'
+import FabricStepper from 'components/FabricStepper'
 import {
   TextFieldAdapter,
   CitySelectAdapter,
   DatePickerAdapter,
   GenderSelect,
   CivilStateSelect
-} from '../components/Adapters'
+} from 'adapters'
 
 class EmployeeNew extends Component {
   onSubmit (values) {

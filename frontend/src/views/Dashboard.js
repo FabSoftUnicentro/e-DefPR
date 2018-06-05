@@ -7,6 +7,7 @@ import authService from 'services/AuthService'
 import Sidebar from './Sidebar'
 import 'styles/Dashboard.css'
 import Employee from './employee/Employee';
+import EmployeeNew from './employee/EmployeeNew';
 
 class Dashboard extends Component {
   constructor (props) {
@@ -65,6 +66,7 @@ class Dashboard extends Component {
             <Switch>
               <Route exact path='/' component={Schedule} />
               <Route exact path='/employee' component={Employee} />
+              <Route exact path='/employee/new' component={EmployeeNew} />
             </Switch>
           </div>
         </div>
