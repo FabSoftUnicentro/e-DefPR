@@ -43,6 +43,8 @@ class Header extends Component {
   render () {
     const { userAccount } = this.state
 
+    console.log(userAccount)
+
     return (<header className='header'>
 
       <div className='header-logo'>

@@ -32,7 +32,7 @@ class Dashboard extends Component {
     this.setState({ selectedKey: window.location.pathname })
     
     if (authService.isAuthenticated()) {
-      this.setState({authenticatedEmployee: authService.loginInfo})
+      this.setState({authenticatedEmployee: authService.user})
     }
   }
 
