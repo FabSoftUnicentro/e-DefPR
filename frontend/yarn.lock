@@ -3,36 +3,36 @@
 
 
 "@microsoft/load-themed-styles@^1.7.13":
-  version "1.7.59"
-  resolved "https://registry.yarnpkg.com/@microsoft/load-themed-styles/-/load-themed-styles-1.7.59.tgz#c63b18773d638bd8307854072e81b63a16d713b6"
+  version "1.7.60"
+  resolved "https://registry.yarnpkg.com/@microsoft/load-themed-styles/-/load-themed-styles-1.7.60.tgz#4bee044baeae144c0dd25e95f573645809306f54"
 
-"@uifabric/icons@>=5.8.0 <6.0.0":
-  version "5.8.0"
-  resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-5.8.0.tgz#fb7e4476a88e5b6ea1d121163f924bbc35a02b28"
+"@uifabric/icons@>=6.0.1 <7.0.0":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-6.0.1.tgz#6870a661216b6858db7e179cac62fb16b91aa361"
   dependencies:
-    "@uifabric/styling" ">=5.30.1 <6.0.0"
+    "@uifabric/styling" ">=6.0.3 <7.0.0"
     tslib "^1.7.1"
 
-"@uifabric/merge-styles@>=5.17.0 <6.0.0":
-  version "5.17.0"
-  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-5.17.0.tgz#96de616cb9fa5c05a79ac18ff96db9fe5644f2d2"
+"@uifabric/merge-styles@>=6.0.2 <7.0.0":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-6.0.2.tgz#7a4095f2270328b117abd4879cb39d51500393e7"
   dependencies:
     tslib "^1.7.1"
 
-"@uifabric/styling@>=5.30.1 <6.0.0", "@uifabric/styling@>=5.30.2 <6.0.0":
-  version "5.30.2"
-  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-5.30.2.tgz#47be266dc6de4fc09a9ce1903e0e80a38614ab20"
+"@uifabric/styling@>=6.0.3 <7.0.0":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-6.0.3.tgz#1e69f1439237b262c0ebb92bd4c51460a04957d4"
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
-    "@uifabric/merge-styles" ">=5.17.0 <6.0.0"
-    "@uifabric/utilities" ">=5.31.0 <6.0.0"
+    "@uifabric/merge-styles" ">=6.0.2 <7.0.0"
+    "@uifabric/utilities" ">=6.0.5 <7.0.0"
     tslib "^1.7.1"
 
-"@uifabric/utilities@>=5.31.0 <6.0.0":
-  version "5.31.0"
-  resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-5.31.0.tgz#dc1ed35ab43b186a2c852639e43b41e905c4b13d"
+"@uifabric/utilities@>=6.0.5 <7.0.0":
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-6.0.5.tgz#e4d772b9666c5d8cfc809a414eddc9f02ae52eb4"
   dependencies:
-    "@uifabric/merge-styles" ">=5.17.0 <6.0.0"
+    "@uifabric/merge-styles" ">=6.0.2 <7.0.0"
     prop-types "^15.5.10"
     tslib "^1.7.1"
 
@@ -5048,15 +5048,15 @@ obuf@^1.0.0, obuf@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
 
-office-ui-fabric-react@^5.25.0:
-  version "5.108.0"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-5.108.0.tgz#23ccbafb2a8cd605730d5520a24fe5e175c9a31c"
+office-ui-fabric-react@^6.4.1:
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-6.4.1.tgz#f2cd73fb23644ded535840ab2b365398b99bacd6"
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
-    "@uifabric/icons" ">=5.8.0 <6.0.0"
-    "@uifabric/merge-styles" ">=5.17.0 <6.0.0"
-    "@uifabric/styling" ">=5.30.2 <6.0.0"
-    "@uifabric/utilities" ">=5.31.0 <6.0.0"
+    "@uifabric/icons" ">=6.0.1 <7.0.0"
+    "@uifabric/merge-styles" ">=6.0.2 <7.0.0"
+    "@uifabric/styling" ">=6.0.3 <7.0.0"
+    "@uifabric/utilities" ">=6.0.5 <7.0.0"
     prop-types "^15.5.10"
     tslib "^1.7.1"
 
@@ -7075,8 +7075,8 @@ trim-right@^1.0.1:
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
 tslib@^1.7.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.1.tgz#a5d1f0532a49221c87755cfcc89ca37197242ba7"
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.2.tgz#8be0cc9a1f6dc7727c38deb16c2ebd1a2892988e"
 
 tty-browserify@0.0.0:
   version "0.0.0"
