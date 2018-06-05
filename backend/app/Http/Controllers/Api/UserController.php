@@ -58,6 +58,7 @@ class UserController extends Controller
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : true;
         $user->password = Hash::make($request->input('password'));
 
         try {
@@ -102,6 +103,7 @@ class UserController extends Controller
 
             $user->name = $request->input('name') ? $request->input('name') : $user->name;
             $user->email = $request->input('email') ? $request->input('email') : $user->email;
+            $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : $user->must_change_password;
             $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
 
             $user->saveOrFail();
