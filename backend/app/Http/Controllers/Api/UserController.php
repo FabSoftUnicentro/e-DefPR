@@ -27,7 +27,11 @@ class UserController extends Controller
         if ($user && Hash::check($data['password'], $user->getAuthPassword())) {
             $token = $user->createToken('auth')->accessToken;
 
-            return JsonResponse::create($token);
+            return JsonResponse::create([
+                'token' => $token,
+                'name' => $user->name,
+                'mustChangePassword' => $user->must_change_password
+            ], Response::HTTP_OK);
         }
 
         return JsonResponse::create([], Response::HTTP_BAD_REQUEST);
@@ -54,6 +58,7 @@ class UserController extends Controller
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : true;
         $user->password = Hash::make($request->input('password'));
 
         try {
@@ -98,6 +103,7 @@ class UserController extends Controller
 
             $user->name = $request->input('name') ? $request->input('name') : $user->name;
             $user->email = $request->input('email') ? $request->input('email') : $user->email;
+            $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : $user->must_change_password;
             $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
 
             $user->saveOrFail();
