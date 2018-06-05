@@ -82,7 +82,12 @@ class PostcodeController extends Controller
         }
     }
 
-    private function sanitize($input) {
+    /**
+     * @param $input
+     * @return mixed|string
+     */
+    private function sanitize($input)
+    {
         $input = trim($input);
         $input = str_replace(".", "", $input);
         $input = str_replace(",", "", $input);
