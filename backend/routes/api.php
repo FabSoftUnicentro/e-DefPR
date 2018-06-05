@@ -22,3 +22,8 @@ Route::prefix('user')->group(function () {
     Route::post('/', 'Api\UserController@store')->middleware('auth:api');
     Route::get('/', 'Api\UserController@index')->middleware('auth:api');
 });
+
+// Postcode route
+Route::prefix('postcode')->group(function () {
+    Route::get('/{id}', 'Api\PostcodeController@find');
+});
