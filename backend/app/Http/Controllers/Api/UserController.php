@@ -27,7 +27,11 @@ class UserController extends Controller
         if ($user && Hash::check($data['password'], $user->getAuthPassword())) {
             $token = $user->createToken('auth')->accessToken;
 
-            return JsonResponse::create($token);
+            return JsonResponse::create([
+                'token' => $token,
+                'name' => $user->name,
+                'mustChangePassword' => $user->must_change_password
+            ], Response::HTTP_OK);
         }
 
         return JsonResponse::create([], Response::HTTP_BAD_REQUEST);
