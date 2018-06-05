@@ -14,9 +14,10 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create(/**
-         * @param Blueprint $table
-         */
-            'users', function (Blueprint $table) {
+            * @param Blueprint $table
+            */
+            'users',
+            function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
@@ -35,4 +36,5 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
+    
 }
