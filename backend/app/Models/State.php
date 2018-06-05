@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
-    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -44,8 +43,6 @@ class State extends Model
      */
     public function state()
     {
-
         return $this->belongsTo(State::class, 'state_id');
-
     }
 }
