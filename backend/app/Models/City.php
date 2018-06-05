@@ -56,4 +56,3 @@ class City extends Model
     }
     
 }
-
