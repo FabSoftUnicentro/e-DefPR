@@ -12,6 +12,8 @@ use Illuminate\Http\Response;
 
 class PostcodeController extends Controller
 {
+    private $http;
+
     public function __construct()
     {
         $this->http = new Client;
