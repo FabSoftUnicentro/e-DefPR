@@ -9,7 +9,7 @@ import SignIn from './signin/SignIn'
 import authService from 'services/AuthService'
 
 import 'react-select/dist/react-select.css'
-import '../styles/App.css'
+import 'styles/App.css'
 
 loadTheme({
   palette: {

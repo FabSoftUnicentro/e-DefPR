@@ -6,6 +6,7 @@ import Schedule from './Schedule'
 import authService from 'services/AuthService'
 import Sidebar from './Sidebar'
 import 'styles/Dashboard.css'
+import Employee from './employee/Employee';
 
 class Dashboard extends Component {
   constructor (props) {
@@ -63,6 +64,7 @@ class Dashboard extends Component {
           <div className='main-page'>
             <Switch>
               <Route exact path='/' component={Schedule} />
+              <Route exact path='/employee' component={Employee} />
             </Switch>
           </div>
         </div>
