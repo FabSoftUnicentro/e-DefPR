@@ -13,7 +13,7 @@ class CreatePostcodeTable extends Migration
      */
     public function up()
     {
-        Schema::create('postcode', function (Blueprint $table) {
+        Schema::create('postcodes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('cep', 8)->unique();
             $table->string('street');
@@ -21,9 +21,9 @@ class CreatePostcodeTable extends Migration
             $table->string('neighborhood');
             $table->string('city');
             $table->string('uf', 2);
-            $table->string('unity');
+            $table->string('unity')->nullable();
             $table->integer('ibge_code');
-            $table->integer('gia_code');
+            $table->integer('gia_code')->nullable();
             $table->timestamps();
         });
     }
