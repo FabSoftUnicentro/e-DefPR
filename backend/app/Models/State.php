@@ -48,4 +48,5 @@ class State extends Model
         return $this->belongsTo(State::class, 'state_id');
 
     }
+    
 }
