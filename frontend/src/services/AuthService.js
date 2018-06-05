@@ -49,7 +49,7 @@ class AuthService {
 
   get token () {
     const user = this.user
-    return user ? user : undefined
+    return user ? user.token : undefined
   }
 
   /**
