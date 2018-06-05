@@ -7,13 +7,12 @@ const { fetch } = window
  * Default fetcher for all controllers.
  * Usage: fetcher.[METHOD](CONTROLLER_PATH, ...rest)
  */
-const fetcher =
-{
+const fetcher = {
   /**
-     * Async getter from api.
-     * @param {string | path} controllerPath
-     * Returns { status: HTTP_CODE, data: json }
-     */
+   * Async getter from api.
+   * @param {string | path} controllerPath
+   * Returns { status: HTTP_CODE, data: json }
+   */
   async get (controllerPath = '/') {
     let response = await fetch(`${API_URL}${controllerPath}`, { method: 'GET', ...this.options })
     let data = await response.json()
@@ -25,11 +24,11 @@ const fetcher =
   },
 
   /**
-     * Async post to api.
-     * @param {string | path} controllerPath
-     * @param {object} body
-     * Returns { status: HTTP_CODE, data: json }
-     */
+   * Async post to api.
+   * @param {string | path} controllerPath
+   * @param {object} body
+   * Returns { status: HTTP_CODE, data: json }
+   */
   async post (controllerPath = '/', body = {}) {
     let response = await fetch(`${API_URL}${controllerPath}`, {
       method: 'POST',
@@ -46,11 +45,11 @@ const fetcher =
   },
 
   /**
-     * Async put to api.
-     * @param {string | path} controllerPath
-     * @param {object} body
-     * Returns { status: HTTP_CODE, data: json }
-     */
+   * Async put to api.
+   * @param {string | path} controllerPath
+   * @param {object} body
+   * Returns { status: HTTP_CODE, data: json }
+   */
   async put (controllerPath = '/', body = {}) {
     let response = await fetch(`${API_URL}${controllerPath}`, {
       method: 'PUT',
@@ -67,10 +66,10 @@ const fetcher =
   },
 
   /**
-     * Async delete from api.
-     * @param {string | path} controllerPath
-     * Returns { status: HTTP_CODE, data: json }
-     */
+   * Async delete from api.
+   * @param {string | path} controllerPath
+   * Returns { status: HTTP_CODE, data: json }
+   */
   async delete (controllerPath = '/') {
     let response = await fetch(`${API_URL}${controllerPath}`, {
       method: 'DELETE',
@@ -89,6 +88,8 @@ const fetcher =
     const options = {}
     options['mode'] = 'cors'
     options['headers'] = this.headers
+
+    return options
   },
 
   get headers () {
