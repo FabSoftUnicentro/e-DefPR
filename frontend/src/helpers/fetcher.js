@@ -99,7 +99,7 @@ const fetcher = {
     if (authService.isAuthenticated) {
       header['Authorization'] = `Bearer ${authService.token}`
     }
-    
+
     return header
   }
 }

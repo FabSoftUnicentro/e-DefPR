@@ -3,7 +3,7 @@ import { DetailsList, CommandBar, SelectionMode, MessageBar, MessageBarType, Pro
 import { userService } from 'services'
 
 const CmdBtRefresh = { key: 'headerBtRefresh', name: 'Atualizar', icon: 'Refresh', iconOnly: true }
-const CmdBtNewEmployee = {key: 'headerBtNewEmployee', name: 'Novo funcionário', icon: 'AddFriend' }
+const CmdBtNewEmployee = { key: 'headerBtNewEmployee', name: 'Novo funcionário', icon: 'AddFriend' }
 
 class Employee extends Component {
   constructor (props) {
@@ -56,8 +56,8 @@ class Employee extends Component {
           ]}
         />
 
-        { isLoading && <ProgressIndicator className="pd-inset-remove" /> }
-        
+        { isLoading && <ProgressIndicator className='pd-inset-remove' /> }
+
         <DetailsList
           columns={EmployeeListColumns}
           items={employeeList}

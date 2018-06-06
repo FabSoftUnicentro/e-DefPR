@@ -8,7 +8,7 @@ class AuthService {
 
   /**
    * Authenticate users.
-   * @param {email, password} login info 
+   * @param {email, password} login info
    */
   async login ({ email, password }) {
     const result = await fetcher.post(`${this.route}/authenticate`, { email, password })
@@ -26,7 +26,7 @@ class AuthService {
   }
 
   /**
-   * Store authenticated user. 
+   * Store authenticated user.
    */
   set user ({ token, name, mustChangePassword }) {
     window.sessionStorage.setItem(
@@ -41,8 +41,7 @@ class AuthService {
   get user () {
     try {
       return JSON.parse(window.sessionStorage.getItem(this.sessionName))
-    }
-    catch (error) {
+    } catch (error) {
       return undefined
     }
   }

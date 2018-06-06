@@ -6,7 +6,6 @@ import FabricStepper from 'components/FabricStepper'
 import {
   TextFieldAdapter,
   CitySelectAdapter,
-  DatePickerAdapter,
   GenderSelect,
   CivilStateSelect
 } from 'adapters'
@@ -40,7 +39,7 @@ class EmployeeNew extends Component {
                 </div>
 
                 <div className='textfield-group'>
-                  <Field type="date" name='birthDate' label='Data de nascimento' component={TextFieldAdapter} />
+                  <Field type='date' name='birthDate' label='Data de nascimento' component={TextFieldAdapter} />
                   <div />
                 </div>
 
@@ -102,7 +101,7 @@ class EmployeeNew extends Component {
               >
                 <div className='textfield-group'>
                   <Field name='email' label='E-mail' required component={TextFieldAdapter} />
-                  <Field type="password" name='password' label='Senha' required component={TextFieldAdapter} />
+                  <Field type='password' name='password' label='Senha' required component={TextFieldAdapter} />
                   <div /> <div />
                 </div>
               </FabricStepper.Step>
