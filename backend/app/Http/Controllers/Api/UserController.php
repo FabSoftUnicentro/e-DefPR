@@ -58,8 +58,17 @@ class UserController extends Controller
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : true;
         $user->password = Hash::make($request->input('password'));
+        $user->cpf = $request->input('cpf');
+        $user->birth_date = $request->input('birthDate');
+        $user->rg = $request->input('rg');
+        $user->rg_issuer = $request->input('rgIssuer');
+        $user->gender = $request->input('gender');
+        $user->marital_status = $request->input('maritalStatus');
+        $user->addresses = json_encode($request->input('addresses'));
+        $user->note = $request->input('note');
+        $user->profession = $request->input('profession');
+        $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : true;
 
         try {
             $user->saveOrFail();
