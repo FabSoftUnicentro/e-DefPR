@@ -11,8 +11,8 @@ const GenderSelect = ({ input, name, label, ...rest }) => (
     searchable={false}
     onChange={value => input.onChange(value)}
     options={[
-      { value: 'masculino', label: 'Masculino' },
-      { value: 'feminino', label: 'Feminino' }
+      { value: 'M', label: 'Masculino' },
+      { value: 'F', label: 'Feminino' }
     ]}
   />
 )

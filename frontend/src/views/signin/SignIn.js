@@ -65,19 +65,19 @@ class SignIn extends Component {
 
     this.setState({ isLoading: true })
 
-    authService.login(email, password)
+    authService.login({ email, password })
       .then(result => {
-        this.setState({ isLoading: false }) // stop loading animation
+        this.setState({ isLoading: false })
+
         if (result.status !== 200) {
           this.setState({
             messageComponent: InvalidCpfOrPasswordMessage
           })
         } else {
-          this.onSignInSuccess(result.data)
+          this.onSignInSuccess(authService.user)
         }
       })
       .catch(err => {
-        // TODO: log this error
         console.log('Error', err)
       })
   }

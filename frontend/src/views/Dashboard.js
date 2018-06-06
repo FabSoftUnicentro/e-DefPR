@@ -6,6 +6,8 @@ import Schedule from './Schedule'
 import authService from 'services/AuthService'
 import Sidebar from './Sidebar'
 import 'styles/Dashboard.css'
+import Employee from './employee/Employee'
+import EmployeeNew from './employee/EmployeeNew'
 
 class Dashboard extends Component {
   constructor (props) {
@@ -30,9 +32,9 @@ class Dashboard extends Component {
 
   componentDidMount () {
     this.setState({ selectedKey: window.location.pathname })
-    
+
     if (authService.isAuthenticated()) {
-      this.setState({authenticatedEmployee: authService.loginInfo})
+      this.setState({authenticatedEmployee: authService.user})
     }
   }
 
@@ -63,6 +65,8 @@ class Dashboard extends Component {
           <div className='main-page'>
             <Switch>
               <Route exact path='/' component={Schedule} />
+              <Route exact path='/employee' component={Employee} />
+              <Route exact path='/employee/new' component={EmployeeNew} />
             </Switch>
           </div>
         </div>

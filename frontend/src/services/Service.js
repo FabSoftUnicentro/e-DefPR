@@ -38,7 +38,11 @@ class Service {
       this.catchErrors(result)
     }
 
-    return result
+    if (result.status === 404 || !result.data) {
+      return []
+    }
+
+    return result.data.data
   }
 
   /**

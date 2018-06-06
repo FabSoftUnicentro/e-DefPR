@@ -1,39 +1,23 @@
 import fetcher from 'helpers/fetcher'
-import { SESSION_NAME } from 'helpers/app.config'
 
 class AuthService {
   constructor () {
+    this.sessionName = 'edef'
     this.route = '/user'
   }
 
-  async login (email, password) {
-    let result = await fetcher.post(`${this.route}/authenticate`, { email, password })
+  /**
+   * Authenticate users.
+   * @param {email, password} login info
+   */
+  async login ({ email, password }) {
+    const result = await fetcher.post(`${this.route}/authenticate`, { email, password })
 
     if (result.status === 200) {
-      this.authSucess(result.data)
-    } else {
-      // TODO: log this error
-      console.log('ERROR', result.data)
+      this.user = result.data
     }
 
     return result
-  }
-
-  authSucess (data) {
-    window.sessionStorage.setItem(SESSION_NAME, data)
-  }
-
-  get loginInfo () {
-    try {
-      return window.sessionStorage.getItem(SESSION_NAME)
-    } catch (e) {
-      this.logout()
-      return null
-    }
-  }
-
-  get token () {
-    return this.loginInfo ? null : this.loginInfo
   }
 
   logout () {
@@ -41,21 +25,38 @@ class AuthService {
     window.location.href = '/'
   }
 
-  isAuthenticated () {
-    return !!window.sessionStorage.getItem(SESSION_NAME)
+  /**
+   * Store authenticated user.
+   */
+  set user ({ token, name, mustChangePassword }) {
+    window.sessionStorage.setItem(
+      this.sessionName,
+      JSON.stringify({ token, name, mustChangePassword })
+    )
   }
 
-  /*
-    // Carece de implementação (backend)
-    passwordRecovery(email){
-
+  /**
+   * Retrive user from store.
+   */
+  get user () {
+    try {
+      return JSON.parse(window.sessionStorage.getItem(this.sessionName))
+    } catch (error) {
+      return undefined
     }
+  }
 
-    changePassword(token, newPassword){
+  get token () {
+    const user = this.user
+    return user ? user.token : undefined
+  }
 
-    }
-
-    */
+  /**
+   * Client-side check if user is authenticated.
+   */
+  isAuthenticated () {
+    return !!window.sessionStorage.getItem(this.sessionName)
+  }
 }
 
 export default (new AuthService())

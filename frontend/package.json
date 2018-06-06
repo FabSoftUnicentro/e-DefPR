@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "final-form": "^1.0.0",
-    "office-ui-fabric-react": "^5.25.0",
+    "office-ui-fabric-react": "^6.4.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-final-form": "^1.0.0",

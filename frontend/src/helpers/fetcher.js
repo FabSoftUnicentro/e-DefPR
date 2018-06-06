@@ -1,20 +1,20 @@
-import { API_URL, FETCH_OPTIONS } from './app.config'
+import authService from 'services/AuthService'
 
+const API_URL = process.env.REACT_APP_API_URL
 const { fetch } = window
 
 /**
  * Default fetcher for all controllers.
  * Usage: fetcher.[METHOD](CONTROLLER_PATH, ...rest)
  */
-const fetcher =
-{
+const fetcher = {
   /**
-     * Async getter from api.
-     * @param {string | path} controllerPath
-     * Returns { status: HTTP_CODE, data: json }
-     */
+   * Async getter from api.
+   * @param {string | path} controllerPath
+   * Returns { status: HTTP_CODE, data: json }
+   */
   async get (controllerPath = '/') {
-    let response = await fetch(`${API_URL}${controllerPath}`, { method: 'GET', ...FETCH_OPTIONS })
+    let response = await fetch(`${API_URL}${controllerPath}`, { method: 'GET', ...this.options })
     let data = await response.json()
 
     return {
@@ -24,16 +24,16 @@ const fetcher =
   },
 
   /**
-     * Async post to api.
-     * @param {string | path} controllerPath
-     * @param {object} body
-     * Returns { status: HTTP_CODE, data: json }
-     */
+   * Async post to api.
+   * @param {string | path} controllerPath
+   * @param {object} body
+   * Returns { status: HTTP_CODE, data: json }
+   */
   async post (controllerPath = '/', body = {}) {
     let response = await fetch(`${API_URL}${controllerPath}`, {
       method: 'POST',
       body: JSON.stringify(body),
-      ...FETCH_OPTIONS
+      ...this.options
     })
 
     let data = await response.json()
@@ -45,16 +45,16 @@ const fetcher =
   },
 
   /**
-     * Async put to api.
-     * @param {string | path} controllerPath
-     * @param {object} body
-     * Returns { status: HTTP_CODE, data: json }
-     */
+   * Async put to api.
+   * @param {string | path} controllerPath
+   * @param {object} body
+   * Returns { status: HTTP_CODE, data: json }
+   */
   async put (controllerPath = '/', body = {}) {
     let response = await fetch(`${API_URL}${controllerPath}`, {
       method: 'PUT',
       body: JSON.stringify(body),
-      ...FETCH_OPTIONS
+      ...this.options
     })
 
     let data = await response.json()
@@ -66,14 +66,14 @@ const fetcher =
   },
 
   /**
-     * Async delete from api.
-     * @param {string | path} controllerPath
-     * Returns { status: HTTP_CODE, data: json }
-     */
+   * Async delete from api.
+   * @param {string | path} controllerPath
+   * Returns { status: HTTP_CODE, data: json }
+   */
   async delete (controllerPath = '/') {
     let response = await fetch(`${API_URL}${controllerPath}`, {
       method: 'DELETE',
-      ...FETCH_OPTIONS
+      ...this.options
     })
 
     let data = await response.json()
@@ -82,6 +82,25 @@ const fetcher =
       status: response.status,
       data: data
     }
+  },
+
+  get options () {
+    const options = {}
+    options['mode'] = 'cors'
+    options['headers'] = this.headers
+
+    return options
+  },
+
+  get headers () {
+    const header = {}
+    header['Content-Type'] = 'application/json'
+
+    if (authService.isAuthenticated) {
+      header['Authorization'] = `Bearer ${authService.token}`
+    }
+
+    return header
   }
 }
 

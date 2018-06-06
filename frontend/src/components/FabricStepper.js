@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { DefaultButton, MessageBar, MessageBarType } from 'office-ui-fabric-react'
 
-import '../../styles/FabricStepper.css'
+import 'styles/FabricStepper.css'
 
 class FabricStepper extends Component {
   constructor (props) {
@@ -53,25 +53,25 @@ class FabricStepper extends Component {
   }
 
   render () {
-    const { currentStep } = this.state
+    const { currentStep, submitting, error } = this.state
 
     return <form className='ms-form' onSubmit={this.handleSubmit} noValidate>
 
       <div className='Fabric-Stepper-Header'>
         { this.props.children.map(({ props }, i) => (
-          <div key={i} className={(this.state.currentStep === i) ? 'is-open' : ''}>{ props.title }</div>
+          <div key={i} className={(currentStep === i) ? 'is-open' : ''}>{ props.title }</div>
         )) }
       </div>
 
-      {this.state.error && <MessageBar
+      { error && <MessageBar
         messageBarType={MessageBarType.warning}
         style={{ marginBottom: 20 }}>
-        { this.state.error }
+        { error }
       </MessageBar> }
 
       <div className='Fabric-Stepper'>
         { this.props.children.map(({ props }, i) => (
-          <FabricStepper.Step key={i} itemKey={i} {...props} step={this.state.currentStep} />
+          <FabricStepper.Step key={i} itemKey={i} {...props} step={currentStep} />
         )) }
       </div>
 
@@ -87,7 +87,7 @@ class FabricStepper extends Component {
           type='submit'
           primary
           text='Próximo passo'
-          disabled={this.state.submitting}
+          disabled={submitting}
         />
       </div>
     </form>

@@ -36,7 +36,7 @@ class Sidebar extends Component {
                 },
                 {
                   name: 'Funcionários',
-                  url: '/employees',
+                  url: '/employee',
                   iconProps: { iconName: 'AccountManagement' }
                 }
               ]

@@ -18,6 +18,25 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'cpf' => $faker->unique()->text(8),
+        'birth_date' => $faker->date(),
+        'rg' => $faker->unique()->text(11),
+        'rg_issuer' => 'SSP',
+        'gender' => 'M',
+        'marital_status' => 'Solteiro',
+        'profession' => 'Teste',
+        'note' => null,
+        'addresses' => json_encode([
+            [
+                'postcode' => '85015310',
+                'street' => 'Teste',
+                'number' => 1,
+                'uf' => 'PR',
+                'city' => 'Guarapuava',
+                'neighborhood' => 'Batel',
+                'complement' => ''
+            ]
+        ]),
         'remember_token' => str_random(10),
     ];
 });
