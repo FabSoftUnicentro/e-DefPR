@@ -13,6 +13,7 @@ import {
 
 class EmployeeNew extends Component {
   onSubmit (values) {
+    console.log(values)
     employeeService.create(values)
   }
 
@@ -30,8 +31,7 @@ class EmployeeNew extends Component {
                 title='Informações pessoais'
               >
                 <div className='textfield-group'>
-                  <Field name='nome' label='Nome' required component={TextFieldAdapter} />
-                  <Field name='sobrenome' label='Sobrenome' required component={TextFieldAdapter} />
+                  <Field name='name' label='Nome' required component={TextFieldAdapter} />
                 </div>
 
                 <div className='textfield-group'>
@@ -40,17 +40,17 @@ class EmployeeNew extends Component {
                 </div>
 
                 <div className='textfield-group'>
-                  <Field name='nascimento' label='Data de nascimento' component={DatePickerAdapter} />
+                  <Field type="date" name='birthDate' label='Data de nascimento' component={TextFieldAdapter} />
                   <div />
                 </div>
 
                 <div className='textfield-group'>
                   <Field name='rg' label='RG' required component={TextFieldAdapter} />
-                  <Field name='orgaoEmissor' label='Orgão emissor' required component={TextFieldAdapter} />
+                  <Field name='rgIssuer' label='Orgão emissor' required component={TextFieldAdapter} />
                 </div>
 
                 <div className='textfield-group'>
-                  <Field name='genero' label='Genêro' searchable={false} component={GenderSelect} />
+                  <Field name='gender' label='Genêro' searchable={false} component={GenderSelect} />
                   <div />
                 </div>
 
@@ -60,17 +60,17 @@ class EmployeeNew extends Component {
                 </div>
 
                 <div className='textfield-group'>
-                  <Field name='estadoCivil' label='Estado civil' searchable={false} component={CivilStateSelect} />
+                  <Field name='maritalStatus' label='Estado civil' searchable={false} component={CivilStateSelect} />
                   <div />
                 </div>
 
                 <div className='textfield-group'>
-                  <Field name='profissao' label='Profissão' component={TextFieldAdapter} />
+                  <Field name='profession' label='Profissão' component={TextFieldAdapter} />
                   <div />
                 </div>
 
                 <div className='textfield-group'>
-                  <Field name='relatorio' label='Relatório' multiline component={TextFieldAdapter} />
+                  <Field name='note' label='Relatório' multiline component={TextFieldAdapter} />
                 </div>
               </FabricStepper.Step>
 
@@ -78,22 +78,22 @@ class EmployeeNew extends Component {
                 title='Endereços'
               >
                 <div className='textfield-group'>
-                  <Field name='enderecos[cep]' label='CEP' required component={TextFieldAdapter} />
+                  <Field name='addresses[postcode]' label='CEP' required component={TextFieldAdapter} />
                   <div /> <div />
                 </div>
 
                 <div className='textfield-group'>
-                  <Field name='enderecos[rua]' label='Rua' required component={TextFieldAdapter} />
-                  <Field name='enderecos[numero]' label='Número' required component={TextFieldAdapter} />
+                  <Field name='addresses[street]' label='Rua' required component={TextFieldAdapter} />
+                  <Field name='addresses[number]' label='Número' required component={TextFieldAdapter} />
                 </div>
 
                 <div className='textfield-group'>
-                  <Field name='enderecos[cidade]' label='Cidade' required component={CitySelectAdapter} />
-                  <Field name='enderecos[bairro]' label='Bairro' required component={TextFieldAdapter} />
+                  <Field name='addresses[city]' label='Cidade' required component={CitySelectAdapter} />
+                  <Field name='addresses[neighborhood]' label='Bairro' required component={TextFieldAdapter} />
                 </div>
 
                 <div className='textfield-group'>
-                  <Field name='enderecos[complemento]' label='Complemento' component={TextFieldAdapter} />
+                  <Field name='addresses[complement]' label='Complemento' component={TextFieldAdapter} />
                 </div>
               </FabricStepper.Step>
 
@@ -102,6 +102,7 @@ class EmployeeNew extends Component {
               >
                 <div className='textfield-group'>
                   <Field name='email' label='E-mail' required component={TextFieldAdapter} />
+                  <Field type="password" name='password' label='Senha' required component={TextFieldAdapter} />
                   <div /> <div />
                 </div>
               </FabricStepper.Step>
