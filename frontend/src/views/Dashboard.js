@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Breadcrumb } from 'office-ui-fabric-react'
 import Header from './Header'
@@ -41,9 +41,7 @@ class Dashboard extends Component {
   render () {
     // Get user from server.
     if (!this.state.authenticatedEmployee) {
-      return <div>
-        Loading user..
-      </div>
+      return <Fragment>Loading user..</Fragment>
     }
 
     const authAccount = this.state.authenticatedEmployee

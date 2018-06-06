@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { IconButton, Spinner } from 'office-ui-fabric-react'
 
 const SignInHeader = ({isLoading}) => (
   <div className='login-header'>
-    <div>
+    <Fragment>
       <IconButton
         iconProps={{ iconName: 'SecurityGroup' }}
         title='Voltar'
         ariaLabel='Emoji'
       />
       <span>eDef-PR</span>
-    </div>
+    </Fragment>
     { isLoading && <Spinner /> }
   </div>
 )

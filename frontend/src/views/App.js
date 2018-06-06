@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { Fabric } from 'office-ui-fabric-react/lib/Fabric'
 import { loadTheme } from 'office-ui-fabric-react/lib/Styling'
@@ -40,7 +40,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     ) : (
       (!props.history.location.pathname.startsWith('/signin'))
         ? <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />
-        : <div />
+        : <Fragment />
     )
   )} />
 )

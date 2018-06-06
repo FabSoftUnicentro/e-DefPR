@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import SignInHeader from './SignInHeader'
 import { Label, TextField, DefaultButton } from 'office-ui-fabric-react'
 
@@ -14,17 +14,17 @@ class ChangePassword extends Component {
   render () {
     const { isLoading } = this.state
 
-    return (<div>
+    return (<Fragment>
       <SignInHeader isLoading={isLoading} />
       <Label>Se o cpf estiver cadastrado você reberá um e-mail com instruções para recurar sua senha.</Label>
       <TextField label='Senha' />
       <TextField label='Confirmar Senha' />
 
       <div className='login-action'>
-        <div />
+        <Fragment />
         <DefaultButton primary text='Alterar Senha' />
       </div>
-    </div>)
+    </Fragment>)
   }
 }
 
