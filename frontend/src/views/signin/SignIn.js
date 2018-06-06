@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Redirect, Switch, Link as RouterLink } from 'react-router-dom'
 import LinkTheachingBubble from 'components/LinkTeachingBubble'
 import PropsRoute from 'components/PropsRoute'
@@ -132,7 +132,7 @@ class SignIn extends Component {
 }
 
 const SignInForm = ({isLoading, onChange, onSignIn, ...rest}) => (
-  <div>
+  <Fragment>
     <SignInHeader isLoading={isLoading} />
 
     { rest.message }
@@ -157,7 +157,7 @@ const SignInForm = ({isLoading, onChange, onSignIn, ...rest}) => (
         <DefaultButton type='submit' primary text='Acessar' onClick={onSignIn} />
       </div>
     </form>
-  </div>
+  </Fragment>
 )
 
 export default SignIn

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Form, Field } from 'react-final-form'
 import employeeService from 'services/UserService'
 
@@ -21,7 +21,7 @@ class EmployeeNew extends Component {
       <Form
         onSubmit={this.onSubmit.bind(this)}
         render={({ handleSubmit, reset, submitting, pristine, values, meta }) => (
-          <div>
+          <Fragment>
             <FabricStepper
               onSubmit={handleSubmit}
               isSubmitting={submitting}
@@ -106,7 +106,7 @@ class EmployeeNew extends Component {
                 </div>
               </FabricStepper.Step>
             </FabricStepper>
-          </div>
+          </Fragment>
         )}
       />
     </div>

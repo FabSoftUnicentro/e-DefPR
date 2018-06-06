@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link, TeachingBubble } from 'office-ui-fabric-react'
 
@@ -32,7 +32,7 @@ class LinkTeachingBubble extends Component {
       onClick: this.toggleHelpBubble
     }
 
-    return <div>
+    return <Fragment>
       <span ref={lk => { this.linkRef = lk }}>
         <Link onClick={this.toggleHelpBubble}>{ linkName }</Link>
       </span>
@@ -47,7 +47,7 @@ class LinkTeachingBubble extends Component {
       >
         { description }
       </TeachingBubble> }
-    </div>
+    </Fragment>
   }
 }
 
