@@ -18,7 +18,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'cpf' => $faker->unique()->text(8),
+        'cpf' => $faker->numberBetween(999999999),
         'birth_date' => $faker->date(),
         'rg' => $faker->unique()->text(11),
         'rg_issuer' => 'SSP',
