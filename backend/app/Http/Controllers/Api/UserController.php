@@ -112,8 +112,17 @@ class UserController extends Controller
 
             $user->name = $request->input('name') ? $request->input('name') : $user->name;
             $user->email = $request->input('email') ? $request->input('email') : $user->email;
-            $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : $user->must_change_password;
             $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
+            $user->cpf = $request->input('cpf') ? $request->input('cpf') : $user->cpf;
+            $user->birth_date = $request->input('birthDate') ? $request->input('birthDate') : $user->birth_date;
+            $user->rg = $request->input('rg') ? $request->input('rg') : $user->rg;
+            $user->rg_issuer = $request->input('rgIssuer') ? $request->input('rgIssuer') : $user->rg_issuer;
+            $user->gender = $request->input('gender') ? $request->input('gender') : $user->gender;
+            $user->marital_status = $request->input('maritalStatus') ? $request->input('maritalStatus') : $user->marital_status;
+            $user->addresses = $request->input('addresses') ? json_encode($request->input('addresses')) : $user->addresses;
+            $user->note = $request->input('note') ? $request->input('note') : $user->note;
+            $user->profession = $request->input('profession') ? $request->input('profession') : $user->profession;
+            $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : true;
 
             $user->saveOrFail();
 
