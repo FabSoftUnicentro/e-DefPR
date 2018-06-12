@@ -1,18 +1,16 @@
 #!/usr/bin/env bash
 
-APP_NAME = "e-defpr"
-TIMESTAMP = `date +%F-%H%M`
-MONGODUMP_PATH="/usr/bin/mongodump"
-BACKUP_NAME="$APP_NAME-$TIMESTAMP"
+TIMESTAMP=$(date +%F_%H%M)
+BACKUP_NAME="edef_pr-$TIMESTAMP"
 
-$MONGODUMP_PATH -d $MONGO_DATABASE
+mysqldump --user root $MYSQL_DATABASE > $BACKUP_NAME
 
 mkdir -p $BACKUPS_DIR
-mv dump $BACKUP_NAME
-tar -zcvf $BACKUPS_DIR/$BACKUP_NAME.tgz $BACKUP_NAME
+mv $BACKUP_NAME $BACKUPS_DIR/$BACKUP_NAME
+cd $BACKUPS_DIR
+tar -zcvf $BACKUP_NAME.tgz $BACKUP_NAME
 rm -rf $BACKUP_NAME
 
-cd $BACKUPS_DIR
 # note: make sure the dir is setup correctly for the bitbucket repository
 #git add $BACKUP_NAME.tgz
 #git commit -m "Daily backup"
