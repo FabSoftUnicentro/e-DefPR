@@ -11,6 +11,10 @@ class RecoveryPassword extends Component {
     }
   }
 
+  goBack () {
+    this.props.history.push('/signin')
+  }
+
   render () {
     const { isLoading } = this.state
 
@@ -22,6 +26,7 @@ class RecoveryPassword extends Component {
 
       <div className='login-action'>
         <Fragment />
+        <DefaultButton default text='Voltar' onClick={this.goBack.bind(this)} />
         <DefaultButton primary text='Recuperar' />
       </div>
     </Fragment>
