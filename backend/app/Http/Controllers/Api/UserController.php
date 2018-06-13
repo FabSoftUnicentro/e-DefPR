@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Auth;
 
-
-
 class UserController extends Controller
 {
     private $itemsPerPage = 10;
