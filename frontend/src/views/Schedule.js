@@ -41,9 +41,9 @@ class Schedule extends Component {
           isSearchBoxVisible
           searchPlaceholderText='Procurar...'
           items={[
-            { key: 'k1', name: 'Atualizar', icon: 'Refresh' },
-            { key: 'k2', name: 'Gerar Relatório', icon: 'TextDocument' },
-            { key: 'l1', name: 'Filtrar', icon: 'Filter' }
+            { key: 'k1', name: 'Atualizar', iconProps: { icon: 'Refresh' } },
+            { key: 'k2', name: 'Gerar Relatório', iconProps: { icon: 'TextDocument' } },
+            { key: 'l1', name: 'Filtrar', iconProps: { icon: 'Filter' } }
           ]}
         />
         <DetailsList
