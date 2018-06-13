@@ -17,9 +17,18 @@ class User extends JsonResource
         // return parent::toArray($request);
 
         return [
-            'id' => $this->id,
             'name' => $this->name,
-            'email' => $this->email
+            'email' => $this->email,
+            'cpf' => $this->cpf,
+            'birth_date' => $this->birth_date,
+            'rg' => $this->rg,
+            'rg_issuer' => $this->rg_issuer,
+            'gender' => $this->gender,
+            'marital_status' => $this->marital_status,
+            'profession' => $this->profession,
+            'note' => $this->note,
+            'addresses' => json_decode($this->addresses, true),
+            'must_change_password' => $this->must_change_password
         ];
     }
 
