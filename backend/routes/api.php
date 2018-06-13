@@ -24,6 +24,15 @@ Route::prefix('user')->group(function () {
     Route::get('/', 'Api\UserController@index')->middleware('auth:api');
 });
 
+// State routes
+Route::prefix('state')->group(function () {
+    Route::get('/{id}', 'Api\StateController@show')->middleware('auth:api');
+    Route::put('/{id}', 'Api\StateController@update')->middleware('auth:api');
+    Route::delete('/{id}', 'Api\StateController@destroy')->middleware('auth:api');
+    Route::post('/', 'Api\StateController@store')->middleware('auth:api');
+    Route::get('/', 'Api\StateController@index')->middleware('auth:api');
+});
+
 // Postcode route
 Route::prefix('postcode')->group(function () {
     Route::get('/{id}', 'Api\PostcodeController@find');
