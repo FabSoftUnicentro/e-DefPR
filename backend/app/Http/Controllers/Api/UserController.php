@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class UserController extends Controller
 {
@@ -136,6 +139,19 @@ class UserController extends Controller
             $user = User::findOrFail($id);
 
             $user->delete();
+
+            return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_NOT_FOUND);
+        }
+    }
+
+    public function info()
+    {
+        try {
+            $user = Auth::user();
 
             return new UserResource($user);
         } catch (\Exception $e) {
