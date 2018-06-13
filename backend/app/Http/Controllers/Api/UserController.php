@@ -139,7 +139,7 @@ class UserController extends Controller
             $user->delete();
 
             return new UserResource($user);
-        } catch (\Exception $e) {   
+        } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
             ], Response::HTTP_NOT_FOUND);
