@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { DetailsList, CommandBar, SelectionMode, MessageBar, MessageBarType, ProgressIndicator } from 'office-ui-fabric-react'
 import { userService } from 'services'
 
-const CmdBtRefresh = { key: 'headerBtRefresh', name: 'Atualizar', icon: 'Refresh', iconOnly: true }
-const CmdBtNewEmployee = { key: 'headerBtNewEmployee', name: 'Novo funcionário', icon: 'AddFriend' }
+const CmdBtRefresh = { key: 'headerBtRefresh', name: 'Atualizar', iconProps: { iconName: 'Refresh' }, iconOnly: true }
+const CmdBtNewEmployee = { key: 'headerBtNewEmployee', name: 'Novo funcionário', iconProps: { iconName: 'AddFriend' } }
 
 class Employee extends Component {
   constructor (props) {
