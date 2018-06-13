@@ -23,11 +23,15 @@ class EmployeeView extends Component {
           {
             key: 'headerBtRefresh',
             name: 'Relatório',
-            icon: 'CRMReport'
+            iconProps: {
+              iconName: 'CRMReport'
+            }
           }, {
             key: 'headerBtNewEmployee',
             name: 'Editar',
-            icon: 'Edit'
+            iconProps: {
+              iconName: 'Edit'
+            }
           }
         ]}
       />

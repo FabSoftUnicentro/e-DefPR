@@ -34,11 +34,15 @@ class Assist extends Component {
           {
             key: 'headerBtRefresh',
             name: 'Relatório',
-            icon: 'CRMReport'
+            iconProps: {
+              iconName: 'CRMReport'
+            }
           }, {
             key: 'cmdBarAssist',
             name: 'Novo Assistido',
-            icon: 'Add',
+            iconProps: {
+              iconName: 'Add'
+            },
             onClick: () => this.openLink('/assist/create')
           }
         ]}
