@@ -1,6 +1,7 @@
 <?php namespace App\Http\Middleware;
 
 use Closure;
+
 class CheckRole{
 	/**
 	 * Handle an incoming request.
@@ -29,5 +30,5 @@ class CheckRole{
 		$actions = $route->getAction();
 		return isset($actions['roles']) ? $actions['roles'] : null;
 	}
-	
+
 }

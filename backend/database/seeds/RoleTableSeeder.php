@@ -1,7 +1,9 @@
 <?php
+
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Role;
+
 class RoleTableSeeder extends Seeder{
     public function run()
     {
@@ -51,5 +53,5 @@ class RoleTableSeeder extends Seeder{
             'description'   => 'Has access only to the personal data of the assisted and some internal information, such as last person to perform the service.'
         ]);
     }
-    
+
 }

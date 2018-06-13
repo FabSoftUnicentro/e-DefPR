@@ -15,12 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('user/{user}', [
-    'middleware' => ['auth', 'roles'],
-    'uses' => 'UserController@index',
-    'roles' => ['Defender', 'Legal advisor', 'Administrative Technician in Law']
-]);
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
