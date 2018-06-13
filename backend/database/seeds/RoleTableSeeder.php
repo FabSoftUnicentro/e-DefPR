@@ -51,4 +51,5 @@ class RoleTableSeeder extends Seeder{
             'description'   => 'Has access only to the personal data of the assisted and some internal information, such as last person to perform the service.'
         ]);
     }
+    
 }
