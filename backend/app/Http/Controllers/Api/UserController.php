@@ -26,6 +26,7 @@ class UserController extends Controller
         $user = User::where('email', '=', $data['login'])
             ->orWhere('cpf', '=', $data['login'])
             ->first();
+            
         if ($user && Hash::check($data['password'], $user->getAuthPassword())) {
             $token = $user->createToken('auth')->accessToken;
 
