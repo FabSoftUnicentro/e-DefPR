@@ -118,7 +118,7 @@ class CityController extends Controller
      * @param $id
      * @return JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public  function findByState($id)
+    public function findByState($id)
     {
         $cities = City::where('state_id', '=', $id)->get();
 
