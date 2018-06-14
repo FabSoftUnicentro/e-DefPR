@@ -109,5 +109,4 @@ class StateController extends Controller
             ], Response::HTTP_NOT_FOUND);
         }
     }
-
 }
