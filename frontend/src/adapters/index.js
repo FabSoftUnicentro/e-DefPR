@@ -1,4 +1,4 @@
-export { default as Address } from './AddressAdapter'
+export { default as AddressAdapter } from './AddressAdapter'
 export { default as CitySelectAdapter } from './CitySelectAdapter'
 export { default as CivilStateSelect } from './CivilStateSelect'
 export { default as DatePickerAdapter } from './DatePickerAdapter'

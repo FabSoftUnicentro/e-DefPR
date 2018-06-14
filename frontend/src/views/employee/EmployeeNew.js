@@ -8,7 +8,7 @@ import {
   CitySelectAdapter,
   GenderSelect,
   CivilStateSelect,
-  Address
+  AddressAdapter
 } from 'adapters'
 
 class EmployeeNew extends Component {
@@ -77,7 +77,7 @@ class EmployeeNew extends Component {
               <FabricStepper.Step
                 title='Endereços'
               >
-                <Address />
+                <AddressAdapter />
               </FabricStepper.Step>
 
               <FabricStepper.Step

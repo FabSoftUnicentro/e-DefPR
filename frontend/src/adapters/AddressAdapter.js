@@ -5,7 +5,7 @@ import CitySelect from 'components/CitySelect'
 import { TextField } from 'office-ui-fabric-react'
 import PostcodeService from '../services/PostcodeService'
 
-class Address extends Component {
+class AddressAdapter extends Component {
   constructor (props) {
     super(props)
     this.addressesNumber = React.createRef()
@@ -79,4 +79,4 @@ class Address extends Component {
   }
 }
 
-export default Address
+export default AddressAdapter
