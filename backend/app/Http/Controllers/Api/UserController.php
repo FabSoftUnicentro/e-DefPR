@@ -51,6 +51,7 @@ class UserController extends Controller
     /**
      * @param Request $request
      * @return UserResource|JsonResponse
+     * @throws \Throwable
      */
     public function store(Request $request)
     {
@@ -104,6 +105,7 @@ class UserController extends Controller
      * @param Request $request
      * @param $id
      * @return UserResource|JsonResponse
+     * @throws \Throwable
      */
     public function update(Request $request, $id)
     {
