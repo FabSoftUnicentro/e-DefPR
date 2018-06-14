@@ -7,7 +7,8 @@ import {
   TextFieldAdapter,
   CitySelectAdapter,
   GenderSelect,
-  CivilStateSelect
+  CivilStateSelect,
+  Address
 } from 'adapters'
 
 class EmployeeNew extends Component {
@@ -76,24 +77,7 @@ class EmployeeNew extends Component {
               <FabricStepper.Step
                 title='Endereços'
               >
-                <div className='textfield-group'>
-                  <Field name='addresses[postcode]' label='CEP' required component={TextFieldAdapter} />
-                  <div /> <div />
-                </div>
-
-                <div className='textfield-group'>
-                  <Field name='addresses[street]' label='Rua' required component={TextFieldAdapter} />
-                  <Field name='addresses[number]' label='Número' required component={TextFieldAdapter} />
-                </div>
-
-                <div className='textfield-group'>
-                  <Field name='addresses[city]' label='Cidade' required component={CitySelectAdapter} />
-                  <Field name='addresses[neighborhood]' label='Bairro' required component={TextFieldAdapter} />
-                </div>
-
-                <div className='textfield-group'>
-                  <Field name='addresses[complement]' label='Complemento' component={TextFieldAdapter} />
-                </div>
+                <Address />
               </FabricStepper.Step>
 
               <FabricStepper.Step
