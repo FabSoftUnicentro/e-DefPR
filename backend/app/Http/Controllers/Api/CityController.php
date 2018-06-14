@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jean Pierri
- * Date: 13/06/2018
- * Time: 21:52
- */
 
 namespace App\Http\Controllers\Api;
 
