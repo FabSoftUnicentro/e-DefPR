@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -22,8 +23,9 @@ class UserController extends Controller
     public function authenticate(Request $request) {
         $data = $request->json()->all();
 
-        /** @var User $user */
-        $user = User::where('email', $data['email'])->first();
+        $user = User::where('email', '=', $data['login'])
+            ->orWhere('cpf', '=', $data['login'])
+            ->first();                     
 
         if ($user && Hash::check($data['password'], $user->getAuthPassword())) {
             $token = $user->createToken('auth')->accessToken;
