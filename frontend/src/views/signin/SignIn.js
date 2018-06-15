@@ -140,7 +140,7 @@ const SignInForm = ({isLoading, onChange, onSignIn, ...rest}) => (
       <TextField
         label='Usuário'
         onChanged={val => onChange('login', val)}
-        placeholder="Informe CPF ou e-mail"
+        placeholder='Informe CPF ou e-mail'
         validateOnFocusOut
         validateOnLoad={false}
         // onGetErrorMessage={value => {
