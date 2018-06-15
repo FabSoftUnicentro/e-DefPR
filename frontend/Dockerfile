@@ -1,19 +1,3 @@
-# FROM node:alpine
-
-# WORKDIR /usr/app
-
-# COPY package*.json ./
-
-# RUN yarn install
-# RUN yarn global add serve
-
-# COPY . .
-
-# EXPOSE 3000
-
-# CMD ["yarn", "start"]
-
-
 # Stage 1 - the build process
 FROM node:alpine as build-deps
 WORKDIR /usr/app
@@ -25,4 +9,4 @@ RUN yarn build
 # Stage 2 - the production environment
 FROM nginx:1.12-alpine
 COPY --from=build-deps /usr/app/build /usr/share/nginx/html
-EXPOSE 8080
+EXPOSE 80
