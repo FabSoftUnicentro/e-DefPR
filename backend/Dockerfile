@@ -12,6 +12,5 @@ COPY . .
 
 RUN composer install
 
-# CMD php artisan serve --port=8000 --host=0.0.0.0
 EXPOSE 8000
 # HEALTHCHECK --interval=1m CMD curl -f http://localhost/ || exit 1
