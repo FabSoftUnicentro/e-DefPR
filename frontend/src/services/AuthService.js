@@ -8,10 +8,10 @@ class AuthService {
 
   /**
    * Authenticate users.
-   * @param {email, password} login info
+   * @param {login, password} login info
    */
-  async login ({ email, password }) {
-    const result = await fetcher.post(`${this.route}/authenticate`, { email, password })
+  async login ({ login, password }) {
+    const result = await fetcher.post(`${this.route}/authenticate`, { login, password })
 
     if (result.status === 200) {
       this.user = result.data
