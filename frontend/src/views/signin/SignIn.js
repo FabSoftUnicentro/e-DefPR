@@ -12,15 +12,15 @@ import 'styles/SignIn.css'
 const PATH = '/signin'
 const PATH_RECOVERY = `${PATH}/recovery-password`
 
-const InvalidCpfOrPasswordMessage = (
+const InvalidLoginOrPasswordMessage = (
   <MessageBar messageBarType={MessageBarType.blocked}>
-    E-mail ou senha inválidos.
+    Usuário ou senha inválidos.
   </MessageBar>
 )
 
 const WarningSignInMessage = (
   <MessageBar messageBarType={MessageBarType.warning}>
-    Campos E-mail e senha são obrigatórios.
+    Campos Usuário e senha são obrigatórios.
   </MessageBar>
 )
 
@@ -54,9 +54,9 @@ class SignIn extends Component {
   }
 
   onSignIn () {
-    const { email, password } = this.state.form
+    const { login, password } = this.state.form
 
-    if (!email || !password) {
+    if (!login || !password) {
       this.setState({
         messageComponent: WarningSignInMessage
       })
@@ -65,13 +65,13 @@ class SignIn extends Component {
 
     this.setState({ isLoading: true })
 
-    authService.login({ email, password })
+    authService.login({ login, password })
       .then(result => {
         this.setState({ isLoading: false })
 
         if (result.status !== 200) {
           this.setState({
-            messageComponent: InvalidCpfOrPasswordMessage
+            messageComponent: InvalidLoginOrPasswordMessage
           })
         } else {
           this.onSignInSuccess(authService.user)
@@ -138,8 +138,9 @@ const SignInForm = ({isLoading, onChange, onSignIn, ...rest}) => (
     { rest.message }
     <form onSubmit={e => e.preventDefault()}>
       <TextField
-        label='E-mail'
-        onChanged={val => onChange('email', val)}
+        label='Usuário'
+        onChanged={val => onChange('login', val)}
+        placeholder="Informe CPF ou e-mail"
         validateOnFocusOut
         validateOnLoad={false}
         // onGetErrorMessage={value => {
