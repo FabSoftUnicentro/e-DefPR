@@ -14,13 +14,13 @@ const PATH_RECOVERY = `${PATH}/recovery-password`
 
 const InvalidLoginOrPasswordMessage = (
   <MessageBar messageBarType={MessageBarType.blocked}>
-    Usuário ou senha inválidos.
+    Usuário ou senha inválido.
   </MessageBar>
 )
 
 const WarningSignInMessage = (
   <MessageBar messageBarType={MessageBarType.warning}>
-    Campos Usuário e senha são obrigatórios.
+    Campos usuário e senha são obrigatório.
   </MessageBar>
 )
 
