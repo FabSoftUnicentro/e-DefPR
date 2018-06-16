@@ -33,6 +33,16 @@ Route::prefix('state')->group(function () {
     Route::get('/', 'Api\StateController@index')->middleware('auth:api');
 });
 
+// City routes
+Route::prefix('city')->group(function () {
+    Route::get('/state/{id}', 'Api\CityController@findByState')->middleware('auth:api');
+    Route::get('/{id}', 'Api\CityController@show')->middleware('auth:api');
+    Route::put('/{id}', 'Api\CityController@update')->middleware('auth:api');
+    Route::delete('/{id}', 'Api\CityController@destroy')->middleware('auth:api');
+    Route::post('/', 'Api\CityController@store')->middleware('auth:api');
+    Route::get('/', 'Api\CityController@index')->middleware('auth:api');
+});
+
 // Postcode route
 Route::prefix('postcode')->group(function () {
     Route::get('/{id}', 'Api\PostcodeController@find');
