@@ -27,7 +27,7 @@ class CitySelect extends Component {
 
     CitiesService.listByState(item.value)
       .then(response => {
-        const cityList = response.data.map(item => ({ value: item.cidadeId, label: item.nome }))
+        const cityList = response.data.data.map(item => ({ value: item.id, label: item.name }))
         this.setState({ cityList: cityList })
       })
 
@@ -72,7 +72,7 @@ class CitySelect extends Component {
 const LoadStateList = input => {
   return StatesService.index()
     .then(response => {
-      const selectOptions = response.data.map(item => ({ value: item.estadoId, label: item.uf }))
+      const selectOptions = response.map(item => ({ value: item.id, label: item.abbr }))
       return { options: selectOptions }
     })
 }
