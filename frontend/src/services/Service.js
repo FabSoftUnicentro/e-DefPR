@@ -37,7 +37,7 @@ class Service {
     if (result.status !== 200) {
       this.catchErrors(result)
     }
-    
+
     if (result.status === 404 || !result.data) {
       return []
     }
