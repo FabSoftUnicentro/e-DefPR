@@ -19,7 +19,7 @@ class Service {
   async create (values) {
     let result = await fetcher.post(`${this.route}`, values)
 
-    if (result.status !== 200) {
+    if (result.status !== 201) {
       this.catchErrors(result)
     }
 
