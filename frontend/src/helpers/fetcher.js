@@ -19,7 +19,7 @@ const fetcher = {
 
     return {
       status: response.status,
-      data: data
+      data
     }
   },
 
