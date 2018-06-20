@@ -3,7 +3,7 @@ import fetcher from '../helpers/fetcher'
 
 class CityService extends Service {
   constructor () {
-    super('/cities')
+    super('/city')
   }
 
   /**
