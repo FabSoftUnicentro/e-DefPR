@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Form, Field } from 'react-final-form'
 import employeeService from 'services/UserService'
+import { MessageBar, MessageBarType } from 'office-ui-fabric-react'
 
 import FabricStepper from 'components/FabricStepper'
 import {
@@ -11,14 +12,45 @@ import {
   AddressAdapter
 } from 'adapters'
 
+const WarningCreateEmployee = (
+  <MessageBar messageBarType={MessageBarType.warning}>
+    Existem campos obrigatórios não preenchidos.
+  </MessageBar>
+)
+
+const SuccessCreateEmployee = (
+  <MessageBar messageBarType={MessageBarType.success}>
+    Funcionário cadastrado com sucesso.
+  </MessageBar>
+)
+
 class EmployeeNew extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      messageComponent: null
+    }
+  }
   onSubmit (values) {
     console.log(values)
     employeeService.create(values)
+      .then(result => {
+        if (result.status !== 201) {
+          this.setState({
+            messageComponent: WarningCreateEmployee
+          })
+        } else {
+          this.setState({
+            messageComponent: SuccessCreateEmployee
+          })
+        }
+      })
   }
 
   render () {
     return <div className='page'>
+      {this.state.messageComponent && this.state.messageComponent}
       <Form
         onSubmit={this.onSubmit.bind(this)}
         render={({ handleSubmit, reset, submitting, pristine, values, meta }) => (
@@ -50,7 +82,7 @@ class EmployeeNew extends Component {
                 </div>
 
                 <div className='textfield-group'>
-                  <Field name='gender' label='Genêro' searchable={false} component={GenderSelect} />
+                  <Field name='gender' label='Gênero' searchable={false} component={GenderSelect} />
                   <div />
                 </div>
 
