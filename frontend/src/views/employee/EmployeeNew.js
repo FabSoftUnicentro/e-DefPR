@@ -25,33 +25,32 @@ const SuccessCreateEmployee = (
 )
 
 class EmployeeNew extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
-      messageComponent:null
+      messageComponent: null
     }
   }
   onSubmit (values) {
     console.log(values)
     employeeService.create(values)
-    .then(result => {
-      if(result.status !== 201 ) {
-        this.setState({
-          messageComponent: WarningCreateEmployee
-        })
-      }
-      else {
-        this.setState({
-          messageComponent: SuccessCreateEmployee
-        })
-      }
-    })
-  } 
+      .then(result => {
+        if (result.status !== 201) {
+          this.setState({
+            messageComponent: WarningCreateEmployee
+          })
+        } else {
+          this.setState({
+            messageComponent: SuccessCreateEmployee
+          })
+        }
+      })
+  }
 
   render () {
     return <div className='page'>
-    {this.state.messageComponent&&this.state.messageComponent}
+      {this.state.messageComponent && this.state.messageComponent}
       <Form
         onSubmit={this.onSubmit.bind(this)}
         render={({ handleSubmit, reset, submitting, pristine, values, meta }) => (
@@ -125,7 +124,7 @@ class EmployeeNew extends Component {
             </FabricStepper>
           </Fragment>
         )}
-      />  
+      />
     </div>
   }
 }
