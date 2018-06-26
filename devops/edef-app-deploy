@@ -14,8 +14,10 @@ echo "Starting Deploy..."
 if [[ $1 == '--homolog' ]]; then
   $CLI_PATH/edef-slack-notify --homolog "Starting Homolog Deploy..."
   git pull origin master
-  $CLI_PATH/edef-install-dependencies
-  $CLI_PATH/edef-slack-notify --homolog "Homolog Deploy Done!"
+  sudo docker-compose build
+  sudo docker-compose up -d
+  sudo docker-compose exec edef-install-dependencies
+  sudo docker-compose exec edef-slack-notify --homolog "Homolog Deploy Done!"
   echo 'Deploy done.'
 elif [[ $1 == '--production' ]]; then
   #TODO
