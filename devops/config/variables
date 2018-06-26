@@ -8,3 +8,6 @@ export MYSQL_DATABASE='edef_pr'
 export MYSQL_HOST="127.0.0.1"
 export MYSQL_PORT="3306"
 export BACKUPS_DIR="$EDEF_PATH/devops/backups"
+
+slack_uri='https://hooks.slack.com/services/T9UBYA0BZ'
+export SLACK_HOOK_HOMOLOG="${slack_uri}/BBEF9D14K/FpW25k7D11IIb4YsvIUqx66D"

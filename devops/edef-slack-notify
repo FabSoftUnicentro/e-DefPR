@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source ${CLI_PATH}config/colors
-
 SLACK_CHANNEL=${1/--/}
 SLACK_URI=$(eval "echo \$SLACK_HOOK_${SLACK_CHANNEL^^}")
 INPUT_TYPE=${3/--/}
@@ -10,15 +8,14 @@ if [[ $INPUT_TYPE == 'json' ]]; then
   JSON="${2}"
 else
   input=$(echo ${2:0:1500} | sed 's/"/\\"/g')
-  JSON="{\"text\": \"${input}\", \"link_names\": \"1\"}"
+  JSON="{\"text\": \"${input}\"}"
 fi
 
 if [[ -n $SLACK_URI ]]; then
   echo -e "${YELLOW}Sending Slack notification...${NC}"
-
-  curl -s -X POST \
+  curl -X POST \
     -H "Content-type:application/json" \
-    -d "${JSON}" $SLACK_URI > /dev/null 2>&1
+    --data "${JSON}" $SLACK_URI > /dev/null 2>&1
 else
   echo -e "${RED}Error: something unexpected occurred, \
     make sure channel ${SLACK_CHANNEL} is valid channel option${NC}"
