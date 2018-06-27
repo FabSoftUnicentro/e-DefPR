@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+cd $EDEF_PATH
+
+if [[ $1 == '--help' || $1 == '-h' ]]; then
+  printf "edef-app-deploy - help: \n
+  Usage:
+  edef-app-deploy [AMBIENCE]\n"
+  exit 0;
+fi
+
+echo "Starting Deploy..."
+
+if [[ $1 == '--homolog' ]]; then
+  $CLI_PATH/edef-slack-notify --homolog "Starting Homolog Deploy..."
+  git pull origin master
+  sudo docker-compose build
+  sudo docker-compose up -d
+  sudo docker-compose exec edef-install-dependencies
+  sudo docker-compose exec edef-slack-notify --homolog "Homolog Deploy Done!"
+  echo 'Deploy done.'
+elif [[ $1 == '--production' ]]; then
+  #TODO
+  echo 'Deploy done.'
+else
+  echo 'Ambience not selected.'
+fi 
+
+
