@@ -17,7 +17,7 @@ if [[ $1 == '--homolog' ]]; then
   docker-compose build
   docker-compose up -d
   docker-compose exec edef-install-dependencies
-  docker-compose exec edef-slack-notify --homolog "Homolog Deploy Done!"
+  $CLI_PATH/edef-slack-notify --homolog "Homolog Deploy Done!"
   echo 'Deploy done.'
 elif [[ $1 == '--production' ]]; then
   #TODO
