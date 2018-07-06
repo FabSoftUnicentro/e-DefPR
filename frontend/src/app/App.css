@@ -1,0 +1,19 @@
+.app {
+  width: 100%;
+  height: 100vh;
+
+  /* Sizes */
+  --sz-header-height: calc(56px + 1vh);
+  --sz-sidebar-width: calc(220px + 5vw);
+  --sz-main-height: calc(var(--sz-header-height) - 1px);
+
+  /* Effects */
+  --sw-box-bottom: 0 1px 20px rgba(0, 0, 0, .05);
+  --sw-box-right: 1px 20px 20px rgba(0, 0, 0, .05);
+}
+
+.app main {
+  display: flex;
+  overflow: hidden;
+  overflow-y: auto;
+}
