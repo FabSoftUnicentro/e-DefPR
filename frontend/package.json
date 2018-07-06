@@ -1,26 +1,21 @@
 {
-  "name": "dashboard",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "final-form": "^4.7.3",
-    "office-ui-fabric-react": "^6.4.1",
-    "prop-types": "^15.6.1",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-final-form": "^3.5.1",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.1.4",
-    "react-select": "^1.1.0",
-    "react-virtualized-select": "^3.1.0"
+    "element-react": "^1.4.20",
+    "element-theme-default": "^1.4.13",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-router": "^4.3.1",
+    "react-scripts": "1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "standard": "^11.0.1"
   }
 }

@@ -1,5 +1,0 @@
-export { default as BasicSelect } from './BasicSelect'
-export { default as CitySelect } from './CitySelect'
-export { default as FabricStepper } from './FabricStepper'
-export { default as PropsRoute } from './PropsRoute'
-export { default as LinkTeachingBubble } from './LinkTeachingBubble'
