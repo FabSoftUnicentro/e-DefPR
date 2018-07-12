@@ -249,11 +249,11 @@ Processo manual:
     E-mail: davibastos.v@gmail.com
     ```
 
-    - #### Luiz Gustavo de Azevedo Gomes
+    - #### Luiz Eduardo Chicouski da Cruz
     ```
-    Slack: @luizgustavoagomes
-    Github: @luizgustavoagomes
-    E-mail: luizgustavo.agomes@gmail.com
+    Slack: @Luiz Eduardo Chicouski da Cruz
+    Github: @SUdoWinchester
+    E-mail: luizeduardo2607@gmail.com
     ```
 
     - #### Paulo Henrique Pieczarka da Silva
