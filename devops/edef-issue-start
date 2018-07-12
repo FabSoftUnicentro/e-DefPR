@@ -38,10 +38,4 @@ git pull origin master
 
 cd $EDEF_PATH/backend
 
-composer dump-autoload
-
-php artisan migrate:refresh --seed
-
-./edef-configure
-
 echo "Everything done, now on Branch: issue#$1"

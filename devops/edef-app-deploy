@@ -14,9 +14,24 @@ echo "Starting Deploy..."
 if [[ $1 == '--homolog' ]]; then
   $CLI_PATH/edef-slack-notify --homolog "Starting Homolog Deploy..."
   git pull origin master
-  docker-compose build
-  docker-compose up -d
-  docker-compose exec edef-install-dependencies
+
+  #Backend
+  cd $EDEF_PATH/backend
+  composer install --no-scripts --no-dev --no-interaction --prefer-dist
+
+  php artisan config:clear  
+  php artisan cache:clear
+
+  php artisan migrate --force
+  
+  composer dump-autoload
+
+  #Frontend
+  cd $EDEF_PATH/frontend
+  yarn install
+  sudo rm -r build/
+  yarn build 
+
   $CLI_PATH/edef-slack-notify --homolog "Homolog Deploy Done!"
   echo 'Deploy done.'
 elif [[ $1 == '--production' ]]; then
@@ -25,5 +40,3 @@ elif [[ $1 == '--production' ]]; then
 else
   echo 'Ambience not selected.'
 fi 
-
-
