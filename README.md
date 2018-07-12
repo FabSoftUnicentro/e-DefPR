@@ -239,7 +239,13 @@ Processo manual:
     ```
     Slack: @mmiazaki
     Github: @hmmiazaki
-    E-mail: mauro.miazaki@unicentro.br
+    E-mail: maurom@unicentro.br
+    ```
+
+    - #### Prof. Marcos Antônio Quináia
+    ```
+    Slack: @marcosquinaia
+    E-mail: quiana@unicentro.br
     ```
 
     - #### Davi Bastos
