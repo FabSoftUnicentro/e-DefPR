@@ -9,7 +9,7 @@ class Dashboard extends Component {
 
   render () {
     return <Page>
-      <Page.Header title="Dashboard">
+      <Page.Header>
         <Button>Atualizar</Button>
         <Button>Filtrar</Button>
         <Button type="success">Cadastrar</Button>

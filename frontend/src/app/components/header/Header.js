@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Persona from '../persona/Persona'
 import Button from 'antd/lib/button'
+import Badge from 'antd/lib/badge'
+import Icon from 'antd/lib/icon'
 
 import './Header.css'
 
@@ -21,7 +23,9 @@ class Header extends Component {
         </div>
       </div>
       <div className="app-account">
-        <Button size="small">notificações</Button>
+        <Badge dot>
+          <Icon type="notification" />
+        </Badge>
         <Persona name="Paulo Pieczarka" />
       </div>
     </header>

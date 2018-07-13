@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Dashboard from './pages/Dashboard'
@@ -12,7 +13,9 @@ class App extends Component {
 
       <main>
         <Sidebar />
-        <Dashboard />
+        <Router>
+          <Route path="/" component={Dashboard} />
+        </Router>
       </main>
     </div>
   }
