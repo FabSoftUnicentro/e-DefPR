@@ -16,9 +16,11 @@ class Page extends Component {
 
   render () {
     const { children } = this.props
+    console.log(children)
 
     return <div className="app-page">
-      { children }
+      { children[0] }
+      <div className="app-page-context">{ children[1] }</div>
     </div>
   }
 }

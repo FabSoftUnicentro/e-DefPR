@@ -20,11 +20,21 @@
 }
 
 .app-header .app-name div span:first-child {
-  font-size: calc(18px + .5vw);
+  font-size: calc(14px + .5vw);
   color: #333;
   margin-right: 6px;
 }
 
 .app-header .app-name div span:last-child {
   color: #666;
+  font-size: calc(12px + .1vw);
+}
+
+.app-header .app-account {
+  display: flex;
+  align-items: center;
+}
+
+.app-header .app-account > div { 
+  margin-left: 16px;
 }

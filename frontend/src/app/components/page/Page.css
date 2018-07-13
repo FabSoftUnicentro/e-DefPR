@@ -1,3 +1,10 @@
 .app-page {
   flex: 1;
 }
+
+.app-page .app-page-context {
+  max-width: 960px;
+  min-width: 500px;
+  margin: 0 auto;
+  margin-top: 32px;
+}

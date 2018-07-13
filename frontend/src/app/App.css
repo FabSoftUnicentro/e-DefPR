@@ -10,6 +10,9 @@
   /* Effects */
   --sw-box-bottom: 0 1px 20px rgba(0, 0, 0, .05);
   --sw-box-right: 1px 20px 20px rgba(0, 0, 0, .05);
+
+  /* Colors */
+  --cl-black: #000;
 }
 
 .app main {
