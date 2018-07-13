@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Badge, Button } from 'element-react'
 import Persona from '../persona/Persona'
+import Button from 'antd/lib/button'
 
 import './Header.css'
 

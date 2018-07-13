@@ -3,7 +3,6 @@ import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Dashboard from './pages/Dashboard'
 
-import 'element-theme-default'
 import './App.css'
 
 class App extends Component {
