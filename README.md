@@ -221,7 +221,7 @@ Processo manual:
 
     - #### Jean Pierri
     ```
-    A science computer student ^^
+    Backend developer
     Slack: @envikeyy
     Github: @EnViKeyy
     E-mail: pierre.jp@outlook.com
@@ -229,7 +229,7 @@ Processo manual:
     
     - #### Higor Gardin
     ```
-    A science computer student
+    Frontend developer
     Slack: @HGardin
     Github: @HigorG
     E-mail: higorgardin@hotmail.com
@@ -237,6 +237,7 @@ Processo manual:
     
     - #### Prof. Mauro Miazaki
     ```
+    Professor
     Slack: @mmiazaki
     Github: @hmmiazaki
     E-mail: maurom@unicentro.br
@@ -244,17 +245,27 @@ Processo manual:
 
     - #### Prof. Marcos Antônio Quináia
     ```
+    Professor
     Slack: @marcosquinaia
     E-mail: quiana@unicentro.br
     ```
 
     - #### Davi Bastos
     ```
+    Backend developer
     Slack: @Davi Bastos
     Github: @dav3sk
     E-mail: davibastos.v@gmail.com
     ```
-
+    
+    - #### Enrique Augusto da Roza
+    ```
+    Backend developer
+    Slack: @Enrique Augusto da Roza
+    Github: @hdoidao
+    E-mail: enriqueaugroza@gmail.com
+    ```
+    
     - #### Luiz Eduardo Chicouski da Cruz
     ```
     Slack: @Luiz Eduardo Chicouski da Cruz
@@ -280,6 +291,7 @@ Processo manual:
         
     - #### Gabriel Pimenta
     ```
+    Backend developer
     Slack: @Pimenta
     Github: @Pimenta1
     E-mail: pimenta@programmer.net
