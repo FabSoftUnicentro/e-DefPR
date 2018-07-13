@@ -258,8 +258,17 @@ Processo manual:
     E-mail: davibastos.v@gmail.com
     ```
 
+    - #### Enrique Augusto da Roza
+    ```
+    Backend developer
+    Slack: @Enrique Augusto da Roza
+    Github: @hdoidao
+    E-mail: enriqueaugroza@gmail.com
+    ```
+
     - #### Luiz Eduardo Chicouski da Cruz
     ```
+    Frontend developer
     Slack: @Luiz Eduardo Chicouski da Cruz
     Github: @SUdoWinchester
     E-mail: luizeduardo2607@gmail.com
