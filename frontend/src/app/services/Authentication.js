@@ -20,6 +20,10 @@ class Authentication extends Service {
   logout () {
 
   }
+
+  get isAuthenticated () {
+    return false
+  }
 }
 
 export default Authentication
