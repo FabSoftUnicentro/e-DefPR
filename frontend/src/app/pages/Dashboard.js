@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
 import Page from '../components/page/Page'
 import { Button } from 'antd'
+import { authentication } from '../services'
 
 class Dashboard extends Component {
   constructor (props) {
     super(props)
   }
 
+  test () {
+    console.log('test')
+    authentication.signin('jessyca.runte@example.org', 'secret')
+  }
+
   render () {
     return <Page>
       <Page.Header>
-        <Button>Atualizar</Button>
+        <Button onClick={this.test.bind(this)}>Atualizar</Button>
         <Button>Filtrar</Button>
         <Button type="success">Cadastrar</Button>
       </Page.Header>
