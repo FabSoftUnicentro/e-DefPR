@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import Page from '../components/page/Page'
 import Button from 'antd/lib/button'
 import Table from 'antd/lib/table'
-import { authentication } from '../services'
 
 const columns = [{
   title: 'Name',
   dataIndex: 'name',
-  render: text => <a href="javascript:;">{text}</a>,
+  render: text => <a href="">{text}</a>,
 }, {
   title: 'Age',
   dataIndex: 'age',
@@ -39,18 +38,10 @@ const data = [{
 }]
 
 class Dashboard extends Component {
-  constructor (props) {
-    super(props)
-  }
-
-  test () {
-    authentication.signin('jessyca.runte@example.org', 'secret')
-  }
-
   render () {
     return <Page>
       <Page.Header>
-        <Button onClick={this.test.bind(this)}>Atualizar</Button>
+        <Button>Atualizar</Button>
         <Button>Filtrar</Button>
         <Button type="primary">Cadastrar</Button>
       </Page.Header>

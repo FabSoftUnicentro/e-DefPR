@@ -1,9 +1,7 @@
 import Service from './Service'
 
 class Authentication extends Service {
-  constructor () {
-    super ()
-  }
+  itemName = 'predefe'
 
   async signin (login, password) {
     if (!login || !password) {
@@ -14,15 +12,20 @@ class Authentication extends Service {
       login, password
     })
 
-    console.log(result)
+    if (result.statusCode === 'SUCCESS') {
+      localStorage.setItem(this.itemName, result.data.token)
+    }
+
+    return result
   }
 
   logout () {
-
+    localStorage.clear()
+    window.location.href = '/'
   }
 
   get isAuthenticated () {
-    return false
+    return !!localStorage.getItem(this.itemName)
   }
 }
 

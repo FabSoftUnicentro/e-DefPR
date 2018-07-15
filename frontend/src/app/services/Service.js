@@ -17,17 +17,22 @@ class Service {
       })
 
       if (response.status === 200) {
-        return await response.json()
+        const result = await response.json()
+        return { statusCode: 'SUCCESS', data: result }
       }
 
       if (response.status === 500) {
-        throw { statusCode: 'SERVER_ERROR', response }
+        throw response
       }
 
-      return { status: response.status, statusCode: response.statusText, response }
+      return {
+        status: response.status,
+        statusCode: response.statusText,
+        data: response
+      }
     }
     catch (error) {
-      throw { statusCode: 'INTERNAL_ERROR', error }
+      throw error
     }
   }
 

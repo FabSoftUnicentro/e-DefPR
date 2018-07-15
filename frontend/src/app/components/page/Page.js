@@ -16,7 +16,6 @@ class Page extends Component {
 
   render () {
     const { children } = this.props
-    console.log(children)
 
     return <div className="app-page">
       { children[0] }
