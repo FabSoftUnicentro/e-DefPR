@@ -2,8 +2,13 @@ import Service from './Service'
 
 class Location extends Service {
   async states () {
-    const result = await this.get('/state')
-    return result.data
+    try {
+      const result = await this.get('/state')
+      return result.data
+    }
+    catch (error) {
+      throw error
+    }
   }
 
   async getStateCities (state) {
@@ -11,10 +16,13 @@ class Location extends Service {
       return []
     }
 
-    const result = await this.get(`/city/state/${state}`)
-    console.log(result)
-
-    return result.data
+    try {
+      const result = await this.get(`/city/state/${state}`)
+      return result.data
+    }
+    catch (error) {
+      throw error
+    }
   }
 }
 

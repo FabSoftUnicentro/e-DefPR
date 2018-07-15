@@ -11,7 +11,7 @@ const SelectAdapter = ({ input: { onChange, value }, options, children, label, .
       {...rest}
     >
       { children && children }
-      { (!children && options) && options.map(item => (
+      { !children && options && options.map(item => (
         <Select.Option key={item.value} value={item.value}>{ item.name }</Select.Option>
       )) }
     </Select>

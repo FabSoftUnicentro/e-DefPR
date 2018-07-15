@@ -36,13 +36,12 @@ class CitySelectAdapter extends Component {
   }
 
   selectState (stateName) {
-    console.log(stateName)
     this.setState({ loadingCities: true, cities: [] })
     location.getStateCities(stateName)
       .then(({data}) => this.setState({ cities: data }))
       .catch(() => message.error('Não foi possível retornar lista de cidades'))
       .finally(() => this.setState({ loadingCities: false }))
-    }
+  }
 
   handleOnChange (city) {
     this.props.onChange && this.props.onChange(city)
