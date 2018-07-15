@@ -18,10 +18,12 @@ class EmployeeCreate extends Component {
                 name="name"
                 placeholder="Nome completo do funcionário"
               />
+              
               <Form.TextField
                 label="CPF"
                 name="cpf"
               />
+              
               <Form.DatePicker
                 label="Data de nascimento"
                 name="birthday"
@@ -61,6 +63,12 @@ class EmployeeCreate extends Component {
 
             </Form.Step>
             <Form.Step title="Endereço">
+              
+              <Form.TextField
+                label="CEP"
+                name="address[cep]"
+              />
+
             </Form.Step>
             <Form.Step title="Informações de acesso">
             </Form.Step>
