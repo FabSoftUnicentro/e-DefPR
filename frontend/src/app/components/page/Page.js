@@ -16,10 +16,11 @@ class Page extends Component {
 
   render () {
     const { children } = this.props
+    const [header, ...context] = children
 
     return <div className="app-page">
-      { children[0] }
-      <div className="app-page-context">{ children[1] }</div>
+      { header }
+      <div className="app-page-context">{ context }</div>
     </div>
   }
 }

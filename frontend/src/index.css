@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import '~antd/dist/antd.css';
 
+.ant-menu-item > a {
+  display: inline !important;
+}
+
 * {
   margin: 0;
   padding: 0;
