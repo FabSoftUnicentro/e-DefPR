@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Breadcrumb from 'antd/lib/breadcrumb';
+import Breadcrumb from 'antd/lib/breadcrumb'
 
 import './PageHeader.css'
 
