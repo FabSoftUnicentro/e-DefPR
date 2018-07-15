@@ -21,7 +21,7 @@ class Authentication extends Service {
 
   logout () {
     localStorage.clear()
-    window.location.href = '/'
+    return true
   }
 
   get isAuthenticated () {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Persona from '../persona/Persona'
 import Badge from 'antd/lib/badge'
 import Icon from 'antd/lib/icon'
+import message from 'antd/lib/message'
 import { authentication } from '../../services'
 
 import './Header.css'
@@ -19,7 +20,13 @@ class Header extends Component {
   }
 
   logout () {
-    authentication.logout()
+    if (authentication.logout()) {
+      message.loading('Finalizando sessão...', 1)
+        .then(() => {
+          message.success('Sessão finalizada!')
+          window.location.href = '/'
+        })
+    }
   }
 
   render () {

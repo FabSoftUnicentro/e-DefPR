@@ -14,6 +14,7 @@ class Signin extends Component {
     super(props)
 
     this.state = {
+      redirect: false,
       alertProps: undefined
     }
 
@@ -26,14 +27,19 @@ class Signin extends Component {
     try {
       const result = await authentication.signin(login, password)
       if (result.statusCode === 'SUCCESS') {
-        return
+        return this.setState({
+          redirect: true,
+          alertProps: {
+            type: 'success',
+            message: 'Login realizado com sucesso',
+          }
+        })
       }
       else if (result.status === 400) {
         return this.setState({
           alertProps: {
             type: 'error',
             message: 'CPF ou senha inválidos',
-            showIcon: true
           }
         })
       }
@@ -42,7 +48,6 @@ class Signin extends Component {
         alertProps: {
           type: 'warning',
           message: 'Campos CPF e senha são obrigatórios',
-          showIcon: true
         }
       })
     }
@@ -64,7 +69,7 @@ class Signin extends Component {
       </div>
       <div className="app-signin-box">
         <div className="app-signin-form">
-          { alertProps && <Alert {...alertProps} /> }
+          { alertProps && <Alert {...alertProps} showIcon /> }
           <Form
             onSubmit={this.onSubmit}
             render={({ handleSubmit, pristine, invalid, submitting }) => (
