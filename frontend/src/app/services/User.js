@@ -27,11 +27,15 @@ class User extends Service {
       return undefined
     }
 
-    return localStorage.getItem(this.USER_ACCOUNT)
+    return JSON.parse(localStorage.getItem(this.USER_ACCOUNT))
   }
 
   get hasLocalAccount () {
     return !!localStorage.getItem(this.USER_ACCOUNT)
+  }
+
+  get name () {
+    return this.localAccount.name
   }
 }
 

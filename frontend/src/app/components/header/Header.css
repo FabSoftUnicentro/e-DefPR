@@ -6,13 +6,13 @@
   display: flex;
   justify-content: space-between;
   z-index: 10;
-  padding: 0 16px;
 }
 
 .app-header .app-name {
   width: calc(var(--sz-sidebar-width) - 32px);
   display: flex;
   align-items: center;
+  padding-left: 24px;
 }
 
 .app-header .app-name div {
@@ -33,8 +33,4 @@
 .app-header .app-account {
   display: flex;
   align-items: center;
-}
-
-.app-header .app-account > div { 
-  margin-left: 16px;
 }

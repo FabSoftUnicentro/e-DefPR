@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   z-index: 10;
-  padding: 0 16px;
+  padding: 0 24px;
 }
 
 .app-page-header .app-breadcrumb .el-breadcrumb__item__inner {

@@ -1,0 +1,17 @@
+.app-persona {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 24px;
+  padding: 0 24px;
+}
+
+.app-persona:hover {
+  background: rgba(0, 0, 0, .05);
+  color: var(--cl-primary);
+}
+
+.app-persona .app-persona-name {
+  margin-right: 10px;
+}

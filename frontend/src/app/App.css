@@ -13,6 +13,7 @@
 
   /* Colors */
   --cl-black: #000;
+  --cl-primary: #1890ff;
 }
 
 .app main {
