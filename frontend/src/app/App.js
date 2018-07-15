@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { Router, Switch, Route, Redirect } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Dashboard from './pages/Dashboard'
@@ -9,12 +10,14 @@ import { authentication } from './services'
 
 import './App.css'
 
-const Home = props => (
+const browserHistory = createBrowserHistory()
+
+const Home = ({pathname}) => (
   <div className="app">
     <Header region={{ name: "Guarapuava" }} />
 
     <main>
-      <Sidebar />
+      <Sidebar pathname={pathname} />
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route path="/employee" component={Employee} />
@@ -32,11 +35,37 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      pathname: '/'
+    }
+  }
+
+  componentWillMount () {
+    this.removeHistoryListener = browserHistory.listen((location) => {
+      const { pathname } = location
+      this.setState({ pathname })
+    })
+  }
+
+  componentDidMount () {
+    const { pathname } = window.location
+    this.setState({ pathname })
+  }
+
+  componentWillUnmount () {
+    this.removeHistoryListener()
+  }
+
   render () {
-    return <Router>
+    const { pathname } = this.state
+
+    return <Router history={browserHistory}>
     <Fragment>
       <Route path="/signin" component={Signin} />
-      <PrivateRoute path="/" component={Home} />
+      <PrivateRoute path="/" component={() => <Home pathname={pathname} />} />
     </Fragment>
   </Router>
   }

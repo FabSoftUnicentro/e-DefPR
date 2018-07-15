@@ -41,9 +41,7 @@ class Dashboard extends Component {
   render () {
     return <Page>
       <Page.Header>
-        <Button>Atualizar</Button>
-        <Button>Filtrar</Button>
-        <Button type="primary">Cadastrar</Button>
+        <Button type="primary">Iniciar triagem</Button>
       </Page.Header>
 
       <Page.Context>
