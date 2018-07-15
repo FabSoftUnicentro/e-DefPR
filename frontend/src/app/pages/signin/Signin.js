@@ -3,8 +3,9 @@ import Icon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
 import { Form, Field } from 'react-final-form'
 import Alert from 'antd/lib/alert'
+import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
-import { authentication } from '../../services'
+import { authentication, user } from '../../services'
 import { Redirect } from 'react-router-dom'
 
 import './Signin.css'
@@ -24,36 +25,36 @@ class Signin extends Component {
   async onSubmit (values) {
     const { login, password } = values
 
+    const loginDone = message.loading('Realizando login', 0)
+
     try {
       const result = await authentication.signin(login, password)
       if (result.statusCode === 'SUCCESS') {
-        return this.setState({
-          redirect: true,
-          alertProps: {
-            type: 'success',
-            message: 'Login realizado com sucesso',
-          }
-        })
+        this.attachMessage('success', 'Login realizado com sucesso')
+
+        const account = await user.account()
+        if (account.data) {
+          message.success(`Bem-vindo, ${account.data.name}!`, 2)
+          this.setState({ redirect: true })
+        }
+
+        return loginDone()
       }
       else if (result.status === 400) {
-        return this.setState({
-          alertProps: {
-            type: 'error',
-            message: 'CPF ou senha inválidos',
-          }
-        })
+        loginDone()        
+        return this.attachMessage('error', 'CPF ou senha inválidos')
       }
       
-      this.setState({
-        alertProps: {
-          type: 'warning',
-          message: 'Campos CPF e senha são obrigatórios',
-        }
-      })
+      loginDone()
+      return this.attachMessage('warning', 'Campos CPF e senha são obrigatórios')
     }
     catch (error) {
       console.log(error)
     }
+  }
+
+  attachMessage (type, message) {
+    this.setState({ alertProps: { type, message } })
   }
   
   render () {

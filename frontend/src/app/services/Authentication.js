@@ -1,8 +1,6 @@
 import Service from './Service'
 
 class Authentication extends Service {
-  itemName = 'predefe'
-
   async signin (login, password) {
     if (!login || !password) {
       return { statusCode: 'EMPTY_LOGIN_OR_PASSWORD' }
@@ -13,7 +11,7 @@ class Authentication extends Service {
     })
 
     if (result.statusCode === 'SUCCESS') {
-      localStorage.setItem(this.itemName, result.data.token)
+      localStorage.setItem(this.USER_IDX, result.data.token)
     }
 
     return result
@@ -25,7 +23,11 @@ class Authentication extends Service {
   }
 
   get isAuthenticated () {
-    return !!localStorage.getItem(this.itemName)
+    return this.hasToken && this.hasAccount
+  }
+
+  get hasAccount () {
+    return !!localStorage.getItem('EDEF_IDENTITY')
   }
 }
 
