@@ -51,7 +51,7 @@ class CitySelectAdapter extends Component {
     const { states, cities, loadingStates, loadingCities } = this.state
     const { label } = this.props
 
-    return <FormItem label={label}>
+    return <FormItem label={label} style={{margin:0}}>
       <Input.Group compact>
         <Spin size="small" spinning={loadingStates}>
           <Field

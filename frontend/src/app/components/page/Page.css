@@ -1,5 +1,8 @@
 .app-page {
   flex: 1;
+  height: calc(100vh - var(--sz-main-height));
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .app-page .app-page-context {

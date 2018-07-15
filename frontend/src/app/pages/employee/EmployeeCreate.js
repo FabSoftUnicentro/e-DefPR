@@ -41,6 +41,24 @@ class EmployeeCreate extends Component {
 
               <Form.CitySelect label="Cidade natal" name="birthplace" />
 
+              <Form.Select label="Estado civil" name="civil_state" options={[
+                { value: 'solteiro', name: 'Solteiro(a)' },
+                { value: 'casado', name: 'Casado(a)' },
+                { value: 'separado/divorciado', name: 'Separado(a)/Divorciado(a)' },
+                { value: 'viuvo', name: 'Viúvo(a)' },
+                { value: 'outro', name: 'Outro' }
+              ]} />
+
+              <Form.TextField
+                label="Profissão"
+                name="prefession"
+              />
+
+              <Form.TextField
+                label="Relatório"
+                name="notes"
+              />
+
             </Form.Step>
             <Form.Step title="Endereço">
             </Form.Step>
