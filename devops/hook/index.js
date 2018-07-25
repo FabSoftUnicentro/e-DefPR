@@ -12,7 +12,7 @@ github.on('pull_request:e-DefPR', function (ref, data) {
 
     exec('edef-slack-notify --review "' + message + '"', (err, stdout, stderr) => {
       if (err) {
-        return;
+        return
       }
     })
   }
@@ -20,7 +20,7 @@ github.on('pull_request:e-DefPR', function (ref, data) {
   if (data.action === 'closed' && data.pull_request.merged) {
     exec('edef-app-deploy --homolog', (err, stdout, stderr) => {
       if (err) {
-	return;
+        return
       }
     })
   }
