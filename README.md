@@ -190,16 +190,36 @@ Processo manual:
 17. Executar: git branch -d issue#xxx.
 ```
 
+## Inicialização
+
+  Frontend:
+  ```
+  Dentro da pasta Frontend
+  1. yarn install
+  2. yarn start
+  ```
+
+  Backend:
+  ```
+  Dentro da pasta Backend
+  1. composer install
+  2. php artisan migrate:refresh
+  3. php artisan migrate
+  4. php artisan passport:install
+  5. php artisan db:seed
+  6. php artisan serve
+  ```
+
 ## Estrutura
 
   <a name="estrutura--ambience"></a><a name="9.1"></a>
-  - [5.1](#estrutura--ambience) **Ambientes**:
+  - [6.1](#estrutura--ambience) **Ambientes**:
 
     - `local`: servidor local de desenvolvimento, configurado na máquina de cada desenvolvedor
     - `production`: servidor remoto de produção, base final de uso de deploy manual
 
   <a name="estrutura--raiz"></a><a name="5.2"></a>
-  - [5.2](#estrutura--raiz) **Pastas raiz**:
+  - [6.2](#estrutura--raiz) **Pastas raiz**:
 
     - `backend`: pasta backend do projeto, contendo arquivos de models e controllers
     - `frontend`: pasta frontend do projeto, contendo arquivos de views
@@ -209,7 +229,7 @@ Processo manual:
 ## Sobre
 
   <a name="sobre--equipe"></a><a name="6.1"></a>
-  - [6.1](#sobre--equipe) **A equipe**:
+  - [7.1](#sobre--equipe) **A equipe**:
 
     - #### Gianluca Bine
     ```
