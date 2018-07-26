@@ -46,7 +46,6 @@ class UsersTableSeeder extends Seeder
         ]);
         $user->assignRole('administrative technician');
 
-
         $user = User::create([
             'name'                 => 'Edef Assistente Social',
             'email'                => 'assistente.social@edefpr.com',
