@@ -10,7 +10,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Auth;
-use App\Services\Mailer;
 
 class UserController extends Controller
 {
@@ -191,13 +190,6 @@ class UserController extends Controller
                 ->first();
 
             $user->resetPassword();
-
-            $address = [
-                'email' => $user->email,
-                'name' => $user->name
-            ];
-
-            Mailer::sendEmail([ $address ], 'Troca de Senha', $user->password);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
