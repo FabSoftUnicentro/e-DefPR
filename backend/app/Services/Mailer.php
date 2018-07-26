@@ -9,11 +9,11 @@ use App\User;
 class Mailer
 {
     /**
-     * @param User $user
+     * @param array $addresses
      * @param $subject
      * @param $body
      */
-    public static function sendEmail(User $user, $subject, $body)
+    public static function sendEmail(array $addresses, $subject, $body)
     {
         try {
             $mail = new PHPMailer();
@@ -27,12 +27,14 @@ class Mailer
             $mail->Port = 587;                                    // TCP port to connect to
             $mail->CharSet = 'utf-8';
             $mail->setFrom('edefpr@gmail.com', 'E-DefPR');
-            $mail->addAddress($user->email, $user->name);
+            foreach ($addresses as $address) {
+                $mail->addAddress($address['email'], $address['name']);
+            }
             $mail->Subject = $subject;
             $mail->Body = $body;
             $mail->send();
         } catch (\Exception $e) {
-            $mail->ErrorInfo;
+            throw Exception($e);
         }
     }
 }
