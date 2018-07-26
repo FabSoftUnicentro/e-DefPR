@@ -190,7 +190,7 @@ class UserController extends Controller
                 ->where('cpf', '=', $cpf)
                 ->first();
 
-            $user->forgotPassword();
+            $user->resetPassword();
 
             $address = [
                 'email' => $user->email,
