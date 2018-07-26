@@ -27,4 +27,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * @param $temporaryPassword
+     */
+    public function forgotPassword($temporaryPassword)
+    {
+        $hashedPassword = bcrypt($temporaryPassword);
+        $this->password = $hashedPassword;
+        $this->must_change_password = true;
+        $this->save();
+    }
 }
