@@ -12,9 +12,7 @@ class EmployeeOverview extends Component {
 
     this.state = {
       data: undefined,
-      total: 0,
-      visible: false,
-      selectedEmployee: undefined
+      total: 0
     }
 
     this.onChangePage = this.onChangePage.bind(this)
@@ -38,7 +36,7 @@ class EmployeeOverview extends Component {
   }
   
   render () {
-    const { data, total, visible } = this.state
+    const { data, total } = this.state
     return <Page>
       <Page.Header>
         <Button>Atualizar</Button>
@@ -58,7 +56,7 @@ class EmployeeOverview extends Component {
             {title: 'E-mail', dataIndex: 'email'},
             {title: 'Profissão', dataIndex: 'profession'},
             {title: 'Ver funcionário', key: 'action', align: 'center', render: (text, record) => (
-              <a href="javascript:;" onClick={this.showDrawer}> <Icon type="info-circle-o" /> </a>
+              <a href="javascript:;"> <Icon type="info-circle-o" /> </a>
             )}
           ]}
           pagination={ { 
