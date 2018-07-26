@@ -22,6 +22,15 @@ class User extends Service {
     }
   }
 
+  async list (page = '1') {
+    try {
+      const result = await this.get(`/user/?page=${page}`)
+      return result.data
+    } catch (error) {
+      throw error
+    }
+  }
+
   get localAccount () {
     if (!this.hasLocalAccount) {
       return undefined
