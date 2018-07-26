@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Services\Mailer;
 
 class UserController extends Controller
 {
@@ -20,7 +20,8 @@ class UserController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function authenticate(Request $request) {
+    public function authenticate(Request $request)
+    {
         $data = $request->json()->all();
 
         $user = User::where('email', '=', $data['login'])
@@ -168,6 +169,34 @@ class UserController extends Controller
             $user = Auth::user();
 
             return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_NOT_FOUND);
+        }
+    }
+
+    /**
+     * @param $email
+     * @param $cpf
+     * @return JsonResponse
+     */
+    public function forgot_password(Request $request)
+    {
+        try {
+            $email = $request->input('email');
+            $cpf = $request->input('cpf');
+
+            $user = User::where('email', '=', $email)
+                ->where('cpf', '=', $cpf)
+                ->first();
+
+            $temporaryPassword = uniqid(time());
+
+            $user->forgotPassword($temporaryPassword);
+
+            Mailer::sendEmail($user, 'Troca de Senha', $user->password);
+
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
