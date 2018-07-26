@@ -196,7 +196,6 @@ class UserController extends Controller
             $user->forgotPassword($temporaryPassword);
 
             Mailer::sendEmail($user, 'Troca de Senha', $user->password);
-
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
