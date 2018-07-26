@@ -181,7 +181,7 @@ class UserController extends Controller
      * @param $cpf
      * @return JsonResponse
      */
-    public function forgot_password(Request $request)
+    public function forgotPassword(Request $request)
     {
         try {
             $email = $request->input('email');
