@@ -29,10 +29,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * @param $temporaryPassword
+     *
      */
-    public function forgotPassword($temporaryPassword)
+    public function resetPassword()
     {
+        $temporaryPassword = uniqid(time());
         $hashedPassword = bcrypt($temporaryPassword);
         $this->password = $hashedPassword;
         $this->must_change_password = true;
