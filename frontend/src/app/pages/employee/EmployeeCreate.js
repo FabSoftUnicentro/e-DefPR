@@ -53,7 +53,7 @@ class EmployeeCreate extends Component {
 
               <Form.TextField
                 label="Profissão"
-                name="prefession"
+                name="profession"
               />
 
               <Form.TextField
@@ -69,8 +69,28 @@ class EmployeeCreate extends Component {
                 name="address[cep]"
               />
 
+              <Form.Inline>
+                <Form.TextField label="Rua" name="street" />
+                <Form.TextField label="Número" name="number" />
+              </Form.Inline>
+
+              <Form.Inline>
+                <Form.CitySelect label="Cidade" name="city" />
+                <Form.TextField label="Bairro" name="neighbourhood" />
+              </Form.Inline>
+
+              <Form.TextField
+                label="Complemento"
+                name="complement"
+              />
+
             </Form.Step>
             <Form.Step title="Informações de acesso">
+            <Form.Inline>
+                <Form.TextField label="E-mail" name="email" />
+                <Form.TextField label="Senha" name="password" />
+              </Form.Inline>
+
             </Form.Step>
           </Form>
         </div>
