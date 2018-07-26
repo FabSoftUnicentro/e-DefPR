@@ -190,9 +190,7 @@ class UserController extends Controller
                 ->where('cpf', '=', $cpf)
                 ->first();
 
-            $temporaryPassword = uniqid(time());
-
-            $user->forgotPassword($temporaryPassword);
+            $user->forgotPassword();
 
             $address = [
                 'email' => $user->email,
