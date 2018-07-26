@@ -5,6 +5,7 @@ namespace App;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Services\Mailer;
 
 class User extends Authenticatable
 {
@@ -38,5 +39,12 @@ class User extends Authenticatable
         $this->password = $hashedPassword;
         $this->must_change_password = true;
         $this->save();
+
+        $address = [
+            'email' => $this->email,
+            'name' => $this->name
+        ];
+
+        Mailer::sendEmail([ $address ], 'Troca de Senha', $this->password);
     }
 }
