@@ -177,8 +177,7 @@ class UserController extends Controller
     }
 
     /**
-     * @param $email
-     * @param $cpf
+     * @param Request $request
      * @return JsonResponse
      */
     public function forgotPassword(Request $request)
@@ -195,7 +194,12 @@ class UserController extends Controller
 
             $user->forgotPassword($temporaryPassword);
 
-            Mailer::sendEmail($user, 'Troca de Senha', $user->password);
+            $address = [
+                'email' => $user->email,
+                'name' => $user->name
+            ];
+
+            Mailer::sendEmail([ $address ], 'Troca de Senha', $user->password);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
