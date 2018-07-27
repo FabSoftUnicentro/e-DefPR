@@ -5,6 +5,7 @@ import { user } from '../../services'
 import message from 'antd/lib/message'
 import Table from 'antd/lib/table'
 import Icon from 'antd/lib/icon'
+import { Drawer } from 'antd'
 
 class EmployeeOverview extends Component {
   constructor (props) {
@@ -12,10 +13,13 @@ class EmployeeOverview extends Component {
 
     this.state = {
       data: undefined,
-      total: 0
+      total: 0,
+      visible: false
     }
 
     this.onChangePage = this.onChangePage.bind(this)
+    this.showDrawer = this.showDrawer.bind(this)
+    this.onCloseDrawer = this.onCloseDrawer.bind(this)
   }
 
   componentDidMount () {
@@ -34,9 +38,21 @@ class EmployeeOverview extends Component {
       })
       .catch(error => message.error('Não foi possível acessar as informações dos funcionários.'))
   }
+
+  showDrawer = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  onCloseDrawer = () => {
+    this.setState({
+      visible: false,
+    });
+  };
   
   render () {
-    const { data, total } = this.state
+    const { data, total, visible } = this.state
     return <Page>
       <Page.Header>
         <Button>Atualizar</Button>
@@ -56,7 +72,7 @@ class EmployeeOverview extends Component {
             {title: 'E-mail', dataIndex: 'email'},
             {title: 'Profissão', dataIndex: 'profession'},
             {title: 'Ver funcionário', key: 'action', align: 'center', render: (text, record) => (
-              <a href="javascript:;"> <Icon type="info-circle-o" /> </a>
+              <a href="javascript:;" onClick={this.showDrawer}> <Icon type="info-circle-o" /> </a>
             )}
           ]}
           pagination={ { 
@@ -64,6 +80,17 @@ class EmployeeOverview extends Component {
             onChange: this.onChangePage
           }}
         />
+        <Drawer
+          width={640}
+          placement="right"
+          closable={false}
+          onClose={this.onCloseDrawer}
+          visible={visible}
+        >
+          <p>
+            FUNCIONÁRIO DRAWER
+          </p>
+        </Drawer>
       </Page.Context>
     </Page>
   }
