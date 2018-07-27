@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import Page from '../../components/page/Page'
-import Button from 'antd/lib/button'
 import { user } from '../../services'
+import Page from '../../components/page/Page'
+import DescriptionItem from '../../adapters/DescriptionItem'
+import Button from 'antd/lib/button'
 import message from 'antd/lib/message'
 import Table from 'antd/lib/table'
-import Icon from 'antd/lib/icon'
-import { Drawer } from 'antd'
+import Drawer from 'antd/lib/drawer'
+import Row from 'antd/lib/row'
+import Divider from 'antd/lib/divider'
 
 class EmployeeOverview extends Component {
   constructor (props) {
@@ -14,7 +16,18 @@ class EmployeeOverview extends Component {
     this.state = {
       data: undefined,
       total: 0,
-      visible: false
+      visible: false,
+      selected: {
+        name: '',
+        gender: '',
+        birth_date: '',
+        marital_status: '',
+        rg: '',
+        rg_issuer: '',
+        profession: '',
+        email: '',
+        addresses: []
+      }
     }
 
     this.onChangePage = this.onChangePage.bind(this)
@@ -39,20 +52,29 @@ class EmployeeOverview extends Component {
       .catch(error => message.error('Não foi possível acessar as informações dos funcionários.'))
   }
 
-  showDrawer = () => {
+  showDrawer(record) {
     this.setState({
       visible: true,
-    });
-  };
+      selected: record
+    })
+    console.log(record)
+  }
 
-  onCloseDrawer = () => {
+  onCloseDrawer() {
     this.setState({
-      visible: false,
-    });
-  };
+      visible: false
+    })
+  }
   
   render () {
-    const { data, total, visible } = this.state
+    const { data, total, visible, selected } = this.state
+    const pStyle = {
+      fontSize: 16,
+      color: 'rgba(0,0,0,0.85)',
+      lineHeight: '24px',
+      display: 'block',
+      marginBottom: 16,
+    }
     return <Page>
       <Page.Header>
         <Button>Atualizar</Button>
@@ -67,13 +89,15 @@ class EmployeeOverview extends Component {
           borded={true}
           dataSource={data}
           bodyStyle={{background: 'white'}}
+          onRow={(record, index) =>{
+            return {
+              onClick: () => {this.showDrawer(record)}
+            }
+          }}
           columns={[
             {title: 'Nome', dataIndex: 'name', key: 'name'},
             {title: 'E-mail', dataIndex: 'email'},
-            {title: 'Profissão', dataIndex: 'profession'},
-            {title: 'Ver funcionário', key: 'action', align: 'center', render: (text, record) => (
-              <a href="javascript:;" onClick={this.showDrawer}> <Icon type="info-circle-o" /> </a>
-            )}
+            {title: 'Profissão', dataIndex: 'profession'}
           ]}
           pagination={ { 
             total, 
@@ -82,14 +106,37 @@ class EmployeeOverview extends Component {
         />
         <Drawer
           width={640}
-          placement="right"
+          placement='right'
           closable={false}
           onClose={this.onCloseDrawer}
           visible={visible}
+          title={selected.name}
         >
-          <p>
-            FUNCIONÁRIO DRAWER
+          <p style={pStyle}>
+            Informações Pessoais
           </p>
+          <Row>
+            <DescriptionItem title="Gênero" content={selected.gender} />
+          </Row>
+          <Row>
+            <DescriptionItem title="Data de Nascimento" content={selected.birth_date} />
+          </Row>
+          <Row>
+            <DescriptionItem title="Estado Civil" content={selected.marital_status} />
+          </Row>
+          <Row>
+            <DescriptionItem title="RG" content={`${selected.rg} | ${selected.rg_issuer}`} />
+          </Row>
+          <Row>
+            <DescriptionItem title="Profissão" content={selected.profession} />
+          </Row>
+          <Divider />
+          <p style={pStyle}>
+            Endereços e Contato
+          </p>
+          <Row>
+            <DescriptionItem title="E-mail" content={selected.email} />
+          </Row> 
         </Drawer>
       </Page.Context>
     </Page>
