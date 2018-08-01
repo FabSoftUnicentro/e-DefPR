@@ -14,7 +14,7 @@ const browserHistory = createBrowserHistory()
 
 const Home = ({pathname}) => (
   <div className="app">
-    <Header region={{ name: "Guarapuava" }} />
+    <Header region={{ name: 'Guarapuava' }} />
 
     <main>
       <Sidebar pathname={pathname} />
