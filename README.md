@@ -190,16 +190,36 @@ Processo manual:
 17. Executar: git branch -d issue#xxx.
 ```
 
+## Inicialização
+
+  Frontend:
+  ```
+  Dentro da pasta Frontend
+  1. yarn install
+  2. yarn start
+  ```
+
+  Backend:
+  ```
+  Dentro da pasta Backend
+  1. composer install
+  2. php artisan migrate:refresh
+  3. php artisan migrate
+  4. php artisan passport:install
+  5. php artisan db:seed
+  6. php artisan serve
+  ```
+
 ## Estrutura
 
   <a name="estrutura--ambience"></a><a name="9.1"></a>
-  - [5.1](#estrutura--ambience) **Ambientes**:
+  - [6.1](#estrutura--ambience) **Ambientes**:
 
     - `local`: servidor local de desenvolvimento, configurado na máquina de cada desenvolvedor
     - `production`: servidor remoto de produção, base final de uso de deploy manual
 
   <a name="estrutura--raiz"></a><a name="5.2"></a>
-  - [5.2](#estrutura--raiz) **Pastas raiz**:
+  - [6.2](#estrutura--raiz) **Pastas raiz**:
 
     - `backend`: pasta backend do projeto, contendo arquivos de models e controllers
     - `frontend`: pasta frontend do projeto, contendo arquivos de views
@@ -209,7 +229,7 @@ Processo manual:
 ## Sobre
 
   <a name="sobre--equipe"></a><a name="6.1"></a>
-  - [6.1](#sobre--equipe) **A equipe**:
+  - [7.1](#sobre--equipe) **A equipe**:
 
     - #### Gianluca Bine
     ```
@@ -221,7 +241,7 @@ Processo manual:
 
     - #### Jean Pierri
     ```
-    A science computer student ^^
+    Backend developer
     Slack: @envikeyy
     Github: @EnViKeyy
     E-mail: pierre.jp@outlook.com
@@ -229,7 +249,7 @@ Processo manual:
     
     - #### Higor Gardin
     ```
-    A science computer student
+    Frontend developer
     Slack: @HGardin
     Github: @HigorG
     E-mail: higorgardin@hotmail.com
@@ -237,23 +257,40 @@ Processo manual:
     
     - #### Prof. Mauro Miazaki
     ```
+    Professor
     Slack: @mmiazaki
     Github: @hmmiazaki
-    E-mail: mauro.miazaki@unicentro.br
+    E-mail: maurom@unicentro.br
+    ```
+
+    - #### Prof. Marcos Antônio Quináia
+    ```
+    Professor
+    Slack: @marcosquinaia
+    E-mail: quiana@unicentro.br
     ```
 
     - #### Davi Bastos
     ```
+    Backend developer
     Slack: @Davi Bastos
     Github: @dav3sk
     E-mail: davibastos.v@gmail.com
     ```
-
-    - #### Luiz Gustavo de Azevedo Gomes
+    
+    - #### Enrique Augusto da Roza
     ```
-    Slack: @luizgustavoagomes
-    Github: @luizgustavoagomes
-    E-mail: luizgustavo.agomes@gmail.com
+    Backend developer
+    Slack: @Enrique Augusto da Roza
+    Github: @hdoidao
+    E-mail: enriqueaugroza@gmail.com
+    ```
+    
+    - #### Luiz Eduardo Chicouski da Cruz
+    ```
+    Slack: @Luiz Eduardo Chicouski da Cruz
+    Github: @SUdoWinchester
+    E-mail: luizeduardo2607@gmail.com
     ```
 
     - #### Paulo Henrique Pieczarka da Silva
@@ -274,6 +311,7 @@ Processo manual:
         
     - #### Gabriel Pimenta
     ```
+    Backend developer
     Slack: @Pimenta
     Github: @Pimenta1
     E-mail: pimenta@programmer.net
