@@ -91,7 +91,7 @@ class Service {
   }
 
   get url () {
-    return 'http://localhost:8000/api'
+    return process.env.REACT_APP_API_URL
   }
 }
 

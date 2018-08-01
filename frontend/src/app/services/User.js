@@ -22,6 +22,21 @@ class User extends Service {
     }
   }
 
+  async create (account) {
+    try {
+      const result = await this.post('/user')
+
+      if (result.statusCode === 'SUCCESS') {
+        return result.data
+      }
+
+      return false
+    }
+    catch (error) {
+      throw error
+    }
+  }
+
   async list (page = '1') {
     try {
       const result = await this.get(`/user/?page=${page}`)
