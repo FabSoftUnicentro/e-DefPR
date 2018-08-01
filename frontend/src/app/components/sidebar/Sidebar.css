@@ -1,0 +1,8 @@
+.app-sidebar {
+  width: var(--sz-sidebar-width);
+  height: calc(100vh - var(--sz-header-height));
+  background: white;
+  border-right: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: var(--sw-box-right);
+  z-index: 8;
+}
