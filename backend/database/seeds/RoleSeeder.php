@@ -17,31 +17,48 @@ class RoleSeeder extends Seeder
         app()['cache']->forget('spatie.permission.cache');
 
         // create permissions
-        Permission::create(['name' => 'register-activities']);
-        Permission::create(['name' => 'open-process']);
-        Permission::create(['name' => 'read-process']);
-        Permission::create(['name' => 'open-protocol']);
-        Permission::create(['name' => 'register-documents']);
-        Permission::create(['name' => 'forward-attendance']);
-        Permission::create(['name' => 'generate-mail']);
-        Permission::create(['name' => 'distribution-office']);
-        Permission::create(['name' => 'transfer-correction']);
-        Permission::create(['name' => 'adjust-petition']);
-        Permission::create(['name' => 'initial-trial']);
-        Permission::create(['name' => 'socioeconomic-scoring']);
-        Permission::create(['name' => 'register-legal-attendance']);
-        Permission::create(['name' => 'register-petition']);
-        Permission::create(['name' => 'read-psychological-attendance']);
-        Permission::create(['name' => 'read-report-from-all']);
-        Permission::create(['name' => 'register-employee']);
-        Permission::create(['name' => 'update-employee']);
-        Permission::create(['name' => 'append-protocol-to-process']);
-        Permission::create(['name' => 'register-report']);
-        Permission::create(['name' => 'send-for-analysis-to-defender']);
-        Permission::create(['name' => 'social-attendance']);
-        Permission::create(['name' => 'read-attendance']);
+        $permissions = [
+            'register-activities',
+            'open-process',
+            'read-process',
+            'open-protocol',
+            'register-documents',
+            'forward-attendance',
+            'generate-mail',
+            'distribution-office',
+            'transfer-correction',
+            'adjust-petition',
+            'initial-trial',
+            'socioeconomic-scoring',
+            'register-legal-attendance',
+            'register-petition',
+            'read-psychological-attendance',
+            'read-report-from-all',
+            'register-employee',
+            'update-employee',
+            'read-employee',
+            'delete-employee',
+            'append-protocol-to-process',
+            'register-report',
+            'send-for-analysis-to-defender',
+            'social-attendance',
+            'read-attendance',
+            'register-state',
+            'update-state',
+            'delete-state',
+            'register-city',
+            'update-city',
+            'delete-city',
+        ];
+
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
 
         // create roles and assign created permissions
+        $role = Role::create(['name' => 'master']);
+        $role->givePermissionTo(Permission::all());
+
         $role = Role::create(['name' => 'juridical-administrative-technician']);
         $role->givePermissionTo(
             'register-activities',
@@ -58,6 +75,7 @@ class RoleSeeder extends Seeder
             'read-psychological-attendance',
             'register-employee',
             'update-employee',
+            'read-employee',
             'append-protocol-to-process',
             'register-report',
             'send-for-analysis-to-defender'
@@ -76,6 +94,7 @@ class RoleSeeder extends Seeder
             'socioeconomic-scoring',
             'register-employee',
             'update-employee',
+            'read-employee',
             'register-report'
         );
 
@@ -92,6 +111,7 @@ class RoleSeeder extends Seeder
             'socioeconomic-scoring',
             'register-employee',
             'update-employee',
+            'read-employee',
             'register-report',
             'social-attendance'
         );
@@ -158,6 +178,8 @@ class RoleSeeder extends Seeder
             'read-report-from-all',
             'register-employee',
             'update-employee',
+            'read-employee',
+            'delete-employee',
             'append-protocol-to-process',
             'register-report',
             'send-for-analysis-to-defender',
@@ -174,8 +196,5 @@ class RoleSeeder extends Seeder
             'read-psychological-attendance',
             'register-report'
         );
-
-        $role = Role::create(['name' => 'master']);
-        $role->givePermissionTo(Permission::all());
     }
 }
