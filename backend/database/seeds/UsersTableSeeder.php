@@ -132,20 +132,37 @@ class UsersTableSeeder extends Seeder
         $user->assignRole('public defender');
 
         $user = User::create([
-            'name'                 => 'Edef Psicologo',
-            'email'                => 'psicologo@edefpr.com',
+        'name'                 => 'Edef Psicologo',
+        'email'                => 'psicologo@edefpr.com',
+        'password'             => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+        'cpf'                  => '8318510005',
+        'birth_date'           => '2001-02-07',
+        'rg'                   => 'Quaerat.',
+        'rg_issuer'            => 'SSP',
+        'gender'               => 'M',
+        'marital_status'       => 'Solteiro',
+        'profession'           => 'Teste',
+        'addresses'            => '[{"uf": "PR", "city": "Guarapuava", "number": 1, "street": "Teste", "postcode": "85015310", "complement": "", "neighborhood": "Batel"}]',
+        'must_change_password' => 0,
+        'remember_token'       => 'KjF6hUIZ2d'
+        ]);
+        $user->assignRole('psychologist');
+
+        $user = User::create([
+            'name'                 => 'Edef Master',
+            'email'                => 'master@edefpr.com',
             'password'             => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
-            'cpf'                  => '8318510005',
-            'birth_date'           => '2001-02-07',
+            'cpf'                  => '0000000000',
+            'birth_date'           => '2018-01-01',
             'rg'                   => 'Quaerat.',
             'rg_issuer'            => 'SSP',
             'gender'               => 'M',
             'marital_status'       => 'Solteiro',
-            'profession'           => 'Teste',
+            'profession'           => 'MASTER',
             'addresses'            => '[{"uf": "PR", "city": "Guarapuava", "number": 1, "street": "Teste", "postcode": "85015310", "complement": "", "neighborhood": "Batel"}]',
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('psychologist');
+        $user->assignRole('master');
     }
 }
