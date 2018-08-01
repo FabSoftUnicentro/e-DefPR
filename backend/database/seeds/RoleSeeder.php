@@ -42,7 +42,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'read-attendance']);
 
         // create roles and assign created permissions
-        $role = Role::create(['name' => 'juridical administrative technician']);
+        $role = Role::create(['name' => 'juridical-administrative-technician']);
         $role->givePermissionTo(
             'register-activities',
             'open-process',
@@ -63,7 +63,7 @@ class RoleSeeder extends Seeder
             'send-for-analysis-to-defender'
         );
 
-        $role = Role::create(['name' => 'administrative technician']);
+        $role = Role::create(['name' => 'administrative-technician']);
         $role->givePermissionTo(
             'register-activities',
             'open-process',
@@ -79,7 +79,7 @@ class RoleSeeder extends Seeder
             'register-report'
         );
 
-        $role = Role::create(['name' => 'social worker']);
+        $role = Role::create(['name' => 'social-worker']);
         $role->givePermissionTo(
             'register-activities',
             'open-process',
@@ -96,7 +96,7 @@ class RoleSeeder extends Seeder
             'social-attendance'
         );
 
-        $role = Role::create(['name' => 'lawyer intern']);
+        $role = Role::create(['name' => 'lawyer-intern']);
         $role->givePermissionTo(
             'register-activities',
             'read-process',
@@ -112,7 +112,7 @@ class RoleSeeder extends Seeder
             'send-for-analysis-to-defender'
         );
 
-        $role = Role::create(['name' => 'legal adviser']);
+        $role = Role::create(['name' => 'legal-adviser']);
         $role->givePermissionTo(
             'register-activities',
             'read-process',
@@ -128,7 +128,7 @@ class RoleSeeder extends Seeder
             'send-for-analysis-to-defender'
         );
 
-        $role = Role::create(['name' => 'high school intern']);
+        $role = Role::create(['name' => 'high-school-intern']);
         $role->givePermissionTo(
             'register-activities',
             'open-protocol',
@@ -138,7 +138,7 @@ class RoleSeeder extends Seeder
             'register-report'
         );
 
-        $role = Role::create(['name' => 'public defender']);
+        $role = Role::create(['name' => 'public-defender']);
         $role->givePermissionTo(
             'register-activities',
             'open-process',
