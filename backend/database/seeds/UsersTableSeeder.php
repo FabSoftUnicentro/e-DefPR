@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('juridical administrative technician');
+        $user->assignRole('juridical-administrative-technician');
 
         $user = User::create([
             'name'                 => 'Edef Administrador',
@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('administrative technician');
+        $user->assignRole('administrative-technician');
 
         $user = User::create([
             'name'                 => 'Edef Assistente Social',
@@ -61,7 +61,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('social worker');
+        $user->assignRole('social-worker');
 
         $user = User::create([
             'name'                 => 'Edef Estagiario Advogado',
@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('lawyer intern');
+        $user->assignRole('lawyer-intern');
 
         $user = User::create([
             'name'                 => 'Edef Assessor Juridico',
@@ -95,7 +95,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('legal adviser');
+        $user->assignRole('legal-adviser');
 
         $user = User::create([
             'name'                 => 'Edef Estagiario Ensino Medio',
@@ -112,7 +112,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('high school intern');
+        $user->assignRole('high-school-intern');
 
         $user = User::create([
             'name'                 => 'Edef Defensor Publico',
@@ -129,7 +129,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('public defender');
+        $user->assignRole('public-defender');
 
         $user = User::create([
             'name'                 => 'Edef Psicologo',
@@ -147,5 +147,22 @@ class UsersTableSeeder extends Seeder
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
         $user->assignRole('psychologist');
+
+        $user = User::create([
+            'name'                 => 'Edef Master',
+            'email'                => 'master@edefpr.com',
+            'password'             => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'cpf'                  => '0000000000',
+            'birth_date'           => '2018-01-01',
+            'rg'                   => 'Quaerat.',
+            'rg_issuer'            => 'SSP',
+            'gender'               => 'M',
+            'marital_status'       => 'Solteiro',
+            'profession'           => 'MASTER',
+            'addresses'            => '[{"uf": "PR", "city": "Guarapuava", "number": 1, "street": "Teste", "postcode": "85015310", "complement": "", "neighborhood": "Batel"}]',
+            'must_change_password' => 0,
+            'remember_token'       => 'KjF6hUIZ2d'
+        ]);
+        $user->assignRole('master');
     }
 }
