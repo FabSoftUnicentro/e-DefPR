@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('juridical administrative technician');
+        $user->assignRole('juridical-administrative-technician');
 
         $user = User::create([
             'name'                 => 'Edef Administrador',
@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('administrative technician');
+        $user->assignRole('administrative-technician');
 
         $user = User::create([
             'name'                 => 'Edef Assistente Social',
@@ -61,7 +61,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('social worker');
+        $user->assignRole('social-worker');
 
         $user = User::create([
             'name'                 => 'Edef Estagiario Advogado',
@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('lawyer intern');
+        $user->assignRole('lawyer-intern');
 
         $user = User::create([
             'name'                 => 'Edef Assessor Juridico',
@@ -95,7 +95,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('legal adviser');
+        $user->assignRole('legal-adviser');
 
         $user = User::create([
             'name'                 => 'Edef Estagiario Ensino Medio',
@@ -112,7 +112,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('high school intern');
+        $user->assignRole('high-school-intern');
 
         $user = User::create([
             'name'                 => 'Edef Defensor Publico',
@@ -129,7 +129,7 @@ class UsersTableSeeder extends Seeder
             'must_change_password' => 0,
             'remember_token'       => 'KjF6hUIZ2d'
         ]);
-        $user->assignRole('public defender');
+        $user->assignRole('public-defender');
 
         $user = User::create([
             'name'                 => 'Edef Psicologo',
