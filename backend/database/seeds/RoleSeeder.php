@@ -174,5 +174,32 @@ class RoleSeeder extends Seeder
             'read psychological attendance',
             'register report'
         );
+
+        $role = Role::create(['name' => 'master']);
+        $role->givePermissionTo(
+            'register activities',
+            'open process',
+            'read process',
+            'open protocol',
+            'register documents',
+            'forward attendance',
+            'generate mail',
+            'distribution office',
+            'transfer correction',
+            'adjust petition',
+            'initial trial',
+            'socioeconomic scoring',
+            'register legal attendance',
+            'register petition',
+            'read psychological attendance',
+            'read report from all',
+            'register employee',
+            'update employee',
+            'append protocol to process',
+            'register report',
+            'send for analysis to defender',
+            'social attendance',
+            'read attendance'
+        );
     }
 }
