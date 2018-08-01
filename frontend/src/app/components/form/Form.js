@@ -29,7 +29,7 @@ class Form extends Component {
 
     this.state = {
       steps: [],
-      current: 1
+      current: 0
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
