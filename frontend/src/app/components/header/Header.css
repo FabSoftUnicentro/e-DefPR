@@ -1,0 +1,36 @@
+.app-header {
+  background: white;
+  height: var(--sz-main-height);
+  box-shadow: var(--sw-box-bottom);
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.app-header .app-name {
+  width: calc(var(--sz-sidebar-width) - 32px);
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+}
+
+.app-header .app-name div {
+  flex-grow: 0;
+}
+
+.app-header .app-name div span:first-child {
+  font-size: calc(14px + .5vw);
+  color: #333;
+  margin-right: 6px;
+}
+
+.app-header .app-name div span:last-child {
+  color: #666;
+  font-size: calc(12px + .1vw);
+}
+
+.app-header .app-account {
+  display: flex;
+  align-items: center;
+}

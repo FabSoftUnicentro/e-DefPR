@@ -1,0 +1,16 @@
+.app-page-header {
+  background: white;
+  height: var(--sz-main-height);
+  box-shadow: var(--sw-box-bottom);
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  padding: 0 24px;
+}
+
+.app-page-header .app-breadcrumb .el-breadcrumb__item__inner {
+  font-size: calc(14px + .1vw);
+  /* color: rgba(0, 0, 0, .6) !important; */
+}
