@@ -52,6 +52,5 @@ class Assisted extends Model
     {
 
         return $this->hasMany(Assisted::class);
-
     }
 }
