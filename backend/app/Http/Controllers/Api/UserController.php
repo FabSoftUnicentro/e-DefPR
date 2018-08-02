@@ -179,7 +179,7 @@ class UserController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function forgotPassword(Request $request)
+    public function resetPassword(Request $request)
     {
         try {
             $email = $request->input('email');
@@ -188,7 +188,6 @@ class UserController extends Controller
             $user = User::where('email', '=', $email)
                 ->where('cpf', '=', $cpf)
                 ->first();
-
             $user->resetPassword();
         } catch (\Exception $e) {
             return JsonResponse::create([
