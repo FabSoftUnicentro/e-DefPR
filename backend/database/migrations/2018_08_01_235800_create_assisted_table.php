@@ -38,6 +38,6 @@ class CreateAssistedTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assisted');
+        Schema::dropIfExists('assisteds');
     }
 }
