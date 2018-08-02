@@ -24,7 +24,7 @@ class User extends Service {
 
   async create (account) {
     try {
-      const result = await this.post('/user')
+      const result = await this.post('/user', account)
 
       if (result.statusCode === 'SUCCESS') {
         return result.data

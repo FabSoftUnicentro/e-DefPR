@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
 import Page from '../../components/page/Page'
 import Form from '../../components/form/Form'
+import { userService } from '../../services'
 
 class EmployeeCreate extends Component {
+  constructor (props) {
+    super(props)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  async onSubmit (values) {
+    console.log(values)
+    await userService.create(values)
+  }
+
   render () {
     return <Page>
       <Page.Header>
@@ -11,7 +22,7 @@ class EmployeeCreate extends Component {
       <Page.Context>
         <h2>Cadastrar funcionário</h2>
         <div className="app-page-box">
-          <Form>
+          <Form onSubmit={this.onSubmit} >
             <Form.Step title="Informações pessoais">
               <Form.TextField
                 label="Nome"
@@ -26,7 +37,7 @@ class EmployeeCreate extends Component {
               
               <Form.DatePicker
                 label="Data de nascimento"
-                name="birthday"
+                name="birth_date"
                 placeholder="dia/mês/ano"
               />
 
@@ -70,18 +81,18 @@ class EmployeeCreate extends Component {
               />
 
               <Form.Inline>
-                <Form.TextField label="Rua" name="street" />
-                <Form.TextField label="Número" name="number" />
+                <Form.TextField label="Rua" name="address[street]" />
+                <Form.TextField label="Número" name="address[number]" />
               </Form.Inline>
 
               <Form.Inline>
-                <Form.CitySelect label="Cidade" name="city" />
-                <Form.TextField label="Bairro" name="neighbourhood" />
+                <Form.CitySelect label="Cidade" name="address[city]" />
+                <Form.TextField label="Bairro" name="address[neighbourhood]" />
               </Form.Inline>
 
               <Form.TextField
                 label="Complemento"
-                name="complement"
+                name="address[complement]"
               />
 
             </Form.Step>

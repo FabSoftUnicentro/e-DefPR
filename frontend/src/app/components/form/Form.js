@@ -10,6 +10,7 @@ import InputAdapter from '../../adapters/InputAdapter'
 import DatePickerAdapter from '../../adapters/DatePickerAdapter'
 import SelectAdapter from '../../adapters/SelectAdapter'
 import CitySelectAdapter from '../../adapters/CitySelectAdapter'
+import PropTypes from 'prop-types'
 
 class Form extends Component {
   static Step = ({ children }) => <div>{ children }</div>
@@ -18,6 +19,10 @@ class Form extends Component {
   static DatePicker = props => <Field {...props} component={DatePickerAdapter} />
   static CitySelect = props => <Field {...props} component={CitySelectAdapter} />
   
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired
+  }
+
   static Select = ({options, ...props}) => (<Field {...props} component={SelectAdapter}>
     { options.map(item => <Select.Option key={item.value} value={item.value}>{item.name}</Select.Option>) }
   </Field>)
@@ -53,7 +58,7 @@ class Form extends Component {
   }
 
   handleSubmit (values) {
-    console.log(values)
+    this.props.onSubmit(values)
   }
 
   render () {
