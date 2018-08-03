@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Services\Mailer;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\View;
 
 class User extends Authenticatable
 {
@@ -31,7 +32,7 @@ class User extends Authenticatable
     ];
 
     /**
-     *
+     * @throws \Exception
      */
     public function resetPassword()
     {
@@ -46,6 +47,13 @@ class User extends Authenticatable
             'name' => $this->name
         ];
 
-        Mailer::sendEmail([ $address ], 'Troca de Senha', $this->password);
+        $htmlProvide = View::make('templates/resetPassword', [
+            'user' => $this,
+            'temporaryPassword' => $temporaryPassword
+        ]);
+
+        $html = $htmlProvide->render();
+
+        Mailer::sendEmail([ $address ], 'Recuperação de Senha', $html);
     }
 }
