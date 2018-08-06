@@ -1,3 +1,5 @@
+const { localStorage, fetch } = window
+
 class Service {
   USER_IDX = 'EDEF_USER_IDX'
 
