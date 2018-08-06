@@ -20,10 +20,10 @@ class Persona extends Component {
 
   render () {
     const { name } = this.props
-    return <div className="app-persona">
-      <Popover placement="bottomRight" trigger="click" {...this.AccountPopover}>
-        <span className="app-persona-name">{ name }</span>
-        <Avatar icon="user" />
+    return <div className='app-persona'>
+      <Popover placement='bottomRight' trigger='click' {...this.AccountPopover}>
+        <span className='app-persona-name'>{ name }</span>
+        <Avatar icon='user' />
       </Popover>
     </div>
   }
@@ -37,13 +37,13 @@ class Persona extends Component {
     const { name, jobDescription } = this.props
 
     return {
-      title: <div style={{display:'flex', flexDirection:'column', padding:'5px 0'}}>
+      title: <div style={{display: 'flex', flexDirection: 'column', padding: '5px 0'}}>
         <span><strong>{ name }</strong></span>
-        <span style={{fontSize:13, color:'#666'}}>{ jobDescription }</span>
+        <span style={{fontSize: 13, color: '#666'}}>{ jobDescription }</span>
       </div>,
       content: <div>
-        <p><a href="">Minha conta</a></p>
-        <p><a href="" onClick={this.logoutHandler}>Sair</a></p>
+        <p><a href=''>Minha conta</a></p>
+        <p><a href='' onClick={this.logoutHandler}>Sair</a></p>
       </div>
     }
   }

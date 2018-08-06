@@ -39,16 +39,14 @@ class Signin extends Component {
         }
 
         return loginDone()
-      }
-      else if (result.status === 400) {
-        loginDone()        
+      } else if (result.status === 400) {
+        loginDone()
         return this.attachMessage('error', 'CPF ou senha inválidos')
       }
-      
+
       loginDone()
       return this.attachMessage('warning', 'Campos CPF e senha são obrigatórios')
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error)
     }
   }
@@ -56,46 +54,46 @@ class Signin extends Component {
   attachMessage (type, message) {
     this.setState({ alertProps: { type, message } })
   }
-  
+
   render () {
     if (authentication.isAuthenticated) {
-      return <Redirect to="/" />
+      return <Redirect to='/' />
     }
 
     const { alertProps } = this.state
 
-    return <div className="app-signin">
-      <div className="app-signin-header">
+    return <div className='app-signin'>
+      <div className='app-signin-header'>
         <h1>Login e-DefPR</h1>
       </div>
-      <div className="app-signin-box">
-        <div className="app-signin-form">
+      <div className='app-signin-box'>
+        <div className='app-signin-form'>
           { alertProps && <Alert {...alertProps} showIcon /> }
           <Form
             onSubmit={this.onSubmit}
             render={({ handleSubmit, pristine, invalid, submitting }) => (
               <form onSubmit={handleSubmit}>
                 <Field
-                  label="Usuário"
-                  name="login"
-                  placeholder="Informe seu CPF ou e-mail"
+                  label='Usuário'
+                  name='login'
+                  placeholder='Informe seu CPF ou e-mail'
                   component={InputAdapter}
-                  prefix={ <Icon type="user" /> }
+                  prefix={<Icon type='user' />}
                 />
 
                 <Field
-                  label="Senha"
-                  type="password"
-                  name="password"
-                  placeholder="Informe sua senha"
+                  label='Senha'
+                  type='password'
+                  name='password'
+                  placeholder='Informe sua senha'
                   component={InputAdapter}
-                  prefix={ <Icon type="lock" /> }
+                  prefix={<Icon type='lock' />}
                 />
 
                 <Button
-                  type="primary"
-                  htmlType="submit"
-                  style={{margin:'24px 0', width:'100%'}}
+                  type='primary'
+                  htmlType='submit'
+                  style={{margin: '24px 0', width: '100%'}}
                   disabled={submitting}
                 >
                   Login
@@ -103,16 +101,16 @@ class Signin extends Component {
               </form>
             )}
           />
-          <div style={{textAlign:'center'}}>
-            <a href="">Esqueceu sua senha?</a>
+          <div style={{textAlign: 'center'}}>
+            <a href=''>Esqueceu sua senha?</a>
           </div>
         </div>
 
         <footer>
-          <a href="">Ajuda</a>
-          <a href="">Wikidocs</a>
-          <a href="https://github.com/C3DSU/e-DefPR" target="_new">Github</a>
-          <a href="https://www3.unicentro.br/" target="_new">Unicentro</a>
+          <a href=''>Ajuda</a>
+          <a href=''>Wikidocs</a>
+          <a href='https://github.com/C3DSU/e-DefPR' target='_new'>Github</a>
+          <a href='https://www3.unicentro.br/' target='_new'>Unicentro</a>
         </footer>
       </div>
     </div>
