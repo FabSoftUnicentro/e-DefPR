@@ -25,8 +25,6 @@ class Signin extends Component {
   async onSubmit (values) {
     const { login, password } = values
 
-    const loginDone = message.loading('Realizando login', 0)
-
     try {
       const result = await authentication.signin(login, password)
       if (result.statusCode === 'SUCCESS') {
@@ -37,14 +35,10 @@ class Signin extends Component {
           message.success(`Bem-vindo, ${account.data.name}!`, 2)
           this.setState({ redirect: true })
         }
-
-        return loginDone()
       } else if (result.status === 400) {
-        loginDone()
         return this.attachMessage('error', 'CPF ou senha inválidos')
       }
 
-      loginDone()
       return this.attachMessage('warning', 'Campos CPF e senha são obrigatórios')
     } catch (error) {
       console.log(error)
@@ -63,17 +57,19 @@ class Signin extends Component {
     const { alertProps } = this.state
 
     return <div className='app-signin'>
-      <div className='app-signin-header'>
-        <h1>Login e-DefPR</h1>
-      </div>
-      <div className='app-signin-box'>
-        <div className='app-signin-form'>
+      <div className='app-signin-form'>
+        <h1>
+          <Icon type='lock' style={{marginRight: 16}} />
+          <span>Login e-DefPR</span>
+        </h1>
+        <div>
           { alertProps && <Alert {...alertProps} showIcon /> }
           <Form
             onSubmit={this.onSubmit}
             render={({ handleSubmit, pristine, invalid, submitting }) => (
               <form onSubmit={handleSubmit}>
                 <Field
+                  size='large'
                   label='Usuário'
                   name='login'
                   placeholder='Informe seu CPF ou e-mail'
@@ -82,6 +78,7 @@ class Signin extends Component {
                 />
 
                 <Field
+                  size='large'
                   label='Senha'
                   type='password'
                   name='password'
@@ -91,6 +88,7 @@ class Signin extends Component {
                 />
 
                 <Button
+                  size='large'
                   type='primary'
                   htmlType='submit'
                   style={{margin: '24px 0', width: '100%'}}
