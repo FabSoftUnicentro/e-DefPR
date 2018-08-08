@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 class UserController extends Controller
 {
@@ -64,7 +65,8 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->cpf = $request->input('cpf');
-        $user->birth_date = $request->input('birthDate');
+        $birthDate = new DateTime($request->input('birthDate'));
+        $user->birth_date = $birthDate->format('Y-m-d');
         $user->rg = $request->input('rg');
         $user->rg_issuer = $request->input('rgIssuer');
         $user->gender = $request->input('gender');
