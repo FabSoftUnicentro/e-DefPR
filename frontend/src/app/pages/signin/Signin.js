@@ -36,10 +36,10 @@ class Signin extends Component {
           this.setState({ redirect: true })
         }
       } else if (result.status === 400) {
-        return this.attachMessage('error', 'CPF ou senha inválidos')
+        return this.attachMessage('error', 'Usuário ou senha inválido.')
       }
 
-      return this.attachMessage('warning', 'Campos CPF e senha são obrigatórios')
+      return this.attachMessage('warning', 'Campos usuário e senha são obrigatórios')
     } catch (error) {
       console.log(error)
     }
