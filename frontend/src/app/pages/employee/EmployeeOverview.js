@@ -40,19 +40,19 @@ class EmployeeOverview extends Component {
       .then(result => {
         this.setState({ data: result.data, total: result.meta.total })
       })
-      .catch(error => message.error('Não foi possível acessar as informações dos funcionários.'))
+      .catch(() => message.error('Não foi possível acessar as informações dos funcionários.'))
   }
 
   onChangePage (page, pageSize) {
-    this.setState({ data: undefined})
+    this.setState({ data: undefined })
     user.list(page)
       .then(result => {
-        this.setState({ data: result.data, total: result.meta.total})
+        this.setState({ data: result.data, total: result.meta.total })
       })
-      .catch(error => message.error('Não foi possível acessar as informações dos funcionários.'))
+      .catch(() => message.error('Não foi possível acessar as informações dos funcionários.'))
   }
 
-  showDrawer(record) {
+  showDrawer (record) {
     this.setState({
       visible: true,
       selected: record
@@ -60,12 +60,12 @@ class EmployeeOverview extends Component {
     console.log(record)
   }
 
-  onCloseDrawer() {
+  onCloseDrawer () {
     this.setState({
       visible: false
     })
   }
-  
+
   render () {
     const { data, total, visible, selected } = this.state
     const pStyle = {
@@ -73,25 +73,25 @@ class EmployeeOverview extends Component {
       color: 'rgba(0,0,0,0.85)',
       lineHeight: '24px',
       display: 'block',
-      marginBottom: 16,
+      marginBottom: 16
     }
     return <Page>
       <Page.Header>
         <Button>Atualizar</Button>
         <Button>Filtrar</Button>
-        <Button type="primary">Cadastrar</Button>
+        <Button type='primary'>Cadastrar</Button>
       </Page.Header>
 
       <Page.Context>
         <h2>Funcionários ({total})</h2>
         <Table
           loading={!data}
-          borded={true}
+          borded
           dataSource={data}
           bodyStyle={{background: 'white'}}
-          onRow={(record, index) =>{
+          onRow={(record, index) => {
             return {
-              onClick: () => {this.showDrawer(record)}
+              onClick: () => { this.showDrawer(record) }
             }
           }}
           columns={[
@@ -99,8 +99,8 @@ class EmployeeOverview extends Component {
             {title: 'E-mail', dataIndex: 'email'},
             {title: 'Profissão', dataIndex: 'profession'}
           ]}
-          pagination={ { 
-            total, 
+          pagination={{
+            total,
             onChange: this.onChangePage
           }}
         />
@@ -116,27 +116,27 @@ class EmployeeOverview extends Component {
             Informações Pessoais
           </p>
           <Row>
-            <DescriptionItem title="Gênero" content={selected.gender} />
+            <DescriptionItem title='Gênero' content={selected.gender} />
           </Row>
           <Row>
-            <DescriptionItem title="Data de Nascimento" content={selected.birth_date} />
+            <DescriptionItem title='Data de Nascimento' content={selected.birth_date} />
           </Row>
           <Row>
-            <DescriptionItem title="Estado Civil" content={selected.marital_status} />
+            <DescriptionItem title='Estado Civil' content={selected.marital_status} />
           </Row>
           <Row>
-            <DescriptionItem title="RG" content={`${selected.rg} | ${selected.rg_issuer}`} />
+            <DescriptionItem title='RG' content={`${selected.rg} | ${selected.rg_issuer}`} />
           </Row>
           <Row>
-            <DescriptionItem title="Profissão" content={selected.profession} />
+            <DescriptionItem title='Profissão' content={selected.profession} />
           </Row>
           <Divider />
           <p style={pStyle}>
             Endereços e Contato
           </p>
           <Row>
-            <DescriptionItem title="E-mail" content={selected.email} />
-          </Row> 
+            <DescriptionItem title='E-mail' content={selected.email} />
+          </Row>
         </Drawer>
       </Page.Context>
     </Page>

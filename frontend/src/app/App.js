@@ -13,14 +13,14 @@ import './App.css'
 const browserHistory = createBrowserHistory()
 
 const Home = ({pathname}) => (
-  <div className="app">
+  <div className='app'>
     <Header region={{ name: 'Guarapuava' }} />
 
     <main>
       <Sidebar pathname={pathname} />
       <Switch>
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/employee" component={Employee} />
+        <Route exact path='/' component={Dashboard} />
+        <Route path='/employee' component={Employee} />
       </Switch>
     </main>
   </div>
@@ -63,11 +63,11 @@ class App extends Component {
     const { pathname } = this.state
 
     return <Router history={browserHistory}>
-    <Fragment>
-      <Route path="/signin" component={Signin} />
-      <PrivateRoute path="/" component={() => <Home pathname={pathname} />} />
-    </Fragment>
-  </Router>
+      <Fragment>
+        <Route path='/signin' component={Signin} />
+        <PrivateRoute path='/' component={() => <Home pathname={pathname} />} />
+      </Fragment>
+    </Router>
   }
 }
 

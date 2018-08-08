@@ -9,7 +9,7 @@ class Page extends Component {
   }
 
   static Context ({ children }) {
-    return <div className="app-page-context">
+    return <div className='app-page-context'>
       { children }
     </div>
   }
@@ -18,9 +18,9 @@ class Page extends Component {
     const { children } = this.props
     const [header, ...context] = children
 
-    return <div className="app-page">
+    return <div className='app-page'>
       { header }
-      <div className="app-page-context">{ context }</div>
+      <div className='app-page-context'>{ context }</div>
     </div>
   }
 }
