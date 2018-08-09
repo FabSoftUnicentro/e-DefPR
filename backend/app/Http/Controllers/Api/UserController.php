@@ -27,7 +27,11 @@ class UserController extends Controller
         $user = User::where('email', '=', $data['login'])
             ->orWhere('cpf', '=', $data['login'])
             ->first();
-            
+
+        if (!$user) {
+            return JsonResponse::create([], Response::HTTP_UNAUTHORIZED);
+        }
+
         if ($user && Hash::check($data['password'], $user->getAuthPassword())) {
             $token = $user->createToken('auth')->accessToken;
 
@@ -38,7 +42,7 @@ class UserController extends Controller
             ], Response::HTTP_OK);
         }
 
-        return JsonResponse::create([], Response::HTTP_BAD_REQUEST);
+        return JsonResponse::create([], Response::HTTP_NOT_FOUND);
     }
 
     /**
@@ -65,8 +69,8 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->cpf = $request->input('cpf');
-        $birthDate = new DateTime($request->input('birthDate'));
-        $user->birth_date = $birthDate->format('Y-m-d');
+        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate'));
+        $user->birth_date = $birthDate;
         $user->rg = $request->input('rg');
         $user->rg_issuer = $request->input('rgIssuer');
         $user->gender = $request->input('gender');
@@ -121,7 +125,8 @@ class UserController extends Controller
             $user->email = $request->input('email') ? $request->input('email') : $user->email;
             $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
             $user->cpf = $request->input('cpf') ? $request->input('cpf') : $user->cpf;
-            $user->birth_date = $request->input('birthDate') ? $request->input('birthDate') : $user->birth_date;
+            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate') ? $request->input('birthDate') : $user->birth_date);
+            $user->birth_date = $birthDate;
             $user->rg = $request->input('rg') ? $request->input('rg') : $user->rg;
             $user->rg_issuer = $request->input('rgIssuer') ? $request->input('rgIssuer') : $user->rg_issuer;
             $user->gender = $request->input('gender') ? $request->input('gender') : $user->gender;
