@@ -27,7 +27,11 @@ class UserController extends Controller
         $user = User::where('email', '=', $data['login'])
             ->orWhere('cpf', '=', $data['login'])
             ->first();
-            
+
+        if (!$user) {
+            return JsonResponse::create([], Response::HTTP_UNAUTHORIZED);
+        }
+
         if ($user && Hash::check($data['password'], $user->getAuthPassword())) {
             $token = $user->createToken('auth')->accessToken;
 
@@ -38,7 +42,7 @@ class UserController extends Controller
             ], Response::HTTP_OK);
         }
 
-        return JsonResponse::create([], Response::HTTP_BAD_REQUEST);
+        return JsonResponse::create([], Response::HTTP_NOT_FOUND);
     }
 
     /**
