@@ -24,23 +24,23 @@ class EmployeeCreate extends Component {
     try {
       const result = await userService.create(values)
 
-      if (result.status == 201) {
+      if (result.status === 201) {
         createEmployee()
         message.success('Funcionário cadastrado com sucesso!')
 
-        this.setState({ redirect: true })
+        this.setState({
+          redirect: true
+        })
 
         return createEmployee()
-      }
-      else if (result.status === 403) {
+      } else if (result.status === 403) {
         createEmployee()
         message.error('Preencha corretamente as informações!')
       }
 
       createEmployee()
       return message.error('Não foi possível cadastrar o funcionário!', 2)
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error)
     }
   }
@@ -68,12 +68,12 @@ class EmployeeCreate extends Component {
                 name='name'
                 placeholder='Nome completo do funcionário'
               />
-              
+
               <Form.TextField
                 label='CPF'
                 name='cpf'
               />
-              
+
               <Form.DatePicker
                 label='Data de nascimento'
                 name='birthDate'
@@ -112,7 +112,7 @@ class EmployeeCreate extends Component {
 
             </Form.Step>
             <Form.Step title='Endereço'>
-              
+
               <Form.TextField
                 label='CEP'
                 name='address[cep]'
@@ -135,7 +135,7 @@ class EmployeeCreate extends Component {
 
             </Form.Step>
             <Form.Step title='Informações de acesso'>
-            <Form.Inline>
+              <Form.Inline>
                 <Form.TextField label='E-mail' name='email' />
                 <Form.TextField label='Senha' name='password' />
               </Form.Inline>
