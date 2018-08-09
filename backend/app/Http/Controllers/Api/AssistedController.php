@@ -7,9 +7,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\Assisted as assistedResource;
-use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 class AssistedController extends Controller
 {
@@ -38,7 +37,8 @@ class AssistedController extends Controller
         $assisted->name = $request->input('name');
         $assisted->email = $request->input('email');
         $assisted->cpf = $request->input('cpf');
-        $assisted->birth_date = $request->input('birthDate');
+        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate') ? $request->input('birthDate') : $assisted->birth_date);
+        $assisted->birth_date = $birthDate;
         $assisted->rg = $request->input('rg');
         $assisted->rg_issuer = $request->input('rgIssuer');
         $assisted->gender = $request->input('gender');
@@ -92,7 +92,8 @@ class AssistedController extends Controller
             $assisted->name = $request->input('name') ? $request->input('name') : $assisted->name;
             $assisted->email = $request->input('email') ? $request->input('email') : $assisted->email;
             $assisted->cpf = $request->input('cpf') ? $request->input('cpf') : $assisted->cpf;
-            $assisted->birth_date = $request->input('birthDate') ? $request->input('birthDate') : $assisted->birth_date;
+            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate') ? $request->input('birthDate') : $assisted->birth_date);
+            $assisted->birth_date = $birthDate;
             $assisted->rg = $request->input('rg') ? $request->input('rg') : $assisted->rg;
             $assisted->rg_issuer = $request->input('rgIssuer') ? $request->input('rgIssuer') : $assisted->rg_issuer;
             $assisted->gender = $request->input('gender') ? $request->input('gender') : $assisted->gender;
