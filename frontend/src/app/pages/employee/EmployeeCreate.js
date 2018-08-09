@@ -11,6 +11,7 @@ class EmployeeCreate extends Component {
 
   async onSubmit (values) {
     console.log(values)
+    values.addresses = [ values.address ]
     await userService.create(values)
   }
 
@@ -37,24 +38,23 @@ class EmployeeCreate extends Component {
               
               <Form.DatePicker
                 label="Data de nascimento"
-                name="birth_date"
+                name="birthDate"
                 placeholder="dia/mês/ano"
               />
 
               <Form.Inline>
                 <Form.TextField label="RG" name="rg" />
-                <Form.TextField label="Orgão emissor" name="rg_issuer" />
+                <Form.TextField label="Orgão emissor" name="rgIssuer" />
               </Form.Inline>
 
               <Form.Select label="Gênero" name="gender" options={[
-                { value: 'male', name: 'Masculino' },
-                { value: 'female', name: 'Feminino' },
-                { value: 'neither', name: 'Outro' }
+                { value: 'M', name: 'Masculino' },
+                { value: 'F', name: 'Feminino' }
               ]} />
 
               <Form.CitySelect label="Cidade natal" name="birthplace" />
 
-              <Form.Select label="Estado civil" name="civil_state" options={[
+              <Form.Select label="Estado civil" name="maritalStatus" options={[
                 { value: 'solteiro', name: 'Solteiro(a)' },
                 { value: 'casado', name: 'Casado(a)' },
                 { value: 'separado/divorciado', name: 'Separado(a)/Divorciado(a)' },
