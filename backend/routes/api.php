@@ -82,3 +82,21 @@ Route::prefix('assisted')->group(function () {
         Route::delete('/{id}', 'Api\AssistedController@destroy')->middleware('auth:api');
     });
 });
+
+// Permission route
+Route::prefix('permission')->group(function () {
+    Route::group(['middleware' => ['permission:list-permission']], function () {
+        Route::get('/', 'Api\PermissionController@index')->middleware('auth:api');
+        Route::get('/{id}', 'Api\PermissionController@show')->middleware('auth:api');
+    });
+
+    Route::group(['middleware' => ['permission:register-permission']], function () {
+        Route::post('/', 'Api\PermissionController@store')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:update-permission']], function () {
+        Route::put('/{id}', 'Api\PermissionController@update')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:delete-permission']], function () {
+        Route::delete('/{id}', 'Api\PermissionController@destroy')->middleware('auth:api');
+    });
+});
