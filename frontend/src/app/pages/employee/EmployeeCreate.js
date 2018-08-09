@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Page from '../../components/page/Page'
 import Form from '../../components/form/Form'
-import Alert from 'antd/lib/alert'
 import message from 'antd/lib/message'
 import { userService } from '../../services'
 import { Redirect } from 'react-router-dom'
@@ -29,16 +28,15 @@ class EmployeeCreate extends Component {
         createEmployee()
         message.success('Funcionário cadastrado com sucesso!')
 
-        const account = await userService.account()
         this.setState({ redirect: true })
 
         return createEmployee()
       }
-      else if (result.status == 403) {
+      else if (result.status === 403) {
         createEmployee()
         message.error('Preencha corretamente as informações!')
       }
-      
+
       createEmployee()
       return message.error('Não foi possível cadastrar o funcionário!', 2)
     }
@@ -53,7 +51,7 @@ class EmployeeCreate extends Component {
 
   render () {
     if (this.state.redirect === true) {
-      return <Redirect to="/" />
+      return <Redirect to='/' />
     }
 
     return <Page>
@@ -62,7 +60,7 @@ class EmployeeCreate extends Component {
 
       <Page.Context>
         <h2>Cadastrar funcionário</h2>
-        <div className="app-page-box">
+        <div className='app-page-box'>
           <Form onSubmit={this.onSubmit} >
             <Form.Step title='Informações pessoais'>
               <Form.TextField
