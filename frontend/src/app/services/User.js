@@ -27,10 +27,10 @@ class User extends Service {
       const result = await this.post('/user', account)
 
       if (result.statusCode === 'SUCCESS') {
-        return result.data
+        return result
       }
 
-      return false
+      return result
     }
     catch (error) {
       throw error
