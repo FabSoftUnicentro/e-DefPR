@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 // User routes
 Route::prefix('user')->group(function () {
     Route::post('/authenticate', 'Api\UserController@authenticate');
+    Route::post('/forgot_password', 'Api\UserController@resetPassword')->middleware('auth:api');
     Route::get('/me', 'Api\UserController@info')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-employee']], function () {
@@ -66,7 +67,36 @@ Route::prefix('city')->group(function () {
     });
 });
 
-// Postcode route
-Route::prefix('postcode')->group(function () {
-    Route::get('/{id}', 'Api\PostcodeController@find');
+// Assisted route
+Route::prefix('assisted')->group(function () {
+    Route::get('/', 'Api\AssistedController@index')->middleware('auth:api');
+    Route::get('/{id}', 'Api\AssistedController@show')->middleware('auth:api');
+
+    Route::group(['middleware' => ['permission:register-assisted']], function () {
+        Route::post('/', 'Api\AssistedController@store')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:update-assisted']], function () {
+        Route::put('/{id}', 'Api\AssistedController@update')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:delete-assisted']], function () {
+        Route::delete('/{id}', 'Api\AssistedController@destroy')->middleware('auth:api');
+    });
+});
+
+// Permission route
+Route::prefix('permission')->group(function () {
+    Route::group(['middleware' => ['permission:list-permission']], function () {
+        Route::get('/', 'Api\PermissionController@index')->middleware('auth:api');
+        Route::get('/{id}', 'Api\PermissionController@show')->middleware('auth:api');
+    });
+
+    Route::group(['middleware' => ['permission:register-permission']], function () {
+        Route::post('/', 'Api\PermissionController@store')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:update-permission']], function () {
+        Route::put('/{id}', 'Api\PermissionController@update')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:delete-permission']], function () {
+        Route::delete('/{id}', 'Api\PermissionController@destroy')->middleware('auth:api');
+    });
 });

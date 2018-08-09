@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class UserController extends Controller
 {
@@ -20,13 +20,18 @@ class UserController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function authenticate(Request $request) {
+    public function authenticate(Request $request)
+    {
         $data = $request->json()->all();
 
         $user = User::where('email', '=', $data['login'])
             ->orWhere('cpf', '=', $data['login'])
             ->first();
-            
+
+        if (!$user) {
+            return JsonResponse::create([], Response::HTTP_UNAUTHORIZED);
+        }
+
         if ($user && Hash::check($data['password'], $user->getAuthPassword())) {
             $token = $user->createToken('auth')->accessToken;
 
@@ -37,7 +42,7 @@ class UserController extends Controller
             ], Response::HTTP_OK);
         }
 
-        return JsonResponse::create([], Response::HTTP_BAD_REQUEST);
+        return JsonResponse::create([], Response::HTTP_NOT_FOUND);
     }
 
     /**
@@ -64,7 +69,8 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->cpf = $request->input('cpf');
-        $user->birth_date = $request->input('birthDate');
+        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate'));
+        $user->birth_date = $birthDate;
         $user->rg = $request->input('rg');
         $user->rg_issuer = $request->input('rgIssuer');
         $user->gender = $request->input('gender');
@@ -119,7 +125,8 @@ class UserController extends Controller
             $user->email = $request->input('email') ? $request->input('email') : $user->email;
             $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
             $user->cpf = $request->input('cpf') ? $request->input('cpf') : $user->cpf;
-            $user->birth_date = $request->input('birthDate') ? $request->input('birthDate') : $user->birth_date;
+            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate') ? $request->input('birthDate') : $user->birth_date);
+            $user->birth_date = $birthDate;
             $user->rg = $request->input('rg') ? $request->input('rg') : $user->rg;
             $user->rg_issuer = $request->input('rgIssuer') ? $request->input('rgIssuer') : $user->rg_issuer;
             $user->gender = $request->input('gender') ? $request->input('gender') : $user->gender;
@@ -168,6 +175,27 @@ class UserController extends Controller
             $user = Auth::user();
 
             return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_NOT_FOUND);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function resetPassword(Request $request)
+    {
+        try {
+            $email = $request->input('email');
+            $cpf = $request->input('cpf');
+
+            $user = User::where('email', '=', $email)
+                ->where('cpf', '=', $cpf)
+                ->first();
+            $user->resetPassword();
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()

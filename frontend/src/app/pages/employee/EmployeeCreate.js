@@ -55,8 +55,7 @@ class EmployeeCreate extends Component {
     }
 
     return <Page>
-      <Page.Header>
-      </Page.Header>
+      <Page.Header />
 
       <Page.Context>
         <h2>Cadastrar funcionário</h2>

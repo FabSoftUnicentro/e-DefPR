@@ -3,7 +3,7 @@ import Select from 'antd/lib/select'
 import FormItem from 'antd/lib/form/FormItem'
 
 const SelectAdapter = ({ input: { onChange, value }, options, children, label, ...rest }) => (
-  <FormItem label={label} style={{margin:0, padding: 0}}>
+  <FormItem label={label} style={{margin: 0, padding: 0}}>
     <Select
       label={label}
       onChange={onChange}

@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class RoleSeeder extends Seeder
+class RoleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -49,6 +49,9 @@ class RoleSeeder extends Seeder
             'register-city',
             'update-city',
             'delete-city',
+            'register-assisted',
+            'update-assisted',
+            'delete-assisted',
         ];
 
         foreach ($permissions as $permission) {

@@ -5,7 +5,7 @@ import FormItem from 'antd/lib/form/FormItem'
 const DATE_FORMAT = 'DD/MM/YYYY' 
 
 const DatePickerAdapter = ({ input: { onChange, value }, label, ...rest }) => (
-  <FormItem label={label} style={{margin:0, padding: 0}}>
+  <FormItem label={label} style={{margin: 0, padding: 0}}>
     <DatePicker
       onChange={date => onChange(date.format(DATE_FORMAT))}
       // value={value}

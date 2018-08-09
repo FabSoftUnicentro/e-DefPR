@@ -6,7 +6,7 @@ class User extends Service {
   async account () {
     try {
       const result = await this.get('/user/me')
-      
+
       if (result.statusCode === 'SUCCESS') {
         localStorage.setItem(this.USER_ACCOUNT, JSON.stringify({
           name: result.data.data.name,
@@ -16,8 +16,7 @@ class User extends Service {
       }
 
       return undefined
-    }
-    catch (error) {
+    } catch (error) {
       throw error
     }
   }

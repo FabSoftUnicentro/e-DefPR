@@ -18,7 +18,7 @@ class Form extends Component {
   static TextField = props => <Field {...props} component={InputAdapter} />
   static DatePicker = props => <Field {...props} component={DatePickerAdapter} />
   static CitySelect = props => <Field {...props} component={CitySelectAdapter} />
-  
+
   static propTypes = {
     onSubmit: PropTypes.func.isRequired
   }
@@ -63,7 +63,7 @@ class Form extends Component {
 
   render () {
     const { steps, current } = this.state
-    
+
     return <div>
       <Steps current={current}>
         { steps.map(step => <Steps.Step key={step.title} title={step.title} />) }
@@ -76,32 +76,32 @@ class Form extends Component {
           <form onSubmit={handleSubmit}>
             { this.currentStep }
 
-            <div style={{marginBottom:30}}>
+            <div style={{marginBottom: 30}}>
               <Divider />
 
-              <div style={{display:'flex', justifyContent:'space-between'}}>
+              <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <Button
-                  size="large"
-                  disabled={current===0}
+                  size='large'
+                  disabled={current === 0}
                   onClick={this.prevStep}
                 >
-                  <Icon type="arrow-left"/> Anterior
+                  <Icon type='arrow-left' /> Anterior
                 </Button>
 
                 {!this.isLastPage && <Button
-                  size="large"
-                  type="primary"
+                  size='large'
+                  type='primary'
                   onClick={this.nextStep}
                 >
-                  Próximo <Icon type="arrow-right"/>
+                  Próximo <Icon type='arrow-right' />
                 </Button> }
 
                 {this.isLastPage && <Button
-                  size="large"
-                  type="primary"
-                  htmlType="submit"
+                  size='large'
+                  type='primary'
+                  htmlType='submit'
                 >
-                  Salvar <Icon type="check"/>
+                  Salvar <Icon type='check' />
                 </Button> }
               </div>
             </div>
@@ -112,7 +112,7 @@ class Form extends Component {
   }
 
   get isLastPage () {
-    const { current, steps } =  this.state
+    const { current, steps } = this.state
     return current === steps.length - 1
   }
 

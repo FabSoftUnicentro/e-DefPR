@@ -1,3 +1,5 @@
+const { localStorage, fetch } = window
+
 class Service {
   USER_IDX = 'EDEF_USER_IDX'
 
@@ -27,8 +29,7 @@ class Service {
         statusCode: response.statusText,
         data: response
       }
-    }
-    catch (error) {
+    } catch (error) {
       throw error
     }
   }
@@ -56,8 +57,7 @@ class Service {
         statusCode: response.statusText,
         data: response
       }
-    }
-    catch (error) {
+    } catch (error) {
       throw error
     }
   }
@@ -70,7 +70,7 @@ class Service {
 
   }
 
-  buildHeaders(headers = {}) {
+  buildHeaders (headers = {}) {
     return {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`,
@@ -95,4 +95,4 @@ class Service {
   }
 }
 
-export default Service;
+export default Service

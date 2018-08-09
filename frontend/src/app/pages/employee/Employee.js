@@ -6,8 +6,8 @@ import EmployeeCreate from './EmployeeCreate'
 class Employee extends Component {
   render () {
     return <Switch>
-      <Route exact path="/employee" component={EmployeeOverview} />
-      <Route path="/employee/new" component={EmployeeCreate} />
+      <Route exact path='/employee' component={EmployeeOverview} />
+      <Route path='/employee/new' component={EmployeeCreate} />
     </Switch>
   }
 }

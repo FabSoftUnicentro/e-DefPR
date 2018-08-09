@@ -5,8 +5,7 @@ class Location extends Service {
     try {
       const result = await this.get('/state')
       return result.data
-    }
-    catch (error) {
+    } catch (error) {
       throw error
     }
   }
@@ -19,8 +18,7 @@ class Location extends Service {
     try {
       const result = await this.get(`/city/state/${state}`)
       return result.data
-    }
-    catch (error) {
+    } catch (error) {
       throw error
     }
   }
