@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { user } from '../../services'
+import { userService } from '../../services'
 import Page from '../../components/page/Page'
 import DescriptionItem from '../../adapters/DescriptionItem'
 import Button from 'antd/lib/button'
@@ -36,7 +36,7 @@ class EmployeeOverview extends Component {
   }
 
   componentDidMount () {
-    user.list()
+    userService.list()
       .then(result => {
         this.setState({ data: result.data, total: result.meta.total })
       })
@@ -44,8 +44,8 @@ class EmployeeOverview extends Component {
   }
 
   onChangePage (page, pageSize) {
-    this.setState({ data: undefined })
-    user.list(page)
+    this.setState({ data: undefined})
+    userService.list(page)
       .then(result => {
         this.setState({ data: result.data, total: result.meta.total })
       })
