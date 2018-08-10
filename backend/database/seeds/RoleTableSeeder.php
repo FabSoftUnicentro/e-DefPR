@@ -52,6 +52,10 @@ class RoleTableSeeder extends Seeder
             'register-assisted',
             'update-assisted',
             'delete-assisted',
+            'register-role',
+            'update-role',
+            'read-role',
+            'delete-role',
         ];
 
         foreach ($permissions as $permission) {
