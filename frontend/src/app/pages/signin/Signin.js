@@ -35,8 +35,10 @@ class Signin extends Component {
           message.success(`Bem-vindo, ${account.data.name}!`, 2)
           this.setState({ redirect: true })
         }
-      } else if (result.status === 400) {
-        return this.attachMessage('error', 'Usuário ou senha inválido.')
+      } else if (result.status === 401) {
+        return this.attachMessage('error', 'Senha inválida.')
+      } else if (result.status === 404) {
+        return this.attachMessage('error', 'Usuário e senha inválida.')
       }
 
       return this.attachMessage('warning', 'Campos usuário e senha são obrigatórios')
