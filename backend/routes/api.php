@@ -117,3 +117,10 @@ Route::prefix('permission')->group(function () {
         Route::delete('/{id}', 'Api\PermissionController@destroy')->middleware('auth:api');
     });
 });
+
+// Assign permission to user
+Route::prefix('assign')->group(function () {
+    Route::group(['middleware' => ['permission:assign-permission']], function () {
+        Route::post('/', 'Api\AssignPermissionController@store')->middleware('auth:api');
+    });
+});
