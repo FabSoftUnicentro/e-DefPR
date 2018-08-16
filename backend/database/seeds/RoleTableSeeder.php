@@ -19,14 +19,16 @@ class RoleTableSeeder extends Seeder
         // create permissions
         $permissions = [
             'register-activities',
+            'register-general-activities',
             'open-process',
             'read-process',
             'open-protocol',
+            'delete-protocol',
+            'read-mail',
+            'authorize-consultation-of-social-worker-attendance',
             'register-documents',
             'forward-attendance',
             'generate-mail',
-            'distribution-office',
-            'transfer-correction',
             'adjust-petition',
             'initial-trial',
             'socioeconomic-scoring',
@@ -51,7 +53,16 @@ class RoleTableSeeder extends Seeder
             'delete-city',
             'register-assisted',
             'update-assisted',
+            'register-report',
             'delete-assisted',
+            'psychological-attendance',
+            'authorize-consultation-of-psychological-attendance',
+            'register-individual-activities',
+            'delete-attendance',
+            'delete-registration',
+            'judge-petition',
+            'intake-order',
+            'transfer-petition-remedy',
             'register-role',
             'update-role',
             'read-role',
@@ -70,9 +81,12 @@ class RoleTableSeeder extends Seeder
         $role = Role::create(['name' => 'juridical-administrative-technician']);
         $role->givePermissionTo(
             'register-activities',
+            'register-individual-activities',
             'open-process',
             'read-process',
             'open-protocol',
+            'delete-protocol',
+            'read-mail',
             'register-documents',
             'forward-attendance',
             'generate-mail',
@@ -81,11 +95,8 @@ class RoleTableSeeder extends Seeder
             'register-legal-attendance',
             'register-petition',
             'read-psychological-attendance',
-            'register-employee',
-            'update-employee',
-            'read-employee',
             'append-protocol-to-process',
-            'register-report',
+            'read-attendance',
             'send-for-analysis-to-defender'
         );
 
@@ -95,31 +106,35 @@ class RoleTableSeeder extends Seeder
             'open-process',
             'read-process',
             'open-protocol',
+            'delete-protocol',
             'register-documents',
             'forward-attendance',
             'generate-mail',
+            'read-mail',
             'initial-trial',
             'socioeconomic-scoring',
             'register-employee',
             'update-employee',
             'read-employee',
-            'register-report'
+            'read-attendance'
         );
 
         $role = Role::create(['name' => 'social-worker']);
         $role->givePermissionTo(
             'register-activities',
             'open-process',
+            'read-attendance',
             'read-process',
             'open-protocol',
+            'delete-protocol',
+            'authorize-consultation-of-social-worker-attendance',
             'register-documents',
             'forward-attendance',
             'generate-mail',
+            'read-mail',
+            'register-individual-activities',
             'initial-trial',
             'socioeconomic-scoring',
-            'register-employee',
-            'update-employee',
-            'read-employee',
             'register-report',
             'social-attendance'
         );
@@ -128,15 +143,18 @@ class RoleTableSeeder extends Seeder
         $role->givePermissionTo(
             'register-activities',
             'read-process',
-            'open-protocol',
+            'delete-protocol',
             'register-documents',
             'forward-attendance',
-            'generate-mail',
+            'read-attendance',
+            'register-individual-activities',
+            'initial-trial',
+            'read-mail',
             'register-legal-attendance',
             'register-petition',
             'read-psychological-attendance',
             'append-protocol-to-process',
-            'register-report',
+            'register-individual-activities',
             'send-for-analysis-to-defender'
         );
 
@@ -144,54 +162,64 @@ class RoleTableSeeder extends Seeder
         $role->givePermissionTo(
             'register-activities',
             'read-process',
+            'read-attendance',
+            'open-process',
             'open-protocol',
+            'initial-trial',
+            'socioeconomic-scoring',
             'register-documents',
             'forward-attendance',
             'generate-mail',
+            'read-mail',
             'register-legal-attendance',
             'register-petition',
             'read-psychological-attendance',
             'append-protocol-to-process',
-            'register-report',
+            'register-individual-activities',
             'send-for-analysis-to-defender'
         );
 
         $role = Role::create(['name' => 'high-school-intern']);
         $role->givePermissionTo(
             'register-activities',
+            'read-attendance',
             'open-protocol',
-            'register-documents',
+            'delete-protocol',
             'forward-attendance',
-            'generate-mail',
-            'register-report'
+            'generate-mail'
         );
 
         $role = Role::create(['name' => 'public-defender']);
         $role->givePermissionTo(
             'register-activities',
+            'register-general-activities',
             'open-process',
             'read-process',
             'open-protocol',
+            'delete-protocol',
+            'register-employee',
+            'update-employee',
+            'read-employee',
+            'transfer-petition-remedy',
+            'read-mail',
+            'authorize-consultation-of-social-worker-attendance',
+            'authorize-consultation-of-psychological-attendance',
             'register-documents',
             'forward-attendance',
+            'intake-order',
             'generate-mail',
-            'distribution-office',
-            'transfer-correction',
             'adjust-petition',
+            'judge-petition',
             'initial-trial',
             'socioeconomic-scoring',
             'register-legal-attendance',
             'register-petition',
             'read-psychological-attendance',
             'read-report-from-all',
-            'register-employee',
-            'update-employee',
-            'read-employee',
-            'delete-employee',
             'append-protocol-to-process',
             'register-report',
-            'send-for-analysis-to-defender',
-            'social-attendance'
+            'read-attendance',
+            'register-individual-activities'
         );
 
         $role = Role::create(['name' => 'psychologist']);
@@ -199,10 +227,16 @@ class RoleTableSeeder extends Seeder
             'register-activities',
             'read-process',
             'open-protocol',
+            'delete-protocol',
             'register-documents',
             'forward-attendance',
+            'read-mail',
+            'generate-mail',
+            'register-report',
+            'psychological-attendance',
             'read-psychological-attendance',
-            'register-report'
+            'authorize-consultation-of-psychological-attendance',
+            'register-individual-activities'
         );
     }
 }
