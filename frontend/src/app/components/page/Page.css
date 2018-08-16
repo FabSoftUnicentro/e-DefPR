@@ -7,7 +7,12 @@
 
 .app-page .app-page-context {
   max-width: 960px;
-  min-width: 500px;
   margin: 0 auto;
   margin-top: 32px;
+}
+
+@media only screen and (max-width: 1300px) {
+  .app-page .app-page-context {
+    padding: 0 24px;
+  }
 }
