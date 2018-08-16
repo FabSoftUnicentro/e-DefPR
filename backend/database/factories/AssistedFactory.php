@@ -19,6 +19,7 @@ $factory->define(App\Models\Assisted::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'cpf' => $faker->numberBetween(999999999),
         'birth_date' => $faker->date(),
+        'birth_place' => $faker->city,
         'rg' => $faker->unique()->text(11),
         'rg_issuer' => 'SSP',
         'gender' => 'M',
