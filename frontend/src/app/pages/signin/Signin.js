@@ -41,13 +41,9 @@ class Signin extends Component {
 
         return
       } else if (result.status === 401) {
-        return {
-          password: 'Esta senha não está correta'
-        }
+        return { password: 'Esta senha não está correta' }
       } else if (result.status === 404) {
-        return {
-          login: 'Este e-mail não existe'
-        }
+        return { login: 'Este usuário não existe' }
       }
 
       return message.error('Não foi possível realizar login. Tente novamente')
