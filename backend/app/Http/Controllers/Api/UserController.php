@@ -29,7 +29,7 @@ class UserController extends Controller
             ->first();
 
         if (!$user) {
-            return JsonResponse::create([], Response::HTTP_UNAUTHORIZED);
+            return JsonResponse::create([], Response::HTTP_NOT_FOUND);
         }
 
         if ($user && Hash::check($data['password'], $user->getAuthPassword())) {
@@ -42,7 +42,7 @@ class UserController extends Controller
             ], Response::HTTP_OK);
         }
 
-        return JsonResponse::create([], Response::HTTP_NOT_FOUND);
+        return JsonResponse::create([], Response::HTTP_UNAUTHORIZED);
     }
 
     /**
