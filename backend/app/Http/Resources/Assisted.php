@@ -20,6 +20,7 @@ class Assisted extends JsonResource
             'email' => $this->email,
             'cpf' => $this->cpf,
             'birth_date' => $this->birth_date,
+            'birth_place' => $this->birth_place,
             'rg' => $this->rg,
             'rg_issuer' => $this->rg_issuer,
             'gender' => $this->gender,
