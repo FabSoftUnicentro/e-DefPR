@@ -16,7 +16,8 @@ class Signin extends Component {
 
     this.state = {
       redirect: false,
-      alertProps: undefined
+      alertProps: undefined,
+      isLoading: false
     }
 
     this.onSubmit = this.onSubmit.bind(this)
@@ -24,26 +25,29 @@ class Signin extends Component {
 
   async onSubmit (values) {
     const { login, password } = values
+    this.setState({ isLoading: true })
 
     try {
       const result = await authentication.signin(login, password)
-      if (result.statusCode === 'SUCCESS') {
+      if (result.status === 200) {
         this.attachMessage('success', 'Login realizado com sucesso')
 
-        const account = await userService.account()
+        const account = await userService.me()
         if (account.data) {
           message.success(`Bem-vindo, ${account.data.name}!`, 2)
-          this.setState({ redirect: true })
         }
       } else if (result.status === 401) {
-        return this.attachMessage('error', 'Senha inválida.')
+        return this.attachMessage('error', 'Senha inválida')
       } else if (result.status === 404) {
-        return this.attachMessage('error', 'Usuário e senha inválida.')
+        return this.attachMessage('error', 'Usuário e senha inválida')
       }
 
-      return this.attachMessage('warning', 'Campos usuário e senha são obrigatórios')
+      return this.attachMessage('error', 'Não foi possível realizar login. Tente novamente')
     } catch (error) {
       console.log(error)
+    }
+    finally {
+      this.setState({ isLoading: false })
     }
   }
 
@@ -56,7 +60,7 @@ class Signin extends Component {
       return <Redirect to='/' />
     }
 
-    const { alertProps } = this.state
+    const { alertProps, isLoading } = this.state
 
     return <div className='app-signin'>
       <div className='app-signin-form'>
@@ -95,6 +99,7 @@ class Signin extends Component {
                   htmlType='submit'
                   style={{margin: '24px 0', width: '100%'}}
                   disabled={submitting}
+                  loading={isLoading}
                 >
                   Login
                 </Button>

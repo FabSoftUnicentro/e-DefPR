@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.7.2",
     "final-form": "^4.8.3",
+    "js-cookie": "^2.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-final-form": "^3.6.4",
