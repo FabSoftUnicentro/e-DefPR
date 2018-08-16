@@ -38,6 +38,8 @@ class CreateAssistedTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assisteds');
+        Schema::table('assisteds', function (Blueprint $table) {
+            $table->dropColumn('birth_place');
+        });
     }
 }
