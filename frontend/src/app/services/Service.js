@@ -1,97 +1,88 @@
-const { localStorage, fetch } = window
+import Cookie from 'js-cookie'
+
+const URL = process.env.REACT_APP_API_URL
+const EDEF_IDX = process.env.REACT_APP_COOKIE_NAME
+const IDX = 'USER_IDX'
 
 class Service {
-  USER_IDX = 'EDEF_USER_IDX'
-
-  constructor () {
-    this.authorization = undefined
-  }
-
-  async get (path, headers) {
+  async post (path = '/', body) {
     try {
-      const response = await fetch(`${this.url}${path}`, {
-        method: 'GET',
-        mode: 'cors',
-        headers: this.buildHeaders(headers)
-      })
-
-      if (response.status === 200) {
-        const result = await response.json()
-        return { statusCode: 'SUCCESS', data: result }
-      }
-
-      if (response.status === 500) {
-        throw response
-      }
-
-      return {
-        status: response.status,
-        statusCode: response.statusText,
-        data: response
-      }
-    } catch (error) {
-      throw error
-    }
-  }
-
-  async post (path, body = {}, headers) {
-    try {
-      const response = await fetch(`${this.url}${path}`, {
+      const response = await fetch(`${URL}${path}`, {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify(body),
-        headers: this.buildHeaders(headers)
+        headers: { ...this.headers }
       })
-
-      if (response.status === 200) {
-        const result = await response.json()
-        return { statusCode: 'SUCCESS', data: result }
-      }
-
-      if (response.status === 500) {
-        throw response
-      }
 
       return {
         status: response.status,
-        statusCode: response.statusText,
-        data: response
+        ...(await response.json())
       }
     } catch (error) {
       throw error
     }
   }
 
-  async update (path, body, headers) {
+  async get (path = '/') {
+    try {
+      const response = await fetch(`${URL}${path}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: { ...this.headers }
+      })
 
-  }
-
-  async path (path, body, headers) {
-
-  }
-
-  buildHeaders (headers = {}) {
-    return {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`,
-      ...headers
+      return {
+        status: response.status,
+        ...(await response.json())
+      }
+    } catch (error) {
+      console.error(error)
     }
+  }
+
+  async update () {
+    return Promise.resolve()
   }
 
   get token () {
-    if (!this.hasToken) {
+    return Cookie.get(EDEF_IDX)
+  }
+
+  set token (token) {
+    Cookie.set(EDEF_IDX, token)
+  }
+
+  get isAuthenticated () {
+    return !!this.token
+  }
+
+  get account () {
+    if (!localStorage.getItem(IDX)) {
       return undefined
     }
 
-    return localStorage.getItem(this.USER_IDX)
+    return JSON.parse(localStorage.getItem(IDX))
   }
 
-  get hasToken () {
-    return !!localStorage.getItem(this.USER_IDX)
+  set account (data) {
+    localStorage.setItem(IDX, JSON.stringify(data))
   }
 
-  get url () {
-    return process.env.REACT_APP_API_URL
+  get headers () {
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    }
+  }
+
+  clearCookies () {
+    Cookie.remove(EDEF_IDX)
+  }
+
+  kick () {
+    this.clearCookies()
+    localStorage.clear()
+    window.location.href = '/'
   }
 }
 

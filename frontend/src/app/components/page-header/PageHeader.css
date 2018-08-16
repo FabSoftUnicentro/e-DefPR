@@ -14,3 +14,7 @@
   font-size: calc(14px + .1vw);
   /* color: rgba(0, 0, 0, .6) !important; */
 }
+
+.app-page-header .app-page-header-buttons > button {
+  margin-left: 10px;
+}
