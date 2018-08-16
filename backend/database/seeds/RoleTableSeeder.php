@@ -63,6 +63,11 @@ class RoleTableSeeder extends Seeder
             'judge-petition',
             'intake-order',
             'transfer-petition-remedy',
+            'register-role',
+            'update-role',
+            'read-role',
+            'delete-role',
+            'assign-permission'
         ];
 
         foreach ($permissions as $permission) {

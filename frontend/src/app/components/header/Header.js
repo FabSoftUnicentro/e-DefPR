@@ -4,7 +4,7 @@ import Persona from '../persona/Persona'
 import Badge from 'antd/lib/badge'
 import Icon from 'antd/lib/icon'
 import message from 'antd/lib/message'
-import { authentication, user } from '../../services'
+import { authentication, userService } from '../../services'
 
 import './Header.css'
 
@@ -43,7 +43,7 @@ class Header extends Component {
         <Badge dot>
           <Icon type='notification' />
         </Badge>
-        <Persona name={user.name} jobDescription='Developer' onLogout={this.logout} />
+        <Persona name={userService.name} jobDescription="Developer" onLogout={this.logout} />
       </div>
     </header>
   }

@@ -5,7 +5,7 @@ import { Form, Field } from 'react-final-form'
 import Alert from 'antd/lib/alert'
 import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
-import { authentication, user } from '../../services'
+import { authentication, userService } from '../../services'
 import { Redirect } from 'react-router-dom'
 
 import './Signin.css'
@@ -30,13 +30,15 @@ class Signin extends Component {
       if (result.statusCode === 'SUCCESS') {
         this.attachMessage('success', 'Login realizado com sucesso')
 
-        const account = await user.account()
+        const account = await userService.account()
         if (account.data) {
           message.success(`Bem-vindo, ${account.data.name}!`, 2)
           this.setState({ redirect: true })
         }
-      } else if (result.status === 400) {
-        return this.attachMessage('error', 'Usuário ou senha inválido.')
+      } else if (result.status === 401) {
+        return this.attachMessage('error', 'Senha inválida.')
+      } else if (result.status === 404) {
+        return this.attachMessage('error', 'Usuário e senha inválida.')
       }
 
       return this.attachMessage('warning', 'Campos usuário e senha são obrigatórios')

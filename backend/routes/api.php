@@ -83,6 +83,23 @@ Route::prefix('assisted')->group(function () {
     });
 });
 
+// Role route
+Route::prefix('role')->group(function () {
+    Route::group(['middleware' => ['permission:read-role']], function () {
+        Route::get('/', 'Api\RoleController@index')->middleware('auth:api');
+        Route::get('/{id}', 'Api\RoleController@show')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:register-role']], function () {
+        Route::post('/', 'Api\RoleController@store')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:update-role']], function () {
+        Route::put('/{id}', 'Api\RoleController@update')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:delete-role']], function () {
+        Route::delete('/{id}', 'Api\RoleController@destroy')->middleware('auth:api');
+    });
+});
+
 // Permission route
 Route::prefix('permission')->group(function () {
     Route::group(['middleware' => ['permission:list-permission']], function () {
@@ -98,5 +115,12 @@ Route::prefix('permission')->group(function () {
     });
     Route::group(['middleware' => ['permission:delete-permission']], function () {
         Route::delete('/{id}', 'Api\PermissionController@destroy')->middleware('auth:api');
+    });
+});
+
+// Assign permission to user
+Route::prefix('assign')->group(function () {
+    Route::group(['middleware' => ['permission:assign-permission']], function () {
+        Route::post('/', 'Api\AssignPermissionController@store')->middleware('auth:api');
     });
 });
