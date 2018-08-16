@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import Icon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
-import { Form, Field } from 'react-final-form'
-import Alert from 'antd/lib/alert'
 import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
 import { authentication, userService } from '../../services'
 import { Redirect } from 'react-router-dom'
+import * as yup from 'yup'
+import Form from '../../components/form/Form'
 
 import './Signin.css'
+
+const validateSchema = yup.object().shape({
+  password: yup.string().min(3, 'A senha deve ter pelo menos 3 caracteres').required('Informe sua senha'),
+  login: yup.string().min(3, 'O usuário deve ter pelo menos 3 caracteres').required('Informe seu usuário')
+})
 
 class Signin extends Component {
   constructor (props) {
@@ -16,7 +21,6 @@ class Signin extends Component {
 
     this.state = {
       redirect: false,
-      alertProps: undefined,
       isLoading: false
     }
 
@@ -30,29 +34,28 @@ class Signin extends Component {
     try {
       const result = await authentication.signin(login, password)
       if (result.status === 200) {
-        this.attachMessage('success', 'Login realizado com sucesso')
-
         const account = await userService.me()
-        if (account.data) {
-          message.success(`Bem-vindo, ${account.data.name}!`, 2)
+        if (account) {
+          message.success(`Bem-vindo de volta, ${account.name}!`, 2)
         }
+
+        return
       } else if (result.status === 401) {
-        return this.attachMessage('error', 'Senha inválida')
+        return {
+          password: 'Esta senha não está correta'
+        }
       } else if (result.status === 404) {
-        return this.attachMessage('error', 'Usuário e senha inválida')
+        return {
+          login: 'Este e-mail não existe'
+        }
       }
 
-      return this.attachMessage('error', 'Não foi possível realizar login. Tente novamente')
+      return message.error('Não foi possível realizar login. Tente novamente')
     } catch (error) {
       console.log(error)
-    }
-    finally {
+    } finally {
       this.setState({ isLoading: false })
     }
-  }
-
-  attachMessage (type, message) {
-    this.setState({ alertProps: { type, message } })
   }
 
   render () {
@@ -60,7 +63,7 @@ class Signin extends Component {
       return <Redirect to='/' />
     }
 
-    const { alertProps, isLoading } = this.state
+    const { isLoading } = this.state
 
     return <div className='app-signin'>
       <div className='app-signin-form'>
@@ -69,43 +72,41 @@ class Signin extends Component {
           <span>Login e-DefPR</span>
         </h1>
         <div>
-          { alertProps && <Alert {...alertProps} showIcon /> }
           <Form
             onSubmit={this.onSubmit}
-            render={({ handleSubmit, pristine, invalid, submitting }) => (
-              <form onSubmit={handleSubmit}>
-                <Field
-                  size='large'
-                  label='Usuário'
-                  name='login'
-                  placeholder='Informe seu CPF ou e-mail'
-                  component={InputAdapter}
-                  prefix={<Icon type='user' />}
-                />
+            validateSchema={validateSchema}
+          >
+            <Form.TextField
+              size='large'
+              label='Usuário'
+              name='login'
+              placeholder='Informe seu CPF ou e-mail'
+              component={InputAdapter}
+              prefix={<Icon type='user' />}
+            />
 
-                <Field
-                  size='large'
-                  label='Senha'
-                  type='password'
-                  name='password'
-                  placeholder='Informe sua senha'
-                  component={InputAdapter}
-                  prefix={<Icon type='lock' />}
-                />
+            <Form.TextField
+              size='large'
+              label='Senha'
+              type='password'
+              name='password'
+              placeholder='Informe sua senha'
+              component={InputAdapter}
+              prefix={<Icon type='lock' />}
+            />
 
-                <Button
-                  size='large'
-                  type='primary'
-                  htmlType='submit'
-                  style={{margin: '24px 0', width: '100%'}}
-                  disabled={submitting}
-                  loading={isLoading}
-                >
-                  Login
-                </Button>
-              </form>
-            )}
-          />
+            <Button
+              size='large'
+              type='primary'
+              htmlType='submit'
+              style={{margin: '24px 0', width: '100%'}}
+              disabled={isLoading}
+              loading={isLoading}
+            >
+              Login
+            </Button>
+          </Form>
+
           <div style={{textAlign: 'center'}}>
             <a href=''>Esqueceu sua senha?</a>
           </div>
