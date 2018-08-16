@@ -1,11 +1,8 @@
 import React, { Component, Children } from 'react'
-import Steps from 'antd/lib/steps'
 import { Form as FinalForm, Field } from 'react-final-form'
+import Card from 'antd/lib/card'
 import Input from 'antd/lib/input'
 import Select from 'antd/lib/select'
-import Button from 'antd/lib/button'
-import Icon from 'antd/lib/icon'
-import Divider from 'antd/lib/divider'
 import InputAdapter from '../../adapters/InputAdapter'
 import DatePickerAdapter from '../../adapters/DatePickerAdapter'
 import SelectAdapter from '../../adapters/SelectAdapter'
@@ -20,7 +17,12 @@ class Form extends Component {
   static CitySelect = props => <Field {...props} component={CitySelectAdapter} />
 
   static propTypes = {
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    validateSchema: PropTypes.object
+  }
+
+  static defaultProps = {
+    noCard: true
   }
 
   static Select = ({options, ...props}) => (<Field {...props} component={SelectAdapter}>
@@ -37,13 +39,15 @@ class Form extends Component {
       current: 0
     }
 
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+    this.onValidate = this.onValidate.bind(this)
     this.nextStep = this.nextStep.bind(this)
     this.prevStep = this.prevStep.bind(this)
   }
 
   componentDidMount () {
     const { children } = this.props
+
     this.setState({
       steps: children.map(({props}) => props)
     })
@@ -57,58 +61,36 @@ class Form extends Component {
     this.setState({ current: this.state.current - 1 })
   }
 
-  handleSubmit (values) {
-    this.props.onSubmit(values)
+  async onSubmit (values) {
+    return this.props.onSubmit(values)
+  }
+
+  async onValidate (values) {
+    const { validateSchema } = this.props
+    if (!validateSchema) {
+      return undefined
+    }
+
+    try {
+      await validateSchema.validate(values)
+      return undefined // returns undefined if is valid
+    } catch (error) {
+      const errors = {}
+      errors[error.path] = error.message
+      return errors
+    }
   }
 
   render () {
-    const { steps, current } = this.state
+    const { noCard } = this.props
 
-    return <div>
-      <Steps current={current}>
-        { steps.map(step => <Steps.Step key={step.title} title={step.title} />) }
-      </Steps>
+    if (noCard) {
+      return this.RenderFinalForm
+    }
 
-      <FinalForm
-        onSubmit={this.handleSubmit}
-      >
-        {({ handleSubmit, submitting, values }) => (
-          <form onSubmit={handleSubmit}>
-            { this.currentStep }
-
-            <div style={{marginBottom: 30}}>
-              <Divider />
-
-              <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <Button
-                  size='large'
-                  disabled={current === 0}
-                  onClick={this.prevStep}
-                >
-                  <Icon type='arrow-left' /> Anterior
-                </Button>
-
-                {!this.isLastPage && <Button
-                  size='large'
-                  type='primary'
-                  onClick={this.nextStep}
-                >
-                  Próximo <Icon type='arrow-right' />
-                </Button> }
-
-                {this.isLastPage && <Button
-                  size='large'
-                  type='primary'
-                  htmlType='submit'
-                >
-                  Salvar <Icon type='check' />
-                </Button> }
-              </div>
-            </div>
-          </form>
-        )}
-      </FinalForm>
-    </div>
+    return <Card bodyStyle={{width: '50%'}}>
+      { this.RenderFinalForm }
+    </Card>
   }
 
   get isLastPage () {
@@ -119,6 +101,20 @@ class Form extends Component {
   get currentStep () {
     const { children } = this.props
     return Children.toArray(children)[this.state.current]
+  }
+
+  get RenderFinalForm () {
+    const { children } = this.props
+
+    return <FinalForm
+      onSubmit={this.onSubmit}
+      validate={this.onValidate}
+      render={({ handleSubmit }) => (
+        <form onSubmit={handleSubmit}>
+          { children }
+        </form>
+      )}
+    />
   }
 }
 

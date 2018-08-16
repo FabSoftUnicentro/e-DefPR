@@ -28,7 +28,9 @@ class User extends JsonResource
             'profession' => $this->profession,
             'note' => $this->note,
             'addresses' => json_decode($this->addresses, true),
-            'must_change_password' => $this->must_change_password
+            'must_change_password' => $this->must_change_password,
+            'roles' => $this->getRoleNames(),
+            'permissions' => $this->getAllPermissions()
         ];
     }
 
