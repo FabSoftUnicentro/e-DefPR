@@ -56,6 +56,7 @@ class RoleTableSeeder extends Seeder
             'update-role',
             'read-role',
             'delete-role',
+            'assign-permission'
         ];
 
         foreach ($permissions as $permission) {
