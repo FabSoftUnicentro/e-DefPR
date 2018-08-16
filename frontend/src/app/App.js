@@ -5,6 +5,7 @@ import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Dashboard from './pages/Dashboard'
 import Employee from './pages/employee/Employee'
+import Assisted from './pages/assisted/Assisted'
 import Signin from './pages/signin/Signin'
 import { authentication } from './services'
 
@@ -20,6 +21,7 @@ const Home = ({pathname}) => (
       <Sidebar pathname={pathname} />
       <Switch>
         <Route exact path='/' component={Dashboard} />
+        <Route path='/assisted' component={Assisted} />
         <Route path='/employee' component={Employee} />
       </Switch>
     </main>
