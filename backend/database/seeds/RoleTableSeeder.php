@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-
 class RoleTableSeeder extends Seeder
 {
     /**
@@ -15,7 +13,6 @@ class RoleTableSeeder extends Seeder
     {
         // Reset cached roles and permissions
         app()['cache']->forget('spatie.permission.cache');
-
         // create permissions
         $permissions = [
             'register-activities',
@@ -53,7 +50,6 @@ class RoleTableSeeder extends Seeder
             'delete-city',
             'register-assisted',
             'update-assisted',
-            'register-report',
             'delete-assisted',
             'psychological-attendance',
             'authorize-consultation-of-psychological-attendance',
@@ -69,15 +65,12 @@ class RoleTableSeeder extends Seeder
             'delete-role',
             'assign-permission'
         ];
-
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
-
         // create roles and assign created permissions
         $role = Role::create(['name' => 'master']);
         $role->givePermissionTo(Permission::all());
-
         $role = Role::create(['name' => 'juridical-administrative-technician']);
         $role->givePermissionTo(
             'register-activities',
@@ -99,7 +92,6 @@ class RoleTableSeeder extends Seeder
             'read-attendance',
             'send-for-analysis-to-defender'
         );
-
         $role = Role::create(['name' => 'administrative-technician']);
         $role->givePermissionTo(
             'register-activities',
@@ -118,7 +110,6 @@ class RoleTableSeeder extends Seeder
             'read-employee',
             'read-attendance'
         );
-
         $role = Role::create(['name' => 'social-worker']);
         $role->givePermissionTo(
             'register-activities',
@@ -138,7 +129,6 @@ class RoleTableSeeder extends Seeder
             'register-report',
             'social-attendance'
         );
-
         $role = Role::create(['name' => 'lawyer-intern']);
         $role->givePermissionTo(
             'register-activities',
@@ -154,10 +144,8 @@ class RoleTableSeeder extends Seeder
             'register-petition',
             'read-psychological-attendance',
             'append-protocol-to-process',
-            'register-individual-activities',
             'send-for-analysis-to-defender'
         );
-
         $role = Role::create(['name' => 'legal-adviser']);
         $role->givePermissionTo(
             'register-activities',
@@ -178,7 +166,6 @@ class RoleTableSeeder extends Seeder
             'register-individual-activities',
             'send-for-analysis-to-defender'
         );
-
         $role = Role::create(['name' => 'high-school-intern']);
         $role->givePermissionTo(
             'register-activities',
@@ -188,7 +175,6 @@ class RoleTableSeeder extends Seeder
             'forward-attendance',
             'generate-mail'
         );
-
         $role = Role::create(['name' => 'public-defender']);
         $role->givePermissionTo(
             'register-activities',
@@ -221,7 +207,6 @@ class RoleTableSeeder extends Seeder
             'read-attendance',
             'register-individual-activities'
         );
-
         $role = Role::create(['name' => 'psychologist']);
         $role->givePermissionTo(
             'register-activities',
