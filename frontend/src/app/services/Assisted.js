@@ -17,12 +17,7 @@ class Assisted extends Service {
   }
 
   async list (page = '1') {
-    try {
-      const result = await this.get(`/assisted/?page=${page}`)
-      return result.data
-    } catch (error) {
-      throw error
-    }
+    return this.get(`/assisted?page=${page}`)
   }
 }
 
