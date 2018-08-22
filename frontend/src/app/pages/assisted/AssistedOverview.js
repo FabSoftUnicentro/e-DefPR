@@ -49,6 +49,7 @@ class AssistedOverview extends Component {
     this.setState({ data: undefined})
     assistedService.list(page)
       .then(result => {
+        console.log(result)
         this.setState({ data: result.data, total: result.meta.total })
       })
       .catch(() => message.error('Não foi possível acessar as informações dos assistidos.'))
