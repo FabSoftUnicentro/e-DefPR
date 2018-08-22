@@ -7,7 +7,7 @@ class Assisted extends Service {
 
       if (result.statusCode === 'SUCCESS') {
         return result
-      } 
+      }
 
       return result
     } catch (error) {
