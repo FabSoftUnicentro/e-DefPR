@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Page from '../../components/page/Page'
 import Form from '../../components/form/Form'
 import message from 'antd/lib/message'
-import { userService } from '../../services'
+import { assistedService } from '../../services'
 import { Redirect } from 'react-router-dom'
 
 class AssistedCreate extends Component {
@@ -22,7 +22,7 @@ class AssistedCreate extends Component {
     const createAssisted = message.loading('Cadastrando assistido', 0)
 
     try {
-      const result = await userService.create(values)
+      const result = await assistedService.create(values)
 
       if (result.status === 201) {
         createAssisted()
@@ -75,13 +75,13 @@ class AssistedCreate extends Component {
 
               <Form.DatePicker
                 label='Data de nascimento'
-                name='birth_date'
+                name='birthDate'
                 placeholder='dia/mês/ano'
               />
 
               <Form.Inline>
                 <Form.TextField label='RG' name='rg' />
-                <Form.TextField label='Orgão emissor' name='rg_issuer' />
+                <Form.TextField label='Orgão emissor' name='rgIssuer' />
               </Form.Inline>
 
               <Form.Select label='Gênero' name='gender' options={[
@@ -91,7 +91,7 @@ class AssistedCreate extends Component {
 
               <Form.CitySelect label='Cidade natal' name='birthplace' />
 
-              <Form.Select label='Estado civil' name='marital_status' options={[
+              <Form.Select label='Estado civil' name='maritalStatus' options={[
                 { value: 'solteiro', name: 'Solteiro(a)' },
                 { value: 'casado', name: 'Casado(a)' },
                 { value: 'separado/divorciado', name: 'Separado(a)/Divorciado(a)' },
