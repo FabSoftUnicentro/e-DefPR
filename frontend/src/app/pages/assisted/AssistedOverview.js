@@ -46,7 +46,7 @@ class AssistedOverview extends Component {
   }
 
   onChangePage (page, pageSize) {
-    this.setState({ data: undefined})
+    this.setState({ data: undefined })
     assistedService.list(page)
       .then(result => {
         console.log(result)
