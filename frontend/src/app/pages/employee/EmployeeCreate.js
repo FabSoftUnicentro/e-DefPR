@@ -109,7 +109,7 @@ class EmployeeCreate extends Component {
                 { value: 'F', name: 'Feminino' }
               ]} />
 
-              <Form.CitySelect label='Cidade natal' name='  ' />
+              <Form.CitySelect label='Cidade natal' name='birthplace' />
 
               <Form.Select label='Estado civil' name='maritalStatus' options={[
                 { value: 'solteiro', name: 'Solteiro(a)' },
