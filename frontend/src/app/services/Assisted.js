@@ -5,9 +5,8 @@ class Assisted extends Service {
     try {
       const result = await this.post('/assisted', account)
 
-      if (result.statusCode === 'SUCCESS') {
-        return result
-      }
+      if (result.statusCode === 'SUCCESS') { return result }
+
       return result
     }
     catch (error) {
