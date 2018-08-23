@@ -32,7 +32,6 @@ class AssistedCreate extends Component {
         this.setState({
           redirect: true
         })
-
       } else if (result.status === 403) {
         message.error('Preencha corretamente as informações!')
       } else {
