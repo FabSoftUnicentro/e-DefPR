@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Page from '../../components/page/Page'
 import Form from '../../components/form/Form'
 import message from 'antd/lib/message'
+import Icon from 'antd/lib/icon'
+import Button from 'antd/lib/button'
 import { userService } from '../../services'
 import { Redirect } from 'react-router-dom'
 
@@ -139,6 +141,7 @@ class EmployeeCreate extends Component {
                 <Form.TextField label='Senha' name='password' />
               </Form.Inline>
             </Form.Step>
+            <Button size='large'type='primary'htmlType='submit'>Salvar <Icon type='check' /></Button>
           </Form>
         </div>
       </Page.Context>
