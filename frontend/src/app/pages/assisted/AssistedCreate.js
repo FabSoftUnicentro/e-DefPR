@@ -18,7 +18,6 @@ class AssistedCreate extends Component {
   }
 
   async onSubmit (values) {
-    console.log(values)
     values.addresses = [ values.address ]
 
     const removeCreatingMessage = message.loading('Cadastrando assistido', 0)
