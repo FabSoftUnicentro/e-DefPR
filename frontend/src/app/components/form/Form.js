@@ -1,7 +1,5 @@
 import React, { Component, Children } from 'react'
 import { Form as FinalForm, Field } from 'react-final-form'
-import Icon from 'antd/lib/icon'
-import Button from 'antd/lib/button'
 import Card from 'antd/lib/card'
 import Input from 'antd/lib/input'
 import Select from 'antd/lib/select'
@@ -114,7 +112,6 @@ class Form extends Component {
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           { children }
-          <Button size='large'type='primary'htmlType='submit'>Salvar <Icon type='check' /></Button>
         </form>
       )}
     />
