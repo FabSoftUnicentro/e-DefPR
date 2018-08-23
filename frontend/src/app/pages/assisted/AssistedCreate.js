@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Page from '../../components/page/Page'
 import Form from '../../components/form/Form'
 import message from 'antd/lib/message'
+import Icon from 'antd/lib/icon'
+import Button from 'antd/lib/button'
 import { assistedService } from '../../services'
 import { Redirect } from 'react-router-dom'
 
@@ -19,29 +21,27 @@ class AssistedCreate extends Component {
     console.log(values)
     values.addresses = [ values.address ]
 
-    const createAssisted = message.loading('Cadastrando assistido', 0)
+    const removeCreatingMessage = message.loading('Cadastrando assistido', 0)
 
     try {
       const result = await assistedService.create(values)
 
       if (result.status === 201) {
-        createAssisted()
         message.success('Assistido cadastrado com sucesso!')
 
         this.setState({
           redirect: true
         })
 
-        return createAssisted()
       } else if (result.status === 403) {
-        createAssisted()
         message.error('Preencha corretamente as informações!')
+      } else {
+        return message.error('Não foi possível cadastrar o assistido!', 2)
       }
-
-      createAssisted()
-      return message.error('Não foi possível cadastrar o assistido!', 2)
     } catch (error) {
-      console.log(error)
+      return message.error('Erro inesperado, tente novamente!', 2)
+    } finally {
+      removeCreatingMessage()
     }
   }
 
@@ -138,6 +138,7 @@ class AssistedCreate extends Component {
                 <Form.TextField label='E-mail' name='email' />
               </Form.Inline>
             </Form.Step>
+            <Button size='large'type='primary'htmlType='submit'>Salvar <Icon type='check' /></Button>
           </Form>
         </div>
       </Page.Context>
