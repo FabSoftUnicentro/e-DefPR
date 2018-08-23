@@ -22,6 +22,12 @@ Route::prefix('user')->group(function () {
     Route::group(['middleware' => ['permission:register-employee']], function () {
         Route::post('/', 'Api\UserController@store')->middleware('auth:api');
     });
+    Route::group(['middleware' => ['permission:assign-permission']], function () {
+        Route::put('/{id}/assign-permission/{permission}', 'Api\UserController@assignPermission')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:assign-role']], function () {
+        Route::put('/{id}/assign-role/{role}', 'Api\UserController@assignRole')->middleware('auth:api');
+    });
     Route::group(['middleware' => ['permission:update-employee']], function () {
         Route::put('/{id}', 'Api\UserController@update')->middleware('auth:api');
     });
@@ -92,6 +98,9 @@ Route::prefix('role')->group(function () {
     Route::group(['middleware' => ['permission:register-role']], function () {
         Route::post('/', 'Api\RoleController@store')->middleware('auth:api');
     });
+    Route::group(['middleware' => ['permission:assign-permission']], function () {
+        Route::put('/{id}/assign-permission/{permission}', 'Api\RoleController@assignPermission')->middleware('auth:api');
+    });
     Route::group(['middleware' => ['permission:update-role']], function () {
         Route::put('/{id}', 'Api\RoleController@update')->middleware('auth:api');
     });
@@ -115,12 +124,5 @@ Route::prefix('permission')->group(function () {
     });
     Route::group(['middleware' => ['permission:delete-permission']], function () {
         Route::delete('/{id}', 'Api\PermissionController@destroy')->middleware('auth:api');
-    });
-});
-
-// Assign permission to user
-Route::prefix('assign')->group(function () {
-    Route::group(['middleware' => ['permission:assign-permission']], function () {
-        Route::post('/', 'Api\AssignPermissionController@store')->middleware('auth:api');
     });
 });
