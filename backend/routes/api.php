@@ -22,10 +22,10 @@ Route::prefix('user')->group(function () {
     Route::group(['middleware' => ['permission:register-employee']], function () {
         Route::post('/', 'Api\UserController@store')->middleware('auth:api');
     });
-    Route::group(['middleware' => ['permission:assign-permission']], function () {
+    Route::group(['middleware' => ['permission:assign-user-permission']], function () {
         Route::put('/{id}/assign-permission/{permission}', 'Api\UserController@assignPermission')->middleware('auth:api');
     });
-    Route::group(['middleware' => ['permission:assign-role']], function () {
+    Route::group(['middleware' => ['permission:assign-user-role']], function () {
         Route::put('/{id}/assign-role/{role}', 'Api\UserController@assignRole')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-employee']], function () {
@@ -98,7 +98,7 @@ Route::prefix('role')->group(function () {
     Route::group(['middleware' => ['permission:register-role']], function () {
         Route::post('/', 'Api\RoleController@store')->middleware('auth:api');
     });
-    Route::group(['middleware' => ['permission:assign-permission']], function () {
+    Route::group(['middleware' => ['permission:assign-role-permission']], function () {
         Route::put('/{id}/assign-permission/{permission}', 'Api\RoleController@assignPermission')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-role']], function () {
