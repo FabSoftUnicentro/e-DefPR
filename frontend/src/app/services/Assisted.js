@@ -2,17 +2,7 @@ import Service from './Service'
 
 class Assisted extends Service {
   async create (account) {
-    try {
-      const result = await this.post('/assisted', account)
-
-      if (result.statusCode === 'SUCCESS') {
-        return result
-      }
-
-      return result
-    } catch (error) {
-      throw error
-    }
+    return this.post('/assisted', account)
   }
 
   async list (page = '1') {
