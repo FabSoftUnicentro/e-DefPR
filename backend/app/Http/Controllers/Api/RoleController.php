@@ -109,4 +109,24 @@ class RoleController extends Controller
             ], Response::HTTP_NOT_FOUND);
         }
     }
+
+    /**
+     * @param $id
+     * @param $permission
+     * @return RoleResource|JsonResponse
+     */
+    public function assignPermission($id, $permission)
+    {
+        $role = Role::findOrFail($id);
+
+        try {
+            $role->givePermissionTo($permission);
+
+            return new RoleResource($role);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
 }
