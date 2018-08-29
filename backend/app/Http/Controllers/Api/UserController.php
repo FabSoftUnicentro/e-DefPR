@@ -226,6 +226,27 @@ class UserController extends Controller
 
     /**
      * @param $id
+     * @param $permission
+     * @return UserResource|JsonResponse
+     */
+    public function unassignPermission($id, $permission)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->revokePermissionTo($permission);
+
+            return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+
+    /**
+     * @param $id
      * @param $role
      * @return UserResource|JsonResponse
      */
@@ -235,6 +256,26 @@ class UserController extends Controller
 
         try {
             $user->assignRole($role);
+
+            return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $role
+     * @return UserResource|JsonResponse
+     */
+    public function unassignRole($id, $role)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->removeRole($role);
 
             return new UserResource($user);
         } catch (\Exception $e) {
