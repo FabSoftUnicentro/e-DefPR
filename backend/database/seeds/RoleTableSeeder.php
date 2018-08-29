@@ -1,7 +1,9 @@
 <?php
+
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+
 class RoleTableSeeder extends Seeder
 {
     /**
@@ -63,7 +65,13 @@ class RoleTableSeeder extends Seeder
             'update-role',
             'read-role',
             'delete-role',
-            'assign-permission'
+            'assign-user-permission',
+            'assign-role-permission',
+            'assign-user-role',
+            'list-permission',
+            'register-permission',
+            'update-permission',
+            'delete-permission'
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
@@ -205,7 +213,14 @@ class RoleTableSeeder extends Seeder
             'append-protocol-to-process',
             'register-report',
             'read-attendance',
-            'register-individual-activities'
+            'register-individual-activities',
+            'assign-user-role',
+            'assign-role-permission',
+            'assign-user-permission',
+            'list-permission',
+            'register-permission',
+            'update-permission',
+            'delete-permission'
         );
         $role = Role::create(['name' => 'psychologist']);
         $role->givePermissionTo(

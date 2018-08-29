@@ -195,11 +195,52 @@ class UserController extends Controller
             $user = User::where('email', '=', $email)
                 ->where('cpf', '=', $cpf)
                 ->first();
+
             $user->resetPassword();
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
             ], Response::HTTP_NOT_FOUND);
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $permission
+     * @return UserResource|JsonResponse
+     */
+    public function assignPermission($id, $permission)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->givePermissionTo($permission);
+
+            return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $role
+     * @return UserResource|JsonResponse
+     */
+    public function assignRole($id, $role)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->assignRole($role);
+
+            return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
         }
     }
 }
