@@ -188,20 +188,23 @@ class UserController extends Controller
      */
     public function resetPassword(Request $request)
     {
-        try {
-            $email = $request->input('email');
-            $cpf = $request->input('cpf');
+        $email = $request->input('email');
+        $cpf = $request->input('cpf');
 
-            $user = User::where('email', '=', $email)
-                ->where('cpf', '=', $cpf)
-                ->first();
+        $user = User::where('email', '=', $email)
+            ->where('cpf', '=', $cpf)
+            ->first();
 
+        if ($user) {
             $user->resetPassword();
-        } catch (\Exception $e) {
             return JsonResponse::create([
-                'message' => $e->getMessage()
-            ], Response::HTTP_NOT_FOUND);
+                'message' => 'User password reseted with success'
+            ], Response::HTTP_OK);
         }
+
+        return JsonResponse::create([
+            'message' => 'User not found'
+        ], Response::HTTP_NOT_FOUND);
     }
 
     /**
