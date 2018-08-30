@@ -13,7 +13,9 @@ class PageHeader extends Component {
           <Breadcrumb.Item>Home</Breadcrumb.Item>
         </Breadcrumb>
       </div>
-      <div>{ children }</div>
+      <div className='app-page-header-buttons'>
+        { children }
+      </div>
     </div>
   }
 }

@@ -16,11 +16,23 @@ use Illuminate\Http\Request;
 // User routes
 Route::prefix('user')->group(function () {
     Route::post('/authenticate', 'Api\UserController@authenticate');
-    Route::post('/forgot_password', 'Api\UserController@resetPassword')->middleware('auth:api');
+    Route::post('/forgot-password', 'Api\UserController@resetPassword');
     Route::get('/me', 'Api\UserController@info')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-employee']], function () {
         Route::post('/', 'Api\UserController@store')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:assign-user-permission']], function () {
+        Route::put('/{id}/assign-permission/{permission}', 'Api\UserController@assignPermission')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:unassign-user-permission']], function () {
+        Route::put('/{id}/unassign-permission/{permission}', 'Api\UserController@unassignPermission')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:assign-user-role']], function () {
+        Route::put('/{id}/assign-role/{role}', 'Api\UserController@assignRole')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:unassign-user-role']], function () {
+        Route::put('/{id}/unassign-role/{role}', 'Api\UserController@unassignRole')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-employee']], function () {
         Route::put('/{id}', 'Api\UserController@update')->middleware('auth:api');
@@ -91,6 +103,12 @@ Route::prefix('role')->group(function () {
     });
     Route::group(['middleware' => ['permission:register-role']], function () {
         Route::post('/', 'Api\RoleController@store')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:assign-role-permission']], function () {
+        Route::put('/{id}/assign-permission/{permission}', 'Api\RoleController@assignPermission')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:unassign-role-permission']], function () {
+        Route::put('/{id}/unassign-permission/{permission}', 'Api\RoleController@unassignPermission')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-role']], function () {
         Route::put('/{id}', 'Api\RoleController@update')->middleware('auth:api');
