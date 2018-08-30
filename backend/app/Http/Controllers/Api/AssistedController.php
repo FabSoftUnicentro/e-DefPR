@@ -37,12 +37,13 @@ class AssistedController extends Controller
         $assisted->name = $request->input('name');
         $assisted->email = $request->input('email');
         $assisted->cpf = $request->input('cpf');
-        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate') ? $request->input('birthDate') : $assisted->birth_date);
+        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $assisted->birth_date);
         $assisted->birth_date = $birthDate;
+        $assisted->birth_place = json_encode($request->input('birth_place'));
         $assisted->rg = $request->input('rg');
-        $assisted->rg_issuer = $request->input('rgIssuer');
+        $assisted->rg_issuer = $request->input('rg_issuer');
         $assisted->gender = $request->input('gender');
-        $assisted->marital_status = $request->input('maritalStatus');
+        $assisted->marital_status = $request->input('marital_status');
         $assisted->addresses = json_encode($request->input('addresses'));
         $assisted->note = $request->input('note');
         $assisted->profession = $request->input('profession');
