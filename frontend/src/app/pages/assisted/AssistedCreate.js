@@ -5,7 +5,28 @@ import message from 'antd/lib/message'
 import Icon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
 import { assistedService } from '../../services'
+import * as yup from 'yup'
 import { Redirect } from 'react-router-dom'
+
+const validateSchema = yup.object().shape({
+  email: yup.string().email().required('Informe o email do assistido'),
+  address: yup.object().shape({
+    neighbourhood: yup.string().required('Informe o bairro do assistido'),
+    city: yup.string().required('Informe a cidade do assistido'),
+    number: yup.number().required('Informe o número residencial do assistido'),
+    street: yup.string().required('Informe a rua do assistido'),
+    cep: yup.string().min(2, 'O CEP deve ter pelo menos 2 caracteres').required('Informe o CEP do assistido'),
+  }),
+  profession: yup.string().required('Informe a profissão do assistido'),
+  maritalStatus: yup.string().required('Informe o estado civil do assistido'),
+  birthplace: yup.string().required('Informe o local de nascimento do assistido'),
+  gender: yup.string().required('Informe o genêro do assistido'),
+  rgIssuer: yup.string().min(2, 'O orgão emissor deve ter pelo menos 2 caracteres').required('Informe o nome do assistido').required('Informe o orgão emissor'),
+  rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').required('Informe o nome do assistido'),
+  birthDate: yup.string().required('Informe a data de nascimento do assistido'),
+  cpf: yup.string().matches(/([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
+  name: yup.string().min(3, 'O nome do assistido deve ter pelo menos 3 caracteres').required('Informe o nome do assistido')
+})
 
 class AssistedCreate extends Component {
   constructor (props) {
@@ -18,6 +39,7 @@ class AssistedCreate extends Component {
   }
 
   async onSubmit (values) {
+    console.log("a")
     values.addresses = [ values.address ]
 
     const removeCreatingMessage = message.loading('Cadastrando assistido', 0)
@@ -58,7 +80,7 @@ class AssistedCreate extends Component {
       <Page.Context>
         <h2>Cadastrar assistido</h2>
         <div className='app-page-box'>
-          <Form onSubmit={this.onSubmit} >
+          <Form onSubmit={this.onSubmit} validateSchema={validateSchema} >
             <Form.Step title='Informações pessoais'>
               <Form.TextField
                 label='Nome'
