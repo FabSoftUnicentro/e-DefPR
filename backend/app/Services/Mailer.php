@@ -28,9 +28,11 @@ class Mailer
             $mail->Port = env('MAIL_PORT');
             $mail->CharSet = 'utf-8';
             $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            
             foreach ($addresses as $address) {
                 $mail->addAddress($address['email'], $address['name']);
             }
+            
             $mail->Subject = $subject;
             $mail->isHTML(true);
             $mail->Body = $body;

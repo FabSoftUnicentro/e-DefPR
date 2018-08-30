@@ -196,10 +196,17 @@ class UserController extends Controller
             ->first();
 
         if ($user) {
-            $user->resetPassword();
-            return JsonResponse::create([
-                'message' => 'User password reseted with success'
-            ], Response::HTTP_OK);
+            try {
+                $user->resetPassword();
+    
+                return JsonResponse::create([
+                    'message' => 'User password reseted with success'
+                ], Response::HTTP_OK);
+            } catch(\Exception $e) {
+                return JsonResponse::create([
+                    'message' => $e->getMessage()
+                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
         }
 
         return JsonResponse::create([
