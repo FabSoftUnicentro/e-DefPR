@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
 import Icon from 'antd/lib/icon'
-import { Link } from 'react-router-dom'
 import Button from 'antd/lib/button'
+import { Link } from 'react-router-dom'
 import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
-import { authentication, userService } from '../../services'
+import { authentication, recoveryPasswordService } from '../../services'
 import { Redirect } from 'react-router-dom'
-import * as yup from 'yup'
 import Form from '../../components/form/Form'
 
 import './Signin.css'
-
-const validateSchema = yup.object().shape({
-  password: yup.string().min(3, 'A senha deve ter pelo menos 3 caracteres').required('Informe sua senha'),
-  login: yup.string().min(3, 'O usuário deve ter pelo menos 3 caracteres').required('Informe seu usuário')
-})
 
 class Signin extends Component {
   constructor (props) {
@@ -29,26 +23,20 @@ class Signin extends Component {
   }
 
   async onSubmit (values) {
-    const { login, password } = values
-    this.setState({ isLoading: true })
+    const { email, cpf } = values
+    this.setState({ isLoading: true })  
 
-    try {
-      const result = await authentication.signin(login, password)
+    try {    
+      const result = await recoveryPasswordService.recovery(email, cpf)
+      console.log('Result:')
+      console.log(result)
       if (result.status === 200) {
-        const account = await userService.me()
-        console.log(account)
-        if (account) {
-          message.success(`Bem-vindo de volta, ${account.name}!`, 2)
-        }
-
-        return
-      } else if (result.status === 401) {
-        return { login: 'Este usuário não existe' }
-      } else if (result.status === 404) {
-        return { password: 'Esta senha não está correta' }
+        console.log('ok')
+      } else {
+        console.log('nop')
       }
 
-      return message.error('Não foi possível realizar login. Tente novamente')
+      return message.error('Ocorreu algum. Tente novamente')
     } catch (error) {
       console.log(error)
     } finally {
@@ -67,30 +55,29 @@ class Signin extends Component {
       <div className='app-signin-form'>
         <h1>
           <Icon type='lock' style={{marginRight: 16}} />
-          <span>Login e-DefPR</span>
+          <span>Recuperar Senha</span>
         </h1>
         <div>
           <Form
             onSubmit={this.onSubmit}
-            validateSchema={validateSchema}
           >
             <Form.TextField
               size='large'
-              label='Usuário'
-              name='login'
-              placeholder='Informe seu CPF ou e-mail'
+              label='E-mail'
+              name='email'
+              placeholder='Informe seu e-mail'
               component={InputAdapter}
               prefix={<Icon type='user' />}
             />
 
             <Form.TextField
               size='large'
-              label='Senha'
-              type='password'
-              name='password'
-              placeholder='Informe sua senha'
+              label='CPF'
+              type='text'
+              name='cpf'
+              placeholder='Informe seu CPF'
               component={InputAdapter}
-              prefix={<Icon type='lock' />}
+              prefix={<Icon type="idcard" />}
             />
 
             <Button
@@ -101,21 +88,22 @@ class Signin extends Component {
               disabled={isLoading}
               loading={isLoading}
             >
-              Login
+              Recuperar Senha
             </Button>
           </Form>
 
           <div style={{textAlign: 'center'}}>
-            <Link to='/signin/recovery-password' >Esqueceu sua senha?</Link>
+            <Link to='/signin' >Voltar para a tela de login</Link>            
           </div>
-        </div>
 
-        <footer>
+          <footer>
           <a href=''>Ajuda</a>
           <a href=''>Wikidocs</a>
           <a href='https://github.com/C3DSU/e-DefPR' target='_new'>Github</a>
           <a href='https://www3.unicentro.br/' target='_new'>Unicentro</a>
         </footer>
+
+        </div>
       </div>
     </div>
   }

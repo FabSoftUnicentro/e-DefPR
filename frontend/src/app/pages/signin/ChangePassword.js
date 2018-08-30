@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import Icon from 'antd/lib/icon'
-import { Link } from 'react-router-dom'
 import Button from 'antd/lib/button'
 import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
 import { authentication, userService } from '../../services'
+import RecoveryPassword from '../../services/RecoveryPasswordService'
 import { Redirect } from 'react-router-dom'
-import * as yup from 'yup'
 import Form from '../../components/form/Form'
+import * as yup from 'yup'
 
 import './Signin.css'
 
 const validateSchema = yup.object().shape({
-  password: yup.string().min(3, 'A senha deve ter pelo menos 3 caracteres').required('Informe sua senha'),
-  login: yup.string().min(3, 'O usuário deve ter pelo menos 3 caracteres').required('Informe seu usuário')
+  password: yup.string().required('Digite uma nova senha').min(3, "A senha deve ter pelo menos 3 caracteres"),
+  confirmPassword: yup.string().oneOf([yup.ref('password'), null], "As senhas não são iguais").required('Digite novamente a senha')
 })
 
 class Signin extends Component {
@@ -29,26 +29,18 @@ class Signin extends Component {
   }
 
   async onSubmit (values) {
-    const { login, password } = values
+    const { password, confirmPassword } = values
     this.setState({ isLoading: true })
 
     try {
-      const result = await authentication.signin(login, password)
+      const result = await RecoveryPassword.change(password, confirmPassword, userService.me())
       if (result.status === 200) {
-        const account = await userService.me()
-        console.log(account)
-        if (account) {
-          message.success(`Bem-vindo de volta, ${account.name}!`, 2)
-        }
-
-        return
-      } else if (result.status === 401) {
-        return { login: 'Este usuário não existe' }
-      } else if (result.status === 404) {
-        return { password: 'Esta senha não está correta' }
+        console.log('ok')
+      } else {
+        console.log('nop')
       }
 
-      return message.error('Não foi possível realizar login. Tente novamente')
+      return message.error('Ocorreu algum erro. Tente novamente')
     } catch (error) {
       console.log(error)
     } finally {
@@ -67,7 +59,7 @@ class Signin extends Component {
       <div className='app-signin-form'>
         <h1>
           <Icon type='lock' style={{marginRight: 16}} />
-          <span>Login e-DefPR</span>
+          <span>Alterar Senha</span>
         </h1>
         <div>
           <Form
@@ -76,21 +68,22 @@ class Signin extends Component {
           >
             <Form.TextField
               size='large'
-              label='Usuário'
-              name='login'
-              placeholder='Informe seu CPF ou e-mail'
+              label='Nova senha'
+              name='password'
+              type='password'
+              placeholder='Senha'
               component={InputAdapter}
-              prefix={<Icon type='user' />}
+              prefix={<Icon type='lock' />}
             />
 
             <Form.TextField
               size='large'
-              label='Senha'
+              label='Confirme a nova senha'
               type='password'
-              name='password'
-              placeholder='Informe sua senha'
+              name='confirmPassword'
+              placeholder='Confirmação de senha'
               component={InputAdapter}
-              prefix={<Icon type='lock' />}
+              prefix={<Icon type="lock" />}
             />
 
             <Button
@@ -101,21 +94,10 @@ class Signin extends Component {
               disabled={isLoading}
               loading={isLoading}
             >
-              Login
+              Alterar senha
             </Button>
-          </Form>
-
-          <div style={{textAlign: 'center'}}>
-            <Link to='/signin/recovery-password' >Esqueceu sua senha?</Link>
-          </div>
+          </Form>        
         </div>
-
-        <footer>
-          <a href=''>Ajuda</a>
-          <a href=''>Wikidocs</a>
-          <a href='https://github.com/C3DSU/e-DefPR' target='_new'>Github</a>
-          <a href='https://www3.unicentro.br/' target='_new'>Unicentro</a>
-        </footer>
       </div>
     </div>
   }

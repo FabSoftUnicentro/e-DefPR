@@ -5,7 +5,7 @@ import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Dashboard from './pages/Dashboard'
 import Employee from './pages/employee/Employee'
-import Signin from './pages/signin/Signin'
+import Authentication from './pages/signin/Authentication'
 import { authentication } from './services'
 
 import './App.css'
@@ -64,7 +64,7 @@ class App extends Component {
 
     return <Router history={browserHistory}>
       <Fragment>
-        <Route path='/signin' component={Signin} />
+        <Route path='/signin' component={Authentication} />
         <PrivateRoute path='/' component={() => <Home pathname={pathname} />} />
       </Fragment>
     </Router>
