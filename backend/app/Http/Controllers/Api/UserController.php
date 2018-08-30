@@ -202,7 +202,7 @@ class UserController extends Controller
                 return JsonResponse::create([
                     'message' => 'User password reseted with success'
                 ], Response::HTTP_OK);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 return JsonResponse::create([
                     'message' => $e->getMessage()
                 ], Response::HTTP_INTERNAL_SERVER_ERROR);
