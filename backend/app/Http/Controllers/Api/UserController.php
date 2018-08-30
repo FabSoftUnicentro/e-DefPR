@@ -254,7 +254,6 @@ class UserController extends Controller
         }
     }
 
-
     /**
      * @param $id
      * @param $role
