@@ -16,25 +16,25 @@ class CreateUsersTable extends Migration
         Schema::create(
             'users',
             function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('cpf', 11)->unique();
-            $table->date('birth_date');
-            $table->json('birth_place');
-            $table->string('rg');
-            $table->string('rg_issuer');
-            $table->enum('gender', ['M', 'F']);
-            // $table->foreign() cidade
-            $table->string('marital_status');
-            $table->string('profession');
-            $table->text('note')->nullable();
-            $table->json('addresses');
-            $table->boolean('must_change_password')->default(true);
-            $table->rememberToken();
-            $table->timestamps();
-        });
+                $table->increments('id');
+                $table->string('name');
+                $table->string('email')->unique();
+                $table->string('password');
+                $table->string('cpf', 11)->unique();
+                $table->date('birth_date');
+                $table->json('birth_place');
+                $table->string('rg');
+                $table->string('rg_issuer');
+                $table->enum('gender', ['M', 'F']);
+                // $table->foreign() cidade
+                $table->string('marital_status');
+                $table->string('profession');
+                $table->text('note')->nullable();
+                $table->json('addresses');
+                $table->boolean('must_change_password')->default(true);
+                $table->rememberToken();
+                $table->timestamps();
+            });
     }
 
     /**
@@ -46,5 +46,5 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
-    
+
 }
