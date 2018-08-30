@@ -13,8 +13,7 @@ class Assisted extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'cpf', 'birth_date', 'rg', 'rg_issuer', 'gender', 'marital_status',
-        'profession', /*'counter_part',*/ 'note', 'addresses',
+        'name', 'email', 'cpf', 'birth_date', 'birth_place', 'rg', 'rg_issuer', 'gender', 'marital_status', 'profession', /*'counter_part',*/ 'note', 'addresses',
     ];
 
     /**
