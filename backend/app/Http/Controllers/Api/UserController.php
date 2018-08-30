@@ -29,7 +29,7 @@ class UserController extends Controller
             ->first();
 
         if (!$user) {
-            return JsonResponse::create([], Response::HTTP_UNAUTHORIZED);
+            return JsonResponse::create([], Response::HTTP_NOT_FOUND);
         }
 
         if ($user && Hash::check($data['password'], $user->getAuthPassword())) {
@@ -42,7 +42,7 @@ class UserController extends Controller
             ], Response::HTTP_OK);
         }
 
-        return JsonResponse::create([], Response::HTTP_NOT_FOUND);
+        return JsonResponse::create([], Response::HTTP_UNAUTHORIZED);
     }
 
     /**
@@ -188,18 +188,110 @@ class UserController extends Controller
      */
     public function resetPassword(Request $request)
     {
-        try {
-            $email = $request->input('email');
-            $cpf = $request->input('cpf');
+        $email = $request->input('email');
+        $cpf = $request->input('cpf');
 
-            $user = User::where('email', '=', $email)
-                ->where('cpf', '=', $cpf)
-                ->first();
-            $user->resetPassword();
+        $user = User::where('email', '=', $email)
+            ->where('cpf', '=', $cpf)
+            ->first();
+
+        if ($user) {
+            try {
+                $user->resetPassword();
+    
+                return JsonResponse::create([
+                    'message' => 'User password reseted with success'
+                ], Response::HTTP_OK);
+            } catch(\Exception $e) {
+                return JsonResponse::create([
+                    'message' => $e->getMessage()
+                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+        }
+
+        return JsonResponse::create([
+            'message' => 'User not found'
+        ], Response::HTTP_NOT_FOUND);
+    }
+
+    /**
+     * @param $id
+     * @param $permission
+     * @return UserResource|JsonResponse
+     */
+    public function assignPermission($id, $permission)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->givePermissionTo($permission);
+
+            return new UserResource($user);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
-            ], Response::HTTP_NOT_FOUND);
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $permission
+     * @return UserResource|JsonResponse
+     */
+    public function unassignPermission($id, $permission)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->revokePermissionTo($permission);
+
+            return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+
+    /**
+     * @param $id
+     * @param $role
+     * @return UserResource|JsonResponse
+     */
+    public function assignRole($id, $role)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->assignRole($role);
+
+            return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $role
+     * @return UserResource|JsonResponse
+     */
+    public function unassignRole($id, $role)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->removeRole($role);
+
+            return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
         }
     }
 }
