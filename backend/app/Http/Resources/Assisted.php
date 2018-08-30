@@ -28,6 +28,7 @@ class Assisted extends JsonResource
             'profession' => $this->profession,
             //'counter_part' => $this->counter_part,
             'note' => $this->note,
+            'birth_place' => json_decode($this->birth_place, true),
             'addresses' => json_decode($this->addresses, true)
         ];
     }

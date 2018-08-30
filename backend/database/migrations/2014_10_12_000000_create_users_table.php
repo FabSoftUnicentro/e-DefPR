@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('cpf', 11)->unique();
             $table->date('birth_date');
+            $table->json('birth_place');
             $table->string('rg');
             $table->string('rg_issuer');
             $table->enum('gender', ['M', 'F']);
@@ -43,5 +44,5 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
-    
+
 }
