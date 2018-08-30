@@ -7,13 +7,14 @@ const IDX = 'USER_IDX'
 class Service {
   async post (path = '/', body) {
     try {
+      console.log(body)
       const response = await fetch(`${URL}${path}`, {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify(body),
         headers: { ...this.headers }
       })
-
+      console.log(response)
       return {
         status: response.status,
         ...(await response.json())
