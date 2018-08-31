@@ -19,7 +19,8 @@ class CreateAssistedTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('cpf', 11)->unique();
             $table->date('birth_date');
-            $table->json('birth_place');
+            $table->integer('birth_place')->unsigned();
+            $table->foreign('birth_place')->references('id')->on('cities');
             $table->string('rg');
             $table->string('rg_issuer');
             $table->enum('gender', ['M', 'F']);
