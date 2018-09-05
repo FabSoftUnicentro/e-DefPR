@@ -16,11 +16,11 @@ const validateSchema = yup.object().shape({
   marital_status: yup.string().required('Informe o estado civil do funcionário'),
   profession: yup.string().required('Informe a profissão do funcionário'),
   email: yup.string().email().required('Informe o e-mail do funcionário'),
-  address: { 
+  address: yup.object({ 
     cep: yup.string().required('Informe o CEP do endereço do funcionário'),
     number: yup.number().positive().required('Informe o número do endereço do funcionário'),
     neighbourhood: yup.string().required('Informe o bairro do endereço do funcionário')
-  },
+  }),
   email: yup.string().email(),
   password: yup.string().required('Informe a senha de acesso do funcionário')
 })
