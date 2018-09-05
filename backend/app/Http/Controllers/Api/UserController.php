@@ -69,8 +69,8 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->cpf = $request->input('cpf');
-        $birth_date = DateTime::createFromFormat('d/m/Y', $request->input('birth_date'));
-        $user->birth_date = $birth_date;
+        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date'));
+        $user->birth_date = $birthDate;
         $user->birth_place = $request->input('birth_place');
         $user->rg = $request->input('rg');
         $user->rg_issuer = $request->input('rg_issuer');
@@ -126,8 +126,8 @@ class UserController extends Controller
             $user->email = $request->input('email') ? $request->input('email') : $user->email;
             $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
             $user->cpf = $request->input('cpf') ? $request->input('cpf') : $user->cpf;
-            $birth_date = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $user->birth_date);
-            $user->birth_date = $birth_date;
+            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $user->birth_date);
+            $user->birth_date = $birthDate;
             $user->rg = $request->input('rg') ? $request->input('rg') : $user->rg;
             $user->rg_issuer = $request->input('rg_issuer') ? $request->input('rg_issuer') : $user->rg_issuer;
             $user->gender = $request->input('gender') ? $request->input('gender') : $user->gender;
