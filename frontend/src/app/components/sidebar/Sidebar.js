@@ -23,7 +23,7 @@ class Sidebar extends Component {
         defaultOpenKeys={['sub2']}
       >
         <Menu.Item key='/'><Icon type='home' /> <Link to='/'>Visão geral</Link></Menu.Item>
-        <Menu.Item key='a-2'><Icon type='team' /> Assistidos</Menu.Item>
+        <Menu.Item key='/assisted'><Link to='/assisted'/><Icon type='team' /> Assistidos</Menu.Item>
         <Menu.Item key='a-3'><Icon type='solution' /> Processos</Menu.Item>
         <Menu.SubMenu key='sub1' title={<span><Icon type='profile' /><span>Triagens</span></span>}>
           <Menu.Item key='b-1'>Triagem inicial</Menu.Item>

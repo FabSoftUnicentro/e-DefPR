@@ -14,8 +14,8 @@ class User extends Service {
     return result.data
   }
 
-  async list () {
-    return this.get('/user')
+  async list (page = '1') {
+    return this.get(`/user?page=${page}`)
   }
 
   async create (user) {

@@ -4,30 +4,10 @@ import Form from '../../components/form/Form'
 import message from 'antd/lib/message'
 import Icon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
-import { userService } from '../../services'
+import { assistedService } from '../../services'
 import { Redirect } from 'react-router-dom'
-import * as yup from 'yup'
 
-const validateSchema = yup.object().shape({
-  name: yup.string().required('Informe o nome do funcionário'),
-  cpf: yup.string().required('Informe o CPF do funcionário'),
-  birthDate: yup.string().required('Informe a data de nascimento do funcionário'),
-  rg: yup.string().required('Informe o RG do funcionáiro'),
-  rgIssuer: yup.string().required('Informe o orgão emissor do RG do funcionário'),
-  gender: yup.string().max(1).required('Informe o gênero do funcionário'),
-  marital_status: yup.string().required('Informe o estado civil do funcionário'),
-  profession: yup.string().required('Informe a profissão do funcionário'),
-  email: yup.string().email().required('Informe o e-mail do funcionário'),
-  address: yup.object({ 
-    cep: yup.string().required('Informe o CEP do endereço do funcionário'),
-    number: yup.number().positive().required('Informe o número do endereço do funcionário'),
-    neighbourhood: yup.string().required('Informe o bairro do endereço do funcionário')
-  }),
-  email: yup.string().email(),
-  password: yup.string().required('Informe a senha de acesso do funcionário')
-})
-
-class EmployeeCreate extends Component {
+class AssistedCreate extends Component {
   constructor (props) {
     super(props)
     this.onSubmit = this.onSubmit.bind(this)
@@ -38,32 +18,28 @@ class EmployeeCreate extends Component {
   }
 
   async onSubmit (values) {
-    console.log(values)
     values.addresses = [ values.address ]
 
-    const createEmployee = message.loading('Cadastrando funcioonário', 0)
+    const removeCreatingMessage = message.loading('Cadastrando assistido', 0)
 
     try {
-      const result = await userService.create(values)
+      const result = await assistedService.create(values)
 
       if (result.status === 201) {
-        createEmployee()
-        message.success('Funcionário cadastrado com sucesso!')
+        message.success('Assistido cadastrado com sucesso!')
 
         this.setState({
           redirect: true
         })
-
-        return createEmployee()
       } else if (result.status === 403) {
-        createEmployee()
         message.error('Preencha corretamente as informações!')
+      } else {
+        return message.error('Não foi possível cadastrar o assistido!', 2)
       }
-
-      createEmployee()
-      return message.error('Não foi possível cadastrar o funcionário!', 2)
     } catch (error) {
-      console.log(error)
+      return message.error('Erro inesperado, tente novamente!', 2)
+    } finally {
+      removeCreatingMessage()
     }
   }
 
@@ -80,14 +56,14 @@ class EmployeeCreate extends Component {
       <Page.Header />
 
       <Page.Context>
-        <h2>Cadastrar funcionário</h2>
+        <h2>Cadastrar assistido</h2>
         <div className='app-page-box'>
-          <Form onSubmit={this.onSubmit} validateSchema={validateSchema}>
+          <Form onSubmit={this.onSubmit} >
             <Form.Step title='Informações pessoais'>
               <Form.TextField
                 label='Nome'
                 name='name'
-                placeholder='Nome completo do funcionário'
+                placeholder='Nome completo do assistido'
               />
 
               <Form.TextField
@@ -128,7 +104,7 @@ class EmployeeCreate extends Component {
 
               <Form.TextField
                 label='Relatório'
-                name='notes'
+                name='note'
               />
 
             </Form.Step>
@@ -155,10 +131,9 @@ class EmployeeCreate extends Component {
               />
 
             </Form.Step>
-            <Form.Step title='Informações de acesso'>
+            <Form.Step title='Informações de contato'>
               <Form.Inline>
                 <Form.TextField label='E-mail' name='email' />
-                <Form.TextField label='Senha' name='password' type='password' />
               </Form.Inline>
             </Form.Step>
             <Button size='large'type='primary'htmlType='submit'>Salvar <Icon type='check' /></Button>
@@ -169,4 +144,4 @@ class EmployeeCreate extends Component {
   }
 }
 
-export default EmployeeCreate
+export default AssistedCreate
