@@ -9,22 +9,21 @@ import { Redirect } from 'react-router-dom'
 import * as yup from 'yup'
 
 const validateSchema = yup.object().shape({
-  name: yup.string().required('Informe o nome do funcionário'),
-  cpf: yup.string().required('Informe o CPF do funcionário'),
-  birthDate: yup.string().required('Informe a data de nascimento do funcionário'),
-  rg: yup.string().required('Informe o RG do funcionáiro'),
-  rgIssuer: yup.string().required('Informe o orgão emissor do RG do funcionário'),
-  gender: yup.string().max(1).required('Informe o gênero do funcionário'),
-  marital_status: yup.string().required('Informe o estado civil do funcionário'),
-  profession: yup.string().required('Informe a profissão do funcionário'),
+  password: yup.string().required('Informe a senha de acesso do funcionário'),
   email: yup.string().email().required('Informe o e-mail do funcionário'),
-  address: yup.object({ 
-    cep: yup.string().required('Informe o CEP do endereço do funcionário'),
+  address: yup.object().shape({ 
+    neighbourhood: yup.string().required('Informe o bairro do endereço do funcionário'),
     number: yup.number().positive().required('Informe o número do endereço do funcionário'),
-    neighbourhood: yup.string().required('Informe o bairro do endereço do funcionário')
+    cep: yup.string().matches(/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CEP válido')
   }),
-  email: yup.string().email(),
-  password: yup.string().required('Informe a senha de acesso do funcionário')
+  profession: yup.string().required('Informe a profissão do funcionário'),
+  marital_status: yup.string().required('Informe o estado civil do funcionário'),
+  gender: yup.string().max(1).required('Informe o gênero do funcionário'),
+  rg_issuer: yup.string().required('Informe o orgão emissor do RG do funcionário'),
+  rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').required('Informe o RG do funcionáiro'),
+  birth_date: yup.string().required('Informe a data de nascimento do funcionário'),
+  cpf: yup.string().matches(/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
+  name: yup.string().min(3, 'O nome do assistido deve ter pelo menos 3 caracteres').required('Informe o nome do funcionário')
 })
 
 class EmployeeCreate extends Component {
@@ -97,13 +96,13 @@ class EmployeeCreate extends Component {
 
               <Form.DatePicker
                 label='Data de nascimento'
-                name='birthDate'
+                name='birth_date'
                 placeholder='dia/mês/ano'
               />
 
               <Form.Inline>
                 <Form.TextField label='RG' name='rg' />
-                <Form.TextField label='Orgão emissor' name='rgIssuer' />
+                <Form.TextField label='Orgão emissor' name='rg_issuer' />
               </Form.Inline>
 
               <Form.Select label='Gênero' name='gender' options={[
@@ -111,9 +110,9 @@ class EmployeeCreate extends Component {
                 { value: 'F', name: 'Feminino' }
               ]} />
 
-              <Form.CitySelect label='Cidade natal' name='birthplace' />
+              <Form.CitySelect label='Cidade natal' name='birth_place' />
 
-              <Form.Select label='Estado civil' name='maritalStatus' options={[
+              <Form.Select label='Estado civil' name='marital_status' options={[
                 { value: 'solteiro', name: 'Solteiro(a)' },
                 { value: 'casado', name: 'Casado(a)' },
                 { value: 'separado/divorciado', name: 'Separado(a)/Divorciado(a)' },
