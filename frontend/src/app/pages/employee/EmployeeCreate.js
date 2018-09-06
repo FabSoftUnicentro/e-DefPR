@@ -22,7 +22,7 @@ const validateSchema = yup.object().shape({
   rg_issuer: yup.string().required('Informe o orgão emissor do RG do funcionário'),
   rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').required('Informe o RG do funcionáiro'),
   birth_date: yup.string().required('Informe a data de nascimento do funcionário'),
-  cpf: yup.string().matches(/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
+  cpf: yup.string().required('Informe o cpf do funcionário').matches(/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
   name: yup.string().min(3, 'O nome do assistido deve ter pelo menos 3 caracteres').required('Informe o nome do funcionário')
 })
 
@@ -87,32 +87,35 @@ class EmployeeCreate extends Component {
                 label='Nome'
                 name='name'
                 placeholder='Nome completo do funcionário'
+                required
               />
 
               <Form.TextField
                 label='CPF'
                 name='cpf'
+                required
               />
 
               <Form.DatePicker
                 label='Data de nascimento'
                 name='birth_date'
                 placeholder='dia/mês/ano'
+                required
               />
 
               <Form.Inline>
-                <Form.TextField label='RG' name='rg' />
-                <Form.TextField label='Orgão emissor' name='rg_issuer' />
+                <Form.TextField label='RG' name='rg' required />
+                <Form.TextField label='Orgão emissor' name='rg_issuer' required />
               </Form.Inline>
 
-              <Form.Select label='Gênero' name='gender' options={[
+              <Form.Select label='Gênero' name='gender' required options={[
                 { value: 'M', name: 'Masculino' },
                 { value: 'F', name: 'Feminino' }
               ]} />
 
               <Form.CitySelect label='Cidade natal' name='birth_place' />
 
-              <Form.Select label='Estado civil' name='marital_status' options={[
+              <Form.Select label='Estado civil' name='marital_status' required options={[
                 { value: 'solteiro', name: 'Solteiro(a)' },
                 { value: 'casado', name: 'Casado(a)' },
                 { value: 'separado/divorciado', name: 'Separado(a)/Divorciado(a)' },
@@ -123,6 +126,7 @@ class EmployeeCreate extends Component {
               <Form.TextField
                 label='Profissão'
                 name='profession'
+                required
               />
 
               <Form.TextField
@@ -136,11 +140,12 @@ class EmployeeCreate extends Component {
               <Form.TextField
                 label='CEP'
                 name='address[cep]'
+                required
               />
 
               <Form.Inline>
-                <Form.TextField label='Rua' name='address[street]' />
-                <Form.TextField label='Número' name='address[number]' />
+                <Form.TextField label='Rua' name='address[street]' required />
+                <Form.TextField label='Número' name='address[number]' required />
               </Form.Inline>
 
               <Form.Inline>
@@ -156,8 +161,8 @@ class EmployeeCreate extends Component {
             </Form.Step>
             <Form.Step title='Informações de acesso'>
               <Form.Inline>
-                <Form.TextField label='E-mail' name='email' />
-                <Form.TextField label='Senha' name='password' type='password' />
+                <Form.TextField label='E-mail' name='email' required />
+                <Form.TextField label='Senha' name='password' type='password' required />
               </Form.Inline>
             </Form.Step>
             <Button size='large'type='primary'htmlType='submit'>Salvar <Icon type='check' /></Button>
