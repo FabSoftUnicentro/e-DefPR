@@ -48,7 +48,6 @@ class Signin extends Component {
 
       return message.error('Não foi possível realizar login. Tente novamente')
     } catch (error) {
-      
     } finally {
       this.setState({ isLoading: false })
     }
