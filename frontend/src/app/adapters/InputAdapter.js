@@ -7,14 +7,13 @@ const InputAdapter = ({ input: { onChange, value }, required, label, meta, ...re
   return <FormItem
     label={label}
     // style={{margin:0, padding: 0}}
-    {...inputValidateProps(meta)}
+    {...inputValidateProps(meta, required)}
     hasFeedback
     required={required}
   >
     <Input
       label={label}
       onChange={onChange}
-      value={value}
       {...rest}
     />
   </FormItem>
