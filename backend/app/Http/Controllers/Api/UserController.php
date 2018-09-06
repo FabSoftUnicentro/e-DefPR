@@ -71,7 +71,7 @@ class UserController extends Controller
         $user->cpf = $request->input('cpf');
         $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date'));
         $user->birth_date = $birthDate;
-        $user->birth_place = json_encode($request->input('birth_place'));
+        $user->birth_place = $request->input('birth_place');
         $user->rg = $request->input('rg');
         $user->rg_issuer = $request->input('rg_issuer');
         $user->gender = $request->input('gender');
@@ -126,16 +126,16 @@ class UserController extends Controller
             $user->email = $request->input('email') ? $request->input('email') : $user->email;
             $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
             $user->cpf = $request->input('cpf') ? $request->input('cpf') : $user->cpf;
-            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate') ? $request->input('birthDate') : $user->birth_date);
+            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $user->birth_date);
             $user->birth_date = $birthDate;
             $user->rg = $request->input('rg') ? $request->input('rg') : $user->rg;
-            $user->rg_issuer = $request->input('rgIssuer') ? $request->input('rgIssuer') : $user->rg_issuer;
+            $user->rg_issuer = $request->input('rg_issuer') ? $request->input('rg_issuer') : $user->rg_issuer;
             $user->gender = $request->input('gender') ? $request->input('gender') : $user->gender;
-            $user->marital_status = $request->input('maritalStatus') ? $request->input('maritalStatus') : $user->marital_status;
+            $user->marital_status = $request->input('marital_status') ? $request->input('marital_status') : $user->marital_status;
             $user->addresses = $request->input('addresses') ? json_encode($request->input('addresses')) : $user->addresses;
             $user->note = $request->input('note') ? $request->input('note') : $user->note;
             $user->profession = $request->input('profession') ? $request->input('profession') : $user->profession;
-            $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : true;
+            $user->must_change_password = $request->input('must_change_password') ? $request->input('must_change_password') : true;
 
             $user->saveOrFail();
 

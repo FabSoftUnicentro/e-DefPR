@@ -12,7 +12,15 @@ class Postcode extends Model
      * @var array
      */
     protected $fillable = [
-        'cep', 'street', 'complement', 'neighborhood', 'city', 'uf', 'unity', 'ibge_code', 'gia_code'
+        'cep',
+        'street',
+        'complement',
+        'neighborhood',
+        'city',
+        'uf',
+        'unity',
+        'ibge_code',
+        'gia_code'
     ];
 
     /**

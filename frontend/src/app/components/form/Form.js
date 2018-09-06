@@ -66,7 +66,6 @@ class Form extends Component {
   }
 
   async onValidate (values) {
-    console.log(values)
     const { validateSchema } = this.props
     if (!validateSchema) {
       return undefined
