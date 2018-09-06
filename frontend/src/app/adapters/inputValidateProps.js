@@ -1,4 +1,4 @@
-const inputValidateProps = meta => {
+const inputValidateProps = (meta, required) => {
     const validation = {}
     if (meta.dirty && meta.error) {
         validation.validateStatus = 'error'
@@ -8,7 +8,7 @@ const inputValidateProps = meta => {
       validation.help = meta.submitError
     } else if (meta.dirty) {
       validation.validateStatus = 'success' 
-    } else if (meta.touched){
+    }  else if (required && meta.touched){
       validation.validateStatus = 'warning'
       validation.help = 'Preencha corretamente a informação'
     }

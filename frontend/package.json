@@ -4,16 +4,16 @@
   "private": true,
   "dependencies": {
     "antd": "^3.7.2",
-    "final-form": "^4.8.3",
+    "final-form": "^4.10.0",
     "js-cookie": "^2.2.0",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-final-form": "^3.6.4",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-final-form": "^3.6.5",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "styled-components": "^3.3.3",
-    "yup": "^0.26.2"
+    "yup": "^0.26.0"
   },
   "scripts": {
     "start": "react-scripts start",
