@@ -12,14 +12,15 @@ const validateSchema = yup.object().shape({
   password: yup.string().required('Informe a senha de acesso do funcionário'),
   email: yup.string().email().required('Informe o e-mail do funcionário'),
   address: yup.object().shape({ 
-    neighbourhood: yup.string().required('Informe o bairro do endereço do funcionário'),
-    number: yup.number().positive().required('Informe o número do endereço do funcionário'),
+    neighbourhood: yup.string().required('Informe o bairro do funcionário'),
+    city: yup.string().required('Informe a cidade do funcionário'),
+    number: yup.number().positive().required('Informe o número residencial do funcionário'),
     cep: yup.string().required('Informe o CEP do endereço do funcionário')
   }),
   profession: yup.string().required('Informe a profissão do funcionário'),
   marital_status: yup.string().required('Informe o estado civil do funcionário'),
   gender: yup.string().max(1).required('Informe o gênero do funcionário'),
-  rg_issuer: yup.string().required('Informe o orgão emissor do RG do funcionário'),
+  rg_issuer: yup.string().min(2, 'O orgão emissor deve ter pelo menos 2 caracteres').required('Informe o orgão emissor'),
   rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').required('Informe o RG do funcionáiro'),
   birth_date: yup.string().required('Informe a data de nascimento do funcionário'),
   cpf: yup.string().required('Informe o cpf do funcionário').matches(/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
@@ -37,32 +38,27 @@ class EmployeeCreate extends Component {
   }
 
   async onSubmit (values) {
-    console.log(values)
+    values.birth_place = values.birth_place.city
     values.addresses = [ values.address ]
 
-    const createEmployee = message.loading('Cadastrando funcioonário', 0)
+    const removeCreatingMessage = message.loading('Cadastrando funcioonário', 0)
 
     try {
       const result = await userService.create(values)
 
       if (result.status === 201) {
-        createEmployee()
         message.success('Funcionário cadastrado com sucesso!')
-
         this.setState({
           redirect: true
         })
-
-        return createEmployee()
       } else if (result.status === 403) {
-        createEmployee()
         message.error('Preencha corretamente as informações!')
       }
-
-      createEmployee()
       return message.error('Não foi possível cadastrar o funcionário!', 2)
     } catch (error) {
-      console.log(error)
+      return message.error('Erro inesperado, tente novamente!', 2)
+    } finally {
+      removeCreatingMessage()
     }
   }
 
@@ -149,7 +145,7 @@ class EmployeeCreate extends Component {
               </Form.Inline>
 
               <Form.Inline>
-                <Form.CitySelect label='Cidade' name='address' />
+                <Form.CitySelect label='Cidade' name='address' required />
                 <Form.TextField label='Bairro' name='address[neighbourhood]' required />
               </Form.Inline>
 
