@@ -14,7 +14,7 @@ const validateSchema = yup.object().shape({
   address: yup.object().shape({ 
     neighbourhood: yup.string().required('Informe o bairro do endereço do funcionário'),
     number: yup.number().positive().required('Informe o número do endereço do funcionário'),
-    cep: yup.string().matches(/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CEP válido')
+    cep: yup.string().required('Informe o CEP do endereço do funcionário')
   }),
   profession: yup.string().required('Informe a profissão do funcionário'),
   marital_status: yup.string().required('Informe o estado civil do funcionário'),
@@ -144,13 +144,13 @@ class EmployeeCreate extends Component {
               />
 
               <Form.Inline>
-                <Form.TextField label='Rua' name='address[street]' required />
+                <Form.TextField label='Rua' name='address[street]' />
                 <Form.TextField label='Número' name='address[number]' required />
               </Form.Inline>
 
               <Form.Inline>
-                <Form.CitySelect label='Cidade' name='address[city]' />
-                <Form.TextField label='Bairro' name='address[neighbourhood]' />
+                <Form.CitySelect label='Cidade' name='address' />
+                <Form.TextField label='Bairro' name='address[neighbourhood]' required />
               </Form.Inline>
 
               <Form.TextField
