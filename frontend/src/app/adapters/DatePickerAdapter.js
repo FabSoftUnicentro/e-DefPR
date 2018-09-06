@@ -14,7 +14,7 @@ const DatePickerAdapter = ({ input: { onChange, value }, label, meta, required, 
     required={required}
     >
     <DatePicker
-      onChange={date => onChange(date.format(DATE_FORMAT))}
+      onChange={date => onChange(date ? date.format(DATE_FORMAT) : [])}
       // value={value}
       format={DATE_FORMAT}
       {...rest}
