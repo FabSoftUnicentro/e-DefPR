@@ -207,7 +207,7 @@ task('deploy:passport:install', function () {
 // Update hook
 desc('Update hook');
 task('deploy:update:hook', function () {
-    run('cd {{release_path}}/devops/ && yarn install');
+    run('cd {{release_path}}/devops/hook/ && yarn install');
 });
 
 // Restart PHP FPM after deploy
