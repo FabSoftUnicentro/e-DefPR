@@ -168,18 +168,18 @@ set('application', 'e-DefPR');
 set('repository', 'git@github.com:C3DSU/e-DefPR.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true); 
+set('git_tty', true);
 
-// Shared files/dirs between deploys 
+// Shared files/dirs between deploys
 add('shared_files', []);
 add('shared_dirs', []);
 
-// Writable dirs by web server 
+// Writable dirs by web server
 add('writable_dirs', []);
 set('allow_anonymous_stats', true);
 
 // Deploy Path
-set('deploy_path', '/var/www/html/{{application}}');   
+set('deploy_path', '/var/www/html/{{application}}'); 
     
 // Tasks
 task('build', function () {
