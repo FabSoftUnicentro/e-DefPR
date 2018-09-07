@@ -179,7 +179,7 @@ add('writable_dirs', []);
 set('allow_anonymous_stats', true);
 
 // Deploy Path
-set('deploy_path', '/var/www/html/{{application}}'); 
+set('deploy_path', '/var/www/html/{{application}}');
     
 // Tasks
 task('build', function () {
