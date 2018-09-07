@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+export EDEF_HOMOLOG_PORT=80
+export EDEF_HOMOLOG_URI='https://homolog.edefpr.com'
+export EDEF_HOMOLOG_DATABASE_NAME=edef_pr
+export EDEF_HOMOLOG_DATABASE_USER=root
+export EDEF_HOMOLOG_DATABASE_HOST='127.0.0.1'
+export EDEF_HOMOLOG_DATABASE_PORT=3306
