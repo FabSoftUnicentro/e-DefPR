@@ -19,7 +19,7 @@ const validateSchema = yup.object().shape({
   }),
   profession: yup.string().required('Informe a profissão do assistido'),
   marital_status: yup.string().required('Informe o estado civil do assistido'),
-  birth_place: yup.string().required('Informe o local de nascimento do assistido'),
+  birthplace: yup.string().required('Informe o local de nascimento do assistido'),
   gender: yup.string().required('Informe o genêro do assistido'),
   rg_issuer: yup.string().min(2, 'O orgão emissor deve ter pelo menos 2 caracteres').required('Informe o orgão emissor do assistido').required('Informe o orgão emissor'),
   rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').required('Informe o RG do assistido'),
@@ -39,7 +39,7 @@ class AssistedCreate extends Component {
   }
 
   async onSubmit (values) {
-    values.birth_place = values.birth_place.city
+    values.birthplace = values.birthplace.city
     values.addresses = [ values.address ]
 
     const removeCreatingMessage = message.loading('Cadastrando assistido', 0)
@@ -115,7 +115,7 @@ class AssistedCreate extends Component {
                 { value: 'F', name: 'Feminino' }
               ]} />
 
-              <Form.CitySelect label='Cidade natal' name='birth_place' required />
+              <Form.CitySelect label='Cidade natal' name='birthplace' required />
 
               <Form.Select label='Estado civil' name='marital_status' required options={[
                 { value: 'solteiro', name: 'Solteiro(a)' },
