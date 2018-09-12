@@ -30,7 +30,7 @@ class User extends Authenticatable
         'marital_status',
         'profession',
         'note',
-        'birth_place',
+        'birthplace',
         'addresses',
         'must_change_password',
     ];
