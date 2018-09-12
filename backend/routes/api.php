@@ -99,7 +99,7 @@ Route::prefix('assisted')->group(function () {
 Route::prefix('role')->group(function () {
     Route::group(['middleware' => ['permission:read-role']], function () {
         Route::get('/', 'Api\RoleController@index')->middleware('auth:api');
-        Route::get('/{id}', 'Api\RoleController@show')->middleware('auth:api');
+        Route::get('/{id}', 'Api\RoleController@show')->middleware('auth:api')->where('id', '[0-9]+');
     });
     Route::group(['middleware' => ['permission:register-role']], function () {
         Route::post('/', 'Api\RoleController@store')->middleware('auth:api');
