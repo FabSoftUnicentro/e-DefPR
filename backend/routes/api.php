@@ -49,7 +49,7 @@ Route::prefix('user')->group(function () {
 // State routes
 Route::prefix('state')->group(function () {
     Route::get('/', 'Api\StateController@index')->middleware('auth:api');
-    Route::get('/{id}', 'Api\StateController@show')->middleware('auth:api');
+    Route::get('/{id}', 'Api\StateController@show')->middleware('auth:api')->where('id', '[0-9]+');
 
     Route::group(['middleware' => ['permission:register-state']], function () {
         Route::post('/', 'Api\StateController@store')->middleware('auth:api');
@@ -65,7 +65,7 @@ Route::prefix('state')->group(function () {
 // City routes
 Route::prefix('city')->group(function () {
     Route::get('/', 'Api\CityController@index')->middleware('auth:api');
-    Route::get('/{id}', 'Api\CityController@show')->middleware('auth:api');
+    Route::get('/{id}', 'Api\CityController@show')->middleware('auth:api')->where('id', '[0-9]+');
     Route::get('/state/{id}', 'Api\CityController@findByState')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-city']], function () {
@@ -82,7 +82,7 @@ Route::prefix('city')->group(function () {
 // Assisted route
 Route::prefix('assisted')->group(function () {
     Route::get('/', 'Api\AssistedController@index')->middleware('auth:api');
-    Route::get('/{id}', 'Api\AssistedController@show')->middleware('auth:api');
+    Route::get('/{id}', 'Api\AssistedController@show')->middleware('auth:api')->where('id', '[0-9]+');
 
     Route::group(['middleware' => ['permission:register-assisted']], function () {
         Route::post('/', 'Api\AssistedController@store')->middleware('auth:api');
@@ -122,7 +122,7 @@ Route::prefix('role')->group(function () {
 Route::prefix('permission')->group(function () {
     Route::group(['middleware' => ['permission:list-permission']], function () {
         Route::get('/', 'Api\PermissionController@index')->middleware('auth:api');
-        Route::get('/{id}', 'Api\PermissionController@show')->middleware('auth:api');
+        Route::get('/{id}', 'Api\PermissionController@show')->middleware('auth:api')->where('id', '[0-9]+');
     });
 
     Route::group(['middleware' => ['permission:register-permission']], function () {
