@@ -67,6 +67,9 @@ class AssistedController extends Controller
     public function show($id)
     {
         try {
+            if (!is_numeric($id)) {
+                throw new \Exception($e);
+            }
             /** @var Assisted $assisted */
             $assisted = Assisted::findOrFail($id);
 
