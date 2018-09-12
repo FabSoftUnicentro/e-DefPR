@@ -17,10 +17,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'juridico@edefpr.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
             'cpf' => '1318510005',
-            'birth_place' => json_encode([
-                'uf' => 'PR',
-                'city' => 'Guarapuava'
-            ]),
+            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
@@ -48,10 +45,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'administrative@edefpr.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
             'cpf' => '2318510005',
-            'birth_place' => json_encode([
-                'uf' => 'PR',
-                'city' => 'Guarapuava'
-            ]),
+            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerato.',
             'rg_issuer' => 'SSP',
@@ -79,10 +73,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'assistente.social@edefpr.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
             'cpf' => '3318510005',
-            'birth_place' => json_encode([
-                'uf' => 'PR',
-                'city' => 'Guarapuava'
-            ]),
+            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
@@ -110,10 +101,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'estagiario.advogado@edefpr.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
             'cpf' => '4318510005',
-            'birth_place' => json_encode([
-                'uf' => 'PR',
-                'city' => 'Guarapuava'
-            ]),
+            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
@@ -141,10 +129,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'assessor.juridico@edefpr.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
             'cpf' => '5318510005',
-            'birth_place' => json_encode([
-                'uf' => 'PR',
-                'city' => 'Guarapuava'
-            ]),
+            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
@@ -172,10 +157,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'estagiario.ensinomedio@edefpr.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
             'cpf' => '6318510005',
-            'birth_place' => json_encode([
-                'uf' => 'PR',
-                'city' => 'Guarapuava'
-            ]),
+            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
@@ -203,10 +185,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'defensor.publico@edefpr.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
             'cpf' => '7318510005',
-            'birth_place' => json_encode([
-                'uf' => 'PR',
-                'city' => 'Guarapuava'
-            ]),
+            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
@@ -234,10 +213,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'psicologo@edefpr.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
             'cpf' => '8318510005',
-            'birth_place' => json_encode([
-                'uf' => 'PR',
-                'city' => 'Guarapuava'
-            ]),
+            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
@@ -265,10 +241,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'master@edefpr.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
             'cpf' => '0000000000',
-            'birth_place' => json_encode([
-                'uf' => 'PR',
-                'city' => 'Guarapuava'
-            ]),
+            'birthplace' => '1100056',
             'birth_date' => '2018-01-01',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Attendment;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,7 +30,7 @@ class User extends Authenticatable
         'marital_status',
         'profession',
         'note',
-        'birth_place',
+        'birthplace',
         'addresses',
         'must_change_password',
     ];
@@ -43,6 +44,14 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Get all of the attendments for the user.
+     */
+    public function attendments()
+    {
+        return $this->hasMany(Attendment::class, 'user_id');
+    }
 
     /**
      * @throws \Exception

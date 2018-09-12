@@ -39,7 +39,7 @@ class AssistedController extends Controller
         $assisted->cpf = $request->input('cpf');
         $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $assisted->birth_date);
         $assisted->birth_date = $birthDate;
-        $assisted->birth_place = $request->input('birth_place');
+        $assisted->birthplace = $request->input('birthplace');
         $assisted->rg = $request->input('rg');
         $assisted->rg_issuer = $request->input('rg_issuer');
         $assisted->gender = $request->input('gender');
@@ -95,7 +95,7 @@ class AssistedController extends Controller
             $assisted->cpf = $request->input('cpf') ? $request->input('cpf') : $assisted->cpf;
             $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $assisted->birth_date);
             $assisted->birth_date = $birthDate;
-            $assisted->birth_place = $request->input('birth_place') ? $request->input('birth_place') : $assisted->birth_place;
+            $assisted->birthplace = $request->input('birthplace') ? $request->input('birthplace') : $assisted->birthplace;
             $assisted->rg = $request->input('rg') ? $request->input('rg') : $assisted->rg;
             $assisted->rg_issuer = $request->input('rg_issuer') ? $request->input('rg_issuer') : $assisted->rg_issuer;
             $assisted->gender = $request->input('gender') ? $request->input('gender') : $assisted->gender;

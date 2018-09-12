@@ -71,7 +71,7 @@ class UserController extends Controller
         $user->cpf = $request->input('cpf');
         $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date'));
         $user->birth_date = $birthDate;
-        $user->birth_place = $request->input('birth_place');
+        $user->birthplace = $request->input('birthplace');
         $user->rg = $request->input('rg');
         $user->rg_issuer = $request->input('rg_issuer');
         $user->gender = $request->input('gender');
@@ -128,6 +128,7 @@ class UserController extends Controller
             $user->cpf = $request->input('cpf') ? $request->input('cpf') : $user->cpf;
             $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $user->birth_date);
             $user->birth_date = $birthDate;
+            $user->birthplace = $request->input('birthplace') ? $request->input('birthplace') : $user->birthplace;
             $user->rg = $request->input('rg') ? $request->input('rg') : $user->rg;
             $user->rg_issuer = $request->input('rg_issuer') ? $request->input('rg_issuer') : $user->rg_issuer;
             $user->gender = $request->input('gender') ? $request->input('gender') : $user->gender;

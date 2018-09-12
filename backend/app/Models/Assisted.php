@@ -16,7 +16,7 @@ class Assisted extends Model
         'email',
         'cpf',
         'birth_date',
-        'birth_place',
+        'birthplace',
         'rg',
         'rg_issuer',
         'gender',
