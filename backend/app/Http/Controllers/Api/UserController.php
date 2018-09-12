@@ -99,6 +99,9 @@ class UserController extends Controller
     public function show($id)
     {
         try {
+            if (!is_numeric($id)) {
+                throw new \Exception($e);
+            }
             /** @var User $user */
             $user = User::findOrFail($id);
 
