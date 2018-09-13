@@ -16,8 +16,9 @@ use Illuminate\Http\Request;
 // User routes
 Route::prefix('user')->group(function () {
     Route::post('/authenticate', 'Api\UserController@authenticate');
-    Route::post('/forgot-password', 'Api\UserController@resetPassword');
+    Route::post('/forgot-password', 'Api\UserController@forgotPassword');
     Route::get('/me', 'Api\UserController@info')->middleware('auth:api');
+    Route::put('/reset-password', 'Api\UserController@resetPassword')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-employee']], function () {
         Route::post('/', 'Api\UserController@store')->middleware('auth:api');
