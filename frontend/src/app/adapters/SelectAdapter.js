@@ -1,9 +1,16 @@
 import React from 'react'
 import Select from 'antd/lib/select'
 import FormItem from 'antd/lib/form/FormItem'
+import inputValidateProps from './inputValidateProps'
 
-const SelectAdapter = ({ input: { onChange, value }, options, children, label, ...rest }) => (
-  <FormItem label={label} style={{margin: 0, padding: 0}}>
+const SelectAdapter = ({ input: { onChange, value }, options, children, label, meta, required, ...rest }) => (
+  <FormItem 
+    label={label} 
+    // style={{margin: 0, padding: 0}}
+    {...inputValidateProps(meta)}
+    hasFeedback
+    required={required}
+  >
     <Select
       label={label}
       onChange={onChange}

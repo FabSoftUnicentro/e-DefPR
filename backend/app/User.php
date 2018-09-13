@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Attendment;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,7 +20,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'cpf', 'birth_date', 'rg_issuer', 'rg', 'gender', 'marital_status', 'profession', 'note', 'addresses', 'must_change_password',
+        'name',
+        'email',
+        'cpf',
+        'birth_date',
+        'rg_issuer',
+        'rg',
+        'gender',
+        'marital_status',
+        'profession',
+        'note',
+        'birthplace',
+        'addresses',
+        'must_change_password',
     ];
 
     /**
@@ -28,8 +41,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
+
+    /**
+     * Get all of the attendments for the user.
+     */
+    public function attendments()
+    {
+        return $this->hasMany(Attendment::class, 'user_id');
+    }
 
     /**
      * @throws \Exception

@@ -69,16 +69,17 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->cpf = $request->input('cpf');
-        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate'));
+        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date'));
         $user->birth_date = $birthDate;
+        $user->birthplace = $request->input('birthplace');
         $user->rg = $request->input('rg');
-        $user->rg_issuer = $request->input('rgIssuer');
+        $user->rg_issuer = $request->input('rg_issuer');
         $user->gender = $request->input('gender');
-        $user->marital_status = $request->input('maritalStatus');
+        $user->marital_status = $request->input('marital_status');
         $user->addresses = json_encode($request->input('addresses'));
         $user->note = $request->input('note');
         $user->profession = $request->input('profession');
-        $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : true;
+        $user->must_change_password = $request->input('mush_change_password') ? $request->input('mush_change_password') : true;
 
         try {
             $user->saveOrFail();
@@ -98,6 +99,9 @@ class UserController extends Controller
     public function show($id)
     {
         try {
+            if (!is_numeric($id)) {
+                throw new \Exception($e);
+            }
             /** @var User $user */
             $user = User::findOrFail($id);
 
@@ -125,16 +129,17 @@ class UserController extends Controller
             $user->email = $request->input('email') ? $request->input('email') : $user->email;
             $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
             $user->cpf = $request->input('cpf') ? $request->input('cpf') : $user->cpf;
-            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate') ? $request->input('birthDate') : $user->birth_date);
+            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $user->birth_date);
             $user->birth_date = $birthDate;
+            $user->birthplace = $request->input('birthplace') ? $request->input('birthplace') : $user->birthplace;
             $user->rg = $request->input('rg') ? $request->input('rg') : $user->rg;
-            $user->rg_issuer = $request->input('rgIssuer') ? $request->input('rgIssuer') : $user->rg_issuer;
+            $user->rg_issuer = $request->input('rg_issuer') ? $request->input('rg_issuer') : $user->rg_issuer;
             $user->gender = $request->input('gender') ? $request->input('gender') : $user->gender;
-            $user->marital_status = $request->input('maritalStatus') ? $request->input('maritalStatus') : $user->marital_status;
+            $user->marital_status = $request->input('marital_status') ? $request->input('marital_status') : $user->marital_status;
             $user->addresses = $request->input('addresses') ? json_encode($request->input('addresses')) : $user->addresses;
             $user->note = $request->input('note') ? $request->input('note') : $user->note;
             $user->profession = $request->input('profession') ? $request->input('profession') : $user->profession;
-            $user->must_change_password = $request->input('mustChangePassword') ? $request->input('mustChangePassword') : true;
+            $user->must_change_password = $request->input('must_change_password') ? $request->input('must_change_password') : true;
 
             $user->saveOrFail();
 
@@ -186,7 +191,7 @@ class UserController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function resetPassword(Request $request)
+    public function forgotPassword(Request $request)
     {
         $email = $request->input('email');
         $cpf = $request->input('cpf');
@@ -196,10 +201,17 @@ class UserController extends Controller
             ->first();
 
         if ($user) {
-            $user->resetPassword();
-            return JsonResponse::create([
-                'message' => 'User password reseted with success'
-            ], Response::HTTP_OK);
+            try {
+                $user->resetPassword();
+    
+                return JsonResponse::create([
+                    'message' => 'User password reseted with success'
+                ], Response::HTTP_OK);
+            } catch (\Exception $e) {
+                return JsonResponse::create([
+                    'message' => $e->getMessage()
+                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
         }
 
         return JsonResponse::create([
@@ -247,7 +259,6 @@ class UserController extends Controller
         }
     }
 
-
     /**
      * @param $id
      * @param $role
@@ -285,6 +296,22 @@ class UserController extends Controller
             return JsonResponse::create([
                 'message' => $e->getMessage()
             ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    public function resetPassword(Request $request)
+    {
+        try {
+            $user = User::findOrFail($request->user()->id);
+
+            $user->password = Hash::make($request->input('password'));
+            $user->must_change_password = false;
+
+            $user->saveOrFail();
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_NOT_FOUND);
         }
     }
 }

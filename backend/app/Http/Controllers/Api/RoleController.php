@@ -54,6 +54,9 @@ class RoleController extends Controller
     public function show($id)
     {
         try {
+            if (!is_numeric($id)) {
+                throw new \Exception($e);
+            }
             /** @var Role $role */
             $role = Role::findOrFail($id);
 

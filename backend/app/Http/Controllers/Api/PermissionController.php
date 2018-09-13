@@ -50,6 +50,9 @@ class PermissionController extends Controller
     public function show($id)
     {
         try {
+            if (!is_numeric($id)) {
+                throw new \Exception($e);
+            }
             /** @var Permission $permission */
             $permission = Permission::findOrFail($id);
 

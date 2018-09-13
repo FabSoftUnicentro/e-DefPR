@@ -50,7 +50,6 @@ class Signin extends Component {
 
       return message.error('Não foi possível realizar login. Tente novamente')
     } catch (error) {
-      console.log(error)
     } finally {
       this.setState({ isLoading: false })
     }
@@ -78,6 +77,7 @@ class Signin extends Component {
               size='large'
               label='Usuário'
               name='login'
+              required
               placeholder='Informe seu CPF ou e-mail'
               component={InputAdapter}
               prefix={<Icon type='user' />}
@@ -87,6 +87,7 @@ class Signin extends Component {
               size='large'
               label='Senha'
               type='password'
+              required
               name='password'
               placeholder='Informe sua senha'
               component={InputAdapter}

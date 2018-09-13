@@ -49,14 +49,14 @@ class CitySelectAdapter extends Component {
 
   render () {
     const { states, cities, loadingStates, loadingCities } = this.state
-    const { label } = this.props
+    const { label, input: { name } } = this.props
 
     return <FormItem label={label} style={{margin: 0}}>
       <Input.Group compact>
         <Spin size='small' spinning={loadingStates}>
           <Field
             showSearch
-            name='state'
+            name={`${name}[state]`}
             component={SelectAdapter}
             style={{width: 120, marginRight: 20}}
             placeholder='Estado'
@@ -70,7 +70,7 @@ class CitySelectAdapter extends Component {
         <Spin size='small' spinning={loadingCities}>
           <Field
             showSearch
-            name='city'
+            name={`${name}[city]`}
             component={SelectAdapter}
             style={{width: 300}}
             onSelect={this.handleOnChange}

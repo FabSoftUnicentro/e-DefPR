@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Attendment extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,8 +13,8 @@ class City extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'state_id'
+        'description',
+        'user_id'
     ];
 
     /**
@@ -22,15 +23,14 @@ class City extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at',
-        'updated_at'
+        'created_at'
     ];
 
     /**
-     * Get the state that owns the city.
+     * Get the user that owns the attendment.
      */
-    public function state()
+    public function user()
     {
-        return $this->belongsTo(State::class, 'state_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
