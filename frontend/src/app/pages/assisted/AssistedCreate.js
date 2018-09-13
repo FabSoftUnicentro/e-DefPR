@@ -9,23 +9,24 @@ import * as yup from 'yup'
 import { Redirect } from 'react-router-dom'
 
 const validateSchema = yup.object().shape({
-  email: yup.string().email().required('Informe o email do assistido'),
+  email: yup.string().email('Informe um email válido').required('Informe o email do assistido'),
   address: yup.object().shape({
-    neighbourhood: yup.string().required('Informe o bairro do assistido'),
-    city: yup.string().required('Informe a cidade do assistido'),
+    neighbourhood: yup.string().min(2, 'O bairro deve ter pelo menos 2 caracteres').max(100, 'Informe um bairro válido').required('Informe o bairro do assistido'),
+    city: yup.string().min(2, 'O cidade deve ter pelo menos 2 caracteres').max(100, 'Informe uma cidade válida').required('Informe a cidade do assistido'),
     number: yup.number().required('Informe o número residencial do assistido'),
-    street: yup.string().required('Informe a rua do assistido'),
-    cep: yup.string().min(2, 'O CEP deve ter pelo menos 2 caracteres').required('Informe o CEP do assistido'),
+    street: yup.string().min(2, 'O rua deve ter pelo menos 2 caracteres').max(100, 'Informe uma rua válida').required('Informe a rua do assistido'),
+    cep: yup.string().min(2, 'O CEP deve ter pelo menos 2 caracteres').max(8, 'Informe um CEP válido').required('Informe o CEP do assistido')
   }),
-  profession: yup.string().required('Informe a profissão do assistido'),
+  note: yup.string().required('Informe o relatório').matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe uma profissão válida'),
+  profession: yup.string().matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe uma profissão válida').required('Informe a profissão do assistido'),
   marital_status: yup.string().required('Informe o estado civil do assistido'),
   birthplace: yup.string().required('Informe o local de nascimento do assistido'),
   gender: yup.string().required('Informe o genêro do assistido'),
-  rg_issuer: yup.string().min(2, 'O orgão emissor deve ter pelo menos 2 caracteres').required('Informe o orgão emissor do assistido').required('Informe o orgão emissor'),
-  rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').required('Informe o RG do assistido'),
+  rg_issuer: yup.string().min(2, 'O orgão emissor deve ter pelo menos 2 caracteres').matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe um orgão emissor válido').required('Informe o orgão emissor'),
+  rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').max(20, 'Informe um RG válido').required('Informe o RG do assistido'),
   birth_date: yup.string().required('Informe a data de nascimento do assistido'),
-  cpf: yup.string().matches(/([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
-  name: yup.string().min(3, 'O nome do assistido deve ter pelo menos 3 caracteres').required('Informe o nome do assistido')
+  cpf: yup.string().max(11, 'Informe um CPF válido').matches(/([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
+  name: yup.string().min(3, 'O nome do assistido deve ter pelo menos 3 caracteres').max(191, 'O nome do assistido é muito grande!').matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe um nome válido').required('Informe o nome do assistido')
 })
 
 class AssistedCreate extends Component {
