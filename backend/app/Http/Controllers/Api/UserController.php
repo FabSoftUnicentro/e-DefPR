@@ -191,7 +191,7 @@ class UserController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function resetPassword(Request $request)
+    public function forgotPassword(Request $request)
     {
         $email = $request->input('email');
         $cpf = $request->input('cpf');
@@ -296,6 +296,22 @@ class UserController extends Controller
             return JsonResponse::create([
                 'message' => $e->getMessage()
             ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    public function resetPassword(Request $request)
+    {
+        try {
+            $user = User::findOrFail($request->user()->id);
+
+            $user->password = Hash::make($request->input('password'));
+            $user->must_change_password = false;
+
+            $user->saveOrFail();
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_NOT_FOUND);
         }
     }
 }
