@@ -11,7 +11,7 @@ import { authentication } from './services'
 import './App.css'
 
 const browserHistory = createBrowserHistory()
- 
+
 const Home = ({pathname}) => (
   <div className='app'>
     <Header region={{ name: 'Guarapuava' }} />
