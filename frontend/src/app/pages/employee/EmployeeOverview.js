@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { userService } from '../../services'
+import { Link } from 'react-router-dom'
 import Page from '../../components/page/Page'
 import DescriptionItem from '../../adapters/DescriptionItem'
 import Button from 'antd/lib/button'
@@ -79,7 +80,7 @@ class EmployeeOverview extends Component {
       <Page.Header>
         <Button>Atualizar</Button>
         <Button>Filtrar</Button>
-        <Button type='primary'>Cadastrar</Button>
+        <Link to='/employee/new'><Button type='primary'>Cadastrar</Button></Link>
       </Page.Header>
 
       <Page.Context>
