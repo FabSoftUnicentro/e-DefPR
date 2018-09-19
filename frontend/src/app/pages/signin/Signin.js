@@ -36,7 +36,6 @@ class Signin extends Component {
       const result = await authentication.signin(login, password)
       if (result.status === 200) {
         const account = await userService.me()
-        console.log(account)
         if (account) {
           message.success(`Bem-vindo de volta, ${account.name}!`, 2)
         }
