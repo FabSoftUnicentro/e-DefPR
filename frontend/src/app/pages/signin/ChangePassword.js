@@ -3,11 +3,11 @@ import Icon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
 import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
-import { authentication, userService } from '../../services'
-import RecoveryPassword from '../../services/RecoveryPasswordService'
-import { Redirect } from 'react-router-dom'
+import { authentication } from '../../services'
+import { recoveryPasswordService } from '../../services'
 import Form from '../../components/form/Form'
 import * as yup from 'yup'
+import { Redirect } from 'react-router-dom'
 
 import './Signin.css'
 
@@ -16,7 +16,7 @@ const validateSchema = yup.object().shape({
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], "As senhas não são iguais").required('Digite novamente a senha')
 })
 
-class Signin extends Component {
+class ChangePassword extends Component {
   constructor (props) {
     super(props)
 
@@ -29,31 +29,30 @@ class Signin extends Component {
   }
 
   async onSubmit (values) {
-    const { password, confirmPassword } = values
+    const { password } = values
     this.setState({ isLoading: true })
 
     try {
-      const result = await RecoveryPassword.change(password, confirmPassword, userService.me())
+      const result = await recoveryPasswordService.change(password)
       if (result.status === 200) {
-        console.log('ok')
+        message.success('Senha alterada com sucesso')
+        return <Redirect to='/' />
       } else {
-        console.log('nop')
+        return message.error('Ocorreu algum erro. Tente novamente')
       }
-
-      return message.error('Ocorreu algum erro. Tente novamente')
     } catch (error) {
-      console.log(error)
+      return message.error('Ocorreu algum erro. Tente novamente')
     } finally {
       this.setState({ isLoading: false })
     }
   }
 
   render () {
-    if (authentication.isAuthenticated) {
+    const { isLoading } = this.state
+
+    if (!authentication.isAuthenticated) {
       return <Redirect to='/' />
     }
-
-    const { isLoading } = this.state
 
     return <div className='app-signin'>
       <div className='app-signin-form'>
@@ -61,6 +60,7 @@ class Signin extends Component {
           <Icon type='lock' style={{marginRight: 16}} />
           <span>Alterar Senha</span>
         </h1>
+        Você está usando uma senha temporaria, por favor, altere sua senha antes de poder acessar o sistema
         <div>
           <Form
             onSubmit={this.onSubmit}
@@ -103,4 +103,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin
+export default ChangePassword
