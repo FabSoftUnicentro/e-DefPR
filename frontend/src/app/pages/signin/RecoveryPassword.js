@@ -10,7 +10,7 @@ import Form from '../../components/form/Form'
 
 import './Signin.css'
 
-class Signin extends Component {
+class RecoveryPassword extends Component {
   constructor (props) {
     super(props)
 
@@ -28,17 +28,15 @@ class Signin extends Component {
 
     try {    
       const result = await recoveryPasswordService.recovery(email, cpf)
-      console.log('Result:')
-      console.log(result)
       if (result.status === 200) {
-        console.log('ok')
-      } else {
-        console.log('nop')
+        return message.success('Um email com uma nova senha foi enviado com sucesso')
+      } else if(result.status === 404) {
+        return message.error('Email ou CPF incorreto')
       }
 
-      return message.error('Ocorreu algum. Tente novamente')
+      return message.error('Ocorreu algum erro. Tente novamente')
     } catch (error) {
-      console.log(error)
+      return message.error('Ocorreu algum erro. Tente novamente')
     } finally {
       this.setState({ isLoading: false })
     }
@@ -109,4 +107,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin
+export default RecoveryPassword
