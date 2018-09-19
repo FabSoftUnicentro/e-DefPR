@@ -8,11 +8,10 @@ import Employee from './pages/employee/Employee'
 import Authentication from './pages/signin/Authentication'
 import Assisted from './pages/assisted/Assisted'
 import { authentication } from './services'
-
 import './App.css'
 
 const browserHistory = createBrowserHistory()
-
+ 
 const Home = ({pathname}) => (
   <div className='app'>
     <Header region={{ name: 'Guarapuava' }} />
