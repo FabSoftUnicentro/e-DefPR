@@ -7,14 +7,29 @@ const IDX = 'USER_IDX'
 class Service {
   async post (path = '/', body) {
     try {
-      console.log(body)
       const response = await fetch(`${URL}${path}`, {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify(body),
         headers: { ...this.headers }
       })
-      console.log(response)
+      return {
+        status: response.status,
+        ...(await response.json())
+      }
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async put (path = '/', body) {
+    try {
+      const response = await fetch(`${URL}${path}`, {
+        method: 'PUT',
+        mode: 'cors',
+        body: JSON.stringify(body),
+        headers: { ...this.headers }
+      })
       return {
         status: response.status,
         ...(await response.json())
