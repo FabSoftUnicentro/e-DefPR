@@ -18,17 +18,20 @@ class AttendmentTypeTableSeeder extends Seeder
                 "description" => ".",
                 "created_at"  => $now,
                 "updated_at"  => $now
-            ], [
+            ], 
+            [
                 "name"        => "Triagem Socioeconomica",
                 "description" => ".",
                 "created_at"  => $now,
                 "updated_at"  => $now
-            ], [
+            ],
+            [
                 "name"        => "Atendimento Geral",
                 "description" => ".",
                 "created_at"  => $now,
                 "updated_at"  => $now
-            ], [
+            ],
+            [
                 "name"        => "Atendimento Especial",
                 "description" => ".",
                  "created_at"  => $now,
