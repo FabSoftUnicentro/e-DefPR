@@ -24,16 +24,15 @@ class Sidebar extends Component {
       >
         <Menu.Item key='/'><Icon type='home' /> <Link to='/'>Visão geral</Link></Menu.Item>
         <Menu.Item key='/assisted'><Link to='/assisted'/><Icon type='team' /> Assistidos</Menu.Item>
-        <Menu.Item key='/role'><Link to='/role'/><Icon type='contacts' /> Níveis de acesso</Menu.Item>
         <Menu.Item key='a-3'><Icon type='solution' /> Processos</Menu.Item>
         <Menu.SubMenu key='sub1' title={<span><Icon type='profile' /><span>Triagens</span></span>}>
           <Menu.Item key='b-1'>Triagem inicial</Menu.Item>
           <Menu.Item key='b-2'>Triagem socioeconômica</Menu.Item>
         </Menu.SubMenu>
         <Menu.SubMenu key='sub2' title={<span><Icon type='book' /><span>Recursos Humanos</span></span>}>
-          <Menu.Item key='/employee/new'><Link to='/employee/new'>Cadastrar funcionário</Link></Menu.Item>
-          <Menu.Item key='/employee'><Link to='/employee'>Funcionários</Link></Menu.Item>
-          <Menu.Item key='c-3'>Relatórios</Menu.Item>
+          <Menu.Item key='/role'><Link to='/role'/><Icon type='key' /> Níveis de acesso</Menu.Item>
+          <Menu.Item key='/employee'><Icon type='team' /><Link to='/employee'>Funcionários</Link></Menu.Item>
+          <Menu.Item key='c-3'><Icon type='database' /> Relatórios</Menu.Item>
         </Menu.SubMenu>
       </Menu>
     </div>
