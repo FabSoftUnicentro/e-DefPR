@@ -30,10 +30,10 @@ const Home = ({pathname}) => (
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    authentication.isAuthenticated === true 
-      ? authentication.account.must_change_password === 1 
+    authentication.isAuthenticated === true
+      ? authentication.account.must_change_password === 1
       ? <Redirect to='/signin/change-password' />
-      : <Component {...props} /> 
+      : <Component {...props} />
       : <Redirect to='/signin' />
   )} />
 )
