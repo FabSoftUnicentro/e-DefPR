@@ -34,7 +34,7 @@ class AttendmentTypeTableSeeder extends Seeder
             [
                 "name"        => "Atendimento Especial",
                 "description" => ".",
-                 "created_at"  => $now,
+                "created_at"  => $now,
                 "updated_at"  => $now
             ]
         ]);
