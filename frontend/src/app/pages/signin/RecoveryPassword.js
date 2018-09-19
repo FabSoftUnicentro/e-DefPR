@@ -95,11 +95,11 @@ class RecoveryPassword extends Component {
           </div>
 
           <footer>
-          <a href=''>Ajuda</a>
-          <a href=''>Wikidocs</a>
-          <a href='https://github.com/C3DSU/e-DefPR' target='_new'>Github</a>
-          <a href='https://www3.unicentro.br/' target='_new'>Unicentro</a>
-        </footer>
+            <a href=''>Ajuda</a>
+            <a href=''>Wikidocs</a>
+            <a href='https://github.com/C3DSU/e-DefPR' target='_new'>Github</a>
+            <a href='https://www3.unicentro.br/' target='_new'>Unicentro</a>
+          </footer>
 
         </div>
       </div>
