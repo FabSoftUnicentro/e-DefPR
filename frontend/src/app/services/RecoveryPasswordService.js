@@ -7,11 +7,10 @@ class RecoveryPasswordService extends Service {
     return result
   }
 
-  async change (password, confirmPassword, id) {
-    console.log(id)
-    //const result = await this.post('/user/'id, { password, confirmPassword })
+  async change (password) {
+    const result = await this.put('/user/reset-password', { password })
 
-    //return result
+    return result
   }
 }
 
