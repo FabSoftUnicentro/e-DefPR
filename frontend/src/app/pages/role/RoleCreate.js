@@ -9,10 +9,10 @@ import * as yup from 'yup'
 import { Redirect } from 'react-router-dom'
 
 const validateSchema = yup.object().shape({
-    name: yup.string().min(3, 'O nome do nível de acesso deve ter pelo menos 3 caracteres')
-    .max(191, 'O nome do nível de acesso é muito grande!')
-    .matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe um nível de acesso válido')
-    .required('Informe o nome do nível de acesso')
+  name: yup.string().min(3, 'O nome do nível de acesso deve ter pelo menos 3 caracteres')
+  .max(191, 'O nome do nível de acesso é muito grande!')
+  .matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe um nível de acesso válido')
+  .required('Informe o nome do nível de acesso')
 })
 
 class RoleCreate extends Component {
@@ -65,7 +65,7 @@ class RoleCreate extends Component {
       <Page.Context>
         <h2>Cadastrar nível de acesso</h2>
         <div className='app-page-box'>
-          <Form 
+          <Form
             onSubmit={this.onSubmit}
             validateSchema={validateSchema}
             >
