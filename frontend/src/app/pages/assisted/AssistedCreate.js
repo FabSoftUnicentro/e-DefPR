@@ -17,7 +17,6 @@ const validateSchema = yup.object().shape({
     street: yup.string().min(2, 'O rua deve ter pelo menos 2 caracteres').max(100, 'Informe uma rua válida').required('Informe a rua do assistido'),
     cep: yup.string().min(2, 'O CEP deve ter pelo menos 2 caracteres').max(8, 'Informe um CEP válido').required('Informe o CEP do assistido')
   }),
-  note: yup.string().required('Informe o relatório').matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe uma profissão válida'),
   profession: yup.string().matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe uma profissão válida').required('Informe a profissão do assistido'),
   marital_status: yup.string().required('Informe o estado civil do assistido'),
   birthplace: yup.string().required('Informe o local de nascimento do assistido'),
@@ -123,6 +122,7 @@ class AssistedCreate extends Component {
                 { value: 'casado', name: 'Casado(a)' },
                 { value: 'separado/divorciado', name: 'Separado(a)/Divorciado(a)' },
                 { value: 'viuvo', name: 'Viúvo(a)' },
+                { value: 'uniao-estavel', name: 'União Estável' },
                 { value: 'outro', name: 'Outro' }
               ]} />
 
@@ -133,9 +133,8 @@ class AssistedCreate extends Component {
               />
 
               <Form.TextField
-                label='Relatório'
+                label='Anotações'
                 name='note'
-                required
               />
 
             </Form.Step>
