@@ -13,7 +13,23 @@ class Service {
         body: JSON.stringify(body),
         headers: { ...this.headers }
       })
+      return {
+        status: response.status,
+        ...(await response.json())
+      }
+    } catch (error) {
+      throw error
+    }
+  }
 
+  async put (path = '/', body) {
+    try {
+      const response = await fetch(`${URL}${path}`, {
+        method: 'PUT',
+        mode: 'cors',
+        body: JSON.stringify(body),
+        headers: { ...this.headers }
+      })
       return {
         status: response.status,
         ...(await response.json())

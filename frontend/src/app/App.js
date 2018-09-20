@@ -5,11 +5,10 @@ import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Dashboard from './pages/Dashboard'
 import Employee from './pages/employee/Employee'
+import Authentication from './pages/signin/Authentication'
 import Assisted from './pages/assisted/Assisted'
 import Role from './pages/role/Role'
-import Signin from './pages/signin/Signin'
 import { authentication } from './services'
-
 import './App.css'
 
 const browserHistory = createBrowserHistory()
@@ -33,7 +32,9 @@ const Home = ({pathname}) => (
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
     authentication.isAuthenticated === true
-      ? <Component {...props} />
+      ? authentication.account.must_change_password === 1
+      ? <Redirect to='/signin/change-password' />
+      : <Component {...props} />
       : <Redirect to='/signin' />
   )} />
 )
@@ -68,7 +69,7 @@ class App extends Component {
 
     return <Router history={browserHistory}>
       <Fragment>
-        <Route path='/signin' component={Signin} />
+        <Route path='/signin' component={Authentication} />
         <PrivateRoute path='/' component={() => <Home pathname={pathname} />} />
       </Fragment>
     </Router>

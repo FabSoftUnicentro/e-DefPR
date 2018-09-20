@@ -126,7 +126,7 @@ class EmployeeOverview extends Component {
             <DescriptionItem title='Estado Civil' content={selected.marital_status} />
           </Row>
           <Row>
-            <DescriptionItem title='RG' content={`${selected.rg} | ${selected.rg_issuer}`} />
+            <DescriptionItem title='RG' content={`${selected.cpf} | ${selected.rg_issuer}`} />
           </Row>
           <Row>
             <DescriptionItem title='Profissão' content={selected.profession} />

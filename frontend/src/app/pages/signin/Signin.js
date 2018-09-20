@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Icon from 'antd/lib/icon'
+import { Link } from 'react-router-dom'
 import Button from 'antd/lib/button'
 import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
@@ -41,9 +42,9 @@ class Signin extends Component {
 
         return
       } else if (result.status === 401) {
-        return { password: 'Esta senha não está correta' }
-      } else if (result.status === 404) {
         return { login: 'Este usuário não existe' }
+      } else if (result.status === 404) {
+        return { password: 'Esta senha não está correta' }
       }
 
       return message.error('Não foi possível realizar login. Tente novamente')
@@ -105,7 +106,7 @@ class Signin extends Component {
           </Form>
 
           <div style={{textAlign: 'center'}}>
-            <a href=''>Esqueceu sua senha?</a>
+            <Link to='/signin/recovery-password' >Esqueceu sua senha?</Link>
           </div>
         </div>
 
