@@ -14,28 +14,28 @@ class AttendmentTypeTableSeeder extends Seeder
         $now = date("Y-m-d H:i:s");
         DB::table("attendment_types")->insert([
             [
-                "name"        => "Triagem Inicial",
+                "name" => "Triagem Inicial",
                 "description" => ".",
-                "created_at"  => $now,
-                "updated_at"  => $now
+                "created_at" => $now,
+                "updated_at" => $now
             ],
             [
-                "name"        => "Triagem Socioeconomica",
+                "name" => "Triagem Socioeconomica",
                 "description" => ".",
-                "created_at"  => $now,
-                "updated_at"  => $now
+                "created_at" => $now,
+                "updated_at" => $now
             ],
             [
-                "name"        => "Atendimento Geral",
+                "name" => "Atendimento Geral",
                 "description" => ".",
-                "created_at"  => $now,
-                "updated_at"  => $now
+                "created_at" => $now,
+                "updated_at" => $now
             ],
             [
-                "name"        => "Atendimento Especial",
+                "name" => "Atendimento Especial",
                 "description" => ".",
-                "created_at"  => $now,
-                "updated_at"  => $now
+                "created_at" => $now,
+                "updated_at" => $now
             ]
         ]);
     }
