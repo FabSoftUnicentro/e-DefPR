@@ -31,6 +31,7 @@ class Sidebar extends Component {
         </Menu.SubMenu>
         <Menu.SubMenu key='sub2' title={<span><Icon type='book' /><span>Recursos Humanos</span></span>}>
           <Menu.Item key='/role'><Link to='/role'/><Icon type='key' /> Níveis de acesso</Menu.Item>
+          <Menu.Item key='/permission'><Link to='/permission'/><Icon type='idcard' /> Permissões</Menu.Item>
           <Menu.Item key='/employee'><Icon type='team' /><Link to='/employee'>Funcionários</Link></Menu.Item>
           <Menu.Item key='c-3'><Icon type='database' /> Relatórios</Menu.Item>
         </Menu.SubMenu>
