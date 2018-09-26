@@ -30,7 +30,7 @@ class RecoveryPassword extends Component {
 
   async onSubmit (values) {
     const { email, cpf } = values
-    this.setState({ isLoading: true })  
+    this.setState({ isLoading: true })
 
     try {
       const result = await recoveryPasswordService.recovery(email, cpf)
