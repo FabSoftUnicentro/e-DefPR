@@ -11,7 +11,7 @@ import * as yup from 'yup'
 const validateSchema = yup.object().shape({
   password: yup.string().required('Informe a senha de acesso do funcionário'),
   email: yup.string().email('Informe um email válido').required('Informe o e-mail do funcionário'),
-  address: yup.object().shape({ 
+  address: yup.object().shape({
     neighbourhood: yup.string().min(2, 'O bairro deve ter pelo menos 2 caracteres').max(100, 'Informe um bairro válido').required('Informe o bairro do funcionário'),
     city: yup.string().required('Informe a cidade do funcionário'),
     number: yup.number().positive().required('Informe o número residencial do funcionário'),
@@ -23,7 +23,7 @@ const validateSchema = yup.object().shape({
   rg_issuer: yup.string().min(2, 'O orgão emissor deve ter pelo menos 2 caracteres').matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe um orgão emissor válido').required('Informe o orgão emissor'),
   rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').max(20, 'Informe um RG válido').required('Informe o RG do funcionáiro'),
   birth_date: yup.string().required('Informe a data de nascimento do funcionário'),
-  cpf: yup.string().required('Informe o cpf do funcionário').matches(/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
+  cpf: yup.string().required('Informe o cpf do funcionário').matches(/([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
   name: yup.string().min(3, 'O nome do assistido deve ter pelo menos 3 caracteres').required('Informe o nome do funcionário')
 })
 
