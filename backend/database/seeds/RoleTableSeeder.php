@@ -74,7 +74,11 @@ class RoleTableSeeder extends Seeder
             'list-permission',
             'register-permission',
             'update-permission',
-            'delete-permission'
+            'delete-permission',
+            'list-attendmentType',
+            'register-attendmentType',
+            'update-attendmentType',
+            'delete-attendmentType'
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
