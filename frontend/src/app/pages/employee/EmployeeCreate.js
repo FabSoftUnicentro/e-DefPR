@@ -10,18 +10,18 @@ import * as yup from 'yup'
 
 const validateSchema = yup.object().shape({
   password: yup.string().required('Informe a senha de acesso do funcionário'),
-  email: yup.string().email().required('Informe o e-mail do funcionário'),
+  email: yup.string().email('Informe um email válido').required('Informe o e-mail do funcionário'),
   address: yup.object().shape({ 
-    neighbourhood: yup.string().required('Informe o bairro do funcionário'),
+    neighbourhood: yup.string().min(2, 'O bairro deve ter pelo menos 2 caracteres').max(100, 'Informe um bairro válido').required('Informe o bairro do funcionário'),
     city: yup.string().required('Informe a cidade do funcionário'),
     number: yup.number().positive().required('Informe o número residencial do funcionário'),
-    cep: yup.string().required('Informe o CEP do endereço do funcionário')
+    cep: yup.string().min(2, 'O CEP deve ter pelo menos 2 caracteres').max(8, 'Informe um CEP válido').required('Informe o CEP do endereço do funcionário')
   }),
-  profession: yup.string().required('Informe a profissão do funcionário'),
+  profession: yup.string().matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe uma profissão válida').required('Informe a profissão do funcionário'),
   marital_status: yup.string().required('Informe o estado civil do funcionário'),
   gender: yup.string().max(1).required('Informe o gênero do funcionário'),
-  rg_issuer: yup.string().min(2, 'O orgão emissor deve ter pelo menos 2 caracteres').required('Informe o orgão emissor'),
-  rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').required('Informe o RG do funcionáiro'),
+  rg_issuer: yup.string().min(2, 'O orgão emissor deve ter pelo menos 2 caracteres').matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe um orgão emissor válido').required('Informe o orgão emissor'),
+  rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').max(20, 'Informe um RG válido').required('Informe o RG do funcionáiro'),
   birth_date: yup.string().required('Informe a data de nascimento do funcionário'),
   cpf: yup.string().required('Informe o cpf do funcionário').matches(/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
   name: yup.string().min(3, 'O nome do assistido deve ter pelo menos 3 caracteres').required('Informe o nome do funcionário')
@@ -38,7 +38,7 @@ class EmployeeCreate extends Component {
   }
 
   async onSubmit (values) {
-    values.birth_place = values.birth_place.city
+    values.birthplace = values.birthplace.city
     values.addresses = [ values.address ]
 
     const removeCreatingMessage = message.loading('Cadastrando funcioonário', 0)
@@ -53,8 +53,9 @@ class EmployeeCreate extends Component {
         })
       } else if (result.status === 403) {
         message.error('Preencha corretamente as informações!')
+      } else {
+        return message.error('Não foi possível cadastrar o funcionário!', 2)
       }
-      return message.error('Não foi possível cadastrar o funcionário!', 2)
     } catch (error) {
       return message.error('Erro inesperado, tente novamente!', 2)
     } finally {
@@ -109,13 +110,14 @@ class EmployeeCreate extends Component {
                 { value: 'F', name: 'Feminino' }
               ]} />
 
-              <Form.CitySelect label='Cidade natal' name='birth_place' />
+              <Form.CitySelect label='Cidade natal' name='birthplace' />
 
               <Form.Select label='Estado civil' name='marital_status' required options={[
                 { value: 'solteiro', name: 'Solteiro(a)' },
                 { value: 'casado', name: 'Casado(a)' },
                 { value: 'separado/divorciado', name: 'Separado(a)/Divorciado(a)' },
                 { value: 'viuvo', name: 'Viúvo(a)' },
+                { value: 'uniao-estavel', name: 'União Estável' },
                 { value: 'outro', name: 'Outro' }
               ]} />
 
