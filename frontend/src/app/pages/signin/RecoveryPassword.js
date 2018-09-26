@@ -32,12 +32,12 @@ class RecoveryPassword extends Component {
     const { email, cpf } = values
     this.setState({ isLoading: true })  
 
-    try {    
+    try {
       const result = await recoveryPasswordService.recovery(email, cpf)
       if (result.status === 200) {
         message.success('Um email com uma nova senha foi enviado com sucesso')
         return <Redirect to='/' />
-      } else if(result.status === 404) {
+      } else if (result.status === 404) {
         message.error('Email ou CPF incorreto')
         return { cpf: 'Verifique se o CPF está correto', email: 'Verifique se o email está correto' }
       }
@@ -84,7 +84,7 @@ class RecoveryPassword extends Component {
               name='cpf'
               placeholder='Informe seu CPF'
               component={InputAdapter}
-              prefix={<Icon type="idcard" />}
+              prefix={<Icon type='idcard' />}
             />
 
             <Button
@@ -100,7 +100,7 @@ class RecoveryPassword extends Component {
           </Form>
 
           <div style={{textAlign: 'center'}}>
-            <Link to='/signin' >Voltar para a tela de login</Link>            
+            <Link to='/signin' >Voltar para a tela de login</Link>
           </div>
 
           <footer>
