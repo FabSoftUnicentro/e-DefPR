@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\User;
+use App\Http\Requests\UserAuthenticateRequest;
+use App\Http\Requests\UserStoreRequest;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,10 +19,10 @@ class UserController extends Controller
     private $itemsPerPage = 10;
 
     /**
-     * @param Request $request
+     * @param UserAuthenticateRequest $request
      * @return JsonResponse
      */
-    public function authenticate(Request $request)
+    public function authenticate(UserAuthenticateRequest $request)
     {
         $data = $request->json()->all();
 
@@ -56,14 +58,14 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UserStoreRequest $request
      * @return UserResource|JsonResponse
      * @throws \Throwable
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         /** @var User $user */
-        $user =  new User();
+        $user =  new User($request->all());
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
@@ -76,7 +78,7 @@ class UserController extends Controller
         $user->rg_issuer = $request->input('rg_issuer');
         $user->gender = $request->input('gender');
         $user->marital_status = $request->input('marital_status');
-        $user->addresses = json_encode($request->input('addresses'));
+        $user->addresses = $request->input('addresses');
         $user->note = $request->input('note');
         $user->profession = $request->input('profession');
         $user->must_change_password = $request->input('mush_change_password') ? $request->input('mush_change_password') : true;
@@ -99,13 +101,16 @@ class UserController extends Controller
     public function show($id)
     {
         try {
-            if (!is_numeric($id)) {
-                throw new \Exception($e);
-            }
-            /** @var User $user */
-            $user = User::findOrFail($id);
+            if (is_numeric($id)) {
+                /** @var User $user */
+                $user = User::findOrFail($id);
 
-            return new UserResource($user);
+                return new UserResource($user);
+            }
+
+            return JsonResponse::create([
+                'message' => 'User not found'
+            ], Response::HTTP_NOT_FOUND);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
@@ -299,6 +304,10 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function resetPassword(Request $request)
     {
         try {
