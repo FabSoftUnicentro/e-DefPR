@@ -24,7 +24,7 @@ const validateSchema = yup.object().shape({
   rg: yup.string().min(2, 'O RG deve ter pelo menos 2 caracteres').max(20, 'Informe um RG válido').required('Informe o RG do funcionáiro'),
   birth_date: yup.string().required('Informe a data de nascimento do funcionário'),
   cpf: yup.string().required('Informe o cpf do funcionário').matches(/([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/, 'Informe um CPF válido'),
-  name: yup.string().min(3, 'O nome do assistido deve ter pelo menos 3 caracteres').required('Informe o nome do funcionário')
+  name: yup.string().min(3, 'O nome do funcionário deve ter pelo menos 3 caracteres').required('Informe o nome do funcionário')
 })
 
 class EmployeeCreate extends Component {
