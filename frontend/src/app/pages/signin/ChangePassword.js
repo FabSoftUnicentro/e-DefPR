@@ -3,7 +3,7 @@ import Icon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
 import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
-import { authentication } from '../../services'
+import { authentication, userService } from '../../services'
 import { recoveryPasswordService } from '../../services'
 import Form from '../../components/form/Form'
 import * as yup from 'yup'
@@ -12,7 +12,7 @@ import { Redirect } from 'react-router-dom'
 import './Signin.css'
 
 const validateSchema = yup.object().shape({
-  password: yup.string().required('Digite uma nova senha').min(3, "A senha deve ter pelo menos 3 caracteres"),
+  password: yup.string().min(3, "A senha deve ter pelo menos 3 caracteres").required('Digite uma nova senha'),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], "As senhas não são iguais").required('Digite novamente a senha')
 })
 
@@ -36,6 +36,7 @@ class ChangePassword extends Component {
       const result = await recoveryPasswordService.change(password)
       if (result.status === 200) {
         message.success('Senha alterada com sucesso')
+        await userService.me()
         return <Redirect to='/' />
       } else {
         return message.error('Ocorreu algum erro. Tente novamente')
@@ -51,6 +52,10 @@ class ChangePassword extends Component {
     const { isLoading } = this.state
 
     if (!authentication.isAuthenticated) {
+      return <Redirect to='/' />
+    }
+
+    if (authentication.account.must_change_password === 0) {
       return <Redirect to='/' />
     }
 
