@@ -7,8 +7,14 @@ import InputAdapter from '../../adapters/InputAdapter'
 import { authentication, recoveryPasswordService } from '../../services'
 import { Redirect } from 'react-router-dom'
 import Form from '../../components/form/Form'
+import * as yup from 'yup'
 
 import './Signin.css'
+
+const validateSchema = yup.object().shape({
+  email: yup.string().min(3, 'O email deve ter pelo menos 3 caracteres').required('Informe seu email'),
+  cpf: yup.string().min(10, 'O CPF deve ter 11 caracteres').max(11, 'O CPF deve ter 11 caracteres').required('Informe seu CPF')
+})
 
 class RecoveryPassword extends Component {
   constructor (props) {
@@ -29,9 +35,11 @@ class RecoveryPassword extends Component {
     try {    
       const result = await recoveryPasswordService.recovery(email, cpf)
       if (result.status === 200) {
-        return message.success('Um email com uma nova senha foi enviado com sucesso')
+        message.success('Um email com uma nova senha foi enviado com sucesso')
+        return <Redirect to='/' />
       } else if(result.status === 404) {
-        return message.error('Email ou CPF incorreto')
+        message.error('Email ou CPF incorreto')
+        return { cpf: 'Verifique se o CPF está correto', email: 'Verifique se o email está correto' }
       }
 
       return message.error('Ocorreu algum erro. Tente novamente')
@@ -58,6 +66,7 @@ class RecoveryPassword extends Component {
         <div>
           <Form
             onSubmit={this.onSubmit}
+            validateSchema={validateSchema}
           >
             <Form.TextField
               size='large'
