@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Models\Attendment;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,6 +14,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable, HasRoles;
 
+    protected $dateFormat = 'Y-m-d H:i:s';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,10 +24,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'password',
         'cpf',
         'birth_date',
-        'rg_issuer',
+        'birthplace',
         'rg',
+        'rg_issuer',
         'gender',
         'marital_status',
         'profession',
@@ -44,6 +48,26 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Generate hash for the password attribute
+     *
+     * @param $value
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    /**
+     * Generate json for the addresses attribute
+     *
+     * @param $value
+     */
+    public function setAddressesAttribute($value)
+    {
+        $this->attributes['addresses'] = json_encode($value);
+    }
 
     /**
      * Get all of the attendments for the user.
@@ -69,12 +93,12 @@ class User extends Authenticatable
             'name' => $this->name
         ];
 
-        $htmlProvide = View::make('templates/resetPassword', [
+        $htmlProvider = View::make('templates/resetPassword', [
             'user' => $this,
             'temporaryPassword' => $temporaryPassword
         ]);
 
-        $html = $htmlProvide->render();
+        $html = $htmlProvider->render();
 
         Mailer::sendEmail([ $address ], 'Recuperação de Senha', $html);
     }
