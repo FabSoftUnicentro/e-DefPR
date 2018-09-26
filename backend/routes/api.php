@@ -136,3 +136,23 @@ Route::prefix('permission')->group(function () {
         Route::delete('/{id}', 'Api\PermissionController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
     });
 });
+
+// AttendmentType route
+Route::prefix('attendmentType')->group(function () {
+    Route::group(['middleware' => ['permission:list-attendmentType']], function () {
+        Route::get('/', 'Api\AttendmentTypeController@index')->middleware('auth:api');
+        Route::get('/{id}', 'Api\AttendmentTypeController@show')->middleware('auth:api')->where('id', '[0-9]+');
+    });
+
+    Route::group(['middleware' => ['permission:register-attendmentType']], function () {
+        Route::post('/', 'Api\AttendmentTypeController@store')->middleware('auth:api');
+    });
+
+    Route::group(['middleware' => ['permission:update-attendmentType']], function () {
+        Route::put('/{id}', 'Api\AttendmentTypeController@update')->middleware('auth:api')->where('id', '[0-9]+');
+    });
+
+    Route::group(['middleware' => ['permission:delete-attendmentType']], function () {
+        Route::delete('/{id}', 'Api\AttendmentTypeController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
+    });
+});
