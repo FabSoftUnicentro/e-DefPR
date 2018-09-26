@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\UserAuthenticateRequest;
 use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -103,32 +104,18 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UserUpdateRequest $request
      * @param $id
      * @return UserResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         try {
             /** @var User $user */
             $user = User::findOrFail($id);
 
-            $user->name = $request->input('name') ? $request->input('name') : $user->name;
-            $user->email = $request->input('email') ? $request->input('email') : $user->email;
-            $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
-            $user->cpf = $request->input('cpf') ? $request->input('cpf') : $user->cpf;
-            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $user->birth_date);
-            $user->birth_date = $birthDate;
-            $user->birthplace = $request->input('birthplace') ? $request->input('birthplace') : $user->birthplace;
-            $user->rg = $request->input('rg') ? $request->input('rg') : $user->rg;
-            $user->rg_issuer = $request->input('rg_issuer') ? $request->input('rg_issuer') : $user->rg_issuer;
-            $user->gender = $request->input('gender') ? $request->input('gender') : $user->gender;
-            $user->marital_status = $request->input('marital_status') ? $request->input('marital_status') : $user->marital_status;
-            $user->addresses = $request->input('addresses') ? json_encode($request->input('addresses')) : $user->addresses;
-            $user->note = $request->input('note') ? $request->input('note') : $user->note;
-            $user->profession = $request->input('profession') ? $request->input('profession') : $user->profession;
-            $user->must_change_password = $request->input('must_change_password') ? $request->input('must_change_password') : true;
+            $user->update($request->all());
 
             $user->saveOrFail();
 

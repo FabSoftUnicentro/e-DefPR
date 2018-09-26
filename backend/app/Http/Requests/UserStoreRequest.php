@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Carbon\Carbon;
-
 class UserStoreRequest extends BaseRequest
 {
     /**
@@ -23,8 +21,6 @@ class UserStoreRequest extends BaseRequest
      */
     public function rules()
     {
-        $today = Carbon::now()->format('d/m/Y');
-
         return [
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
