@@ -30,7 +30,7 @@ class UserStoreRequest extends BaseRequest
             'email' => 'required|email|unique:users',
             'password' => 'required',
             'cpf' => 'required|unique:users',
-            'birth_date' => 'required|date_format:d/m/Y',
+            'birth_date' => 'required',
             'birthplace' => 'required',
             'rg' => 'required|string',
             'rg_issuer' => 'required',
