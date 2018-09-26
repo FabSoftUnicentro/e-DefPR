@@ -67,22 +67,6 @@ class UserController extends Controller
         /** @var User $user */
         $user =  new User($request->all());
 
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = Hash::make($request->input('password'));
-        $user->cpf = $request->input('cpf');
-        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date'));
-        $user->birth_date = $birthDate;
-        $user->birthplace = $request->input('birthplace');
-        $user->rg = $request->input('rg');
-        $user->rg_issuer = $request->input('rg_issuer');
-        $user->gender = $request->input('gender');
-        $user->marital_status = $request->input('marital_status');
-        $user->addresses = $request->input('addresses');
-        $user->note = $request->input('note');
-        $user->profession = $request->input('profession');
-        $user->must_change_password = $request->input('mush_change_password') ? $request->input('mush_change_password') : true;
-
         try {
             $user->saveOrFail();
 

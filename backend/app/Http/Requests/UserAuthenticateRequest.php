@@ -35,8 +35,8 @@ class UserAuthenticateRequest extends BaseRequest
     public function messages()
     {
         return [
-            'login.required' => 'É necessário digitar o login!',
-            'password.required' => 'É necessário digitar a senha!'
+            'login.required' => 'O campo login é obrigatório.',
+            'password.required' => 'O campo password é obrigatório.'
         ];
     }
 
