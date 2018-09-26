@@ -3,8 +3,7 @@ import Icon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
 import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
-import { authentication, userService } from '../../services'
-import { recoveryPasswordService } from '../../services'
+import { authentication, userService, recoveryPasswordService } from '../../services'
 import Form from '../../components/form/Form'
 import * as yup from 'yup'
 import { Redirect } from 'react-router-dom'
@@ -12,8 +11,8 @@ import { Redirect } from 'react-router-dom'
 import './Signin.css'
 
 const validateSchema = yup.object().shape({
-  password: yup.string().min(3, "A senha deve ter pelo menos 3 caracteres").required('Digite uma nova senha'),
-  confirmPassword: yup.string().oneOf([yup.ref('password'), null], "As senhas não são iguais").required('Digite novamente a senha')
+  password: yup.string().min(3, 'A senha deve ter pelo menos 3 caracteres').required('Digite uma nova senha'),
+  confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'As senhas não são iguais').required('Digite novamente a senha')
 })
 
 class ChangePassword extends Component {
@@ -88,7 +87,7 @@ class ChangePassword extends Component {
               name='confirmPassword'
               placeholder='Confirmação de senha'
               component={InputAdapter}
-              prefix={<Icon type="lock" />}
+              prefix={<Icon type='lock' />}
             />
 
             <Button
@@ -101,7 +100,7 @@ class ChangePassword extends Component {
             >
               Alterar senha
             </Button>
-          </Form>        
+          </Form>
         </div>
       </div>
     </div>
