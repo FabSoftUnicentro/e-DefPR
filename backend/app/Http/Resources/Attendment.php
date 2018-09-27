@@ -15,6 +15,7 @@ class Attendment extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'description' => $this->description,
             'type_id' => $this->type_id,
             'user_id' => $this->user_id
