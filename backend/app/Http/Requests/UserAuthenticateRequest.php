@@ -48,7 +48,7 @@ class UserAuthenticateRequest extends BaseRequest
     public function filters()
     {
         return [
-            'email' => 'trim|lowercase',
+            'login' => 'trim|lowercase',
         ];
     }
 }
