@@ -20,8 +20,8 @@ class CreateCounterPartTable extends Migration
             $table->date('birth_date');
             $table->integer('birthplace')->unsigned();
             $table->foreign('birthplace')->references('id')->on('cities');
-            $table->string('rg');
-            $table->string('rg_issuer');
+            $table->string('rg')->nullable();
+            $table->string('rg_issuer')->nullable();
             $table->enum('gender', ['M', 'F', 'O']);
             $table->string('marital_status');
             $table->string('profession');
