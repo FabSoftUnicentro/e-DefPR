@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\DB as DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +14,14 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Models\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'cpf' => $faker->numberBetween(999999999),
         'birth_date' => $faker->date(),
+        'birthplace' => DB::table('cities')->inRandomOrder()->first()->id,
         'rg' => $faker->unique()->text(11),
         'rg_issuer' => 'SSP',
         'gender' => 'M',

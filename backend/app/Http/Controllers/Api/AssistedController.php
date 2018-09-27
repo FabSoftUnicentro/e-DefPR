@@ -39,7 +39,7 @@ class AssistedController extends Controller
         $assisted->cpf = $request->input('cpf');
         $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $assisted->birth_date);
         $assisted->birth_date = $birthDate;
-        $assisted->birth_place = $request->input('city_id');
+        $assisted->birthplace = $request->input('birthplace');
         $assisted->rg = $request->input('rg');
         $assisted->rg_issuer = $request->input('rg_issuer');
         $assisted->gender = $request->input('gender');
@@ -67,6 +67,9 @@ class AssistedController extends Controller
     public function show($id)
     {
         try {
+            if (!is_numeric($id)) {
+                throw new \Exception($e);
+            }
             /** @var Assisted $assisted */
             $assisted = Assisted::findOrFail($id);
 
@@ -93,17 +96,17 @@ class AssistedController extends Controller
             $assisted->name = $request->input('name') ? $request->input('name') : $assisted->name;
             $assisted->email = $request->input('email') ? $request->input('email') : $assisted->email;
             $assisted->cpf = $request->input('cpf') ? $request->input('cpf') : $assisted->cpf;
-            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birthDate') ? $request->input('birthDate') : $assisted->birth_date);
+            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $assisted->birth_date);
             $assisted->birth_date = $birthDate;
-            $assisted->birth_place = $request->input('birthPlace') ? $request->input('birthPlace') : $assisted->birth_place;
+            $assisted->birthplace = $request->input('birthplace') ? $request->input('birthplace') : $assisted->birthplace;
             $assisted->rg = $request->input('rg') ? $request->input('rg') : $assisted->rg;
-            $assisted->rg_issuer = $request->input('rgIssuer') ? $request->input('rgIssuer') : $assisted->rg_issuer;
+            $assisted->rg_issuer = $request->input('rg_issuer') ? $request->input('rg_issuer') : $assisted->rg_issuer;
             $assisted->gender = $request->input('gender') ? $request->input('gender') : $assisted->gender;
-            $assisted->marital_status = $request->input('maritalStatus') ? $request->input('maritalStatus') : $assisted->marital_status;
+            $assisted->marital_status = $request->input('marital_status') ? $request->input('marital_status') : $assisted->marital_status;
             $assisted->addresses = $request->input('addresses') ? json_encode($request->input('addresses')) : $assisted->addresses;
             $assisted->note = $request->input('note') ? $request->input('note') : $assisted->note;
             $assisted->profession = $request->input('profession') ? $request->input('profession') : $assisted->profession;
-            //$assisted->counter_part = $request->input('counterPart') ? $request->input('counter_part') : $assisted->counter_part;
+            //$assisted->counter_part = $request->input('counter_part') ? $request->input('counter_part') : $assisted->counter_part;
             $assisted->saveOrFail();
 
             return new AssistedResource($assisted);

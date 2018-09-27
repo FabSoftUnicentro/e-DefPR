@@ -14,7 +14,6 @@ class CounterPart extends Model
     protected $fillable = [
         'name',
         'email',
-        'cpf',
         'birth_date',
         'rg',
         'rg_issuer',
