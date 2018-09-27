@@ -46,6 +46,7 @@ class RoleOverview extends Component {
         <Button>Atualizar</Button>
         <Button>Filtrar</Button>
         <Link to='/role/new'><Button type='primary'>Cadastrar</Button></Link>
+        <Link to='/role/assign'><Button type='primary'>Associar papel à permissões</Button></Link>
       </Page.Header>
 
       <Page.Context>
