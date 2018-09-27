@@ -26,7 +26,6 @@ class RoleCreate extends Component {
   }
 
   async onSubmit (values) {
-    console.log(values)
     const removeCreatingMessage = message.loading('Cadastrando nível de acesso', 0)
 
     try {
