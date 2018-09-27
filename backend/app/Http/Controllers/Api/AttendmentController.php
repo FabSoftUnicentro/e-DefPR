@@ -7,6 +7,8 @@ use App\Http\Requests\AttendmentStoreRequest;
 use App\Http\Requests\AttendmentUpdateRequest;
 use App\Models\Attendment;
 use App\Http\Resources\Attendment as AttendmentResource;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 class AttendmentController extends Controller
@@ -29,11 +31,9 @@ class AttendmentController extends Controller
     public function store(AttendmentStoreRequest $request)
     {
         /** @var Attendment $attendment */
-        $attendment =  new Attendment();
+        $attendment =  new Attendment($request->all());
         $user = Auth::user();
 
-        $attendment->description = $request->input('description');
-        $attendment->type_id = $request->input('type_id');
         $attendment->user_id = $user->getAuthIdentifier();
 
         try {
@@ -80,8 +80,7 @@ class AttendmentController extends Controller
             /** @var Attendment $attendment */
             $attendment = Attendment::findOrFail($id);
 
-            $attendment->description = $request->input('description') ? $request->input('description') : $attendment->description;
-            $attendment->type_id = $request->input('type_id') ? $request->input('type_id') : $attendment->type_id;
+            $attendment->update($request->all());
 
             $attendment->saveOrFail();
 
