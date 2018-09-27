@@ -169,7 +169,7 @@ class RoleTableSeeder extends Seeder
             'list-attendment',
             'register-attendment'
         );
-        $role = Role::create(['name' => 'legal-advisor']);
+        $role = Role::create(['name' => 'legal-adviser']);
         $role->givePermissionTo(
             'register-activities',
             'read-process',
