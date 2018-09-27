@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Edef Juridico',
             'email' => 'juridico@edefpr.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => 'secret',
             'cpf' => '1318510005',
             'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
@@ -43,7 +43,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Edef Administrador',
             'email' => 'administrative@edefpr.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => 'secret',
             'cpf' => '2318510005',
             'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
@@ -71,7 +71,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Edef Assistente Social',
             'email' => 'assistente.social@edefpr.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => 'secret',
             'cpf' => '3318510005',
             'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
@@ -99,7 +99,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Edef Estagiario Advogado',
             'email' => 'estagiario.advogado@edefpr.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => 'secret',
             'cpf' => '4318510005',
             'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
@@ -127,7 +127,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Edef Assessor Juridico',
             'email' => 'assessor.juridico@edefpr.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => 'secret',
             'cpf' => '5318510005',
             'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
@@ -155,7 +155,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Edef Estagiario Ensino Medio',
             'email' => 'estagiario.ensinomedio@edefpr.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => 'secret',
             'cpf' => '6318510005',
             'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
@@ -183,7 +183,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Edef Defensor Publico',
             'email' => 'defensor.publico@edefpr.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => 'secret',
             'cpf' => '7318510005',
             'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
@@ -211,7 +211,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Edef Psicologo',
             'email' => 'psicologo@edefpr.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => 'secret',
             'cpf' => '8318510005',
             'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
@@ -239,7 +239,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Edef Master',
             'email' => 'master@edefpr.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'password' => 'secret',
             'cpf' => '0000000000',
             'birthplace' => '1100056',
             'birth_date' => '2018-01-01',
