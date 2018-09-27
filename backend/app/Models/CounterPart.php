@@ -38,7 +38,7 @@ class CounterPart extends Model
     ];
 
     /**
-     * Get the city that the assisted was born.
+     * Get the city that the counter part lives or resides.
      */
     public function city()
     {
