@@ -45,5 +45,4 @@ class CreateCounterPartTable extends Migration
     {
         Schema::dropIfExists('counter_parts');
     }
-
 }
