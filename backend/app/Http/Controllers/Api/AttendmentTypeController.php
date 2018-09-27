@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Models\AttendmentType;
 use App\Http\Resources\AttendmentType as AttendmentTypeResource;
+use App\Http\Requests\AttendmentTypeStoreRequest;
+use App\Http\Requests\AttendmentTypeUpdateRequest;
 
 class AttendmentTypeController extends Controller
 {
@@ -24,11 +25,11 @@ class AttendmentTypeController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param AttendmentTypeStoreRequest $request
      * @return AttendmentTypeResource|JsonResponse
      * @throws \Throwable
      */
-    public function store(Request $request)
+    public function store(AttendmentTypeStoreRequest $request)
     {
         /** @var AttendmentType $attendmentType */
         $attendmentType =  new AttendmentType($request->all());
@@ -66,12 +67,12 @@ class AttendmentTypeController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param AttendmentTypeUpdateRequest $request
      * @param $id
      * @return AttendmentTypeResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(Request $request, $id)
+    public function update(AttendmentTypeUpdateRequest $request, $id)
     {
 
         try {
