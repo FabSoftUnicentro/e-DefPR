@@ -16,6 +16,8 @@ class CreateAttendmentsTable extends Migration
         Schema::create('attendments', function (Blueprint $table) {
             $table->increments('id');
             $table->text('description');
+            $table->integer('type_id')->unsigned();
+            $table->foreign('type_id')->references('id')->on('attendment_types');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
