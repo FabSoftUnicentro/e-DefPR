@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AttendmentStoreRequest;
+use App\Http\Requests\AttendmentUpdateRequest;
 use App\Models\Attendment;
+use App\Http\Resources\Attendment as AttendmentResource;
+use Illuminate\Support\Facades\Auth;
 
 class AttendmentController extends Controller
 {
@@ -18,18 +22,19 @@ class AttendmentController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return AttendmentResource|JsonResponse
+     * @param AttendmentStoreRequest $request
+     * @return AttendmentResource
      * @throws \Throwable
      */
-    public function store(Request $request, $user_id)
+    public function store(AttendmentStoreRequest $request)
     {
         /** @var Attendment $attendment */
         $attendment =  new Attendment();
+        $user = Auth::user();
 
         $attendment->description = $request->input('description');
         $attendment->type_id = $request->input('type_id');
-        $attendment->user_id = $user_id;
+        $attendment->user_id = $user->getAuthIdentifier();
 
         try {
             $attendment->saveOrFail();
@@ -44,7 +49,7 @@ class AttendmentController extends Controller
 
     /**
      * @param $id
-     * @return AttendmentResource|JsonResponse
+     * @return AttendmentResource
      */
     public function show($id)
     {
@@ -55,7 +60,7 @@ class AttendmentController extends Controller
             /** @var Attendment $attendment */
             $attendment = Attendment::findOrFail($id);
 
-            return new AttendmentResourse($attendment);
+            return new AttendmentResource($attendment);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
@@ -69,7 +74,7 @@ class AttendmentController extends Controller
      * @return AttendmentResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(Request $request, $id)
+    public function update(AttendmentUpdateRequest $request, $id)
     {
         try {
             /** @var Attendment $attendment */
