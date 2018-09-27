@@ -24,14 +24,12 @@ class CreateCounterPartTable extends Migration
             $table->string('rg_issuer')->nullable();
             $table->enum('gender', ['M', 'F', 'O']);
             $table->string('marital_status');
-            $table->string('profession');
+            $table->string('profession')->nullable();
             $table->text('note')->nullable();
             $table->text('document_type');
             $table->integer('document_number');
             $table->text('fantasy_name')->nullable();
             $table->json('addresses');
-            $table->boolean('must_change_password')->default(true);
-            $table->rememberToken();
             $table->timestamps();
         });
     }
