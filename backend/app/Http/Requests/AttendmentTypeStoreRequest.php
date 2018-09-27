@@ -13,7 +13,7 @@ class AttendmentTypeStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class AttendmentTypeStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string',
+            'description' => 'required|string'
+        ];
+    }
+
+    /**
+     * Filters to be applied to the input.
+     *
+     * @return array
+     */
+    public function filters()
+    {
+        return [
+            'name' => 'trim|escape',
+            'description' => 'trim|escape'
         ];
     }
 }
