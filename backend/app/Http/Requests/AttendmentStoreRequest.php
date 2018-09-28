@@ -22,8 +22,9 @@ class AttendmentStoreRequest extends BaseRequest
     public function rules()
     {
         return [
-            'description' => 'required|String',
-            'type_id' => 'required|numeric'
+            'description' => 'required|string',
+            'type_id' => 'required|numeric',
+            'assisted_id' => 'required|numeric'
         ];
     }
 
@@ -37,7 +38,8 @@ class AttendmentStoreRequest extends BaseRequest
         return [
             'description' => 'trim|capitalize|escape',
             'type_id' => 'trim|escape',
-            'user_id' => 'trim|escape'
+            'user_id' => 'trim|escape',
+            'assisted_id' => 'trim|escape'
         ];
     }
 }
