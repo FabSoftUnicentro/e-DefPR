@@ -18,7 +18,8 @@ class Attendment extends JsonResource
             'id' => $this->id,
             'description' => $this->description,
             'type_id' => $this->type_id,
-            'user_id' => $this->user_id
+            'user_id' => $this->user_id,
+            'assisted_id' => $this->assisted_id
         ];
     }
 
