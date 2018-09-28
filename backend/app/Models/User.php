@@ -85,8 +85,7 @@ class User extends Authenticatable
     public function resetPassword()
     {
         $temporaryPassword = uniqid(time());
-        $hashedPassword = bcrypt($temporaryPassword);
-        $this->password = $hashedPassword;
+        $this->password = $temporaryPassword;
         $this->must_change_password = true;
         $this->save();
 
