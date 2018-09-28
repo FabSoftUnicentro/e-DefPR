@@ -25,7 +25,7 @@ class AttendmentController extends Controller
 
     /**
      * @param AttendmentStoreRequest $request
-     * @return AttendmentResource
+     * @return AttendmentResource|JsonResponse
      * @throws \Throwable
      */
     public function store(AttendmentStoreRequest $request)
@@ -49,7 +49,7 @@ class AttendmentController extends Controller
 
     /**
      * @param $id
-     * @return AttendmentResource
+     * @return AttendmentResource|JsonResponse
      */
     public function show($id)
     {
