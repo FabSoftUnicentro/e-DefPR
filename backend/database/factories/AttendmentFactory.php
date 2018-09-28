@@ -18,6 +18,7 @@ $factory->define(App\Models\Attendment::class, function (Faker $faker) {
     return [
         'description' => $faker->paragraph(),
         'type_id' => DB::table('attendment_types')->inRandomOrder()->first()->id,
-        'user_id' => DB::table('users')->inRandomOrder()->first()->id
+        'user_id' => DB::table('users')->inRandomOrder()->first()->id,
+        'assisted_id' => DB::table('assisteds')->inRandomOrder()->first()->id
     ];
 });
