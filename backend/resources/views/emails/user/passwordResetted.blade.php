@@ -399,7 +399,7 @@
             <table class="email-content" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                     <td class="email-masthead">
-                        <a href="http://127.0.0.1:8000" class="email-masthead_name">
+                        <a href="#" class="email-masthead_name">
                             E-DefPR
                         </a>
                     </td>
