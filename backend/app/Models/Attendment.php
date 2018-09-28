@@ -15,7 +15,8 @@ class Attendment extends Model
     protected $fillable = [
         'description',
         'type_id',
-        'user_id'
+        'user_id',
+        'assisted_id'
     ];
 
     /**
