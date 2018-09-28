@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\UserAuthenticateRequest;
+use App\Http\Requests\UserForgotPasswordRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
@@ -13,7 +14,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Auth;
-use DateTime;
 
 class UserController extends Controller
 {
@@ -164,10 +164,10 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UserForgotPasswordRequest $request
      * @return JsonResponse
      */
-    public function forgotPassword(Request $request)
+    public function forgotPassword(UserForgotPasswordRequest $request)
     {
         $email = $request->input('email');
         $cpf = $request->input('cpf');
