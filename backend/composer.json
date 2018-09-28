@@ -14,7 +14,6 @@
         "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
         "laravellegends/pt-br-validator": "5.1.*",
-        "phpmailer/phpmailer": "^6.0",
         "spatie/laravel-permission": "^2.12"
     },
     "require-dev": {

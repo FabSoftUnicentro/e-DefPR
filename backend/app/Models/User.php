@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Mail\UserPasswordResetted;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -88,18 +90,6 @@ class User extends Authenticatable
         $this->must_change_password = true;
         $this->save();
 
-        $address = [
-            'email' => $this->email,
-            'name' => $this->name
-        ];
-
-        $htmlProvider = View::make('templates/resetPassword', [
-            'user' => $this,
-            'temporaryPassword' => $temporaryPassword
-        ]);
-
-        $html = $htmlProvider->render();
-
-        Mailer::sendEmail([ $address ], 'Recuperação de Senha', $html);
+        Mail::to($this)->queue(new UserPasswordResetted($this, $temporaryPassword));
     }
 }
