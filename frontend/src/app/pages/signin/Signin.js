@@ -96,7 +96,7 @@ class Signin extends Component {
               size='large'
               type='primary'
               htmlType='submit'
-              style={{margin: '24px 0', width: '100%'}}
+              style={{marginTop: 4, marginBottom: 24, width: '100%'}}
               disabled={isLoading}
               loading={isLoading}
             >

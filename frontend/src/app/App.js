@@ -8,6 +8,7 @@ import Employee from './pages/employee/Employee'
 import Assisted from './pages/assisted/Assisted'
 import Role from './pages/role/Role'
 import Signin from './pages/signin/Signin'
+import Users from './pages/users/Users'
 import { authentication } from './services'
 
 import './App.css'
@@ -24,6 +25,7 @@ const Home = ({pathname}) => (
         <Route exact path='/' component={Dashboard} />
         <Route path='/assisted' component={Assisted} />
         <Route path='/employee' component={Employee} />
+        <Route path='/users' component={Users} />
         <Route path='/role' component={Role} />
       </Switch>
     </main>
