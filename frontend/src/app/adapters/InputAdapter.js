@@ -13,6 +13,7 @@ const InputAdapter = ({ input: { onChange, value }, required, label, meta, ...re
     <Input
       label={label}
       onChange={onChange}
+      value={value}
       {...rest}
     />
   </FormItem>

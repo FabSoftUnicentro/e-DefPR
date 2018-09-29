@@ -22,7 +22,7 @@ class WizardForm extends Form {
 
     this.state = {
       steps: [],
-      currentPage: 1
+      currentPage: 0
     }
 
     this.nextPage = this.nextPage.bind(this)
