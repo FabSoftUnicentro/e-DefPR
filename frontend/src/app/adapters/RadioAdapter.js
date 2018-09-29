@@ -16,7 +16,7 @@ const RadioAdapter = ({ input: { onChange, value }, required, label, options, as
       {...rest}
     >
       { asButtons && options.map(({ label, ...props }) => (
-        <Radio.Button {...props}>{ label }</Radio.Button>
+        <Radio.Button key={props.value} {...props}>{ label }</Radio.Button>
       )) }
     </Radio.Group>
   </FormItem>
