@@ -1,14 +1,24 @@
 import React, { PureComponent } from 'react'
 import { Form as FinalForm, Field } from 'react-final-form'
 import PropTypes from 'prop-types'
+import Input from 'antd/lib/input'
+import Select from 'antd/lib/select'
 import InputAdapter from '../../adapters/InputAdapter'
 import DatePickerAdapter from '../../adapters/DatePickerAdapter'
+import RadioAdapter from '../../adapters/RadioAdapter'
+import CitySelectAdapter from '../../adapters/CitySelectAdapter'
+import SelectAdapter from '../../adapters/SelectAdapter'
 import { StyledForm } from './Form.style'
 
 class Form extends PureComponent {
   static TextField = props => <Field {...props} component={InputAdapter} />
   static DatePicker = props => <Field {...props} component={DatePickerAdapter} />
-  static CitySelect = props => <Field {...props} />
+  static Radio = props => <Field {...props} component={RadioAdapter} />
+  static CitySelect = props => <Field {...props} component={CitySelectAdapter} />
+  static Inline = ({ children }) => <Input.Group compact>{ children }</Input.Group>
+  static Select = ({options, ...props}) => (<Field {...props} component={SelectAdapter}>
+    { options.map(item => <Select.Option key={item.value} value={item.value}>{item.name}</Select.Option>) }
+  </Field>)
 
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,

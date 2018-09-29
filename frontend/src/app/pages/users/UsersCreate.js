@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
-import * as yup from 'yup'
 import Page from '../../components/page/Page'
 import WizardForm from '../../components/form/WizardForm'
+import { PersonalInformationForm, personalInformationValidator } from './forms/PersonalInformation'
+import { AddressForm, addressValidator } from './forms/Address'
+import { AccessForm, accessValidator } from './forms/Access'
+
 
 const validateSchema = [
-  yup.object().shape({
-    name: yup.string().trim().min(3).required('Informe o nome do funcionário')
-  })
+  personalInformationValidator,
+  addressValidator,
+  accessValidator
 ]
+
 class UsersCreate extends Component {
   constructor (props) {
     super(props)
@@ -32,45 +36,16 @@ class UsersCreate extends Component {
           onSubmit={this.onSubmit}
           validateSchema={validateSchema}
         >
-          <WizardForm.Page
-            icon='idcard'
-            title='Informações pessoais'
-          >
-            <WizardForm.TextField
-              label='Nome completo'
-              name='name'
-              required
-            />
-
-            <WizardForm.TextField
-              label='CPF'
-              name='cpf'
-            />
-
-            <WizardForm.DatePicker
-              label='Data de nascimento'
-              name='birthday'
-            />
+          <WizardForm.Page icon='idcard' title='Informações pessoais'>
+            <PersonalInformationForm />
           </WizardForm.Page>
 
-          <WizardForm.Page
-            icon='mail'
-            title='Endereço'
-          >
-            <WizardForm.TextField
-              label='Rua'
-              name='rua'
-            />
+          <WizardForm.Page icon='mail' title='Endereço'>
+            <AddressForm />
           </WizardForm.Page>
 
-          <WizardForm.Page
-            icon='lock'
-            title='Acesso'
-          >
-            <WizardForm.TextField
-              label='Nome completo'
-              name='name'
-            />
+          <WizardForm.Page icon='lock' title='Acesso'>
+            <AccessForm />
           </WizardForm.Page>
         </WizardForm>
       </Page.Context>
