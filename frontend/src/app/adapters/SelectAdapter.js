@@ -6,8 +6,7 @@ import inputValidateProps from './inputValidateProps'
 const SelectAdapter = ({ input: { onChange, value }, options, children, label, meta, required, ...rest }) => (
   <FormItem 
     label={label} 
-    // style={{margin: 0, padding: 0}}
-    {...inputValidateProps(meta)}
+    {...inputValidateProps(meta, required)}
     hasFeedback
     required={required}
   >

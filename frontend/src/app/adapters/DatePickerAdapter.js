@@ -8,8 +8,7 @@ const DATE_FORMAT = 'DD/MM/YYYY'
 const DatePickerAdapter = ({ input: { onChange, value }, label, meta, required, ...rest }) => (
   <FormItem 
     label={label} 
-    // style={{margin: 0, padding: 0}}
-    {...inputValidateProps(meta)}
+    {...inputValidateProps(meta, required)}
     hasFeedback
     required={required}
     >
