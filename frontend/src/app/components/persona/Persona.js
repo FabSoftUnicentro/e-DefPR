@@ -37,9 +37,9 @@ class Persona extends Component {
     const { name, jobDescription } = this.props
 
     return {
-      title: <div style={{display: 'flex', flexDirection: 'column', padding: '5px 0'}}>
+      title: <div style={{ display: 'flex', flexDirection: 'column', padding: '5px 0' }}>
         <span><strong>{ name }</strong></span>
-        <span style={{fontSize: 13, color: '#666'}}>{ jobDescription }</span>
+        <span style={{ fontSize: 13, color: '#666' }}>{ jobDescription }</span>
       </div>,
       content: <div>
         <p><a href=''>Minha conta</a></p>

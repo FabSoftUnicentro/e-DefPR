@@ -43,7 +43,7 @@ class Header extends Component {
         <Badge dot>
           <Icon type='notification' />
         </Badge>
-        <Persona name={userService.name} jobDescription="Developer" onLogout={this.logout} />
+        <Persona name={userService.name} jobDescription='Developer' onLogout={this.logout} />
       </div>
     </header>
   }
