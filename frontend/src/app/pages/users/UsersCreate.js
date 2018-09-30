@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom'
 import Button from 'antd/lib/button'
 import Page from '../../components/page/Page'
 import WizardForm from '../../components/form/WizardForm'
-import { PersonalInformationForm, personalInformationValidator } from './forms/PersonalInformation'
-import { AddressForm, addressValidator } from './forms/Address'
+import {
+  PersonalInformationForm,
+  personalInformationValidator
+} from '../../components/form/prefabs/PersonalInformation'
+import { AddressForm, addressValidator } from '../../components/form/prefabs/Address'
 import { AccessForm, accessValidator } from './forms/Access'
 import { userService } from '../../services'
 
@@ -63,11 +66,11 @@ class UsersCreate extends Component {
             <PersonalInformationForm />
           </WizardForm.Page>
 
-          <WizardForm.Page icon='mail' title='Endereço'>
+          <WizardForm.Page icon='home' title='Endereço'>
             <AddressForm />
           </WizardForm.Page>
 
-          <WizardForm.Page icon='lock' title='Acesso'>
+          <WizardForm.Page icon='lock' title='Contato'>
             <AccessForm />
           </WizardForm.Page>
         </WizardForm>

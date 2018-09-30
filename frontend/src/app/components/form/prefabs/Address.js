@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import WizardForm from '../../../components/form/WizardForm'
 import * as yup from 'yup'
+import WizardForm from '../WizardForm'
 
 const addressValidator = yup.object().shape({
   address: yup.object().shape({

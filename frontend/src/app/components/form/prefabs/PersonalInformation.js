@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import WizardForm from '../../../components/form/WizardForm'
 import * as yup from 'yup'
+import WizardForm from '../WizardForm'
 
 const personalInformationValidator = yup.object().shape({
   profession: yup.string().matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe uma profissão válida').required('Informe a profissão do funcionário'),
