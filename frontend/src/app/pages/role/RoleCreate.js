@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
+import message from 'antd/lib/message'
+import Button from 'antd/lib/button'
+import { Link } from 'react-router-dom'
+import * as yup from 'yup'
 import Page from '../../components/page/Page'
 import Form from '../../components/form/Form'
-import message from 'antd/lib/message'
-import Icon from 'antd/lib/icon'
-import Button from 'antd/lib/button'
 import { roleService } from '../../services'
-import * as yup from 'yup'
-import { Redirect } from 'react-router-dom'
 
 const validateSchema = yup.object().shape({
   name: yup.string().min(3, 'O nome do nível de acesso deve ter pelo menos 3 caracteres')
@@ -26,19 +25,15 @@ class RoleCreate extends Component {
   }
 
   async onSubmit (values) {
-    console.log(values)
     const removeCreatingMessage = message.loading('Cadastrando nível de acesso', 0)
 
     try {
       const result = await roleService.create(values)
 
       if (result.status === 201) {
-        message.success('Nível de acesso cadastrado com sucesso!')
-
-        this.setState({
-          redirect: true
-        })
-      } else if (result.status === 403) {
+        await message.success('Nível de acesso cadastrado com sucesso!')
+        this.props.history.push('/role')
+      } else if (result.status === 422) {
         message.error('Preencha corretamente o nome!')
       } else {
         return message.error('Não foi possível cadastrar o nível de acesso!', 2)
@@ -50,17 +45,11 @@ class RoleCreate extends Component {
     }
   }
 
-  attachMessage (type, message) {
-    this.setState({ alertProps: { type, message } })
-  }
-
   render () {
-    if (this.state.redirect === true) {
-      return <Redirect to='/role' />
-    }
-
     return <Page>
-      <Page.Header />
+      <Page.Header>
+        <Link to='/role'><Button type='danger'>Cancelar</Button></Link>
+      </Page.Header>
 
       <Page.Context>
         <h2>Cadastrar nível de acesso</h2>
@@ -68,16 +57,14 @@ class RoleCreate extends Component {
           <Form
             onSubmit={this.onSubmit}
             validateSchema={validateSchema}
-            >
-            <Form.Step title='Informações do nível de acesso'>
-              <Form.TextField
-                label='Nome'
-                name='name'
-                placeholder='Nome completo do nível de acesso'
-                required
-              />
-            </Form.Step>
-            <Button size='large'type='primary'htmlType='submit'>Salvar <Icon type='check' /></Button>
+          >
+            <Form.TextField
+              label='Nome'
+              name='name'
+              placeholder='Nome completo do nível de acesso'
+              required
+            />
+            <Button size='large' type='primary' htmlType='submit' icon='check'>Salvar</Button>
           </Form>
         </div>
       </Page.Context>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import message from 'antd/lib/message'
+import { Link } from 'react-router-dom'
+import Button from 'antd/lib/button'
 import Page from '../../components/page/Page'
 import WizardForm from '../../components/form/WizardForm'
 import {
@@ -31,7 +33,7 @@ class AssistedCreate extends Component {
       const result = await assistedService.create(values)
 
       if (result.status === 201) {
-        message.success('Assistido cadastrado com sucesso!')
+        await message.success('Assistido cadastrado com sucesso!')
         this.props.history.push('/assisted')
       } else if (result.status === 422) {
         message.error('Preencha corretamente as informações!')
@@ -47,7 +49,9 @@ class AssistedCreate extends Component {
 
   render () {
     return <Page>
-      <Page.Header />
+      <Page.Header>
+        <Link to='/assisted'><Button type='danger'>Cancelar</Button></Link>
+      </Page.Header>
 
       <Page.Context>
         <h2>Cadastrar assistido</h2>
