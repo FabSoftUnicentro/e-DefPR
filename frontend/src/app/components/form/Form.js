@@ -16,7 +16,7 @@ class Form extends PureComponent {
   static Radio = props => <Field {...props} component={RadioAdapter} />
   static CitySelect = props => <Field {...props} component={CitySelectAdapter} />
   static Inline = ({ children }) => <Input.Group compact>{ children }</Input.Group>
-  static Select = ({options, ...props}) => (<Field {...props} component={SelectAdapter}>
+  static Select = ({ options, ...props }) => (<Field {...props} component={SelectAdapter}>
     { options.map(item => <Select.Option key={item.value} value={item.value}>{item.name}</Select.Option>) }
   </Field>)
 

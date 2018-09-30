@@ -78,9 +78,9 @@ class WizardForm extends Form {
       <div className='steps-content'>{ this.currentStep }</div>
       <div className='steps-action'>
         <Button size='large' disabled={this.isFirstPage} onClick={this.prevPage} icon='arrow-left'>Passo anterior</Button>
-        { 
+        {
           this.isLastPage ? (
-            <Button type='primary' size='large' htmlType='submit' icon='check'>Finalizar</Button>            
+            <Button type='primary' size='large' htmlType='submit' icon='check'>Finalizar</Button>
           ) : (
             <Button type='primary' size='large' htmlType='submit'>Próximo passo <Icon type='arrow-right' /></Button>
           )
@@ -99,7 +99,7 @@ class WizardForm extends Form {
   }
 
   get isLastPage () {
-    return this.state.currentPage === this.props.children.length-1
+    return this.state.currentPage === this.props.children.length - 1
   }
 }
 

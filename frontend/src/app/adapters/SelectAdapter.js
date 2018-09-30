@@ -4,8 +4,8 @@ import FormItem from 'antd/lib/form/FormItem'
 import inputValidateProps from './inputValidateProps'
 
 const SelectAdapter = ({ input: { onChange, value }, options, children, label, meta, required, ...rest }) => (
-  <FormItem 
-    label={label} 
+  <FormItem
+    label={label}
     {...inputValidateProps(meta, required)}
     hasFeedback
     required={required}

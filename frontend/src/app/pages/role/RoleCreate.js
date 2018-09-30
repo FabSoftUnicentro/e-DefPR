@@ -9,9 +9,9 @@ import { roleService } from '../../services'
 
 const validateSchema = yup.object().shape({
   name: yup.string().min(3, 'O nome do nível de acesso deve ter pelo menos 3 caracteres')
-  .max(191, 'O nome do nível de acesso é muito grande!')
-  .matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe um nível de acesso válido')
-  .required('Informe o nome do nível de acesso')
+    .max(191, 'O nome do nível de acesso é muito grande!')
+    .matches(/^(([a-zA-Z ]|[\u00C0-\u017F])*)$/, 'Informe um nível de acesso válido')
+    .required('Informe o nome do nível de acesso')
 })
 
 class RoleCreate extends Component {

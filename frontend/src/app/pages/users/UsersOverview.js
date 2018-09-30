@@ -45,7 +45,7 @@ class UsersOverview extends Component {
   }
 
   onChangePage (page, pageSize) {
-    this.setState({ data: undefined})
+    this.setState({ data: undefined })
     userService.list(page)
       .then(result => {
         this.setState({ data: result.data, total: result.meta.total })
@@ -88,16 +88,16 @@ class UsersOverview extends Component {
           loading={!data}
           bordered
           dataSource={data}
-          bodyStyle={{background: 'white'}}
+          bodyStyle={{ background: 'white' }}
           onRow={(record, index) => {
             return {
               onClick: () => { this.showDrawer(record) }
             }
           }}
           columns={[
-            {title: 'Nome', dataIndex: 'name', key: 'name'},
-            {title: 'E-mail', dataIndex: 'email'},
-            {title: 'Profissão', dataIndex: 'profession'}
+            { title: 'Nome', dataIndex: 'name', key: 'name' },
+            { title: 'E-mail', dataIndex: 'email' },
+            { title: 'Profissão', dataIndex: 'profession' }
           ]}
           pagination={{
             total,

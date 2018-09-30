@@ -40,7 +40,7 @@ class UsersCreate extends Component {
       } else if (result.status === 422) {
         message.error('Preencha corretamente as informações!')
       }
-      
+
       return message.error('Não foi possível cadastrar o funcionário!')
     } catch (error) {
       return message.error('Erro inesperado, tente novamente!')

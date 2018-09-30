@@ -15,7 +15,7 @@ import './App.css'
 
 const browserHistory = createBrowserHistory()
 
-const Home = ({pathname}) => (
+const Home = ({ pathname }) => (
   <div className='app'>
     <Header region={{ name: 'Guarapuava' }} />
 
