@@ -71,7 +71,6 @@ class Form extends PureComponent {
     return <FinalForm
       onSubmit={this.onSubmit}
       validate={this.onValidate}
-      initialValues={{ name: 'Paulo ' }}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           { this.renderForm() }

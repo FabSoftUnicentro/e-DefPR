@@ -37,7 +37,7 @@ class WizardForm extends Form {
     })
   }
 
-  onSubmit (values) {
+  async onSubmit (values) {
     if (this.isLastPage) {
       return super.onSubmit(values)
     }

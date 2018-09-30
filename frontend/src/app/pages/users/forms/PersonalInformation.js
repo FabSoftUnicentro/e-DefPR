@@ -81,8 +81,7 @@ const PersonalInformationForm = () => (<Fragment>
 
   <WizardForm.TextField
     label='Anotações'
-    name='notes'
-    required
+    name='note'
   />
 </Fragment>)
 

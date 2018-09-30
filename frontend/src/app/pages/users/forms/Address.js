@@ -6,7 +6,7 @@ const addressValidator = yup.object().shape({
   address: yup.object().shape({
     neighbourhood: yup.string().min(2, 'O bairro deve ter pelo menos 2 caracteres').max(100, 'Informe um bairro válido').required('Informe o bairro do funcionário'),
     city: yup.string().required('Informe a cidade do funcionário'),
-    number: yup.number().positive().required('Informe o número residencial do funcionário'),
+    number: yup.string().required('Informe o número residencial do funcionário'),
     cep: yup.string().min(2, 'O CEP deve ter pelo menos 2 caracteres').max(8, 'Informe um CEP válido').required('Informe o CEP do endereço do funcionário')
   })
 })

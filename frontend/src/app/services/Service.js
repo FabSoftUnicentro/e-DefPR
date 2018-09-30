@@ -71,7 +71,8 @@ class Service {
   get headers () {
     return {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${this.token}`,
+      'X-Requested-With': 'XMLHttpRequest'
     }
   }
 

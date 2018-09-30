@@ -30,16 +30,15 @@ class UsersCreate extends Component {
       const result = await userService.create(values)
 
       if (result.status === 201) {
-        message.success('Funcionário cadastrado com sucesso!')
-        this.setState({ redirect: true })
-      } else if (result.status === 403) {
+        await message.success('Funcionário cadastrado com sucesso!')
+        this.props.history.push('/users')
+      } else if (result.status === 422) {
         message.error('Preencha corretamente as informações!')
-      } else {
-        return message.error('Não foi possível cadastrar o funcionário!', 2)
       }
+      
+      return message.error('Não foi possível cadastrar o funcionário!')
     } catch (error) {
-      console.log(error)
-      return message.error('Erro inesperado, tente novamente!', 2)
+      return message.error('Erro inesperado, tente novamente!')
     } finally {
       removeCreatingMessage()
     }
