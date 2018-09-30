@@ -10,7 +10,7 @@ import Drawer from 'antd/lib/drawer'
 import Row from 'antd/lib/row'
 import Divider from 'antd/lib/divider'
 
-class EmployeeOverview extends Component {
+class UsersOverview extends Component {
   constructor (props) {
     super(props)
 
@@ -58,7 +58,6 @@ class EmployeeOverview extends Component {
       visible: true,
       selected: record
     })
-    console.log(record)
   }
 
   onCloseDrawer () {
@@ -78,16 +77,16 @@ class EmployeeOverview extends Component {
     }
     return <Page>
       <Page.Header>
-        <Button>Atualizar</Button>
-        <Button>Filtrar</Button>
-        <Link to='/employee/new'><Button type='primary'>Cadastrar</Button></Link>
+        <Button disabled>Atualizar</Button>
+        <Button disabled>Filtrar</Button>
+        <Link to='/users/create'><Button type='primary'>Cadastrar</Button></Link>
       </Page.Header>
 
       <Page.Context>
         <h2>Funcionários ({total})</h2>
         <Table
           loading={!data}
-          borded
+          bordered
           dataSource={data}
           bodyStyle={{background: 'white'}}
           onRow={(record, index) => {
@@ -144,4 +143,4 @@ class EmployeeOverview extends Component {
   }
 }
 
-export default EmployeeOverview
+export default UsersOverview

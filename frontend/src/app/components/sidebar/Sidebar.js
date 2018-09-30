@@ -30,8 +30,8 @@ class Sidebar extends Component {
           <Menu.Item key='b-2'>Triagem socioeconômica</Menu.Item>
         </Menu.SubMenu>
         <Menu.SubMenu key='sub2' title={<span><Icon type='book' /><span>Recursos Humanos</span></span>}>
-          <Menu.Item key='/role'><Link to='/role'/><Icon type='key' /> Níveis de acesso</Menu.Item>
-          <Menu.Item key='/employee'><Icon type='team' /><Link to='/employee'>Funcionários</Link></Menu.Item>
+          <Menu.Item key='/users'><Icon type='team' /><Link to='/users'>Funcionários</Link></Menu.Item>
+          <Menu.Item key='/role'><Link to='/role'/><Icon type='key' />Níveis de acesso</Menu.Item>
           <Menu.Item key='c-3'><Icon type='database' /> Relatórios</Menu.Item>
         </Menu.SubMenu>
       </Menu>
