@@ -1,12 +1,12 @@
 version: '2'
 
 services:
-  mariadb:
-    build: ./mariadb
+  mysql:
+    build: ./mysql
     restart: always
     volumes:
       - ./mysql:/var/lib/mysql
-    env_file: ./mariadb/.env
+    env_file: ./mysql/.env
     ports:
       - "8889:3306"
 
@@ -22,7 +22,7 @@ services:
       - "8000"
     env_file: ./backend/.env.docker
     links:
-      - mariadb
+      - mysql
   
   frontend:
     build:
