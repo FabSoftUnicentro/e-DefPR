@@ -1,50 +1,31 @@
 .app-signin {
-  width: 100%;
+  padding: 0;
   height: 100vh;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   background: #fafafa;
-}
-
-.app-signin-header {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.app-signin-header h1 {
-  width: 30vw;
-  height: 40vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-}
-
-.app-signin .app-signin-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  color: #111111;
 }
 
 .app-signin-form {
+  padding: 32px;
+  width: 50vw;
   min-width: 320px;
-  max-width: 400px;
-  width: 30vw;
+  max-width: 420px;
   background: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
-  border-radius: 2px;
-  padding: 24px 30px;
-  transform: translateY(-50%);
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .01);
+  transition: ease-in-out .2s;
+  font-size: calc(14px + .1vw);
 }
 
-.app-signin footer {
-  padding-bottom: 30px;
+.app-signin-form footer {
+  text-align: center;
+  margin-top: calc(24px + .1vh);
 }
 
-.app-signin footer a {
-  margin-right: 20px;
+.app-signin-form footer a {
+  padding: 5px;
 }

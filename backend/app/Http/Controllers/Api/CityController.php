@@ -52,6 +52,9 @@ class CityController extends Controller
     public function show($id)
     {
         try {
+            if (!is_numeric($id)) {
+                throw new \Exception($e);
+            }
             /** @var City $city */
             $city = City::findOrFail($id);
 

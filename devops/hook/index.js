@@ -18,7 +18,7 @@ github.on('pull_request:e-DefPR', function (ref, data) {
   }
 
   if (data.action === 'closed' && data.pull_request.merged) {
-    exec('edef-app-deploy --homolog', (err, stdout, stderr) => {
+    exec('cd $EDEF_PATH/devops && dep deploy', (err, stdout, stderr) => {
       if (err) {
         return
       }

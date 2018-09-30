@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
@@ -28,21 +27,11 @@ class State extends Model
         'updated_at',
     ];
 
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'deleted_at'
-    ];
-
     /**
      * Get all of the cities for the state.
      */
-    public function state()
+    public function cities()
     {
-        return $this->belongsTo(State::class, 'state_id');
+        return $this->hasMany(City::class, 'state_id');
     }
 }

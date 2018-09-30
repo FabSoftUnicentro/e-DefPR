@@ -4,7 +4,7 @@ import Persona from '../persona/Persona'
 import Badge from 'antd/lib/badge'
 import Icon from 'antd/lib/icon'
 import message from 'antd/lib/message'
-import { authentication, user } from '../../services'
+import { authentication, userService } from '../../services'
 
 import './Header.css'
 
@@ -32,18 +32,18 @@ class Header extends Component {
   render () {
     const { region } = this.props
 
-    return <header className="app-header">
-      <div className="app-name">
+    return <header className='app-header'>
+      <div className='app-name'>
         <div>
           <span>e-DefPR</span>
           <span>{ region.name }</span>
         </div>
       </div>
-      <div className="app-account">
+      <div className='app-account'>
         <Badge dot>
-          <Icon type="notification" />
+          <Icon type='notification' />
         </Badge>
-        <Persona name={user.name} jobDescription="Developer" onLogout={this.logout} />
+        <Persona name={userService.name} jobDescription="Developer" onLogout={this.logout} />
       </div>
     </header>
   }

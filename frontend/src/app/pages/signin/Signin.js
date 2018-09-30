@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import Icon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
-import { Form, Field } from 'react-final-form'
-import Alert from 'antd/lib/alert'
 import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
-import { authentication, user } from '../../services'
+import { authentication, userService } from '../../services'
 import { Redirect } from 'react-router-dom'
+import * as yup from 'yup'
+import Form from '../../components/form/Form'
 
 import './Signin.css'
+
+const validateSchema = yup.object().shape({
+  password: yup.string().min(3, 'A senha deve ter pelo menos 3 caracteres').required('Informe sua senha'),
+  login: yup.string().min(3, 'O usuário deve ter pelo menos 3 caracteres').required('Informe seu usuário')
+})
 
 class Signin extends Component {
   constructor (props) {
@@ -16,7 +21,7 @@ class Signin extends Component {
 
     this.state = {
       redirect: false,
-      alertProps: undefined
+      isLoading: false
     }
 
     this.onSubmit = this.onSubmit.bind(this)
@@ -24,95 +29,91 @@ class Signin extends Component {
 
   async onSubmit (values) {
     const { login, password } = values
-
-    const loginDone = message.loading('Realizando login', 0)
+    this.setState({ isLoading: true })
 
     try {
       const result = await authentication.signin(login, password)
-      if (result.statusCode === 'SUCCESS') {
-        this.attachMessage('success', 'Login realizado com sucesso')
-
-        const account = await user.account()
-        if (account.data) {
-          message.success(`Bem-vindo, ${account.data.name}!`, 2)
-          this.setState({ redirect: true })
+      if (result.status === 200) {
+        const account = await userService.me()
+        if (account) {
+          message.success(`Bem-vindo de volta, ${account.name}!`, 2)
         }
 
-        return loginDone()
+        return
+      } else if (result.status === 401) {
+        return { password: 'Esta senha não está correta' }
+      } else if (result.status === 404) {
+        return { login: 'Este usuário não existe' }
       }
-      else if (result.status === 400) {
-        loginDone()        
-        return this.attachMessage('error', 'CPF ou senha inválidos')
-      }
-      
-      loginDone()
-      return this.attachMessage('warning', 'Campos CPF e senha são obrigatórios')
-    }
-    catch (error) {
-      console.log(error)
+
+      return message.error('Não foi possível realizar login. Tente novamente')
+    } catch (error) {
+    } finally {
+      this.setState({ isLoading: false })
     }
   }
 
-  attachMessage (type, message) {
-    this.setState({ alertProps: { type, message } })
-  }
-  
   render () {
     if (authentication.isAuthenticated) {
-      return <Redirect to="/" />
+      return <Redirect to='/' />
     }
 
-    const { alertProps } = this.state
+    const { isLoading } = this.state
 
-    return <div className="app-signin">
-      <div className="app-signin-header">
-        <h1>Login e-DefPR</h1>
-      </div>
-      <div className="app-signin-box">
-        <div className="app-signin-form">
-          { alertProps && <Alert {...alertProps} showIcon /> }
+    return <div className='app-signin'>
+      <div className='app-signin-form'>
+        <h1>
+          <Icon type='lock' style={{marginRight: 16}} />
+          <span>Login e-DefPR</span>
+        </h1>
+        <div>
           <Form
             onSubmit={this.onSubmit}
-            render={({ handleSubmit, pristine, invalid, submitting }) => (
-              <form onSubmit={handleSubmit}>
-                <Field
-                  label="Usuário"
-                  name="login"
-                  placeholder="Informe seu CPF ou e-mail"
-                  component={InputAdapter}
-                  prefix={ <Icon type="user" /> }
-                />
+            validateSchema={validateSchema}
+          >
+            <Form.TextField
+              size='large'
+              label='Usuário'
+              name='login'
+              required
+              placeholder='Informe seu CPF ou e-mail'
+              component={InputAdapter}
+              prefix={<Icon type='user' />}
+            />
 
-                <Field
-                  label="Senha"
-                  type="password"
-                  name="password"
-                  placeholder="Informe sua senha"
-                  component={InputAdapter}
-                  prefix={ <Icon type="lock" /> }
-                />
+            <Form.TextField
+              size='large'
+              label='Senha'
+              type='password'
+              required
+              name='password'
+              placeholder='Informe sua senha'
+              component={InputAdapter}
+              prefix={<Icon type='lock' />}
+            />
 
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  style={{margin:'24px 0', width:'100%'}}
-                  disabled={submitting}
-                >
-                  Login
-                </Button>
-              </form>
-            )}
-          />
-          <div style={{textAlign:'center'}}>
-            <a href="">Esqueceu sua senha?</a>
+            <Button
+              size='large'
+              type='primary'
+              htmlType='submit'
+              style={{margin: '24px 0', width: '100%'}}
+              disabled={isLoading}
+              loading={isLoading}
+            >
+              Login
+            </Button>
+          </Form>
+
+          <div style={{textAlign: 'center'}}>
+            <a href=''>Esqueceu sua senha?</a>
           </div>
         </div>
 
         <footer>
-          <a href="">Ajuda</a>
-          <a href="">Wikidocs</a>
-          <a href="https://github.com/C3DSU/e-DefPR" target="_new">Github</a>
-          <a href="https://www3.unicentro.br/" target="_new">Unicentro</a>
+          <a href=''>Ajuda</a>
+          <a href=''>Wikidocs</a>
+          <a href='https://github.com/C3DSU/e-DefPR' target='_new'>Github</a>
+          <a href='https://www3.unicentro.br/' target='_new'>Unicentro</a>
         </footer>
       </div>
     </div>

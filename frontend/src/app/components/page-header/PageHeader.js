@@ -7,13 +7,15 @@ class PageHeader extends Component {
   render () {
     const { children } = this.props
 
-    return <div className="app-page-header">
-      <div className="app-breadcrumb">
+    return <div className='app-page-header'>
+      <div className='app-breadcrumb'>
         <Breadcrumb>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
         </Breadcrumb>
       </div>
-      <div>{ children }</div>
+      <div className='app-page-header-buttons'>
+        { children }
+      </div>
     </div>
   }
 }

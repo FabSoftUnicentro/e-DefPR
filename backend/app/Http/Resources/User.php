@@ -27,8 +27,11 @@ class User extends JsonResource
             'marital_status' => $this->marital_status,
             'profession' => $this->profession,
             'note' => $this->note,
+            'birthplace' => $this->birthplace,
             'addresses' => json_decode($this->addresses, true),
-            'must_change_password' => $this->must_change_password
+            'must_change_password' => $this->must_change_password,
+            'roles' => $this->getRoleNames(),
+            'permissions' => $this->getAllPermissions()
         ];
     }
 
