@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import message from 'antd/lib/message'
 import Page from '../../components/page/Page'
 import WizardForm from '../../components/form/WizardForm'
 import { PersonalInformationForm, personalInformationValidator } from './forms/PersonalInformation'
 import { AddressForm, addressValidator } from './forms/Address'
 import { AccessForm, accessValidator } from './forms/Access'
-
+import { userService } from '../../services'
 
 const validateSchema = [
   personalInformationValidator,
@@ -19,8 +20,29 @@ class UsersCreate extends Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
 
-  onSubmit (values) {
-    console.log(values)
+  async onSubmit (values) {
+    values.birthplace = values.birthplace.city
+    values.addresses = [ values.address ]
+
+    const removeCreatingMessage = message.loading('Cadastrando funcioonário', 0)
+
+    try {
+      const result = await userService.create(values)
+
+      if (result.status === 201) {
+        message.success('Funcionário cadastrado com sucesso!')
+        this.setState({ redirect: true })
+      } else if (result.status === 403) {
+        message.error('Preencha corretamente as informações!')
+      } else {
+        return message.error('Não foi possível cadastrar o funcionário!', 2)
+      }
+    } catch (error) {
+      console.log(error)
+      return message.error('Erro inesperado, tente novamente!', 2)
+    } finally {
+      removeCreatingMessage()
+    }
   }
 
   render () {
