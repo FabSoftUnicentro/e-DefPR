@@ -46,9 +46,7 @@ class UsersCreate extends Component {
 
   render () {
     return <Page>
-      <Page.Header
-        title='TEste'
-      />
+      <Page.Header />
 
       <Page.Context>
         <h2>Cadastrar novo funcionário</h2>
