@@ -11,6 +11,4 @@ WORKDIR /var/backend
 COPY . .
 
 RUN composer install
-
-EXPOSE 8000
 # HEALTHCHECK --interval=1m CMD curl -f http://localhost/ || exit 1
