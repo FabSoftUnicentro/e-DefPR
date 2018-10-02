@@ -24,7 +24,8 @@ class AttendmentStoreRequest extends BaseRequest
         return [
             'description' => 'required|string',
             'type_id' => 'required|numeric',
-            'assisted_id' => 'required|numeric'
+            'assisted_id' => 'required|numeric',
+            'user_id' => 'required|numeric'
         ];
     }
 
