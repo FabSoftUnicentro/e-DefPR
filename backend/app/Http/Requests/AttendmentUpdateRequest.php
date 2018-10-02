@@ -23,7 +23,9 @@ class AttendmentUpdateRequest extends BaseRequest
     {
         return [
             'description' => 'string',
-            'type_id' => 'numeric'
+            'type_id' => 'numeric',
+            'assisted_id' => 'numeric',
+            'user_id' => 'numeric'
         ];
     }
 }
