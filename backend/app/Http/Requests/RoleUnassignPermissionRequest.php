@@ -28,3 +28,4 @@ class RoleUnassignPermissionRequest extends FormRequest
         ];
     }
 }
+

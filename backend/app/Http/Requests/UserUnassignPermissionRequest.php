@@ -26,3 +26,4 @@ class UserUnassignPermissionRequest extends BaseRequest
         ];
     }
 }
+
