@@ -29,7 +29,7 @@ class CitySelectAdapter extends Component {
   componentDidUpdate () {
     if (this.state.states.length === 0) {
       location.states()
-        .then(({data}) => this.setState({ states: data }))
+        .then(({ data }) => this.setState({ states: data }))
         .catch(() => message.error('Não foi possível retornar lista de estados'))
         .finally(() => this.setState({ loadingStates: false }))
     }
@@ -38,7 +38,7 @@ class CitySelectAdapter extends Component {
   selectState (stateName) {
     this.setState({ loadingCities: true, cities: [] })
     location.getStateCities(stateName)
-      .then(({data}) => this.setState({ cities: data }))
+      .then(({ data }) => this.setState({ cities: data }))
       .catch(() => message.error('Não foi possível retornar lista de cidades'))
       .finally(() => this.setState({ loadingCities: false }))
   }
@@ -49,20 +49,20 @@ class CitySelectAdapter extends Component {
 
   render () {
     const { states, cities, loadingStates, loadingCities } = this.state
-    const { label, input: { name } } = this.props
+    const { label, input: { name }, required } = this.props
 
-    return <FormItem label={label} style={{margin: 0}}>
+    return <FormItem label={label} style={{ margin: 0 }} required={required}>
       <Input.Group compact>
         <Spin size='small' spinning={loadingStates}>
           <Field
             showSearch
             name={`${name}[state]`}
             component={SelectAdapter}
-            style={{width: 120, marginRight: 20}}
+            style={{ width: 120, marginRight: 20 }}
             placeholder='Estado'
             disabled={states.length === 0}
             onSelect={this.selectState}
-            options={states.map(({id, abbr}) => ({ value: id, name: abbr }))}
+            options={states.map(({ id, abbr }) => ({ value: id, name: abbr }))}
             filterOption={this.filterByName}
           />
         </Spin>
@@ -72,10 +72,10 @@ class CitySelectAdapter extends Component {
             showSearch
             name={`${name}[city]`}
             component={SelectAdapter}
-            style={{width: 300}}
+            style={{ width: 300 }}
             onSelect={this.handleOnChange}
             placeholder='Cidade'
-            options={cities.map(({id, name}) => ({ value: id, name: name }))}
+            options={cities.map(({ id, name }) => ({ value: id, name: name }))}
             disabled={cities.length === 0}
             filterOption={this.filterByName}
           />

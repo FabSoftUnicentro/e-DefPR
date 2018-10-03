@@ -1,15 +1,12 @@
 version: '2'
+
 services:
-  db:
-    image: mariadb
+  mysql:
+    build: ./mysql
     restart: always
     volumes:
       - ./mysql:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: edefpr
-      MYSQL_DATABASE: edef_pr
+    env_file: ./mysql/.env
     ports:
       - "8889:3306"
 
@@ -21,9 +18,11 @@ services:
       - ./backend/:/usr/app/backend
     ports:
       - "8000:8000"
-    env_file: ./backend/.env.docker # auto-load .env file!
+    expose:
+      - "8000"
+    env_file: ./backend/.env.docker
     links:
-      - db
+      - mysql
   
   frontend:
     build:
@@ -32,7 +31,10 @@ services:
     volumes:
       - ./frontend/:/usr/app/frontend
       - /usr/app/node_modules
+      - /etc/letsencrypt:/etc/letsencrypt
     depends_on:
       - backend
     ports:
-      - "80:80"
+      - "443:443"
+    expose:
+      - "443"

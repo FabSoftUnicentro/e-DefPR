@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\User;
+use App\Http\Requests\UserAssignPermissionRequest;
+use App\Http\Requests\UserAuthenticateRequest;
+use App\Http\Requests\UserForgotPasswordRequest;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUnassignPermissionRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,17 +16,16 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Auth;
-use DateTime;
 
 class UserController extends Controller
 {
     private $itemsPerPage = 10;
 
     /**
-     * @param Request $request
+     * @param UserAuthenticateRequest $request
      * @return JsonResponse
      */
-    public function authenticate(Request $request)
+    public function authenticate(UserAuthenticateRequest $request)
     {
         $data = $request->json()->all();
 
@@ -56,30 +61,14 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UserStoreRequest $request
      * @return UserResource|JsonResponse
      * @throws \Throwable
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         /** @var User $user */
-        $user =  new User();
-
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = Hash::make($request->input('password'));
-        $user->cpf = $request->input('cpf');
-        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date'));
-        $user->birth_date = $birthDate;
-        $user->birthplace = $request->input('birthplace');
-        $user->rg = $request->input('rg');
-        $user->rg_issuer = $request->input('rg_issuer');
-        $user->gender = $request->input('gender');
-        $user->marital_status = $request->input('marital_status');
-        $user->addresses = json_encode($request->input('addresses'));
-        $user->note = $request->input('note');
-        $user->profession = $request->input('profession');
-        $user->must_change_password = $request->input('mush_change_password') ? $request->input('mush_change_password') : true;
+        $user =  new User($request->all());
 
         try {
             $user->saveOrFail();
@@ -99,13 +88,16 @@ class UserController extends Controller
     public function show($id)
     {
         try {
-            if (!is_numeric($id)) {
-                throw new \Exception($e);
-            }
-            /** @var User $user */
-            $user = User::findOrFail($id);
+            if (is_numeric($id)) {
+                /** @var User $user */
+                $user = User::findOrFail($id);
 
-            return new UserResource($user);
+                return new UserResource($user);
+            }
+
+            return JsonResponse::create([
+                'message' => 'User not found'
+            ], Response::HTTP_NOT_FOUND);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
@@ -114,32 +106,18 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UserUpdateRequest $request
      * @param $id
      * @return UserResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         try {
             /** @var User $user */
             $user = User::findOrFail($id);
 
-            $user->name = $request->input('name') ? $request->input('name') : $user->name;
-            $user->email = $request->input('email') ? $request->input('email') : $user->email;
-            $user->password = $request->input('password') ? Hash::make($request->input('password')) : $user->password;
-            $user->cpf = $request->input('cpf') ? $request->input('cpf') : $user->cpf;
-            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $user->birth_date);
-            $user->birth_date = $birthDate;
-            $user->birthplace = $request->input('birthplace') ? $request->input('birthplace') : $user->birthplace;
-            $user->rg = $request->input('rg') ? $request->input('rg') : $user->rg;
-            $user->rg_issuer = $request->input('rg_issuer') ? $request->input('rg_issuer') : $user->rg_issuer;
-            $user->gender = $request->input('gender') ? $request->input('gender') : $user->gender;
-            $user->marital_status = $request->input('marital_status') ? $request->input('marital_status') : $user->marital_status;
-            $user->addresses = $request->input('addresses') ? json_encode($request->input('addresses')) : $user->addresses;
-            $user->note = $request->input('note') ? $request->input('note') : $user->note;
-            $user->profession = $request->input('profession') ? $request->input('profession') : $user->profession;
-            $user->must_change_password = $request->input('must_change_password') ? $request->input('must_change_password') : true;
+            $user->update($request->all());
 
             $user->saveOrFail();
 
@@ -188,10 +166,10 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UserForgotPasswordRequest $request
      * @return JsonResponse
      */
-    public function forgotPassword(Request $request)
+    public function forgotPassword(UserForgotPasswordRequest $request)
     {
         $email = $request->input('email');
         $cpf = $request->input('cpf');
@@ -241,6 +219,26 @@ class UserController extends Controller
 
     /**
      * @param $id
+     * @param UserAssignPermissionRequest $request
+     * @return UserResource|JsonResponse
+     */
+    public function assignPermissions($id, UserAssignPermissionRequest $request)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->givePermissionTo($request->input('permissions'));
+
+            return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    /**
+     * @param $id
      * @param $permission
      * @return UserResource|JsonResponse
      */
@@ -258,6 +256,27 @@ class UserController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
     }
+
+    /**
+     * @param User $user
+     * @param UserUnassignPermissionRequest $request
+     * @return UserResource|JsonResponse
+     */
+    public function unassignPermissions(User $user, UserUnassignPermissionRequest $request)
+    {
+        try {
+            foreach ($request->input('permissions') as $permission) {
+                $user->revokePermissionTo($permission);
+            }
+
+            return new UserResource($user);
+        } catch (\Exception $e) {
+            return JsonResponse::create([
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
 
     /**
      * @param $id
@@ -299,12 +318,16 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function resetPassword(Request $request)
     {
         try {
             $user = User::findOrFail($request->user()->id);
 
-            $user->password = Hash::make($request->input('password'));
+            $user->password = $request->input('password');
             $user->must_change_password = false;
 
             $user->saveOrFail();

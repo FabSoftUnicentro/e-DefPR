@@ -1,9 +1,0 @@
-version: '2'
-services:
-  backend:
-    ports:
-      - "3000:3000"
-    env_file: ./backend/.env.test
-  frontend:
-    ports:
-      - "5000:5000"
