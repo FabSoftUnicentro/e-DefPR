@@ -25,9 +25,11 @@ Route::prefix('user')->group(function () {
     });
     Route::group(['middleware' => ['permission:assign-user-permission']], function () {
         Route::put('/{id}/assign-permission/{permission}', 'Api\UserController@assignPermission')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{id}/assign-permissions', 'Api\UserController@assignPermissions')->middleware('auth:api')->where('id', '[0-9]+');
     });
     Route::group(['middleware' => ['permission:unassign-user-permission']], function () {
         Route::put('/{id}/unassign-permission/{permission}', 'Api\UserController@unassignPermission')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{user}/unassign-permissions', 'Api\UserController@unassignPermissions')->middleware('auth:api')->where('id', '[0-9]+');
     });
     Route::group(['middleware' => ['permission:assign-user-role']], function () {
         Route::put('/{id}/assign-role/{role}', 'Api\UserController@assignRole')->middleware('auth:api')->where('id', '[0-9]+');
@@ -107,9 +109,11 @@ Route::prefix('role')->group(function () {
     });
     Route::group(['middleware' => ['permission:assign-role-permission']], function () {
         Route::put('/{id}/assign-permission/{permission}', 'Api\RoleController@assignPermission')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{role}/assign-permissions', 'Api\RoleController@assignPermissions')->middleware('auth:api')->where('id', '[0-9]+');
     });
     Route::group(['middleware' => ['permission:unassign-role-permission']], function () {
         Route::put('/{id}/unassign-permission/{permission}', 'Api\RoleController@unassignPermission')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{role}/unassign-permissions', 'Api\RoleController@unassignPermissions')->middleware('auth:api')->where('id', '[0-9]+');
     });
     Route::group(['middleware' => ['permission:update-role']], function () {
         Route::put('/{id}', 'Api\RoleController@update')->middleware('auth:api')->where('id', '[0-9]+');
