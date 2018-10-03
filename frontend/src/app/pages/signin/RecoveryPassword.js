@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import Icon from 'antd/lib/icon'
 import Button from 'antd/lib/button'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import message from 'antd/lib/message'
 import InputAdapter from '../../adapters/InputAdapter'
 import { authentication, recoveryPasswordService } from '../../services'
-import { Redirect } from 'react-router-dom'
 import Form from '../../components/form/Form'
 import * as yup from 'yup'
 
@@ -60,7 +59,7 @@ class RecoveryPassword extends Component {
     return <div className='app-signin'>
       <div className='app-signin-form'>
         <h1>
-          <Icon type='lock' style={{marginRight: 16}} />
+          <Icon type='lock' style={{ marginRight: 16 }} />
           <span>Recuperar Senha</span>
         </h1>
         <div>
@@ -91,7 +90,7 @@ class RecoveryPassword extends Component {
               size='large'
               type='primary'
               htmlType='submit'
-              style={{margin: '24px 0', width: '100%'}}
+              style={{ margin: '24px 0', width: '100%' }}
               disabled={isLoading}
               loading={isLoading}
             >
@@ -99,7 +98,7 @@ class RecoveryPassword extends Component {
             </Button>
           </Form>
 
-          <div style={{textAlign: 'center'}}>
+          <div style={{ textAlign: 'center' }}>
             <Link to='/signin' >Voltar para a tela de login</Link>
           </div>
 
