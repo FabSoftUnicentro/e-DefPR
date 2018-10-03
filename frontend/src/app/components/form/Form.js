@@ -1,72 +1,48 @@
-import React, { Component, Children } from 'react'
+import React, { PureComponent } from 'react'
 import { Form as FinalForm, Field } from 'react-final-form'
-import Card from 'antd/lib/card'
+import PropTypes from 'prop-types'
 import Input from 'antd/lib/input'
 import Select from 'antd/lib/select'
 import InputAdapter from '../../adapters/InputAdapter'
 import DatePickerAdapter from '../../adapters/DatePickerAdapter'
-import SelectAdapter from '../../adapters/SelectAdapter'
+import RadioAdapter from '../../adapters/RadioAdapter'
 import CitySelectAdapter from '../../adapters/CitySelectAdapter'
-import PropTypes from 'prop-types'
+import SelectAdapter from '../../adapters/SelectAdapter'
+import { StyledForm } from './Form.style'
 
-class Form extends Component {
-  static Step = ({ children }) => <div>{ children }</div>
-
+class Form extends PureComponent {
   static TextField = props => <Field {...props} component={InputAdapter} />
   static DatePicker = props => <Field {...props} component={DatePickerAdapter} />
+  static Radio = props => <Field {...props} component={RadioAdapter} />
   static CitySelect = props => <Field {...props} component={CitySelectAdapter} />
-
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-    validateSchema: PropTypes.object
-  }
-
-  static defaultProps = {
-    noCard: true
-  }
-
-  static Select = ({options, ...props}) => (<Field {...props} component={SelectAdapter}>
+  static Inline = ({ children }) => <Input.Group compact>{ children }</Input.Group>
+  static Select = ({ options, ...props }) => (<Field {...props} component={SelectAdapter}>
     { options.map(item => <Select.Option key={item.value} value={item.value}>{item.name}</Select.Option>) }
   </Field>)
 
-  static Inline = ({ children }) => <Input.Group compact>{ children }</Input.Group>
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    validateSchema: PropTypes.object,
+    styledForm: PropTypes.bool
+  }
+
+  static defaultProps = {
+    styledForm: false
+  }
 
   constructor (props) {
     super(props)
 
-    this.state = {
-      steps: [],
-      current: 0
-    }
-
     this.onSubmit = this.onSubmit.bind(this)
     this.onValidate = this.onValidate.bind(this)
-    this.nextStep = this.nextStep.bind(this)
-    this.prevStep = this.prevStep.bind(this)
   }
 
-  componentDidMount () {
-    const { children } = this.props
-
-    this.setState({
-      steps: children.map(({props}) => props)
-    })
+  onSubmit (values) {
+    const { onSubmit } = this.props
+    return onSubmit && onSubmit(values)
   }
 
-  nextStep () {
-    this.setState({ current: this.state.current + 1 })
-  }
-
-  prevStep () {
-    this.setState({ current: this.state.current - 1 })
-  }
-
-  async onSubmit (values) {
-    return this.props.onSubmit(values)
-  }
-
-  async onValidate (values) {
-    const { validateSchema } = this.props
+  async onValidate (values, validateSchema = this.props.validateSchema) {
     if (!validateSchema) {
       return undefined
     }
@@ -82,39 +58,33 @@ class Form extends Component {
   }
 
   render () {
-    const { noCard } = this.props
+    const { styledForm } = this.props
 
-    if (noCard) {
-      return this.RenderFinalForm
+    if (styledForm) {
+      return <StyledForm> { this.renderFinalForm() } </StyledForm>
     }
 
-    return <Card bodyStyle={{width: '50%'}}>
-      { this.RenderFinalForm }
-    </Card>
+    return <div> { this.renderFinalForm() } </div>
   }
 
-  get isLastPage () {
-    const { current, steps } = this.state
-    return current === steps.length - 1
-  }
-
-  get currentStep () {
-    const { children } = this.props
-    return Children.toArray(children)[this.state.current]
-  }
-
-  get RenderFinalForm () {
-    const { children } = this.props
-
+  renderFinalForm () {
     return <FinalForm
       onSubmit={this.onSubmit}
       validate={this.onValidate}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          { children }
+          { this.renderForm() }
         </form>
       )}
     />
+  }
+
+  renderForm () {
+    const { children } = this.props
+
+    return <div>
+      { children }
+    </div>
   }
 }
 

@@ -4,17 +4,17 @@ import { createBrowserHistory } from 'history'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Dashboard from './pages/Dashboard'
-import Employee from './pages/employee/Employee'
 import Assisted from './pages/assisted/Assisted'
 import Role from './pages/role/Role'
 import Signin from './pages/signin/Signin'
+import Users from './pages/users/Users'
 import { authentication } from './services'
 
 import './App.css'
 
 const browserHistory = createBrowserHistory()
 
-const Home = ({pathname}) => (
+const Home = ({ pathname }) => (
   <div className='app'>
     <Header region={{ name: 'Guarapuava' }} />
 
@@ -23,7 +23,7 @@ const Home = ({pathname}) => (
       <Switch>
         <Route exact path='/' component={Dashboard} />
         <Route path='/assisted' component={Assisted} />
-        <Route path='/employee' component={Employee} />
+        <Route path='/users' component={Users} />
         <Route path='/role' component={Role} />
       </Switch>
     </main>

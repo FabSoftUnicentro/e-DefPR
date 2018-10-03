@@ -31,7 +31,7 @@ class RoleOverview extends Component {
   }
 
   onChangePage (page, pageSize) {
-    this.setState({data: undefined})
+    this.setState({ data: undefined })
     roleService.list(page)
       .then(result => {
         this.setState({ data: result.data, total: result.meta.total })
@@ -54,9 +54,9 @@ class RoleOverview extends Component {
           loading={!data}
           borded
           dataSource={data}
-          bodyStyle={{background: 'white'}}
+          bodyStyle={{ background: 'white' }}
           columns={[
-            {title: 'Nome', dataIndex: 'name', key: 'name'}
+            { title: 'Nome', dataIndex: 'name', key: 'name' }
           ]}
           pagination={{
             total,

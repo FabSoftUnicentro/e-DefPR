@@ -63,7 +63,7 @@ class Signin extends Component {
     return <div className='app-signin'>
       <div className='app-signin-form'>
         <h1>
-          <Icon type='lock' style={{marginRight: 16}} />
+          <Icon type='lock' style={{ marginRight: 16 }} />
           <span>Login e-DefPR</span>
         </h1>
         <div>
@@ -96,7 +96,7 @@ class Signin extends Component {
               size='large'
               type='primary'
               htmlType='submit'
-              style={{margin: '24px 0', width: '100%'}}
+              style={{ marginTop: 4, marginBottom: 24, width: '100%' }}
               disabled={isLoading}
               loading={isLoading}
             >
@@ -104,7 +104,7 @@ class Signin extends Component {
             </Button>
           </Form>
 
-          <div style={{textAlign: 'center'}}>
+          <div style={{ textAlign: 'center' }}>
             <a href=''>Esqueceu sua senha?</a>
           </div>
         </div>

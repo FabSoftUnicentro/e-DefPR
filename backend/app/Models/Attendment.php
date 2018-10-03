@@ -14,7 +14,9 @@ class Attendment extends Model
      */
     protected $fillable = [
         'description',
-        'user_id'
+        'type_id',
+        'user_id',
+        'assisted_id'
     ];
 
     /**
@@ -23,7 +25,8 @@ class Attendment extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at'
+        'created_at',
+        'updated_at'
     ];
 
     /**
