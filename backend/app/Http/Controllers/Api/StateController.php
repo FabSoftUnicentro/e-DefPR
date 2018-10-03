@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\State;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use App\Http\Resources\State as StateResource;
+use App\Http\Requests\StateStoreRequest;
+use App\Http\Requests\StateUpdateRequest;
 
 class StateController extends Controller
 {
@@ -22,11 +23,11 @@ class StateController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StateStoreRequest $request
      * @return StateResource|JsonResponse
      * @throws \Throwable
      */
-    public function store(Request $request)
+    public function store(StateStoreRequest $request)
     {
         /** @var State $state */
         $state =  new State();
@@ -53,7 +54,7 @@ class StateController extends Controller
     {
         try {
             if (!is_numeric($id)) {
-                throw new \Exception($e);
+                throw new \Exception();
             }
             /** @var State $state */
             $state = State::findOrFail($id);
@@ -67,12 +68,12 @@ class StateController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StateUpdateRequest $request
      * @param $id
      * @return StateResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(Request $request, $id)
+    public function update(StateUpdateRequest $request, $id)
     {
         try {
             /** @var State $state */
