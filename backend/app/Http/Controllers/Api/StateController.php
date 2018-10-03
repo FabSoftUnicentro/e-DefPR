@@ -54,7 +54,7 @@ class StateController extends Controller
     {
         try {
             if (!is_numeric($id)) {
-                throw new \Exception();
+                throw new \Exception($e);
             }
             /** @var State $state */
             $state = State::findOrFail($id);
