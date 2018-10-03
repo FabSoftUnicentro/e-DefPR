@@ -237,7 +237,6 @@ class UserController extends Controller
         }
     }
 
-
     /**
      * @param $id
      * @param $permission
