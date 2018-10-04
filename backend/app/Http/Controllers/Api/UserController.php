@@ -16,6 +16,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -338,5 +339,25 @@ class UserController extends Controller
                 'message' => $e->getMessage()
             ], Response::HTTP_NOT_FOUND);
         }
+    }
+
+    /**
+     * @param User $user
+     * @return JsonResponse
+     */
+    public function getAllPermissions(User $user)
+    {
+        $permissions = Permission::all();
+        $result = [];
+
+        foreach ($permissions as $permission) {
+            $result[] = [
+                'id' => $permission->id,
+                'name' => $permission->name,
+                'chosen' => $user->hasPermissionTo($permission->id)
+            ];
+        }
+
+        return JsonResponse::create($result, Response::HTTP_OK);
     }
 }
