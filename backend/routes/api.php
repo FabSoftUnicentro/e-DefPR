@@ -85,16 +85,16 @@ Route::prefix('city')->group(function () {
 // Assisted route
 Route::prefix('assisted')->group(function () {
     Route::get('/', 'Api\AssistedController@index')->middleware('auth:api');
-    Route::get('/{id}', 'Api\AssistedController@show')->middleware('auth:api')->where('id', '[0-9]+');
+    Route::get('/{assisted}', 'Api\AssistedController@show')->middleware('auth:api')->where('id', '[0-9]+');
 
     Route::group(['middleware' => ['permission:register-assisted']], function () {
         Route::post('/', 'Api\AssistedController@store')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-assisted']], function () {
-        Route::put('/{id}', 'Api\AssistedController@update')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{assisted}', 'Api\AssistedController@update')->middleware('auth:api')->where('id', '[0-9]+');
     });
     Route::group(['middleware' => ['permission:delete-assisted']], function () {
-        Route::delete('/{id}', 'Api\AssistedController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::delete('/{assisted}', 'Api\AssistedController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
     });
 });
 
