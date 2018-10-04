@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\City;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use App\Http\Resources\City as CityResource;
+use App\Http\Requests\City\StoreRequest;
+use App\Http\Requests\City\UpdateRequest;
 
 class CityController extends Controller
 {
@@ -22,17 +23,14 @@ class CityController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StoreRequest $request
      * @return CityResource|JsonResponse
      * @throws \Throwable
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         /** @var City $city */
-        $city =  new City();
-
-        $city->name = $request->input('name');
-        $city->state_id = $request->input('state_id');
+        $city =  new City($request->all());
 
         try {
             $city->saveOrFail();
@@ -67,19 +65,18 @@ class CityController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UpdateRequest $request
      * @param $id
      * @return CityResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         try {
             /** @var City $city */
             $city = City::findOrFail($id);
 
-            $city->name = $request->input('name') ? $request->input('name') : $city->name;
-            $city->state_id = $request->input('state_id') ? $request->input('state_id') : $city->state_id;
+            $city->update($request->all());
 
             $city->saveOrFail();
 
