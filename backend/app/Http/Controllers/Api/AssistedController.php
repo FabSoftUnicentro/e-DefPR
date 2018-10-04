@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Assisted\StoreRequest;
+use App\Http\Requests\Assisted\UpdateRequest;
 use App\Models\Assisted;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use App\Http\Resources\Assisted as assistedResource;
-use DateTime;
 
 class AssistedController extends Controller
 {
@@ -19,35 +20,20 @@ class AssistedController extends Controller
      */
     public function index()
     {
+        /** @var Assisted $assisteds */
         $assisteds = Assisted::paginate($this->itemsPerPage);
-
         return AssistedResource::collection($assisteds);
     }
 
     /**
-     * @param Request $request
-     * @return AssistedResource|JsonResponse
+     * @param StoreRequest $request
+     * @return assistedResource|JsonResponse
      * @throws \Throwable
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         /** @var Assisted $assisted */
-        $assisted =  new Assisted();
-
-        $assisted->name = $request->input('name');
-        $assisted->email = $request->input('email');
-        $assisted->cpf = $request->input('cpf');
-        $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $assisted->birth_date);
-        $assisted->birth_date = $birthDate;
-        $assisted->birthplace = $request->input('birthplace');
-        $assisted->rg = $request->input('rg');
-        $assisted->rg_issuer = $request->input('rg_issuer');
-        $assisted->gender = $request->input('gender');
-        $assisted->marital_status = $request->input('marital_status');
-        $assisted->addresses = json_encode($request->input('addresses'));
-        $assisted->note = $request->input('note');
-        $assisted->profession = $request->input('profession');
-        //$assisted->counter_part = $request->input('counterPart');
+        $assisted =  new Assisted($request->all());
 
         try {
             $assisted->saveOrFail();
@@ -61,79 +47,34 @@ class AssistedController extends Controller
     }
 
     /**
-     * @param $id
      * @return assistedResource|JsonResponse
      */
-    public function show($id)
+    public function show(Assisted $assisted)
     {
-        try {
-            if (!is_numeric($id)) {
-                throw new \Exception($e);
-            }
-            /** @var Assisted $assisted */
-            $assisted = Assisted::findOrFail($id);
-
-            return new AssistedResource($assisted);
-        } catch (\Exception $e) {
-            return JsonResponse::create([
-                'message' => $e->getMessage()
-            ], Response::HTTP_NOT_FOUND);
-        }
+        return new AssistedResource($assisted);
     }
 
     /**
-     * @param Request $request
-     * @param $id
-     * @return AssistedResource|JsonResponse
+     * @param Assisted $assisted
+     * @param UpdateRequest $request
+     * @return assistedResource
      * @throws \Throwable
      */
-    public function update(Request $request, $id)
+    public function update(Assisted $assisted, UpdateRequest $request)
     {
-        try {
-            /** @var Assisted $assisted */
-            $assisted = Assisted::findOrFail($id);
-
-            $assisted->name = $request->input('name') ? $request->input('name') : $assisted->name;
-            $assisted->email = $request->input('email') ? $request->input('email') : $assisted->email;
-            $assisted->cpf = $request->input('cpf') ? $request->input('cpf') : $assisted->cpf;
-            $birthDate = DateTime::createFromFormat('d/m/Y', $request->input('birth_date') ? $request->input('birth_date') : $assisted->birth_date);
-            $assisted->birth_date = $birthDate;
-            $assisted->birthplace = $request->input('birthplace') ? $request->input('birthplace') : $assisted->birthplace;
-            $assisted->rg = $request->input('rg') ? $request->input('rg') : $assisted->rg;
-            $assisted->rg_issuer = $request->input('rg_issuer') ? $request->input('rg_issuer') : $assisted->rg_issuer;
-            $assisted->gender = $request->input('gender') ? $request->input('gender') : $assisted->gender;
-            $assisted->marital_status = $request->input('marital_status') ? $request->input('marital_status') : $assisted->marital_status;
-            $assisted->addresses = $request->input('addresses') ? json_encode($request->input('addresses')) : $assisted->addresses;
-            $assisted->note = $request->input('note') ? $request->input('note') : $assisted->note;
-            $assisted->profession = $request->input('profession') ? $request->input('profession') : $assisted->profession;
-            //$assisted->counter_part = $request->input('counter_part') ? $request->input('counter_part') : $assisted->counter_part;
-            $assisted->saveOrFail();
-
-            return new AssistedResource($assisted);
-        } catch (\Exception $e) {
-            return JsonResponse::create([
-                'message' => $e->getMessage()
-            ], Response::HTTP_NOT_FOUND);
-        }
+        $assisted->update($request->all());
+        $assisted->saveOrFail();
+        return new AssistedResource($assisted);
     }
 
     /**
-     * @param $id
-     * @return AssistedResource|JsonResponse
+     * @param Assisted $assisted
+     * @return assistedResource
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Assisted $assisted)
     {
-        try {
-            /** @var Assisted $assisted */
-            $assisted = Assisted::findOrFail($id);
-
-            $assisted->delete();
-
-            return new AssistedResource($assisted);
-        } catch (\Exception $e) {
-            return JsonResponse::create([
-                'message' => $e->getMessage()
-            ], Response::HTTP_NOT_FOUND);
-        }
+        $assisted->delete();
+        return new AssistedResource($assisted);
     }
 }
