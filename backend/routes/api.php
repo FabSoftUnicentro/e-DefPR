@@ -18,6 +18,7 @@ Route::prefix('user')->group(function () {
     Route::post('/authenticate', 'Api\UserController@authenticate');
     Route::post('/forgot-password', 'Api\UserController@forgotPassword');
     Route::get('/me', 'Api\UserController@info')->middleware('auth:api');
+    Route::get('/{user}/permissions', 'Api\UserController@getAllPermissions')->middleware('auth:api');
     Route::put('/reset-password', 'Api\UserController@resetPassword')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-employee']], function () {
