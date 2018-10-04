@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\State;
 
-class StateUpdateRequest extends BaseRequest
+use App\Http\Requests\BaseRequest;
+
+class UpdateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
