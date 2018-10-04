@@ -3,9 +3,11 @@ import User from './User'
 import Assisted from './Assisted'
 import Role from './Role'
 import Location from './Location'
+import RecoveryPasswordService from './RecoveryPasswordService'
 
 const authentication = new Authentication()
 const userService = new User()
+const recoveryPasswordService = new RecoveryPasswordService()
 const assistedService = new Assisted()
 const roleService = new Role()
 const location = new Location()
@@ -13,6 +15,7 @@ const location = new Location()
 export {
   authentication,
   userService,
+  recoveryPasswordService,
   assistedService,
   roleService,
   location

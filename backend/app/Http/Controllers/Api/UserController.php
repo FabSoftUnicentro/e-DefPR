@@ -331,6 +331,8 @@ class UserController extends Controller
             $user->must_change_password = false;
 
             $user->saveOrFail();
+
+            return new UserResource($user);
         } catch (\Exception $e) {
             return JsonResponse::create([
                 'message' => $e->getMessage()
