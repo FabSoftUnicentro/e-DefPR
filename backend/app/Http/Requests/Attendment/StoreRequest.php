@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Attendment;
 
-class AttendmentStoreRequest extends BaseRequest
+use App\Http\Requests\BaseRequest;
+
+class StoreRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +27,7 @@ class AttendmentStoreRequest extends BaseRequest
             'description' => 'required|string',
             'type_id' => 'required|numeric',
             'assisted_id' => 'required|numeric',
-            'user_id' => 'required|numeric'
+            //user_id' => 'sometimes|numeric'
         ];
     }
 
