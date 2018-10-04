@@ -7,8 +7,8 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Models\AttendmentType;
 use App\Http\Resources\AttendmentType as AttendmentTypeResource;
-use App\Http\Requests\AttendmentTypeStoreRequest;
-use App\Http\Requests\AttendmentTypeUpdateRequest;
+use App\Http\Requests\AttendmentType\StoreRequest;
+use App\Http\Requests\AttendmentType\UpdateRequest;
 
 class AttendmentTypeController extends Controller
 {
@@ -25,11 +25,11 @@ class AttendmentTypeController extends Controller
     }
 
     /**
-     * @param AttendmentTypeStoreRequest $request
+     * @param StoreRequest $request
      * @return AttendmentTypeResource|JsonResponse
      * @throws \Throwable
      */
-    public function store(AttendmentTypeStoreRequest $request)
+    public function store(StoreRequest $request)
     {
         /** @var AttendmentType $attendmentType */
         $attendmentType =  new AttendmentType($request->all());
@@ -67,12 +67,12 @@ class AttendmentTypeController extends Controller
     }
 
     /**
-     * @param AttendmentTypeUpdateRequest $request
+     * @param UpdateRequest $request
      * @param $id
      * @return AttendmentTypeResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(AttendmentTypeUpdateRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
 
         try {

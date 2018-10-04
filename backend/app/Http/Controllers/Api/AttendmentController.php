@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AttendmentStoreRequest;
-use App\Http\Requests\AttendmentUpdateRequest;
+use App\Http\Requests\Attendment\StoreRequest;
+use App\Http\Requests\Attendment\UpdateRequest;
 use App\Models\Attendment;
 use App\Http\Resources\Attendment as AttendmentResource;
 use Illuminate\Http\Response;
@@ -24,11 +24,11 @@ class AttendmentController extends Controller
     }
 
     /**
-     * @param AttendmentStoreRequest $request
+     * @param StoreRequest $request
      * @return AttendmentResource|JsonResponse
      * @throws \Throwable
      */
-    public function store(AttendmentStoreRequest $request)
+    public function store(StoreRequest $request)
     {
         /** @var Attendment $attendment */
         $attendment =  new Attendment($request->all());
@@ -74,7 +74,7 @@ class AttendmentController extends Controller
      * @return AttendmentResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(AttendmentUpdateRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         try {
             /** @var Attendment $attendment */

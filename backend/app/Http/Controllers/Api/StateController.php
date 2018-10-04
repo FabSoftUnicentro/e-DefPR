@@ -7,8 +7,8 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use App\Http\Resources\State as StateResource;
-use App\Http\Requests\StateStoreRequest;
-use App\Http\Requests\StateUpdateRequest;
+use App\Http\Requests\State\StoreRequest;
+use App\Http\Requests\State\UpdateRequest;
 
 class StateController extends Controller
 {
@@ -23,11 +23,11 @@ class StateController extends Controller
     }
 
     /**
-     * @param StateStoreRequest $request
+     * @param StoreRequest $request
      * @return StateResource|JsonResponse
      * @throws \Throwable
      */
-    public function store(StateStoreRequest $request)
+    public function store(StoreRequest $request)
     {
         /** @var State $state */
         $state =  new State();
@@ -68,12 +68,12 @@ class StateController extends Controller
     }
 
     /**
-     * @param StateUpdateRequest $request
+     * @param UpdateRequest $request
      * @param $id
      * @return StateResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(StateUpdateRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         try {
             /** @var State $state */

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\RoleAssignPermissionRequest;
-use App\Http\Requests\RoleUnassignPermissionRequest;
+use App\Http\Requests\Role\AssignPermissionRequest;
+use App\Http\Requests\Role\UnassignPermissionRequest;
 use Spatie\Permission\Guard;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -137,10 +137,10 @@ class RoleController extends Controller
 
     /**
      * @param Role $role
-     * @param RoleAssignPermissionRequest $request
+     * @param AssignPermissionRequest $request
      * @return RoleResource
      */
-    public function assignPermissions(Role $role, RoleAssignPermissionRequest $request)
+    public function assignPermissions(Role $role, AssignPermissionRequest $request)
     {
         $role->givePermissionTo($request->input('permissions'));
         return new RoleResource($role);
@@ -167,7 +167,7 @@ class RoleController extends Controller
         }
     }
 
-    public function unassignPermissions(Role $role, RoleUnassignPermissionRequest $request)
+    public function unassignPermissions(Role $role, UnassignPermissionRequest $request)
     {
         foreach ($request->input('permissions') as $permission) {
             $role->revokePermissionTo($permission);
