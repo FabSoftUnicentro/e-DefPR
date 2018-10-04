@@ -340,11 +340,10 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param User $user
      * @return JsonResponse
      */
-    public function getAllPermissions(User $user, Request $request)
+    public function getAllPermissions(User $user)
     {
         $permissions = Permission::all();
         $result = [];
