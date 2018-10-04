@@ -4,7 +4,7 @@ namespace App\Http\Requests\Role;
 
 use App\Http\Requests\BaseRequest;
 
-class RoleAssignPermissionRequest extends BaseRequest
+class AssignPermissionRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
