@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Role;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class RoleUnassignPermissionRequest extends FormRequest
+class RoleAssignPermissionRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
