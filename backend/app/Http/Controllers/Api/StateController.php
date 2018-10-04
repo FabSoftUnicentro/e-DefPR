@@ -17,7 +17,7 @@ class StateController extends Controller
      */
     public function index()
     {
-        $states = State::all();
+        $states = State::orderBy('abbr', 'asc')->get();
 
         return StateResource::collection($states);
     }

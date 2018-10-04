@@ -16,7 +16,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::all();
+        $cities = City::orderBy('name', 'asc')->get();
 
         return CityResource::collection($cities);
     }
@@ -117,7 +117,9 @@ class CityController extends Controller
      */
     public function findByState($id)
     {
-        $cities = City::where('state_id', '=', $id)->get();
+        $cities = City::where('state_id', '=', $id)
+                        ->orderBy('name', 'asc')
+                        ->get();
 
         if ($cities) {
             return CityResource::collection($cities);
