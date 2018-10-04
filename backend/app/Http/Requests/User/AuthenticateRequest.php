@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
-class UserAuthenticateRequest extends BaseRequest
+use App\Http\Requests\BaseRequest;
+
+class AuthenticateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

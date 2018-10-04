@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
-class UserAssignPermissionRequest extends BaseRequest
+use App\Http\Requests\BaseRequest;
+
+class AssignPermissionRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
