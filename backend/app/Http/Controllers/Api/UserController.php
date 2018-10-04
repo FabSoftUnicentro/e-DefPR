@@ -339,7 +339,7 @@ class UserController extends Controller
         }
     }
 
-    /** 
+    /**
      * @param Request $request
      * @param User $user
      * @return JsonResponse
