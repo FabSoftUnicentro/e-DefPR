@@ -6,11 +6,11 @@ use App\Http\Requests\Role\AssignPermissionRequest;
 use App\Http\Requests\Role\UnassignPermissionRequest;
 use Spatie\Permission\Guard;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
-use App\Http\Resources\Role as RoleResource;
 use Spatie\Permission\Models\Role;
+use App\Http\Resources\Role as RoleResource;
+use App\Http\Requests\Role\StoreRequest;
+use App\Http\Requests\Role\UpdateRequest;
 
 class RoleController extends Controller
 {
@@ -27,19 +27,13 @@ class RoleController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StoreRequest $request
      * @return RoleResource|JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $name = $request->input('name');
-        $guard_name = $request->input('guard_name') ? $request->input('guard_name') : Guard::getDefaultName(static::class);
-
         try {
-            $role = Role::create([
-                'name' => $name,
-                'guard_name' => $guard_name
-            ]);
+            $role = Role::create($request->all());
 
             return new RoleResource($role);
         } catch (\Exception $e) {
@@ -71,19 +65,18 @@ class RoleController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UpdateRequest $request
      * @param $id
      * @return RoleResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         try {
             /** @var Role $role */
             $role = Role::findOrFail($id);
 
-            $role->name = $request->input('name') ? $request->input('name') : $role->name;
-            $role->guard_name = $request->input('guard_name') ? $request->input('guard_name') : $role->guard_name;
+            $role->update($request->all());
 
             $role->saveOrFail();
 
