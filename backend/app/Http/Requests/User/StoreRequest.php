@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
-class UserStoreRequest extends BaseRequest
+use App\Http\Requests\BaseRequest;
+
+class StoreRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,7 +34,7 @@ class UserStoreRequest extends BaseRequest
             'rg_issuer' => 'required',
             'gender' => 'required',
             'addresses' => 'required',
-            'note' => 'string',
+            //'note' => 'sometimes|string',
             'profession' => 'required|string',
             'mush_change_password' => 'numeric'
         ];

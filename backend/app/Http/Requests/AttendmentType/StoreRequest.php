@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\AttendmentType;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class UserForgotPasswordRequest extends BaseRequest
+class StoreRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class UserForgotPasswordRequest extends BaseRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'cpf' => 'required'
+            'name' => 'required|string',
+            'description' => 'required|string'
         ];
     }
 
@@ -37,8 +37,8 @@ class UserForgotPasswordRequest extends BaseRequest
     public function filters()
     {
         return [
-            'email' => 'trim|lowercase',
-            'cpf' => 'trim',
+            'name' => 'trim|escape',
+            'description' => 'trim|escape'
         ];
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\State;
 
-class AttendmentTypeUpdateRequest extends BaseRequest
+use App\Http\Requests\BaseRequest;
+
+class UpdateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +25,7 @@ class AttendmentTypeUpdateRequest extends BaseRequest
     {
         return [
             'name' => 'required|string',
-            'description' => 'required|string'
+            'abbr' => 'required|string'
         ];
     }
 
@@ -36,7 +38,7 @@ class AttendmentTypeUpdateRequest extends BaseRequest
     {
         return [
             'name' => 'trim|escape',
-            'description' => 'trim|escape'
+            'abbr' => 'trim|escape'
         ];
     }
 }

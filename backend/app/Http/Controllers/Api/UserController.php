@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\UserAssignPermissionRequest;
-use App\Http\Requests\UserAuthenticateRequest;
-use App\Http\Requests\UserForgotPasswordRequest;
-use App\Http\Requests\UserStoreRequest;
-use App\Http\Requests\UserUnassignPermissionRequest;
-use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\User\AssignPermissionRequest;
+use App\Http\Requests\User\AuthenticateRequest;
+use App\Http\Requests\User\ForgotPasswordRequest;
+use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\UnassignPermissionRequest;
+use App\Http\Requests\User\UpdateRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -23,10 +23,10 @@ class UserController extends Controller
     private $itemsPerPage = 10;
 
     /**
-     * @param UserAuthenticateRequest $request
+     * @param AuthenticateRequest $request
      * @return JsonResponse
      */
-    public function authenticate(UserAuthenticateRequest $request)
+    public function authenticate(AuthenticateRequest $request)
     {
         $data = $request->json()->all();
 
@@ -62,11 +62,11 @@ class UserController extends Controller
     }
 
     /**
-     * @param UserStoreRequest $request
+     * @param StoreRequest $request
      * @return UserResource|JsonResponse
      * @throws \Throwable
      */
-    public function store(UserStoreRequest $request)
+    public function store(StoreRequest $request)
     {
         /** @var User $user */
         $user =  new User($request->all());
@@ -107,12 +107,12 @@ class UserController extends Controller
     }
 
     /**
-     * @param UserUpdateRequest $request
+     * @param UpdateRequest $request
      * @param $id
      * @return UserResource|JsonResponse
      * @throws \Throwable
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         try {
             /** @var User $user */
@@ -167,10 +167,10 @@ class UserController extends Controller
     }
 
     /**
-     * @param UserForgotPasswordRequest $request
+     * @param ForgotPasswordRequest $request
      * @return JsonResponse
      */
-    public function forgotPassword(UserForgotPasswordRequest $request)
+    public function forgotPassword(ForgotPasswordRequest $request)
     {
         $email = $request->input('email');
         $cpf = $request->input('cpf');
@@ -220,10 +220,10 @@ class UserController extends Controller
 
     /**
      * @param $id
-     * @param UserAssignPermissionRequest $request
+     * @param AssignPermissionRequest $request
      * @return UserResource|JsonResponse
      */
-    public function assignPermissions($id, UserAssignPermissionRequest $request)
+    public function assignPermissions($id, AssignPermissionRequest $request)
     {
         $user = User::findOrFail($id);
 
@@ -260,10 +260,10 @@ class UserController extends Controller
 
     /**
      * @param User $user
-     * @param UserUnassignPermissionRequest $request
+     * @param UnassignPermissionRequest $request
      * @return UserResource|JsonResponse
      */
-    public function unassignPermissions(User $user, UserUnassignPermissionRequest $request)
+    public function unassignPermissions(User $user, UnassignPermissionRequest $request)
     {
         try {
             foreach ($request->input('permissions') as $permission) {

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Attendment;
 
-class StateUpdateRequest extends BaseRequest
+use App\Http\Requests\BaseRequest;
+
+class StoreRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +24,10 @@ class StateUpdateRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'abbr' => 'required|string'
+            'description' => 'required|string',
+            'type_id' => 'required|numeric',
+            'assisted_id' => 'required|numeric',
+            //user_id' => 'sometimes|numeric'
         ];
     }
 
@@ -35,8 +39,10 @@ class StateUpdateRequest extends BaseRequest
     public function filters()
     {
         return [
-            'name' => 'trim|escape',
-            'abbr' => 'trim|escape'
+            'description' => 'trim|capitalize|escape',
+            'type_id' => 'trim|escape',
+            'user_id' => 'trim|escape',
+            'assisted_id' => 'trim|escape'
         ];
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Attendment;
 
-class UserAssignPermissionRequest extends BaseRequest
+use App\Http\Requests\BaseRequest;
+
+class UpdateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +24,10 @@ class UserAssignPermissionRequest extends BaseRequest
     public function rules()
     {
         return [
-            'permissions' => 'required|array'
+            'description' => 'string',
+            'type_id' => 'numeric',
+            'assisted_id' => 'numeric',
+            'user_id' => 'numeric'
         ];
     }
 }
-

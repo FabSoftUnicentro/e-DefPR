@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
-class AttendmentTypeStoreRequest extends BaseRequest
+use App\Http\Requests\BaseRequest;
+
+class ForgotPasswordRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +24,8 @@ class AttendmentTypeStoreRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'description' => 'required|string'
+            'email' => 'required|email',
+            'cpf' => 'required'
         ];
     }
 
@@ -35,8 +37,8 @@ class AttendmentTypeStoreRequest extends BaseRequest
     public function filters()
     {
         return [
-            'name' => 'trim|escape',
-            'description' => 'trim|escape'
+            'email' => 'trim|lowercase',
+            'cpf' => 'trim',
         ];
     }
 }
