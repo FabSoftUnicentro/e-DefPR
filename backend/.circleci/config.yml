@@ -18,7 +18,7 @@ jobs:
     #
     # - image: redis:2.8.19
 
-    working_directory: ~/repo
+    working_directory: ~/backend
 
     steps:
     - checkout
