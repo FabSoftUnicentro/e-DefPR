@@ -29,14 +29,14 @@ class StoreRequest extends BaseRequest
             'password' => 'required',
             'cpf' => 'required|unique:users',
             'birth_date' => 'required',
-            'birthplace' => 'required',
+            'birthplace' => 'required|numeric',
             'rg' => 'required|string',
             'rg_issuer' => 'required',
             'gender' => 'required',
             'addresses' => 'required',
             //'note' => 'sometimes|string',
             'profession' => 'required|string',
-            'mush_change_password' => 'numeric'
+            'mush_change_password' => 'sometimes|numeric'
         ];
     }
 
