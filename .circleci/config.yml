@@ -22,8 +22,6 @@ jobs:
 
     steps:
       - checkout
-
-      - run: cd backend
       - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
 
@@ -37,7 +35,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: composer install -n --prefer-dist
+      - run: cd backend && composer install -n --prefer-dist
 
       - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
@@ -58,4 +56,4 @@ jobs:
           - ~/.yarn
 
       # run tests!
-      - run: phpunit
+      - run: cd backend && phpunit
