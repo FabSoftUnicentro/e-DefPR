@@ -31,14 +31,20 @@ class UpdateTest extends TestCase
 
         $response1 = $this->actingAs($admin)->get('/user/' . $user->id);
 
+        $response1->assertSuccessful();
+
         $this->assertEquals('Test 1', $response1->json()['data']['name']);
 
-        $this->actingAs($admin)->put('/user/' . $user->id, [
+        $response2 = $this->actingAs($admin)->put('/user/' . $user->id, [
             'name' => 'Test 2'
         ]);
 
-        $response2 = $this->actingAs($admin)->get('/user/' . $user->id);
+        $response2->assertSuccessful();
 
-        $this->assertEquals('Test 2', $response2->json()['data']['name']);
+        $response3 = $this->actingAs($admin)->get('/user/' . $user->id);
+
+        $response3->assertSuccessful();
+
+        $this->assertEquals('Test 2', $response3->json()['data']['name']);
     }
 }
