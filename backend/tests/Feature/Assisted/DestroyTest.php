@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\Assisted;
 
+use App\Models\Assisted;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,7 +18,7 @@ class DestroyTest extends TestCase
     }
 
     /**
-     * @test Delete a specific user
+     * @test Delete a specific assisted
      */
     public function testDestroy()
     {
@@ -25,19 +26,19 @@ class DestroyTest extends TestCase
 
         $admin->assignRole('master');
 
-        $user = factory(User::class)->create([
+        $assisted = factory(Assisted::class)->create([
             'name' => 'Test 1'
         ]);
 
-        $response = $this->actingAs($admin)->get('/user/' . $user->id);
+        $response = $this->actingAs($admin)->get('/assisted/' . $assisted->id);
 
         $response->assertSuccessful();
 
-        $response = $this->actingAs($admin)->delete('/user/' . $user->id);
+        $response = $this->actingAs($admin)->delete('/assisted/' . $assisted->id);
 
         $response->assertSuccessful();
 
-        $response = $this->actingAs($admin)->get('/user/' . $user->id);
+        $response = $this->actingAs($admin)->get('/assisted/' . $assisted->id);
 
         $response->assertNotFound();
     }

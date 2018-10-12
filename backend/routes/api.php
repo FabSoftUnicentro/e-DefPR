@@ -51,49 +51,49 @@ Route::prefix('user')->group(function () {
 // State routes
 Route::prefix('state')->group(function () {
     Route::get('/', 'Api\StateController@index')->middleware('auth:api');
-    Route::get('/{id}', 'Api\StateController@show')->middleware('auth:api')->where('id', '[0-9]+');
+    Route::get('/{id}', 'Api\StateController@show')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-state']], function () {
         Route::post('/', 'Api\StateController@store')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-state']], function () {
-        Route::put('/{id}', 'Api\StateController@update')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{id}', 'Api\StateController@update')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:delete-state']], function () {
-        Route::delete('/{id}', 'Api\StateController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::delete('/{id}', 'Api\StateController@destroy')->middleware('auth:api');
     });
 });
 
 // City routes
 Route::prefix('city')->group(function () {
     Route::get('/', 'Api\CityController@index')->middleware('auth:api');
-    Route::get('/{id}', 'Api\CityController@show')->middleware('auth:api')->where('id', '[0-9]+');
-    Route::get('/state/{id}', 'Api\CityController@findByState')->middleware('auth:api')->where('id', '[0-9]+');
+    Route::get('/{id}', 'Api\CityController@show')->middleware('auth:api');
+    Route::get('/state/{id}', 'Api\CityController@findByState')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-city']], function () {
         Route::post('/', 'Api\CityController@store')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-city']], function () {
-        Route::put('/{id}', 'Api\CityController@update')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{id}', 'Api\CityController@update')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:delete-city']], function () {
-        Route::delete('/{id}', 'Api\CityController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::delete('/{id}', 'Api\CityController@destroy')->middleware('auth:api');
     });
 });
 
 // Assisted route
 Route::prefix('assisted')->group(function () {
-    Route::get('/', 'Api\AssistedController@index')->middleware('auth:api');
-    Route::get('/{assisted}', 'Api\AssistedController@show')->middleware('auth:api')->where('id', '[0-9]+');
+    Route::get('/', 'Api\Assisted\AssistedList')->middleware('auth:api');
+    Route::get('/{assisted}', 'Api\Assisted\AssistedShow')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-assisted']], function () {
-        Route::post('/', 'Api\AssistedController@store')->middleware('auth:api');
+        Route::post('/', 'Api\Assisted\AssistedStore')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-assisted']], function () {
-        Route::put('/{assisted}', 'Api\AssistedController@update')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{assisted}', 'Api\Assisted\AssistedUpdate')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:delete-assisted']], function () {
-        Route::delete('/{assisted}', 'Api\AssistedController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::delete('/{assisted}', 'Api\Assisted\AssistedDestroy')->middleware('auth:api');
     });
 });
 
@@ -101,24 +101,24 @@ Route::prefix('assisted')->group(function () {
 Route::prefix('role')->group(function () {
     Route::group(['middleware' => ['permission:read-role']], function () {
         Route::get('/', 'Api\RoleController@index')->middleware('auth:api');
-        Route::get('/{id}', 'Api\RoleController@show')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::get('/{id}', 'Api\RoleController@show')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:register-role']], function () {
         Route::post('/', 'Api\RoleController@store')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:assign-role-permission']], function () {
-        Route::put('/{id}/assign-permission/{permission}', 'Api\RoleController@assignPermission')->middleware('auth:api')->where('id', '[0-9]+');
-        Route::put('/{role}/assign-permissions', 'Api\RoleController@assignPermissions')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{id}/assign-permission/{permission}', 'Api\RoleController@assignPermission')->middleware('auth:api');
+        Route::put('/{role}/assign-permissions', 'Api\RoleController@assignPermissions')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:unassign-role-permission']], function () {
-        Route::put('/{id}/unassign-permission/{permission}', 'Api\RoleController@unassignPermission')->middleware('auth:api')->where('id', '[0-9]+');
-        Route::put('/{role}/unassign-permissions', 'Api\RoleController@unassignPermissions')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{id}/unassign-permission/{permission}', 'Api\RoleController@unassignPermission')->middleware('auth:api');
+        Route::put('/{role}/unassign-permissions', 'Api\RoleController@unassignPermissions')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-role']], function () {
-        Route::put('/{id}', 'Api\RoleController@update')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{id}', 'Api\RoleController@update')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:delete-role']], function () {
-        Route::delete('/{id}', 'Api\RoleController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::delete('/{id}', 'Api\RoleController@destroy')->middleware('auth:api');
     });
 });
 
@@ -126,17 +126,17 @@ Route::prefix('role')->group(function () {
 Route::prefix('permission')->group(function () {
     Route::group(['middleware' => ['permission:list-permission']], function () {
         Route::get('/', 'Api\PermissionController@index')->middleware('auth:api');
-        Route::get('/{id}', 'Api\PermissionController@show')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::get('/{id}', 'Api\PermissionController@show')->middleware('auth:api');
     });
 
     Route::group(['middleware' => ['permission:register-permission']], function () {
         Route::post('/', 'Api\PermissionController@store')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-permission']], function () {
-        Route::put('/{id}', 'Api\PermissionController@update')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{id}', 'Api\PermissionController@update')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:delete-permission']], function () {
-        Route::delete('/{id}', 'Api\PermissionController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::delete('/{id}', 'Api\PermissionController@destroy')->middleware('auth:api');
     });
 });
 
@@ -144,7 +144,7 @@ Route::prefix('permission')->group(function () {
 Route::prefix('attendmentType')->group(function () {
     Route::group(['middleware' => ['permission:list-attendmentType']], function () {
         Route::get('/', 'Api\AttendmentTypeController@index')->middleware('auth:api');
-        Route::get('/{id}', 'Api\AttendmentTypeController@show')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::get('/{id}', 'Api\AttendmentTypeController@show')->middleware('auth:api');
     });
 
     Route::group(['middleware' => ['permission:register-attendmentType']], function () {
@@ -152,11 +152,11 @@ Route::prefix('attendmentType')->group(function () {
     });
 
     Route::group(['middleware' => ['permission:update-attendmentType']], function () {
-        Route::put('/{id}', 'Api\AttendmentTypeController@update')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{id}', 'Api\AttendmentTypeController@update')->middleware('auth:api');
     });
 
     Route::group(['middleware' => ['permission:delete-attendmentType']], function () {
-        Route::delete('/{id}', 'Api\AttendmentTypeController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::delete('/{id}', 'Api\AttendmentTypeController@destroy')->middleware('auth:api');
     });
 });
 
@@ -164,16 +164,16 @@ Route::prefix('attendmentType')->group(function () {
 Route::prefix('attendment')->group(function () {
     Route::group(['middleware' => ['permission:list-attendment']], function () {
         Route::get('/', 'Api\AttendmentController@index')->middleware('auth:api');
-        Route::get('/{id}', 'Api\AttendmentController@show')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::get('/{id}', 'Api\AttendmentController@show')->middleware('auth:api');
     });
 
     Route::group(['middleware' => ['permission:register-attendment']], function () {
         Route::post('/', 'Api\AttendmentController@store')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-attendment']], function () {
-        Route::put('/{id}', 'Api\AttendmentController@update')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{id}', 'Api\AttendmentController@update')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:delete-attendment']], function () {
-        Route::delete('/{id}', 'Api\AttendmentController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::delete('/{id}', 'Api\AttendmentController@destroy')->middleware('auth:api');
     });
 });

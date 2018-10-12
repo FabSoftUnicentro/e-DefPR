@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\Assisted;
 
+use App\Models\Assisted;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,7 +18,7 @@ class UpdateTest extends TestCase
     }
 
     /**
-     * @test Update a specific user
+     * @test Update a specific assisted
      */
     public function testUpdate()
     {
@@ -25,23 +26,23 @@ class UpdateTest extends TestCase
 
         $admin->assignRole('master');
 
-        $user = factory(User::class)->create([
+        $assisted = factory(Assisted::class)->create([
             'name' => 'Test 1'
         ]);
 
-        $response1 = $this->actingAs($admin)->get('/user/' . $user->id);
+        $response1 = $this->actingAs($admin)->get('/assisted/' . $assisted->id);
 
         $response1->assertSuccessful();
 
         $this->assertEquals('Test 1', $response1->json()['data']['name']);
 
-        $response2 = $this->actingAs($admin)->put('/user/' . $user->id, [
+        $response2 = $this->actingAs($admin)->put('/assisted/' . $assisted->id, [
             'name' => 'Test 2'
         ]);
 
         $response2->assertSuccessful();
 
-        $response3 = $this->actingAs($admin)->get('/user/' . $user->id);
+        $response3 = $this->actingAs($admin)->get('/assisted/' . $assisted->id);
 
         $response3->assertSuccessful();
 

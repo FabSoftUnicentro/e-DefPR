@@ -1,11 +1,12 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\Assisted;
 
+use App\Models\Assisted;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\Assisted as AssistedResource;
 
 class IndexTest extends TestCase
 {
@@ -18,7 +19,7 @@ class IndexTest extends TestCase
     }
 
     /**
-     * @test Get all users paginated
+     * @test Get all assisteds paginated
      */
     public function testIndex()
     {
@@ -26,12 +27,12 @@ class IndexTest extends TestCase
 
         $admin->assignRole('master');
 
-        factory(User::class, 5)->create();
+        factory(Assisted::class, 5)->create();
 
-        $response =  $this->actingAs($admin)->get('/user');
+        $response =  $this->actingAs($admin)->get('/assisted');
 
-        $users = User::paginate(10);
+        $users = Assisted::paginate(10);
 
-        $response->assertResource(UserResource::collection($users));
+        $response->assertResource(AssistedResource::collection($users));
     }
 }

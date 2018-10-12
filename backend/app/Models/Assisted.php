@@ -38,6 +38,16 @@ class Assisted extends Model
     ];
 
     /**
+     * Generate json for the addresses attribute
+     *
+     * @param $value
+     */
+    public function setAddressesAttribute($value)
+    {
+        $this->attributes['addresses'] = json_encode($value);
+    }
+
+    /**
      * Get the city that the assisted was born.
      */
     public function city()
