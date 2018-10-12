@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,38 +13,38 @@ use Illuminate\Http\Request;
 
 // User routes
 Route::prefix('user')->group(function () {
-    Route::post('/authenticate', 'Api\UserController@authenticate');
-    Route::post('/forgot-password', 'Api\UserController@forgotPassword');
-    Route::get('/me', 'Api\UserController@info')->middleware('auth:api');
-    Route::get('/{user}/permissions', 'Api\UserController@getAllPermissions')->middleware('auth:api');
-    Route::put('/reset-password', 'Api\UserController@resetPassword')->middleware('auth:api');
+    Route::post('/authenticate', 'Api\User\UserAuthenticate');
+    Route::post('/forgot-password', 'Api\User\UserForgotPassword');
+    Route::get('/me', 'Api\User\UserInfo')->middleware('auth:api');
+    Route::get('/{user}/permissions', 'Api\User\UserAllPermissions')->middleware('auth:api');
+    Route::put('/reset-password', 'Api\User\UserResetPassword')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-employee']], function () {
-        Route::post('/', 'Api\UserController@store')->middleware('auth:api');
+        Route::post('/', 'Api\User\UserStore')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:assign-user-permission']], function () {
-        Route::put('/{id}/assign-permission/{permission}', 'Api\UserController@assignPermission')->middleware('auth:api')->where('id', '[0-9]+');
-        Route::put('/{id}/assign-permissions', 'Api\UserController@assignPermissions')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{user}/assign-permission/{permission}', 'Api\User\UserAssignPermission')->middleware('auth:api');
+        Route::put('/{user}/assign-permissions', 'Api\User\UserAssignPermissions')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:unassign-user-permission']], function () {
-        Route::put('/{id}/unassign-permission/{permission}', 'Api\UserController@unassignPermission')->middleware('auth:api')->where('id', '[0-9]+');
-        Route::put('/{user}/unassign-permissions', 'Api\UserController@unassignPermissions')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{user}/unassign-permission/{permission}', 'Api\User\UserUnassignPermission')->middleware('auth:api');
+        Route::put('/{user}/unassign-permissions', 'Api\User\UserUnassignPermissions')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:assign-user-role']], function () {
-        Route::put('/{id}/assign-role/{role}', 'Api\UserController@assignRole')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{user}/assign-role/{role}', 'Api\User\UserAssignRole')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:unassign-user-role']], function () {
-        Route::put('/{id}/unassign-role/{role}', 'Api\UserController@unassignRole')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{user}/unassign-role/{role}', 'Api\User\UserUnassignRole')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-employee']], function () {
-        Route::put('/{id}', 'Api\UserController@update')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::put('/{user}', 'Api\User\UserUpdate')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:read-employee']], function () {
-        Route::get('/{id}', 'Api\UserController@show')->middleware('auth:api')->where('id', '[0-9]+');
-        Route::get('/', 'Api\UserController@index')->middleware('auth:api');
+        Route::get('/{user}', 'Api\User\UserShow')->middleware('auth:api');
+        Route::get('/', 'Api\User\UserList')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:delete-employee']], function () {
-        Route::delete('/{id}', 'Api\UserController@destroy')->middleware('auth:api')->where('id', '[0-9]+');
+        Route::delete('/{user}', 'Api\User\UserDestroy')->middleware('auth:api');
     });
 });
 
