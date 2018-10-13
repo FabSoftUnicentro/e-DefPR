@@ -26,7 +26,7 @@ class IndexTest extends TestCase
 
         $admin->assignRole('master');
 
-        factory(User::class, 5)->create();
+        factory(User::class, 1)->create();
 
         $response =  $this->actingAs($admin)->get('/user');
 
