@@ -1,13 +1,14 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\State;
 
+use App\Models\State;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\State as StateResource;
 
-class IndexTest extends TestCase
+class ShowTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -18,20 +19,18 @@ class IndexTest extends TestCase
     }
 
     /**
-     * @test Get all users paginated
+     * @test Get a specific state
      */
-    public function testIndex()
+    public function testShow()
     {
         $admin = factory(User::class)->create();
 
         $admin->assignRole('master');
 
-        factory(User::class, 1)->create();
+        $state = factory(State::class)->create();
 
-        $response =  $this->actingAs($admin)->get('/user');
+        $response =  $this->actingAs($admin)->get('/state/' . $state->id);
 
-        $users = User::paginate(10);
-
-        $response->assertResource(UserResource::collection($users));
+        $response->assertResource(StateResource::make($state));
     }
 }

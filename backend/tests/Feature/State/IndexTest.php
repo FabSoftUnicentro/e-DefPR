@@ -1,11 +1,12 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\State;
 
 use App\Models\User;
+use App\Models\State;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\State as StateResource;
 
 class IndexTest extends TestCase
 {
@@ -18,7 +19,7 @@ class IndexTest extends TestCase
     }
 
     /**
-     * @test Get all users paginated
+     * @test Get all states paginated
      */
     public function testIndex()
     {
@@ -26,12 +27,12 @@ class IndexTest extends TestCase
 
         $admin->assignRole('master');
 
-        factory(User::class, 1)->create();
+        factory(State::class, 1)->create();
 
-        $response =  $this->actingAs($admin)->get('/user');
+        $response =  $this->actingAs($admin)->get('/state');
 
-        $users = User::paginate(10);
+        $states = State::orderBy('abbr', 'asc')->paginate(10);
 
-        $response->assertResource(UserResource::collection($users));
+        $response->assertResource(StateResource::collection($states));
     }
 }
