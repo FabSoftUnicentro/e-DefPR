@@ -147,7 +147,7 @@ task('deploy', [
 ]);
 after('deploy', 'success');
 
-set('slack_webhook', 'https://hooks.slack.com/services/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');
+set('slack_webhook', 'https://hooks.slack.com/services/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');
 
 set('slack_text', 'Starting Homolog Deploy...');
 

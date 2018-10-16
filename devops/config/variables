@@ -12,3 +12,4 @@ export BACKUPS_DIR="$EDEF_PATH/devops/backups"
 slack_uri='https://hooks.slack.com/services/T9UBYA0BZ'
 export SLACK_HOOK_HOMOLOG="${slack_uri}/BBEF9D14K/FpW25k7D11IIb4YsvIUqx66D"
 export SLACK_HOOK_REVIEW="${slack_uri}/BBW6H1GUR/LNnBBZQg2BUIUuJ7KMYLElLg"
+export SLACK_HOOK_HOMOLOG_EXCEPTIONS="${slack_uri}/BDELAT6MA/xHu2NVpAp9sMUJhstTSNfUep"
