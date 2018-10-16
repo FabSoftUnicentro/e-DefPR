@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "810f2114c26a9ff37b3188121c308ed7",
-    "content-hash": "5439866a57fe55c573d050e178ed9174",
+    "hash": "6946f56e7c0393d47859953de15c513e",
+    "content-hash": "92928d8501861ddf3338dfb9ae637589",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -589,6 +589,55 @@
             "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
             "homepage": "https://github.com/firebase/php-jwt",
             "time": "2017-06-27 22:17:23"
+        },
+        {
+            "name": "freshbitsweb/laravel-log-enhancer",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/freshbitsweb/laravel-log-enhancer.git",
+                "reference": "03871923db6ee69672eca9c5d38fb2997b656865"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/freshbitsweb/laravel-log-enhancer/zipball/03871923db6ee69672eca9c5d38fb2997b656865",
+                "reference": "03871923db6ee69672eca9c5d38fb2997b656865",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.6.*|5.7.*",
+                "monolog/monolog": "1.23.*",
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.6.*|3.7.*",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Freshbitsweb\\LaravelLogEnhancer\\LaravelLogEnhancerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Freshbitsweb\\LaravelLogEnhancer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gaurav Makhecha",
+                    "email": "info@freshbits.in"
+                }
+            ],
+            "description": "Make debugging easier by adding more data to your laravel logs",
+            "time": "2018-09-06 13:21:33"
         },
         {
             "name": "fzaninotto/faker",
