@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Services\Mailer;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Support\Facades\View;
 
 class User extends Authenticatable
 {

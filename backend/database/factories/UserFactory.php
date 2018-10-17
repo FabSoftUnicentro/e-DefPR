@@ -19,9 +19,9 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'cpf' => $faker->numberBetween(999999999),
+        'cpf' => (string) $faker->numberBetween(999999999),
         'birth_date' => $faker->date(),
-        'birthplace' => DB::table('cities')->inRandomOrder()->first()->id,
+        'birthplace' => factory(App\Models\City::class),
         'rg' => $faker->unique()->text(11),
         'rg_issuer' => 'SSP',
         'gender' => 'M',
@@ -40,5 +40,6 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
             ]
         ]),
         'remember_token' => str_random(10),
+        'must_change_password' => (string) 1
     ];
 });
