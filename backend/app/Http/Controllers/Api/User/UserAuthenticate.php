@@ -28,10 +28,14 @@ class UserAuthenticate extends Controller
         }
 
         if ($user && Hash::check($data['password'], $user->getAuthPassword())) {
-            $token = $user->createToken('auth')->accessToken;
+            $tokenResult = $user->createToken('auth');
+
+            $token = $tokenResult->token;
+
+            $token->save();
 
             return JsonResponse::create([
-                'token' => $token,
+                'token' => $tokenResult->accessToken,
                 'name' => $user->name,
                 'mustChangePassword' => $user->must_change_password
             ], Response::HTTP_OK);
