@@ -1,15 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jean Pierri
- * Date: 17/10/2018
- * Time: 18:24
- */
 
 namespace App\Http\Controllers\Api\Role;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Role\UnassignPermissionRequest;
+use Spatie\Permission\Models\Role;
+use App\Http\Resources\Role as RoleResource;
 
-class RoleUnassignPermissions
+class RoleUnassignPermissions extends Controller
 {
+    public function __invoke(Role $role, UnassignPermissionRequest $request)
+    {
+        foreach ($request->input('permissions') as $permission) {
+            $role->revokePermissionTo($permission);
+        }
 
+        return new RoleResource($role);
+    }
 }
