@@ -1,15 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jean Pierri
- * Date: 17/10/2018
- * Time: 17:50
- */
 
 namespace App\Http\Controllers\Api\Role;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Role\StoreRequest;
+use App\Http\Resources\Role as RoleResource;
+use Spatie\Permission\Models\Role;
 
-class RoleStore
+class RoleStore extends Controller
 {
+    public function __invoke(StoreRequest $request)
+    {
+        $role = Role::create($request->all());
 
+        $role->saveOrFail();
+
+        return new RoleResource($role);
+    }
 }
