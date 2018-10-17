@@ -1,15 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jean Pierri
- * Date: 17/10/2018
- * Time: 17:06
- */
 
 namespace App\Http\Controllers\Api\Role;
 
+use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Role;
+use App\Http\Resources\Role as RoleResource;
 
-class RoleDestroy
+class RoleDestroy extends Controller
 {
+    /**
+     * @param Role $role
+     * @return RoleResource
+     * @throws \Exception
+     */
+    public function __invoke(Role $role)
+    {
+        $role->delete();
 
+        return new RoleResource($role);
+    }
 }
