@@ -15,6 +15,7 @@
 Route::prefix('user')->group(function () {
     Route::post('/authenticate', 'Api\User\UserAuthenticate');
     Route::post('/forgot-password', 'Api\User\UserForgotPassword');
+    Route::get('/logout', 'Api\User\UserLogout')->middleware('auth:api');
     Route::get('/me', 'Api\User\UserInfo')->middleware('auth:api');
     Route::get('/{user}/permissions', 'Api\User\UserAllPermissions')->middleware('auth:api');
     Route::put('/reset-password', 'Api\User\UserResetPassword')->middleware('auth:api');
