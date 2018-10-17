@@ -9,6 +9,11 @@ use App\Http\Resources\Role as RoleResource;
 
 class RoleAssignPermissions extends Controller
 {
+    /**
+     * @param Role $role
+     * @param AssignPermissionRequest $request
+     * @return RoleResource
+     */
     public function __invoke(Role $role, AssignPermissionRequest $request)
     {
         $role->givePermissionTo($request->input('permissions'));

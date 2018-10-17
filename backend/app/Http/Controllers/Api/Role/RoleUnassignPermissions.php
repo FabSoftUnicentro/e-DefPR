@@ -9,6 +9,11 @@ use App\Http\Resources\Role as RoleResource;
 
 class RoleUnassignPermissions extends Controller
 {
+    /**
+     * @param Role $role
+     * @param UnassignPermissionRequest $request
+     * @return RoleResource
+     */
     public function __invoke(Role $role, UnassignPermissionRequest $request)
     {
         foreach ($request->input('permissions') as $permission) {

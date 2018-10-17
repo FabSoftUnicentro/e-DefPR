@@ -8,6 +8,10 @@ use App\Http\Resources\Role as RoleResource;
 
 class RoleShow extends Controller
 {
+    /**
+     * @param Role $role
+     * @return RoleResource
+     */
     public function __invoke(Role $role)
     {
         return new RoleResource($role);
