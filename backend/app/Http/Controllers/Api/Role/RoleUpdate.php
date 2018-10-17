@@ -1,15 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jean Pierri
- * Date: 17/10/2018
- * Time: 17:59
- */
 
 namespace App\Http\Controllers\Api\Role;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Role\UpdateRequest;
+use Spatie\Permission\Models\Role;
+use App\Http\Resources\Role as RoleResource;
 
-class RoleUpdate
+class RoleUpdate extends Controller
 {
+    public function __invoke(Role $role, UpdateRequest $request)
+    {
+        $role->update($request->all());
 
+        $role->saveOrFail();
+
+        return new RoleResource($role);
+    }
 }
