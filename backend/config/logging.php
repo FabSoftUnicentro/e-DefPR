@@ -35,7 +35,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'slack'],
         ],
 
         'single' => [
@@ -53,10 +53,11 @@ return [
 
         'slack' => [
             'driver' => 'slack',
+            'tap' => [Freshbitsweb\LaravelLogEnhancer\LogEnhancer::class],
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
-            'username' => 'Laravel Log',
+            'username' => 'e-DefPR bot',
             'emoji' => ':boom:',
-            'level' => 'critical',
+            'level' => 'warning',
         ],
 
         'stderr' => [
