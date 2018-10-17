@@ -1,15 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jean Pierri
- * Date: 17/10/2018
- * Time: 18:05
- */
 
 namespace App\Http\Controllers\Api\Role;
 
+use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Role;
+use App\Http\Resources\Role as RoleResource;
 
-class RoleAssignPermission
+class RoleAssignPermission extends Controller
 {
+    public function __invoke(Role $role, $permission)
+    {
+        $role->givePermissionTo($permission);
 
+        return new RoleResource($role);
+    }
 }
