@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Role;
 
-use App\Models\Assisted;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Resources\Assisted as AssistedResource;
+use App\Http\Resources\Role as RoleResource;
 
 class ShowTest extends TestCase
 {
@@ -19,7 +19,7 @@ class ShowTest extends TestCase
     }
 
     /**
-     * @test Get a specific assisted
+     * @test Get a specific role
      */
     public function testShow()
     {
@@ -27,10 +27,10 @@ class ShowTest extends TestCase
 
         $admin->assignRole('master');
 
-        $assisted = factory(Assisted::class)->create();
+        $role = Role::create(['name' => 'test']);
 
-        $response =  $this->actingAs($admin)->get('/assisted/' . $assisted->id);
+        $response =  $this->actingAs($admin)->get('/role/' . $role->id);
 
-        $response->assertResource(AssistedResource::make($assisted));
+        $response->assertResource(RoleResource::make($role));
     }
 }
