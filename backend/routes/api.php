@@ -100,6 +100,8 @@ Route::prefix('assisted')->group(function () {
 
 // Role route
 Route::prefix('role')->group(function () {
+    Route::get('/{role}/permissions', 'Api\Role\RoleAllPermissions')->middleware('auth:api');
+    
     Route::group(['middleware' => ['permission:read-role']], function () {
         Route::get('/', 'Api\Role\RoleList')->middleware('auth:api');
         Route::get('/{role}', 'Api\Role\RoleShow')->middleware('auth:api');
