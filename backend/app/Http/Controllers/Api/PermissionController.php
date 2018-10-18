@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 use App\Http\Resources\Permission as PermissionResource;
+use App\Http\Requests\Permission\StoreRequest;
+use App\Http\Requests\Permission\UpdateRequest;
 
 class PermissionController extends Controller
 {
@@ -24,14 +25,13 @@ class PermissionController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StoreRequest $request
      * @return PermissionResource|JsonResponse
-     * @throws \Throwable
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         try {
-            $permission = Permission::create(['name' => $request->input('name')]);
+            $permission = Permission::create($request->all());
 
             return new PermissionResource($permission);
         } catch (\Exception $e) {
@@ -63,48 +63,28 @@ class PermissionController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param $id
-     * @return PermissionResource|JsonResponse
+     * @param Permission $permission
+     * @param UpdateRequest $request
+     * @return PermissionResource
      * @throws \Throwable
      */
-    public function update(Request $request, $id)
+    public function update(Permission $permission, UpdateRequest $request)
     {
-        try {
-            /** @var Permission $permission */
-            $permission = Permission::findOrFail($id);
+        $permission->update($request->all());
+        $permission->saveOrFail();
 
-            $permission->name = $request->input('name') ? $request->input('name') : $permission->name;
-            $permission->guard_name = $request->input('guard_name') ? $request->input('guard_name') : $permission->guard_name;
-            $permission->created_at = $request->input('created_at') ? $request->input('created_at') : $permission->created_at;
-            $permission->updated_at = $request->input('updated_at') ? $request->input('updated_at') : $permission->updated_at;
-            $permission->saveOrFail();
-
-            return new PermissionResource($permission);
-        } catch (\Exception $e) {
-            return JsonResponse::create([
-                'message' => $e->getMessage()
-            ], Response::HTTP_NOT_FOUND);
-        }
+        return new PermissionResource($permission);
     }
 
     /**
-     * @param $id
-     * @return PermissionResource|JsonResponse
+     * @param Permission $permission
+     * @return PermissionResource
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Permission $permission)
     {
-        try {
-            /** @var Permission $permission */
-            $permission = Permission::findOrFail($id);
+        $permission->delete();
 
-            $permission->delete();
-
-            return new PermissionResource($permission);
-        } catch (\Exception $e) {
-            return JsonResponse::create([
-                'message' => $e->getMessage()
-            ], Response::HTTP_NOT_FOUND);
-        }
+        return new PermissionResource($permission);
     }
 }
