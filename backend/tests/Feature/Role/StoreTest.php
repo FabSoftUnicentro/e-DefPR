@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Role;
 
 use App\Models\User;
 use Tests\TestCase;
@@ -18,7 +18,7 @@ class StoreTest extends TestCase
     }
 
     /**
-     * @test Store a specific assisted
+     * @test Store a specific role
      */
     public function testStore()
     {
@@ -26,29 +26,12 @@ class StoreTest extends TestCase
 
         $admin->assignRole('master');
 
-        $assisted = [
-            "name"=> "Cadastro Teste",
-            "email"=> "teste3@edefpr.com",
-            "cpf"=> "08846355973",
-            "birth_date"=> "26/08/1996",
-            "rg"=> "Quaerat.",
-            "rg_issuer"=> "SSP",
-            "gender"=> "M",
-            "marital_status"=> "Solteiro",
-            "profession"=> "Teste",
-            "birthplace"=> 1,
-            "addresses"=> [
-                "uf"=> "PR",
-                "city"=> "Guarapuava",
-                "number"=> 1,
-                "street"=> "Teste",
-                "postcode"=> "85015310",
-                "complement"=> "",
-                "neighborhood"=> "Batel"
-            ]
+        $role = [
+            "name"=> "test",
+            "guard_name"=> "api"
         ];
 
-        $response = $this->actingAs($admin)->post('/assisted/', $assisted);
+        $response = $this->actingAs($admin)->post('/role/', $role);
 
         $response->assertSuccessful();
     }
