@@ -26,19 +26,19 @@ class DestroyTest extends TestCase
 
         $admin->assignRole('master');
 
-        $assisted = factory(State::class)->create([
+        $state = factory(State::class)->create([
             'name' => 'Test 1'
         ]);
 
-        $response = $this->actingAs($admin)->get('/state/' . $assisted->id);
+        $response = $this->actingAs($admin)->get('/state/' . $state->id);
 
         $response->assertSuccessful();
 
-        $response = $this->actingAs($admin)->delete('/state/' . $assisted->id);
+        $response = $this->actingAs($admin)->delete('/state/' . $state->id);
 
         $response->assertSuccessful();
 
-        $response = $this->actingAs($admin)->get('/state/' . $assisted->id);
+        $response = $this->actingAs($admin)->get('/state/' . $state->id);
 
         $response->assertNotFound();
     }
