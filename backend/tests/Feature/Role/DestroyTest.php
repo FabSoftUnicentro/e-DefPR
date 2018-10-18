@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Role;
 
-use App\Models\Assisted;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -18,7 +18,7 @@ class DestroyTest extends TestCase
     }
 
     /**
-     * @test Delete a specific assisted
+     * @test Delete a specific Role
      */
     public function testDestroy()
     {
@@ -26,19 +26,17 @@ class DestroyTest extends TestCase
 
         $admin->assignRole('master');
 
-        $assisted = factory(Assisted::class)->create([
-            'name' => 'Test 1'
-        ]);
+        $role = Role::create(['name' => 'test']);
 
-        $response = $this->actingAs($admin)->get('/assisted/' . $assisted->id);
+        $response = $this->actingAs($admin)->get('/role/' . $role->id);
 
         $response->assertSuccessful();
 
-        $response = $this->actingAs($admin)->delete('/assisted/' . $assisted->id);
+        $response = $this->actingAs($admin)->delete('/role/' . $role->id);
 
         $response->assertSuccessful();
 
-        $response = $this->actingAs($admin)->get('/assisted/' . $assisted->id);
+        $response = $this->actingAs($admin)->get('/role/' . $role->id);
 
         $response->assertNotFound();
     }
