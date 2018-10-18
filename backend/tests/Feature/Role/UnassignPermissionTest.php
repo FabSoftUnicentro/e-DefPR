@@ -18,7 +18,7 @@ class UnassignPermissionTest extends TestCase
     }
 
     /**
-     * @test Unassign permission to a User
+     * @test Unassign permission to a Role
      */
     public function testUnassignPermission()
     {
@@ -48,7 +48,7 @@ class UnassignPermissionTest extends TestCase
     }
 
     /**
-     * @test Unassign multiple permissions to a User
+     * @test Unassign multiple permissions to a Role
      */
     public function testUnassignMultiplePermissions()
     {
