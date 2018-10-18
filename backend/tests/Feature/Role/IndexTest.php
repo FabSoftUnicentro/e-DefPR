@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Role;
 
-use App\Models\Assisted;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Resources\Assisted as AssistedResource;
+use App\Http\Resources\Role as RoleResource;
 
 class IndexTest extends TestCase
 {
@@ -19,7 +19,7 @@ class IndexTest extends TestCase
     }
 
     /**
-     * @test Get all assisteds paginated
+     * @test Get all roles paginated
      */
     public function testIndex()
     {
@@ -27,12 +27,10 @@ class IndexTest extends TestCase
 
         $admin->assignRole('master');
 
-        factory(Assisted::class, 5)->create();
+        $response =  $this->actingAs($admin)->get('/role');
 
-        $response =  $this->actingAs($admin)->get('/assisted');
+        $roles = Role::paginate(10);
 
-        $users = Assisted::paginate(10);
-
-        $response->assertResource(AssistedResource::collection($users));
+        $response->assertResource(RoleResource::collection($roles));
     }
 }
