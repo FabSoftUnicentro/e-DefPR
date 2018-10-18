@@ -18,7 +18,7 @@ class DestroyTest extends TestCase
     }
 
     /**
-     * @test Delete a specific assisted
+     * @test Delete a specific permission
      */
     public function testDestroy()
     {

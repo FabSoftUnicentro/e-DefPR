@@ -18,7 +18,7 @@ class StoreTest extends TestCase
     }
 
     /**
-     * @test Store a specific assisted
+     * @test Store a specific permission
      */
     public function testStore()
     {

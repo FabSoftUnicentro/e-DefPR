@@ -18,7 +18,7 @@ class UpdateTest extends TestCase
     }
 
     /**
-     * @test Update a specific assisted
+     * @test Update a specific permission
      */
     public function testUpdate()
     {

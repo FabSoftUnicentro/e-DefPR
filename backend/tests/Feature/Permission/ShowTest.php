@@ -19,7 +19,7 @@ class ShowTest extends TestCase
     }
 
     /**
-     * @test Get a specific assisted
+     * @test Get a specific permission
      */
     public function testShow()
     {
