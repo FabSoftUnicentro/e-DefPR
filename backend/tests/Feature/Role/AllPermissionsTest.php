@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\Role;
 
 use App\Models\User;
 use Tests\TestCase;
@@ -17,7 +17,7 @@ class AllPermissionsTest extends TestCase
     }
 
     /**
-     * @test Get all permissions of a User
+     * @test Get all permissions of a Role
      */
     public function testAllPermissions()
     {
@@ -25,7 +25,7 @@ class AllPermissionsTest extends TestCase
 
         $admin->assignRole('master');
 
-        $response = $this->actingAs($admin)->get("/user/$admin->id/permissions");
+        $response = $this->actingAs($admin)->get("/role/$admin->id/permissions");
 
         $response->assertSuccessful();
 
