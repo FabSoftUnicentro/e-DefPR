@@ -31,8 +31,8 @@ class IndexTest extends TestCase
 
         $response =  $this->actingAs($admin)->get('/assisted');
 
-        $users = Assisted::paginate(10);
+        $assisteds = Assisted::paginate(10);
 
-        $response->assertResource(AssistedResource::collection($users));
+        $response->assertResource(AssistedResource::collection($assisteds));
     }
 }
