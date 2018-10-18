@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Permission;
 
-use App\Models\Assisted;
+use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Resources\Assisted as AssistedResource;
+use App\Http\Resources\Permission as PermissionResource;
 
 class IndexTest extends TestCase
 {
@@ -19,7 +19,7 @@ class IndexTest extends TestCase
     }
 
     /**
-     * @test Get all assisteds paginated
+     * @test Get all permissions paginated
      */
     public function testIndex()
     {
@@ -27,12 +27,10 @@ class IndexTest extends TestCase
 
         $admin->assignRole('master');
 
-        factory(Assisted::class, 5)->create();
+        $response = $this->actingAs($admin)->get('/permission');
 
-        $response =  $this->actingAs($admin)->get('/assisted');
+        $permissions = Permission::paginate(10);
 
-        $assisteds = Assisted::paginate(10);
-
-        $response->assertResource(AssistedResource::collection($assisteds));
+        $response->assertResource(PermissionResource::collection($permissions));
     }
 }
