@@ -1,8 +1,9 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\Role;
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -25,24 +26,23 @@ class UnassignPermissionTest extends TestCase
 
         $admin->assignRole('master');
 
-        /** @var User $user */
-        $user = factory(User::class)->create();
+        $role = Role::create(['name' => 'Test 1']);
 
         $permission = 'register-activities';
 
-        $user->givePermissionTo($permission);
+        $role->givePermissionTo($permission);
 
-        $response = $this->actingAs($admin)->put("/user/$user->id/unassign-permission/$permission");
+        $response = $this->actingAs($admin)->put("/role/$role->id/unassign-permission/$permission");
 
         $response->assertSuccessful();
 
         $permission = 'dont-exist';
 
-        $response = $this->actingAs($admin)->put("/user/$user->id/unassign-permission/$permission");
+        $response = $this->actingAs($admin)->put("/role/$role->id/unassign-permission/$permission");
 
         $this->assertNotEquals(200, $response->getStatusCode());
 
-        $response = $this->actingAs($admin)->put("/user/9999/unassign-permission/$permission");
+        $response = $this->actingAs($admin)->put("/role/9999/unassign-permission/$permission");
 
         $response->assertNotFound();
     }
@@ -56,8 +56,7 @@ class UnassignPermissionTest extends TestCase
 
         $admin->assignRole('master');
 
-        /** @var User $user */
-        $user = factory(User::class)->create();
+        $role = Role::create(['name' => 'Test 1']);
 
         $permissions = [
             'register-activities',
@@ -65,9 +64,9 @@ class UnassignPermissionTest extends TestCase
             'open-process'
         ];
 
-        $user->givePermissionTo($permissions);
+        $role->givePermissionTo($permissions);
 
-        $response = $this->actingAs($admin)->put("/user/$user->id/unassign-permissions", [
+        $response = $this->actingAs($admin)->put("/role/$role->id/unassign-permissions", [
             'permissions' => $permissions
         ]);
 
@@ -80,13 +79,13 @@ class UnassignPermissionTest extends TestCase
             'dont-exist'
         ];
 
-        $response = $this->actingAs($admin)->put("/user/$user->id/unassign-permissions", [
+        $response = $this->actingAs($admin)->put("/role/$role->id/unassign-permissions", [
             'permissions' => $permissions
         ]);
 
         $this->assertNotEquals(200, $response->getStatusCode());
 
-        $response = $this->actingAs($admin)->put("/user/999/unassign-permissions", [
+        $response = $this->actingAs($admin)->put("/role/999/unassign-permissions", [
             'permissions' => $permissions
         ]);
 
