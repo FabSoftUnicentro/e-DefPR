@@ -18,6 +18,7 @@ class PermissionUpdate extends Controller
     public function __invoke(UpdateRequest $request, Permission $permission)
     {
         $permission->update($request->all());
+        
         $permission->saveOrFail();
 
         return new PermissionResource($permission);
