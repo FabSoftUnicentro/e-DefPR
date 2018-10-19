@@ -9,6 +9,10 @@ use Spatie\Permission\Models\Role;
 
 class RoleAllPermissions extends Controller
 {
+    /**
+     * @param Role $role
+     * @return mixed
+     */
     public function __invoke(Role $role)
     {
         $permissions = Permission::all();
