@@ -23,8 +23,7 @@ class Authentication extends Service {
       localStorage.clear()
 
       return true
-    }
-    else {
+    } else {
     }
 
     return false
