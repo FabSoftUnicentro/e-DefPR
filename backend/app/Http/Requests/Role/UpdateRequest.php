@@ -25,7 +25,6 @@ class UpdateRequest extends BaseRequest
     {
         return [
             'name' => 'required|string',
-            'guard_name' => 'string'
         ];
     }
 
@@ -38,7 +37,6 @@ class UpdateRequest extends BaseRequest
     {
         return [
             'name' => 'escape|trim',
-            'guard_name' => 'escape|trim'
         ];
     }
 }
