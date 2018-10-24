@@ -26,7 +26,7 @@ class Authentication extends Service {
     }
     else {
     }
-    
+
     return false
   }
 }
