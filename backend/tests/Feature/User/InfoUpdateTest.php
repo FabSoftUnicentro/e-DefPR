@@ -18,7 +18,7 @@ class InfoUpdateTest extends TestCase
     }
 
     /**
-     * @test Update a specific user
+     * @test Update a logged user
      */
     public function testUpdate()
     {
