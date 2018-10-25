@@ -19,6 +19,7 @@ Route::prefix('user')->group(function () {
     Route::get('/me', 'Api\User\UserInfo')->middleware('auth:api');
     Route::get('/{user}/permissions', 'Api\User\UserAllPermissions')->middleware('auth:api');
     Route::put('/reset-password', 'Api\User\UserResetPassword')->middleware('auth:api');
+    Route::put('/me', 'Api\User\UserInfoUpdate')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-employee']], function () {
         Route::post('/', 'Api\User\UserStore')->middleware('auth:api');
