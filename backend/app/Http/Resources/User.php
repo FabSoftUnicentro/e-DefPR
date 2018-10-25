@@ -25,7 +25,6 @@ class User extends JsonResource
             'rg_issuer' => $this->rg_issuer,
             'gender' => $this->gender,
             'marital_status' => $this->marital_status,
-            'profession' => $this->profession,
             'note' => $this->note,
             'birthplace' => $this->birthplace,
             'addresses' => json_decode($this->addresses, true),
