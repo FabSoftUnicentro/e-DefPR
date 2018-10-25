@@ -3,10 +3,11 @@
 namespace Tests\Feature\User;
 
 use App\Models\User;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UpdateTest extends TestCase
+class InfoUpdateTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -25,23 +26,17 @@ class UpdateTest extends TestCase
 
         $admin->assignRole('master');
 
-        $user = factory(User::class)->create([
-            'name' => 'Test 1'
-        ]);
-
-        $response1 = $this->actingAs($admin)->get('/user/' . $user->id);
+        $response1 = $this->actingAs($admin)->get('/user/me');
 
         $response1->assertSuccessful();
 
-        $this->assertEquals('Test 1', $response1->json()['data']['name']);
-
-        $response2 = $this->actingAs($admin)->put('/user/' . $user->id, [
+        $response2 = $this->actingAs($admin)->put('/user/me', [
             'name' => 'Test 2'
         ]);
 
         $response2->assertSuccessful();
 
-        $response3 = $this->actingAs($admin)->get('/user/' . $user->id);
+        $response3 = $this->actingAs($admin)->get('/user/' . $admin->id);
 
         $response3->assertSuccessful();
 
