@@ -23,7 +23,7 @@ class PostcodeSearchTest extends TestCase
     {
     	$address = factory(Postcode::class)->create();
 
-        $response =  $this->get('/postcode/' . $address->postcode);
+        $response = $this->get('/postcode/' . $address->postcode);
 
         $response->assertResource(PostcodeResource::make($address));
     }
