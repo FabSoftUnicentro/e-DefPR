@@ -23,7 +23,6 @@ class UsersTableSeeder extends Seeder
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'profession' => 'Teste',
             'addresses' => json_encode([
                 [
                     'uf' => 'PR',
@@ -51,7 +50,6 @@ class UsersTableSeeder extends Seeder
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'profession' => 'Teste',
             'addresses' => json_encode([
                 [
                     'uf' => 'PR',
@@ -79,7 +77,6 @@ class UsersTableSeeder extends Seeder
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'profession' => 'Teste',
             'addresses' => json_encode([
                 [
                     'uf' => 'PR',
@@ -107,7 +104,6 @@ class UsersTableSeeder extends Seeder
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'profession' => 'Teste',
             'addresses' => json_encode([
                 [
                     'uf' => 'PR',
@@ -135,7 +131,6 @@ class UsersTableSeeder extends Seeder
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'profession' => 'Teste',
             'addresses' => json_encode([
                 [
                     'uf' => 'PR',
@@ -163,7 +158,6 @@ class UsersTableSeeder extends Seeder
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'profession' => 'Teste',
             'addresses' => json_encode([
                 [
                     'uf' => 'PR',
@@ -191,7 +185,6 @@ class UsersTableSeeder extends Seeder
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'profession' => 'Teste',
             'addresses' => json_encode([
                 [
                     'uf' => 'PR',
@@ -219,7 +212,6 @@ class UsersTableSeeder extends Seeder
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'profession' => 'Teste',
             'addresses' => json_encode([
                 [
                     'uf' => 'PR',
@@ -247,7 +239,6 @@ class UsersTableSeeder extends Seeder
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'profession' => 'MASTER',
             'addresses' => json_encode([
                 [
                     'uf' => 'PR',

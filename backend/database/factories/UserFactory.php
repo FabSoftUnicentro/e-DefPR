@@ -26,7 +26,6 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'rg_issuer' => 'SSP',
         'gender' => 'M',
         'marital_status' => 'Solteiro',
-        'profession' => 'Teste',
         'note' => null,
         'addresses' => json_encode([
             [

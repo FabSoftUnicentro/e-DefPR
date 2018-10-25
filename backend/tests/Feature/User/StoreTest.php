@@ -35,7 +35,6 @@ class StoreTest extends TestCase
             "rg_issuer"=> "SSP",
             "gender"=> "M",
             "marital_status"=> "Solteiro",
-            "profession"=> "Teste",
             "password"=> "Teste",
             "birthplace"=> 1,
             "addresses"=> [

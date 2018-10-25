@@ -31,7 +31,6 @@ class UpdateRequest extends BaseRequest
             'rg_issuer' => 'string',
             'gender' => 'string',
             'note' => 'string',
-            'profession' => 'string',
             'mush_change_password' => 'numeric'
         ];
     }
