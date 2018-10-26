@@ -181,7 +181,7 @@ Route::prefix('attendment')->group(function () {
     });
 });
 
-// Potcode routes
+// Postcode routes
 Route::prefix('postcode')->group(function () {
     Route::get('/{postcode}', 'Api\Postcode\PostcodeSearch');
 });
