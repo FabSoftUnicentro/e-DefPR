@@ -16,7 +16,7 @@ class PostcodeSearchTest extends TestCase
         parent::setUp();
     }
 
-	/**
+    /**
      * @test Search a postcode that already exists
      */
     public function testPostcodeSearchResource()
