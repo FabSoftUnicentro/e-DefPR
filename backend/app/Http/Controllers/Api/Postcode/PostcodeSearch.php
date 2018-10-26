@@ -19,8 +19,10 @@ class PostcodeSearch extends Controller
     }
 
     /**
-     * @param $postcode
-     * @return mixed
+     * @param $postcodeValue
+     * @return PostcodeResource|JsonResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Throwable
      */
     public function __invoke($postcodeValue)
     {
