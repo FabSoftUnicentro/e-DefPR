@@ -15,7 +15,7 @@ class CreatePostcodeTable extends Migration
     {
         Schema::create('postcodes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cep', 8)->unique();
+            $table->string('postcode', 8)->unique();
             $table->string('street');
             $table->string('complement');
             $table->string('neighborhood');

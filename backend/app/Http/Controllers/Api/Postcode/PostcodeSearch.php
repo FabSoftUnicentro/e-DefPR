@@ -1,61 +1,62 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Postcode;
 
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use GuzzleHttp\Client;
 use App\Models\Postcode;
 use Illuminate\Http\Response;
+use App\Http\Resources\Postcode as PostcodeResource;
 
-class PostcodeController extends Controller
+class PostcodeSearch extends Controller
 {
-    private $http;
+    private $httpClient;
 
     public function __construct()
     {
-        $this->http = new Client;
+        $this->httpClient = new Client;
     }
 
     /**
-     * @param $cep
-     * @return JsonResponse
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Throwable
+     * @param $postcode
+     * @return mixed
      */
-    public function find($cep)
+    public function __invoke($postcodeValue)
     {
-        $cep = $this->sanitize($cep);
+        $postcodeValue = $this->sanitize($postcodeValue);
 
         /** @var Postcode $postcode */
-        $postcode = Postcode::where('cep', $cep)->first();
+        $postcode = Postcode::where('postcode', $postcodeValue)->first();
 
         if ($postcode) {
-            return JsonResponse::create($postcode->toArray(), Response::HTTP_OK);
+            return new PostcodeResource($postcode);
         }
 
         /** @var Postcode $newPostcode */
-        $newPostcode = $this->search($cep);
+        $newPostcode = $this->search($postcodeValue);
 
         if ($newPostcode) {
             $newPostcode->saveOrFail();
 
-            return JsonResponse::create($newPostcode->toArray(), Response::HTTP_OK);
+            return new PostcodeResource($newPostcode);
         }
 
-        return JsonResponse::create([], Response::HTTP_BAD_REQUEST);
+        return JsonResponse::create([], Response::HTTP_NOT_FOUND);
     }
 
     /**
-     * @param $cep
+     * @param $postcode
      * @return Postcode|null
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Throwable
      */
-    private function search($cep)
+    private function search($postcode)
     {
         try {
-            $response = $this->http->request('GET', 'https://viacep.com.br/ws/' . $cep . '/json');
+            $response = $this->httpClient->request("GET", "https://viacep.com.br/ws/{$postcode}/json", [
+                'timeout' => 10
+            ]);
 
             $attributes = json_decode($response->getBody(), true);
 
@@ -66,7 +67,7 @@ class PostcodeController extends Controller
             /** @var Postcode $postcode */
             $postcode = new Postcode();
 
-            $postcode->cep = $this->sanitize($attributes['cep']);
+            $postcode->postcode = $this->sanitize($attributes['cep']);
             $postcode->street = $attributes['logradouro'];
             $postcode->complement = $attributes['complemento'];
             $postcode->neighborhood = $attributes['bairro'];

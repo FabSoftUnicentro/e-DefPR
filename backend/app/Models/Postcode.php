@@ -12,7 +12,7 @@ class Postcode extends Model
      * @var array
      */
     protected $fillable = [
-        'cep',
+        'postcode',
         'street',
         'complement',
         'neighborhood',
