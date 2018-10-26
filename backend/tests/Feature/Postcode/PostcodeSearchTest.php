@@ -21,7 +21,7 @@ class PostcodeSearchTest extends TestCase
      */
     public function testPostcodeSearchResource()
     {
-    	$address = factory(Postcode::class)->create();
+        $address = factory(Postcode::class)->create();
 
         $response = $this->get('/postcode/' . $address->postcode);
 
@@ -33,11 +33,11 @@ class PostcodeSearchTest extends TestCase
      */
     public function testPostcodeSearch()
     {
-    	$postcode = "85015-310";
+        $postcode = "85015-310";
 
-    	$response = $this->get('/postcode/' . $postcode);
+        $response = $this->get('/postcode/' . $postcode);
 
-    	$response->assertSuccessful();
+        $response->assertSuccessful();
     }
 
     /**
@@ -45,10 +45,10 @@ class PostcodeSearchTest extends TestCase
      */
     public function testInexistentPostcodeSearch()
     {
-    	$postcode = "00000-000";
+        $postcode = "00000-000";
 
-    	$response = $this->get('/postcode/' . $postcode);
+        $response = $this->get('/postcode/' . $postcode);
 
-    	$response->assertNotFound();
+        $response->assertNotFound();
     }
 }
