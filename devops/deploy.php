@@ -136,6 +136,7 @@ task('deploy', [
     'deploy:writable:backend',
     'artisan:storage:link',
     'artisan:view:clear',
+    'artisan:cache:clear',
     'artisan:config:cache',
     'artisan:optimize',
     'deploy:update:hook',
