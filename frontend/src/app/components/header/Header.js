@@ -19,13 +19,11 @@ class Header extends Component {
     this.logout = this.logout.bind(this)
   }
 
-  logout () {
-    if (authentication.logout()) {
-      message.loading('Finalizando sessão...', 1)
-        .then(() => {
-          message.success('Sessão finalizada!')
-          window.location.href = '/'
-        })
+  async logout () {
+    message.loading('Finalizando sessão...', 1)
+    if (await authentication.logout()) {
+      message.success('Sessão finalizada!')
+      window.location.href = '/'
     }
   }
 

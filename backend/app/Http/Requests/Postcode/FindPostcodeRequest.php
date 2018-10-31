@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Postcode;
 
 use App\Http\Requests\BaseRequest;
 
-class UpdateRequest extends BaseRequest
+class FindPostcodeRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,19 @@ class UpdateRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'string',
-            'email' => 'email|unique:users',
-            'cpf' => 'unique:users',
-            'rg' => 'string',
-            'rg_issuer' => 'string',
-            'gender' => 'string',
-            'note' => 'string',
-            'mush_change_password' => 'numeric'
+            'postcode' => 'required|string'
+        ];
+    }
+
+    /**
+     * Filters to be applied to the input.
+     *
+     * @return array
+     */
+    public function filters()
+    {
+        return [
+            'postcode' => 'escape|trim',
         ];
     }
 }

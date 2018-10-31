@@ -35,7 +35,6 @@ class StoreRequest extends BaseRequest
             'gender' => 'required',
             'addresses' => 'required',
             //'note' => 'sometimes|string',
-            'profession' => 'required|string',
             'mush_change_password' => 'sometimes|numeric'
         ];
     }
@@ -55,7 +54,6 @@ class StoreRequest extends BaseRequest
             'rg' => 'trim|escape',
             'rg_issuer' => 'trim|escape',
             'note' => 'trim|escape',
-            'profession' => 'trim|escape',
         ];
     }
 }

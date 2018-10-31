@@ -27,7 +27,6 @@ class CreateUsersTable extends Migration
             $table->enum('gender', ['M', 'F']);
             // $table->foreign() cidade
             $table->string('marital_status');
-            $table->string('profession');
             $table->text('note')->nullable();
             $table->json('addresses');
             $table->boolean('must_change_password')->default(true);
