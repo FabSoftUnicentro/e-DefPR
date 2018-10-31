@@ -13,7 +13,6 @@ class UpdateTest extends TestCase
 
     protected function setUp()
     {
-        self::markTestSkipped();
         parent::setUp();
         $this->artisan('db:seed', ['--class' => 'RoleTableSeeder']);
     }

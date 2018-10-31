@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' => env('FILESYSTEM_CLOUD', 'dropbox'),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,6 +64,11 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'app_secret' => env('DROPBOX_APP_SECRET'),
+            'token' => env('DROPBOX_TOKEN'),
+        ],
     ],
 
 ];

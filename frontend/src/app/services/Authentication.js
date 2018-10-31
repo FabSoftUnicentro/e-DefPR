@@ -15,11 +15,17 @@ class Authentication extends Service {
     return result
   }
 
-  logout () {
-    this.clearCookies()
-    localStorage.clear()
+  async logout () {
+    const result = await this.get('/user/logout')
 
-    return true
+    if ((result.status === 200) || (result.status === 401)) {
+      this.clearCookies()
+      localStorage.clear()
+
+      return true
+    }
+
+    return false
   }
 }
 
