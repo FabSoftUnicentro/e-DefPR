@@ -24,8 +24,7 @@ class UpdateRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'guard_name' => 'string'
+            'name' => 'required|string'
         ];
     }
 
@@ -37,8 +36,7 @@ class UpdateRequest extends BaseRequest
     public function filters()
     {
         return [
-            'name' => 'escape|trim',
-            'guard_name' => 'escape|trim'
+            'name' => 'escape|trim'
         ];
     }
 }
