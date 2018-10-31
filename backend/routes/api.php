@@ -19,6 +19,7 @@ Route::prefix('user')->group(function () {
     Route::get('/me', 'Api\User\UserInfo')->middleware('auth:api');
     Route::get('/{user}/permissions', 'Api\User\UserAllPermissions')->middleware('auth:api');
     Route::put('/reset-password', 'Api\User\UserResetPassword')->middleware('auth:api');
+    Route::put('/me', 'Api\User\UserInfoUpdate')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-employee']], function () {
         Route::post('/', 'Api\User\UserStore')->middleware('auth:api');
@@ -101,7 +102,7 @@ Route::prefix('assisted')->group(function () {
 // Role route
 Route::prefix('role')->group(function () {
     Route::get('/{role}/permissions', 'Api\Role\RoleAllPermissions')->middleware('auth:api');
-    
+
     Route::group(['middleware' => ['permission:read-role']], function () {
         Route::get('/', 'Api\Role\RoleList')->middleware('auth:api');
         Route::get('/{role}', 'Api\Role\RoleShow')->middleware('auth:api');
@@ -179,4 +180,9 @@ Route::prefix('attendment')->group(function () {
     Route::group(['middleware' => ['permission:delete-attendment']], function () {
         Route::delete('/{id}', 'Api\AttendmentController@destroy')->middleware('auth:api');
     });
+});
+
+// Postcode routes
+Route::prefix('postcode')->group(function () {
+    Route::get('/{postcode}', 'Api\Postcode\PostcodeSearch');
 });
