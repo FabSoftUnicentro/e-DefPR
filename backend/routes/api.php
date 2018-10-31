@@ -67,18 +67,18 @@ Route::prefix('state')->group(function () {
 
 // City routes
 Route::prefix('city')->group(function () {
-    Route::get('/', 'Api\CityController@index')->middleware('auth:api');
-    Route::get('/{id}', 'Api\CityController@show')->middleware('auth:api');
-    Route::get('/state/{id}', 'Api\CityController@findByState')->middleware('auth:api');
+    Route::get('/', 'Api\City\CityList')->middleware('auth:api');
+    Route::get('/{city}', 'Api\City\CityShow')->middleware('auth:api');
+    Route::get('/state/{id}', 'Api\City\CityFindByState')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-city']], function () {
-        Route::post('/', 'Api\CityController@store')->middleware('auth:api');
+        Route::post('/', 'Api\City\CityStore')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-city']], function () {
-        Route::put('/{id}', 'Api\CityController@update')->middleware('auth:api');
+        Route::put('/{city}', 'Api\City\CityUpdate')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:delete-city']], function () {
-        Route::delete('/{id}', 'Api\CityController@destroy')->middleware('auth:api');
+        Route::delete('/{city}', 'Api\City\CityDestroy')->middleware('auth:api');
     });
 });
 
