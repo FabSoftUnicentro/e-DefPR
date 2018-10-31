@@ -8,6 +8,7 @@ use App\Http\Resources\State as StateResource;
 
 class StateList extends Controller
 {
+    /** @var int */
     private $itemsPerPage = 10;
 
     /**
