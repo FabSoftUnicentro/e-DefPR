@@ -9,6 +9,10 @@ class Role extends Service {
     return this.get(`/role?page=${page}`)
   }
 
+  async listAllRoles () {
+    return this.get(`/role`)
+  }
+
   async listPermissions (roleId) {
     return this.get(`/role/${roleId}/permissions`)
   }
