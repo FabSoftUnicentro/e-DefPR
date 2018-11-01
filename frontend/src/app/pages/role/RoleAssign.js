@@ -30,10 +30,12 @@ class RoleAssign extends Component {
 
   async componentDidMount () {
     try {
-      const { data, meta } = await roleService.listAllRoles()
+      const { data } = await roleService.listAllRoles()
       const mappedData = data.map(item => ({ value: item.id, label: item.name }))
-      this.setState({ data: mappedData, total: meta.total })
+      console.log(mappedData)
+      this.setState({ data: mappedData })
     } catch (error) {
+      console.log(error)
       message.error('Não foi possível acessar os níveis de acesso.')
     }
   }
