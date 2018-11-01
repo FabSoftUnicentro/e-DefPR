@@ -9,14 +9,13 @@ use App\Http\Controllers\Controller;
 class CityList extends Controller
 {
     /** @var int */
-    private $itemsPerPage = 10;
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function __invoke()
     {
-        $cities = City::orderBy('name', 'asc')->paginate($this->itemsPerPage);
+        $cities = City::orderBy('name', 'asc')->get();
 
         return CityResource::collection($cities);
     }
