@@ -84,7 +84,10 @@ class RoleTableSeeder extends Seeder
             'list-attendmentType',
             'register-attendmentType',
             'update-attendmentType',
-            'delete-attendmentType'
+            'delete-attendmentType',
+            'register-counterPart',
+            'update-counterPart',
+            'delete-counterPart'
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
@@ -115,7 +118,13 @@ class RoleTableSeeder extends Seeder
             'read-attendance',
             'send-for-analysis-to-defender',
             'list-attendment',
-            'register-attendment'
+            'register-attendment',
+            'register-assisted',
+            'update-assisted',
+            'delete-assisted',
+            'register-counterPart',
+            'update-counterPart',
+            'delete-counterPart'
         );
         $role = Role::create(['name' => 'administrative-technician']);
         $role->givePermissionTo(
@@ -137,7 +146,13 @@ class RoleTableSeeder extends Seeder
             'read-employee',
             'read-attendance',
             'list-attendment',
-            'register-attendment'
+            'register-attendment',
+            'register-assisted',
+            'update-assisted',
+            'delete-assisted',
+            'register-counterPart',
+            'update-counterPart',
+            'delete-counterPart'
         );
         $role = Role::create(['name' => 'social-worker']);
         $role->givePermissionTo(
@@ -257,7 +272,13 @@ class RoleTableSeeder extends Seeder
             'update-permission',
             'delete-permission',
             'list-attendment',
-            'register-attendment'
+            'register-attendment',
+            'register-assisted',
+            'update-assisted',
+            'delete-assisted',
+            'register-counterPart',
+            'update-counterPart',
+            'delete-counterPart'
         );
         $role = Role::create(['name' => 'psychologist']);
         $role->givePermissionTo(

@@ -37,6 +37,8 @@ class CounterPart extends Model
         'updated_at'
     ];
 
+    protected $table = 'counterpart';
+
     /**
      * Get the city that the counter part lives or resides.
      */

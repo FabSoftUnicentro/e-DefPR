@@ -186,3 +186,19 @@ Route::prefix('attendment')->group(function () {
 Route::prefix('postcode')->group(function () {
     Route::get('/{postcode}', 'Api\Postcode\PostcodeSearch');
 });
+
+// CounterPart route
+Route::prefix('counter-part')->group(function () {
+    Route::get('/', 'Api\CounterPart\CounterPartList')->middleware('auth:api');
+    Route::get('/{counterPart}', 'Api\CounterPart\CounterPartShow')->middleware('auth:api');
+
+    Route::group(['middleware' => ['permission:register-counterPart']], function () {
+        Route::post('/', 'Api\CounterPart\CounterPartStore')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:update-counterPart']], function () {
+        Route::put('/{counterPart}', 'Api\CounterPart\CounterPartUpdate')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:delete-counterPart']], function () {
+        Route::delete('/{counterPart}', 'Api\CounterPart\CounterPartDestroy')->middleware('auth:api');
+    });
+});
