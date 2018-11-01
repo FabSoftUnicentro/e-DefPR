@@ -29,6 +29,22 @@ class IndexTest extends TestCase
 
         $response =  $this->actingAs($admin)->get('/role');
 
+        $roles = Role::paginate(10);
+
+        $response->assertResource(RoleResource::collection($roles));
+    }
+
+    /**
+     * @test Get all roles
+     */
+    public function testIndexWithoutPagination()
+    {
+        $admin = factory(User::class)->create();
+
+        $admin->assignRole('master');
+
+        $response =  $this->actingAs($admin)->get('/role/?paginate=0');
+
         $roles = Role::all();
 
         $response->assertResource(RoleResource::collection($roles));
