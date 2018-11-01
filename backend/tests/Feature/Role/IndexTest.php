@@ -29,7 +29,7 @@ class IndexTest extends TestCase
 
         $response =  $this->actingAs($admin)->get('/role');
 
-        $roles = Role::paginate(10);
+        $roles = Role::all();
 
         $response->assertResource(RoleResource::collection($roles));
     }
