@@ -64,9 +64,7 @@ class RoleAssign extends Component {
       const result = checked ? await roleService.assignPermission(selectedRole, value) : await roleService.unassignPermission(selectedRole, value)
 
       if (result.status === 200) {
-        message.success('Associado permissão a nível de acesso com sucesso!')
-      } else {
-        return message.error('Não foi possível associar permissão a nível de acesso!', 2)
+        return message.success('Associado permissão a nível de acesso com sucesso!')
       }
     } catch (error) {
       return message.error('Erro inesperado, tente novamente!', 2)
