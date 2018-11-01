@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Role;
+namespace App\Http\Requests\CounterPart;
 
 use App\Http\Requests\BaseRequest;
 
@@ -24,19 +24,13 @@ class UpdateRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required|string'
-        ];
-    }
-
-    /**
-     * Filters to be applied to the input.
-     *
-     * @return array
-     */
-    public function filters()
-    {
-        return [
-            'name' => 'escape|trim'
+            'name' => 'string',
+            'email' => 'email|unique:counterPart',
+            'document_number' => 'unique:counter_parts',
+            'gender' => 'string',
+            'note' => 'string',
+            'profession' => 'string'
         ];
     }
 }
+
