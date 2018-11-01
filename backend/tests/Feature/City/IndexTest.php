@@ -31,7 +31,7 @@ class IndexTest extends TestCase
 
         $response = $this->actingAs($admin)->get('/city');
 
-        $cities = City::orderBy('name', 'asc')->paginate(10);
+        $cities = City::orderBy('name', 'asc')->get();
 
         $response->assertResource(CityResource::collection($cities));
     }
