@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\City;
 use App\Models\City;
 use \App\Http\Resources\City as CityResource;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class CityList extends Controller
 {
@@ -14,9 +15,15 @@ class CityList extends Controller
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        $cities = City::orderBy('name', 'asc')->paginate($this->itemsPerPage);
+        $paginate = intval($request->get('paginate', 1));
+
+        if ($paginate === 1) {
+            $cities = City::orderBy('abbr', 'asc')->paginate($this->itemsPerPage);
+        } else {
+            $cities = City::orderBy('name', 'asc')->get();
+        }
 
         return CityResource::collection($cities);
     }
