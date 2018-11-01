@@ -13,17 +13,14 @@ class CreateCounterPartTable extends Migration
      */
     public function up()
     {
-        Schema::create('counter_parts', function (Blueprint $table) {
+        Schema::create('counterpart', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->date('birth_date');
-            $table->integer('birthplace')->unsigned();
-            $table->foreign('birthplace')->references('id')->on('cities');
             $table->string('rg')->nullable();
             $table->string('rg_issuer')->nullable();
             $table->enum('gender', ['M', 'F', 'O']);
-            $table->string('marital_status');
             $table->string('profession')->nullable();
             $table->text('note')->nullable();
             $table->text('document_type');
@@ -41,6 +38,6 @@ class CreateCounterPartTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('counter_parts');
+        Schema::dropIfExists('counterpart');
     }
 }
