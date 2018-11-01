@@ -31,6 +31,24 @@ class IndexTest extends TestCase
 
         $response =  $this->actingAs($admin)->get('/state');
 
+        $states = State::orderBy('abbr', 'asc')->paginate(10);
+
+        $response->assertResource(StateResource::collection($states));
+    }
+
+    /**
+     * @test Get all states
+     */
+    public function testIndexWithoutPagination()
+    {
+        $admin = factory(User::class)->create();
+
+        $admin->assignRole('master');
+
+        factory(State::class, 1)->create();
+
+        $response =  $this->actingAs($admin)->get('/state/?paginate=0');
+
         $states = State::orderBy('abbr', 'asc')->get();
 
         $response->assertResource(StateResource::collection($states));
