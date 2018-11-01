@@ -31,7 +31,7 @@ class IndexTest extends TestCase
 
         $response =  $this->actingAs($admin)->get('/state');
 
-        $states = State::orderBy('abbr', 'asc')->paginate(10);
+        $states = State::orderBy('abbr', 'asc')->get();
 
         $response->assertResource(StateResource::collection($states));
     }
