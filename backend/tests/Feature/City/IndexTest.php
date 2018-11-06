@@ -31,10 +31,9 @@ class IndexTest extends TestCase
 
         $response = $this->actingAs($admin)->get('/city');
 
-        $cities = City::orderBy('name', 'asc')->paginate(10);
+        $cities = City::orderBy('name', 'desc')->paginate(10);
 
-        $collection = CityResource::collection($cities);
-        $response->assertResource($collection->sortBy('name'));
+        $response->assertResource(CityResource::collection($cities));
     }
 
     /**
@@ -50,9 +49,8 @@ class IndexTest extends TestCase
 
         $response = $this->actingAs($admin)->get('/city/?paginate=0');
 
-        $cities = City::orderBy('name', 'asc')->get();
+        $cities = City::orderBy('name', 'desc')->get();
 
-        $collection = CityResource::collection($cities);
-        $response->assertResource($collection->sortBy('name'));
+        $response->assertResource(CityResource::collection($cities));
     }
 }
