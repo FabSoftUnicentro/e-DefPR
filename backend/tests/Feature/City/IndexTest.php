@@ -33,7 +33,8 @@ class IndexTest extends TestCase
 
         $cities = City::orderBy('name', 'asc')->paginate(10);
 
-        $response->assertResource(CityResource::collection($cities));
+        $collection = CityResource::collection($cities);
+        $response->assertResource($collection->sortBy('name'));
     }
 
     /**
@@ -51,6 +52,7 @@ class IndexTest extends TestCase
 
         $cities = City::orderBy('name', 'asc')->get();
 
-        $response->assertResource(CityResource::collection($cities));
+        $collection = CityResource::collection($cities);
+        $response->assertResource($collection->sortBy('name'));
     }
 }
