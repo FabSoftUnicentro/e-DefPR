@@ -3,6 +3,7 @@
 namespace Tests\Feature\City;
 
 use App\Models\City;
+use App\Models\State;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -31,7 +32,7 @@ class IndexTest extends TestCase
 
         $response = $this->actingAs($admin)->get('/city');
 
-        $cities = City::orderBy('name', 'asc')->paginate(10);
+        $cities = City::orderBy('id')->paginate(10);
 
         $response->assertResource(CityResource::collection($cities));
     }
@@ -45,11 +46,14 @@ class IndexTest extends TestCase
 
         $admin->assignRole('master');
 
-        factory(City::class, 1)->create();
+        factory(City::class, 1)->create([
+            'name' => 'Test',
+            'state_id' => factory(State::class)->create()
+        ]);
 
         $response = $this->actingAs($admin)->get('/city/?paginate=0');
 
-        $cities = City::orderBy('name', 'asc')->get();
+        $cities = City::orderBy('id')->get();
 
         $response->assertResource(CityResource::collection($cities));
     }
