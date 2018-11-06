@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB as DB;
 
 $factory->define(App\Models\State::class, function (Faker $faker) {
     return [
-        'name' => $faker->domainName,
-        'abbr' => $faker->countryCode,
+        'name' => $faker->unique()->domainName,
+        'abbr' => $faker->unique()->countryCode,
     ];
 });
