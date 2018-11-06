@@ -6,7 +6,7 @@ import Table from 'antd/lib/table'
 const columns = [{
   title: 'Name',
   dataIndex: 'name',
-  render: text => <a href=''>{text}</a>
+  render: text => <a href='/'>{text}</a>
 }, {
   title: 'Age',
   dataIndex: 'age'

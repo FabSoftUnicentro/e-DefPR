@@ -42,8 +42,8 @@ class Persona extends Component {
         <span style={{ fontSize: 13, color: '#666' }}>{ jobDescription }</span>
       </div>,
       content: <div>
-        <p><a href=''>Minha conta</a></p>
-        <p><a href='' onClick={this.logoutHandler}>Sair</a></p>
+        <p><a href='/'>Minha conta</a></p>
+        <p><a href='/' onClick={this.logoutHandler}>Sair</a></p>
       </div>
     }
   }
