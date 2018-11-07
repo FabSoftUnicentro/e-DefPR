@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Attendment;
 
-use App\Models\Assisted;
+use App\Models\Attendment;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Resources\Assisted as AssistedResource;
+use App\Http\Resources\Attendment as AttendmentResource;
 
 class ShowTest extends TestCase
 {
@@ -19,7 +19,7 @@ class ShowTest extends TestCase
     }
 
     /**
-     * @test Get a specific assisted
+     * @test Get a specific attendment
      */
     public function testShow()
     {
@@ -27,10 +27,10 @@ class ShowTest extends TestCase
 
         $admin->assignRole('master');
 
-        $assisted = factory(Assisted::class)->create();
+        $attendment = factory(Attendment::class, 10)->create();
 
-        $response =  $this->actingAs($admin)->get('/assisted/' . $assisted->id);
+        $response = $this->actingAs($admin)->get('/attendment/' . $attendment->id);
 
-        $response->assertResource(AssistedResource::make($assisted));
+        $response->assertResource(AttendmentResource::make($attendment));
     }
 }
