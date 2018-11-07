@@ -1,9 +1,6 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Models\AttendmentType;
-use App\Models\User;
-use App\Models\Assisted;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +13,9 @@ use App\Models\Assisted;
 |
 */
 
-$factory->define(App\Models\Attendment::class, function (Faker $faker) {
+$factory->define(App\Models\AttendmentType::class, function (Faker $faker) {
     return [
-        'description' => $faker->paragraph(),
-        'type_id' => factory(AttendmentType::class)->create(),
-        'user_id' => factory(User::class)->create(),
-        'assisted_id' => factory(Assisted::class)->create()
+        'name' => $faker->unique()->name,
+        'description' => $faker->unique()->sentence
     ];
 });

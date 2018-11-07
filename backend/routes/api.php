@@ -147,38 +147,38 @@ Route::prefix('permission')->group(function () {
 // AttendmentType route
 Route::prefix('attendmentType')->group(function () {
     Route::group(['middleware' => ['permission:list-attendmentType']], function () {
-        Route::get('/', 'Api\AttendmentTypeController@index')->middleware('auth:api');
-        Route::get('/{id}', 'Api\AttendmentTypeController@show')->middleware('auth:api');
+        Route::get('/', 'Api\AttendmentType\AttendmentTypeList')->middleware('auth:api');
+        Route::get('/{attendmentType}', 'Api\AttendmentType\AttendmentTypeShow')->middleware('auth:api');
     });
 
     Route::group(['middleware' => ['permission:register-attendmentType']], function () {
-        Route::post('/', 'Api\AttendmentTypeController@store')->middleware('auth:api');
+        Route::post('/', 'Api\AttendmentType\AttendmentTypeStore')->middleware('auth:api');
     });
 
     Route::group(['middleware' => ['permission:update-attendmentType']], function () {
-        Route::put('/{id}', 'Api\AttendmentTypeController@update')->middleware('auth:api');
+        Route::put('/{attendmentType}', 'Api\AttendmentType\AttendmentTypeUpdate')->middleware('auth:api');
     });
 
     Route::group(['middleware' => ['permission:delete-attendmentType']], function () {
-        Route::delete('/{id}', 'Api\AttendmentTypeController@destroy')->middleware('auth:api');
+        Route::delete('/{attendmentType}', 'Api\AttendmentType\AttendmentTypeDestroy')->middleware('auth:api');
     });
 });
 
 // Attendments route
 Route::prefix('attendment')->group(function () {
     Route::group(['middleware' => ['permission:list-attendment']], function () {
-        Route::get('/', 'Api\AttendmentController@index')->middleware('auth:api');
-        Route::get('/{id}', 'Api\AttendmentController@show')->middleware('auth:api');
+        Route::get('/', 'Api\Attendment\AttendmentList')->middleware('auth:api');
+        Route::get('/{attendment}', 'Api\Attendment\AttendmentShow')->middleware('auth:api');
     });
 
     Route::group(['middleware' => ['permission:register-attendment']], function () {
-        Route::post('/', 'Api\AttendmentController@store')->middleware('auth:api');
+        Route::post('/', 'Api\Attendment\AttendmentStore')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:update-attendment']], function () {
-        Route::put('/{id}', 'Api\AttendmentController@update')->middleware('auth:api');
+        Route::put('/{attendment}', 'Api\Attendment\AttendmentUpdate')->middleware('auth:api');
     });
     Route::group(['middleware' => ['permission:delete-attendment']], function () {
-        Route::delete('/{id}', 'Api\AttendmentController@destroy')->middleware('auth:api');
+        Route::delete('/{attendment}', 'Api\Attendment\AttendmentDestroy')->middleware('auth:api');
     });
 });
 
