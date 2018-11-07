@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import Page from '../../components/page/Page'
-import Form from '../../components/form/Form'
+import Page from 'app/components/page/Page'
+import Form from 'app/components/form/Form'
 import message from 'antd/lib/message'
 import { Cascader, Row, Col, Checkbox, Button, Icon } from 'antd'
-import { roleService } from '../../services'
+import { roleService } from 'app/services'
 import { Redirect } from 'react-router-dom'
 
 class RoleAssign extends Component {

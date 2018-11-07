@@ -3,10 +3,10 @@ import Icon from 'antd/lib/icon'
 import { Link, Redirect } from 'react-router-dom'
 import Button from 'antd/lib/button'
 import message from 'antd/lib/message'
-import InputAdapter from '../../adapters/InputAdapter'
-import { authentication, userService } from '../../services'
 import * as yup from 'yup'
-import Form from '../../components/form/Form'
+import InputAdapter from '../../adapters/InputAdapter'
+import { Auth, authentication, userService } from 'app/services'
+import Form from 'app/components/form/Form'
 
 import './Signin.css'
 
@@ -31,26 +31,26 @@ class Signin extends Component {
     const { login, password } = values
     this.setState({ isLoading: true })
 
-    try {
-      const result = await authentication.signin(login, password)
-      if (result.status === 200) {
-        const account = await userService.me()
-        if (account) {
-          message.success(`Bem-vindo de volta, ${account.name}!`, 2)
-        }
+    // try {
+    //   const result = await authentication.signin(login, password)
+    //   if (result.status === 200) {
+    //     const account = await userService.me()
+    //     if (account) {
+    //       message.success(`Bem-vindo de volta, ${account.name}!`, 2)
+    //     }
 
-        return
-      } else if (result.status === 404) {
-        return { login: 'Este usuário não existe' }
-      } else if (result.status === 401) {
-        return { password: 'Esta senha não está correta' }
-      }
+    //     return
+    //   } else if (result.status === 404) {
+    //     return { login: 'Este usuário não existe' }
+    //   } else if (result.status === 401) {
+    //     return { password: 'Esta senha não está correta' }
+    //   }
 
-      return message.error('Não foi possível realizar login. Tente novamente')
-    } catch (error) {
-    } finally {
-      this.setState({ isLoading: false })
-    }
+    //   return message.error('Não foi possível realizar login. Tente novamente')
+    // } catch (error) {
+    // } finally {
+    //   this.setState({ isLoading: false })
+    // }
   }
 
   render () {

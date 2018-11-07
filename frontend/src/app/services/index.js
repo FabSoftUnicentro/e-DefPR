@@ -6,6 +6,9 @@ import Permission from './Permission'
 import Location from './Location'
 import RecoveryPasswordService from './RecoveryPasswordService'
 
+// new services
+import Auth from './Auth'
+
 const authentication = new Authentication()
 const userService = new User()
 const recoveryPasswordService = new RecoveryPasswordService()
@@ -21,5 +24,8 @@ export {
   assistedService,
   roleService,
   permissionService,
-  location
+  location,
+
+  // new services
+  Auth
 }
