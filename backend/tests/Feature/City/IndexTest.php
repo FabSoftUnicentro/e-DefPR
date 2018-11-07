@@ -52,6 +52,7 @@ class IndexTest extends TestCase
         $cities = City::orderBy('id')->get();
 
         $collection = CityResource::collection($cities);
+        
         $response->assertResource($collection->sortBy('name'));
     }
 }
