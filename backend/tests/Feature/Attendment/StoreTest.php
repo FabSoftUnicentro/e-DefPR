@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Attendment;
 
 use App\Models\User;
 use Tests\TestCase;
@@ -18,7 +18,7 @@ class StoreTest extends TestCase
     }
 
     /**
-     * @test Store a specific assisted
+     * @test Store a specific attendment
      */
     public function testStore()
     {
@@ -26,29 +26,14 @@ class StoreTest extends TestCase
 
         $admin->assignRole('master');
 
-        $assisted = [
-            "name"=> "Cadastro Teste",
-            "email"=> "teste3@edefpr.com",
-            "cpf"=> "08846355973",
-            "birth_date"=> "26/08/1996",
-            "rg"=> "Quaerat.",
-            "rg_issuer"=> "SSP",
-            "gender"=> "M",
-            "marital_status"=> "Solteiro",
-            "profession"=> "Teste",
-            "birthplace"=> 1,
-            "addresses"=> [
-                "uf"=> "PR",
-                "city"=> "Guarapuava",
-                "number"=> 1,
-                "street"=> "Teste",
-                "postcode"=> "85015310",
-                "complement"=> "",
-                "neighborhood"=> "Batel"
-            ]
+        $attendment = [
+            "description" => "Cadastro Teste",
+            "type_id" => 1,
+            "user_id" => 1,
+            "assisted_id" => 1
         ];
 
-        $response = $this->actingAs($admin)->post('/assisted/', $assisted);
+        $response = $this->actingAs($admin)->post('/attendment/', $attendment);
 
         $response->assertSuccessful();
     }
