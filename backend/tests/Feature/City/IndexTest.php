@@ -46,11 +46,6 @@ class IndexTest extends TestCase
 
         $admin->assignRole('master');
 
-        factory(City::class, 1)->create([
-            'name' => 'Test',
-            'state_id' => factory(State::class)->create()
-        ]);
-
         $response = $this->actingAs($admin)->get('/city/?paginate=0');
 
         $cities = City::orderBy('id')->get();
