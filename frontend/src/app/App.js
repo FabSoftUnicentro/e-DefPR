@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import Authentication from './pages/signin/Authentication'
 import Assisted from './pages/assisted/Assisted'
 import Role from './pages/role/Role'
+import Permission from './pages/permission/Permission'
 import Users from './pages/users/Users'
 import { authentication } from './services'
 
@@ -25,6 +26,7 @@ const Home = ({ pathname }) => (
         <Route path='/assisted' component={Assisted} />
         <Route path='/users' component={Users} />
         <Route path='/role' component={Role} />
+        <Route path='/permission' component={Permission} />
       </Switch>
     </main>
   </div>
