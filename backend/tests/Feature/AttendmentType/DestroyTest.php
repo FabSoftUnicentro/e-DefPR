@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature\City;
+namespace Tests\Feature\AttendmentType;
 
-use App\Models\City;
+use App\Models\AttendmentType;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,7 +18,7 @@ class DestroyTest extends TestCase
     }
 
     /**
-     * @test Delete a specific city
+     * @test Delete a specific AttendmentType
      */
     public function testDestroy()
     {
@@ -26,17 +26,17 @@ class DestroyTest extends TestCase
 
         $admin->assignRole('master');
 
-        $city = factory(City::class)->create();
+        $attendmentType = factory(AttendmentType::class)->create();
 
-        $response = $this->actingAs($admin)->get('/city/' . $city->id);
-
-        $response->assertSuccessful();
-
-        $response = $this->actingAs($admin)->delete('/city/' . $city->id);
+        $response = $this->actingAs($admin)->get('/attendmentType/' . $attendmentType->id);
 
         $response->assertSuccessful();
 
-        $response = $this->actingAs($admin)->get('/city/' . $city->id);
+        $response = $this->actingAs($admin)->delete('/attendmentType/' . $attendmentType->id);
+
+        $response->assertSuccessful();
+
+        $response = $this->actingAs($admin)->get('/attendmentType/' . $attendmentType->id);
 
         $response->assertNotFound();
     }

@@ -17,6 +17,7 @@
         "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
         "laravellegends/pt-br-validator": "5.1.*",
+        "sentry/sentry-laravel": "^0.11.0",
         "spatie/laravel-backup": "^5.11",
         "spatie/laravel-permission": "^2.12"
     },
