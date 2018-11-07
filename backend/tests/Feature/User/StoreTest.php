@@ -36,6 +36,7 @@ class StoreTest extends TestCase
             "gender"=> "M",
             "marital_status"=> "Solteiro",
             "password"=> "Teste",
+            "password_confirmation"=> "Teste",
             "birthplace"=> 1,
             "addresses"=> [
                 "uf"=> "PR",
