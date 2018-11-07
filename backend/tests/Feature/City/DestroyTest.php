@@ -15,7 +15,6 @@ class DestroyTest extends TestCase
     {
         parent::setUp();
         $this->artisan('db:seed', ['--class' => 'RoleTableSeeder']);
-        $this->artisan('db:seed', ['--class' => 'StateTableSeeder']);
     }
 
     /**
