@@ -1,15 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jean Pierri
- * Date: 01/11/2018
- * Time: 15:07
- */
 
 namespace App\Http\Controllers\Api\Attendment;
 
+use App\Http\Controllers\Controller;
+use App\Models\Attendment;
+use App\Http\Resources\Attendment as AttendmentResource;
 
-class ListAttendment
+class AttendmentList extends Controller
 {
+    private $itemsPerPage = 10;
 
+    /**
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function __invoke()
+    {
+        $attendment = Attendment::paginate($this->itemsPerPage);
+
+        return AttendmentResource::collection($attendment);
+    }
 }
