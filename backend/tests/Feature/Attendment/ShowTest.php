@@ -27,7 +27,7 @@ class ShowTest extends TestCase
 
         $admin->assignRole('master');
 
-        $attendment = factory(Attendment::class, 10)->create();
+        $attendment = factory(Attendment::class)->create();
 
         $response = $this->actingAs($admin)->get('/attendment/' . $attendment->id);
 
