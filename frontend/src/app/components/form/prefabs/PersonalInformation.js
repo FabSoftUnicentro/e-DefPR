@@ -64,7 +64,7 @@ const PersonalInformationForm = () => (<Fragment>
     required
   />
 
-  <WizardForm.Select label='Estado civil' name='marital_status' required options={[
+  <WizardForm.Select label='Estado civil' name='marital_status' style={{ width: 335 }} required options={[
     { value: 'solteiro', name: 'Solteiro(a)' },
     { value: 'casado', name: 'Casado(a)' },
     { value: 'separado/divorciado', name: 'Separado(a)/Divorciado(a)' },
