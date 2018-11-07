@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Attendment;
 
-use App\Models\Assisted;
+use App\Models\Attendment;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,7 +18,7 @@ class UpdateTest extends TestCase
     }
 
     /**
-     * @test Update a specific assisted
+     * @test Update a specific attendment
      */
     public function testUpdate()
     {
@@ -26,26 +26,26 @@ class UpdateTest extends TestCase
 
         $admin->assignRole('master');
 
-        $assisted = factory(Assisted::class)->create([
-            'name' => 'Test 1'
+        $attendment = factory(Attendment::class)->create([
+            'description' => 'Test 1'
         ]);
 
-        $response1 = $this->actingAs($admin)->get('/assisted/' . $assisted->id);
+        $response1 = $this->actingAs($admin)->get('/attendment/' . $attendment->id);
 
         $response1->assertSuccessful();
 
-        $this->assertEquals('Test 1', $response1->json()['data']['name']);
+        $this->assertEquals('Test 1', $response1->json()['data']['description']);
 
-        $response2 = $this->actingAs($admin)->put('/assisted/' . $assisted->id, [
-            'name' => 'Test 2'
+        $response2 = $this->actingAs($admin)->put('/attendment/' . $attendment->id, [
+            'description' => 'Test 2'
         ]);
 
         $response2->assertSuccessful();
 
-        $response3 = $this->actingAs($admin)->get('/assisted/' . $assisted->id);
+        $response3 = $this->actingAs($admin)->get('/attendment/' . $attendment->id);
 
         $response3->assertSuccessful();
 
-        $this->assertEquals('Test 2', $response3->json()['data']['name']);
+        $this->assertEquals('Test 2', $response3->json()['data']['description']);
     }
 }
