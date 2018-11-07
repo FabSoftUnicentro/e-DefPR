@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\AttendmentType;
 
-
 use App\Models\AttendmentType;
 use App\Http\Resources\AttendmentType as AttendmentTypeResource;
 use Illuminate\Http\Request;
