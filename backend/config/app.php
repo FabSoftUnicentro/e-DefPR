@@ -148,6 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         LaravelLegends\PtBrValidator\ValidatorProvider::class,
         Waavi\Sanitizer\Laravel\SanitizerServiceProvider::class,
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -211,7 +212,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Sanitizer' => Waavi\Sanitizer\Laravel\Facade::class,
-
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
     ],
 
 ];
