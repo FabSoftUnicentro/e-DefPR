@@ -3,6 +3,7 @@
 namespace Tests\Feature\City;
 
 use App\Models\City;
+use App\Models\State;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,7 +16,6 @@ class DestroyTest extends TestCase
     {
         parent::setUp();
         $this->artisan('db:seed', ['--class' => 'RoleTableSeeder']);
-        $this->artisan('db:seed', ['--class' => 'StateTableSeeder']);
     }
 
     /**
