@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Attendment;
 
-use App\Models\Assisted;
+use App\Models\Attendment;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Resources\Assisted as AssistedResource;
+use App\Http\Resources\Attendment as AttendmentResource;
 
 class IndexTest extends TestCase
 {
@@ -19,7 +19,7 @@ class IndexTest extends TestCase
     }
 
     /**
-     * @test Get all assisteds paginated
+     * @test Get all attendments paginated
      */
     public function testIndex()
     {
@@ -27,12 +27,14 @@ class IndexTest extends TestCase
 
         $admin->assignRole('master');
 
-        factory(Assisted::class, 5)->create();
+        factory(Attendment::class, 5)->create([
 
-        $response =  $this->actingAs($admin)->get('/assisted');
+        ]);
 
-        $assisteds = Assisted::paginate(10);
+        $response =  $this->actingAs($admin)->get('/attendment');
 
-        $response->assertResource(AssistedResource::collection($assisteds));
+        $attendment = Attendment::paginate(10);
+
+        $response->assertResource(AttendmentResource::collection($attendment));
     }
 }
