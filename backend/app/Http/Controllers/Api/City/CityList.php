@@ -20,7 +20,7 @@ class CityList extends Controller
         $paginate = intval($request->get('paginate', 1));
 
         if ($paginate === 1) {
-            $cities = City::orderBy('abbr', 'asc')->paginate($this->itemsPerPage);
+            $cities = City::orderBy('name', 'asc')->paginate($this->itemsPerPage);
         } else {
             $cities = City::orderBy('name', 'asc')->get();
         }
