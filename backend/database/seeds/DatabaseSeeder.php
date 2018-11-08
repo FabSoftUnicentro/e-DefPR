@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AttendmentTypeTableSeeder::class);
         $this->call(AttendmentTableSeeder::class);
         $this->call(CounterPartTableSeeder::class);
+        $this->call(RelativeTableSeeder::class);
         DB::commit();
 
         Model::reguard();
