@@ -2,6 +2,8 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\DB as DB;
+use App\Models\Relative;
+use App\Models\City;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,20 +16,20 @@ use Illuminate\Support\Facades\DB as DB;
 |
 */
 
-$factory->define(App\Models\Assisted::class, function (Faker $faker) {
+$factory->define(Relative::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'cpf' => $faker->numberBetween(999999999),
         'birth_date' => $faker->date(),
-        'birthplace' => DB::table('cities')->inRandomOrder()->first()->id,
+        'birthplace' => factory(City::class)->create(),
         'rg' => $faker->unique()->text(11),
         'rg_issuer' => 'SSP',
         'gender' => 'M',
         'marital_status' => 'Solteiro',
         'profession' => 'Teste',
-        //'counter_part' => $faker->name,
         'note' => null,
+        'assisted_id' => DB::table('assisteds')->inRandomOrder()->first()->id,
         'addresses' => json_encode([
             [
                 'postcode' => '85015310',
