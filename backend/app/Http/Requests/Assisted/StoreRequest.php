@@ -26,7 +26,7 @@ class StoreRequest extends BaseRequest
         return [
             'name' => 'required|string',
             'email' => 'required|email|unique:assisteds',
-            'cpf' => 'required|unique:relatives',
+            'cpf' => 'required|unique:assisteds',
             'birth_date' => 'required',
             'birthplace' => 'required',
             'rg' => 'required|string',
