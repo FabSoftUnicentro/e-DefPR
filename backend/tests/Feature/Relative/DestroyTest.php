@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Relative;
 
-use App\Models\Assisted;
+use App\Models\Relative;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,7 +18,7 @@ class DestroyTest extends TestCase
     }
 
     /**
-     * @test Delete a specific assisted
+     * @test Delete a specific relative
      */
     public function testDestroy()
     {
@@ -26,19 +26,19 @@ class DestroyTest extends TestCase
 
         $admin->assignRole('master');
 
-        $assisted = factory(Assisted::class)->create([
+        $relative = factory(Relative::class)->create([
             'name' => 'Test 1'
         ]);
 
-        $response = $this->actingAs($admin)->get('/assisted/' . $assisted->id);
+        $response = $this->actingAs($admin)->get('/relative/' . $relative->id);
 
         $response->assertSuccessful();
 
-        $response = $this->actingAs($admin)->delete('/assisted/' . $assisted->id);
+        $response = $this->actingAs($admin)->delete('/relative/' . $relative->id);
 
         $response->assertSuccessful();
 
-        $response = $this->actingAs($admin)->get('/assisted/' . $assisted->id);
+        $response = $this->actingAs($admin)->get('/relative/' . $relative->id);
 
         $response->assertNotFound();
     }
