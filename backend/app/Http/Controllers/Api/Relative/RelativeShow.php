@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Api\Assisted;
+namespace App\Http\Controllers\Api\Relative;
 
 use App\Http\Controllers\Controller;
-use App\Models\Assisted;
-use App\Http\Resources\Assisted as AssistedResource;
+use App\Models\Relative;
+use App\Http\Resources\Relative as RelativeResource;
 
-class AssistedShow extends Controller
+class RelativeShow extends Controller
 {
     /**
-     * @param Assisted $assisted
-     * @return AssistedResource
+     * @param Relative $relative
+     * @return RelativeResource
      */
-    public function __invoke(Assisted $assisted)
+    public function __invoke(Relative $relative)
     {
-        return new AssistedResource($assisted);
+        return new RelativeResource($relative);
     }
 }
