@@ -25,7 +25,7 @@ class UpdateRequest extends BaseRequest
     {
         return [
             'name' => 'string',
-            'email' => 'email|unique:users',
+            'email' => 'email|unique:relatives',
             'cpf' => 'unique:users',
             'rg' => 'string',
             'rg_issuer' => 'string',
