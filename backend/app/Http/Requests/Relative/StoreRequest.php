@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Assisted;
+namespace App\Http\Requests\Relative;
 
 use App\Http\Requests\BaseRequest;
 
@@ -34,8 +34,8 @@ class StoreRequest extends BaseRequest
             'gender' => 'required',
             'marital_status' => 'required',
             'profession' => 'required|string',
-            //'counter_part' => 'required',
-            //'note' => 'sometimes|string',
+            'note' => 'nullable|string',
+            'assisted_id' => 'required|integer',
             'addresses' => 'required'
         ];
     }
