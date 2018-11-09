@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\Assisted;
+namespace App\Http\Controllers\Api\Relative;
 
 use App\Http\Controllers\Controller;
-use App\Models\Assisted;
-use App\Http\Resources\Assisted as AssistedResource;
+use App\Models\Relative;
+use App\Http\Resources\Relative as RelativeResource;
 
-class AssistedList extends Controller
+class RelativeList extends Controller
 {
     private $itemsPerPage = 10;
 
@@ -15,8 +15,8 @@ class AssistedList extends Controller
      */
     public function __invoke()
     {
-        $assisteds = Assisted::paginate($this->itemsPerPage);
+        $relative = Relative::paginate($this->itemsPerPage);
 
-        return AssistedResource::collection($assisteds);
+        return RelativeResource::collection($relative);
     }
 }
