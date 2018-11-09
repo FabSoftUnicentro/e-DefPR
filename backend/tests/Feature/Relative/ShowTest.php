@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Relative;
 
-use App\Models\Assisted;
+use App\Models\Relative;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Resources\Assisted as AssistedResource;
+use App\Http\Resources\Relative as RelativeResource;
 
 class ShowTest extends TestCase
 {
@@ -19,7 +19,7 @@ class ShowTest extends TestCase
     }
 
     /**
-     * @test Get a specific assisted
+     * @test Get a specific relative
      */
     public function testShow()
     {
@@ -27,10 +27,10 @@ class ShowTest extends TestCase
 
         $admin->assignRole('master');
 
-        $assisted = factory(Assisted::class)->create();
+        $relative = factory(Relative::class)->create();
 
-        $response =  $this->actingAs($admin)->get('/assisted/' . $assisted->id);
+        $response =  $this->actingAs($admin)->get('/relative/' . $relative->id);
 
-        $response->assertResource(AssistedResource::make($assisted));
+        $response->assertResource(RelativeResource::make($relative));
     }
 }
