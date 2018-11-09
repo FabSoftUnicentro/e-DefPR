@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Api\Assisted;
+namespace App\Http\Controllers\Api\Relative;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Assisted\StoreRequest;
-use App\Models\Assisted;
-use App\Http\Resources\Assisted as AssistedResource;
+use App\Http\Requests\Relative\StoreRequest;
+use App\Models\Relative;
+use App\Http\Resources\Relative as RelativeResource;
 
-class AssistedStore extends Controller
+class RelativeStore extends Controller
 {
     /**
      * @param StoreRequest $request
-     * @return AssistedResource
+     * @return RelativeResource
      * @throws \Throwable
      */
     public function __invoke(StoreRequest $request)
     {
-        /** @var Assisted $assisted */
-        $assisted = new Assisted($request->all());
+        /** @var Relative $assisted */
+        $relative = new Relative($request->all());
 
-        $assisted->saveOrFail();
+        $relative->saveOrFail();
 
-        return new AssistedResource($assisted);
+        return new RelativeResource($relative);
     }
 }
