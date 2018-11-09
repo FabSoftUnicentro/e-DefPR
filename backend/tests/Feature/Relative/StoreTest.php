@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Assisted;
+namespace Tests\Feature\Relative;
 
 use App\Models\User;
 use Tests\TestCase;
@@ -18,7 +18,7 @@ class StoreTest extends TestCase
     }
 
     /**
-     * @test Store a specific assisted
+     * @test Store a specific relative
      */
     public function testStore()
     {
@@ -26,7 +26,7 @@ class StoreTest extends TestCase
 
         $admin->assignRole('master');
 
-        $assisted = [
+        $relative = [
             "name"=> "Cadastro Teste",
             "email"=> "teste3@edefpr.com",
             "cpf"=> "08846355973",
@@ -37,6 +37,7 @@ class StoreTest extends TestCase
             "marital_status"=> "Solteiro",
             "profession"=> "Teste",
             "birthplace"=> 1,
+            "assisted_id" => 1,
             "addresses"=> [
                 "uf"=> "PR",
                 "city"=> "Guarapuava",
@@ -48,7 +49,7 @@ class StoreTest extends TestCase
             ]
         ];
 
-        $response = $this->actingAs($admin)->post('/assisted/', $assisted);
+        $response = $this->actingAs($admin)->post('/relative/', $relative);
 
         $response->assertSuccessful();
     }
