@@ -206,7 +206,7 @@ Route::prefix('counter-part')->group(function () {
 // Relative route
 Route::prefix('relative')->group(function () {
     Route::get('/', 'Api\Relative\RelativeList')->middleware('auth:api');
-    Route::get('/{relative}', 'Api\relative\RelativeShow')->middleware('auth:api');
+    Route::get('/{relative}', 'Api\Relative\RelativeShow')->middleware('auth:api');
 
     Route::group(['middleware' => ['permission:register-relative']], function () {
         Route::post('/', 'Api\Relative\RelativeStore')->middleware('auth:api');
