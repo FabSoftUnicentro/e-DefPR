@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Assisted extends JsonResource
+class Relative extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -26,8 +26,8 @@ class Assisted extends JsonResource
             'gender' => $this->gender,
             'marital_status' => $this->marital_status,
             'profession' => $this->profession,
-            //'counter_part' => $this->counter_part,
             'note' => $this->note,
+            'assisted_id' => $this->assisted_id,
             'addresses' => json_decode($this->addresses, true)
         ];
     }
