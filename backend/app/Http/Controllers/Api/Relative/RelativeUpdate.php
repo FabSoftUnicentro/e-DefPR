@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Api\Assisted;
+namespace App\Http\Controllers\Api\Relative;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Assisted\UpdateRequest;
-use App\Models\Assisted;
-use App\Http\Resources\Assisted as AssistedResource;
+use App\Http\Requests\Relative\UpdateRequest;
+use App\Models\Relative;
+use App\Http\Resources\Relative as RelativeResource;
 
-class AssistedUpdate extends Controller
+class RelativeUpdate extends Controller
 {
     /**
      * @param UpdateRequest $request
-     * @param Assisted $assisted
-     * @return AssistedResource
+     * @param Relative $relative
+     * @return RelativeResource
      * @throws \Throwable
      */
-    public function __invoke(UpdateRequest $request, Assisted $assisted)
+    public function __invoke(UpdateRequest $request, Relative $relative)
     {
-        $assisted->update($request->all());
+        $relative->update($request->all());
 
-        $assisted->saveOrFail();
+        $relative->saveOrFail();
 
-        return new AssistedResource($assisted);
+        return new RelativeResource($relative);
     }
 }
