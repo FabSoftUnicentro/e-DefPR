@@ -202,3 +202,19 @@ Route::prefix('counter-part')->group(function () {
         Route::delete('/{counterPart}', 'Api\CounterPart\CounterPartDestroy')->middleware('auth:api');
     });
 });
+
+// Relative route
+Route::prefix('relative')->group(function () {
+    Route::get('/', 'Api\relative\relativeList')->middleware('auth:api');
+    Route::get('/{relative}', 'Api\relative\relativeShow')->middleware('auth:api');
+
+    Route::group(['middleware' => ['permission:register-relative']], function () {
+        Route::post('/', 'Api\relative\relativeStore')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:update-relative']], function () {
+        Route::put('/{relative}', 'Api\relative\relativeUpdate')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:delete-relative']], function () {
+        Route::delete('/{relative}', 'Api\relative\relativeDestroy')->middleware('auth:api');
+    });
+});
