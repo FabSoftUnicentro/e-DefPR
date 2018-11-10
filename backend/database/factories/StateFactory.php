@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Illuminate\Support\Facades\DB as DB;
+use App\Models\State;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB as DB;
 |
 */
 
-$factory->define(App\Models\State::class, function (Faker $faker) {
+$factory->define(State::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->domainName,
         'abbr' => $faker->unique()->countryCode,
