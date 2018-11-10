@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Illuminate\Support\Facades\DB as DB;
+use App\Models\Postcode;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB as DB;
 |
 */
 
-$factory->define(App\Models\Postcode::class, function (Faker $faker) {
+$factory->define(Postcode::class, function (Faker $faker) {
     return [
         'postcode' => $faker->numberBetween(9999999),
         'street' => $faker->address,
