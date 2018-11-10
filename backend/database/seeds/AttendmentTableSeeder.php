@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Attendment;
 
 class AttendmentTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class AttendmentTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Attendment::class, 10)->create();
+        factory(Attendment::class, 10)->create();
     }
 }
