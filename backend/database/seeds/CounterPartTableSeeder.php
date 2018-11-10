@@ -12,6 +12,6 @@ class CounterPartTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\CounterPart::class, 10)->create();
+        factory(CounterPart::class, 10)->create();
     }
 }
