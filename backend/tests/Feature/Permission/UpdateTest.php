@@ -27,7 +27,8 @@ class UpdateTest extends TestCase
         $admin->assignRole('master');
 
         $permission = Permission::create([
-            'name' => 'Test 1'
+            'name' => 'Test 1',
+            'description' => 'Test 1'
         ]);
 
         $response1 = $this->actingAs($admin)->get('/permission/' . $permission->id);
