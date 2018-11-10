@@ -39,7 +39,7 @@ class UpdateTest extends TestCase
 
         $response2 = $this->actingAs($admin)->put('/permission/' . $permission->id, [
             'name' => 'Test 2',
-            'guard_name' => 'api'
+            'description' => 'Test 2'
         ]);
 
         $response2->assertSuccessful();
