@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         DB::beginTransaction();
-//        $this->call(StateTableSeeder::class);
-//        $this->call(CityTableSeeder::class);
+        $this->call(StateTableSeeder::class);
+        $this->call(CityTableSeeder::class);
         $this->call(RoleTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(AssistedTableSeeder::class);

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Relative;
 
 class RelativeTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class RelativeTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Relative::class, 10)->create();
+        factory(Relative::class, 10)->create();
     }
 }
