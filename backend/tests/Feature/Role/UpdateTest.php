@@ -26,7 +26,10 @@ class UpdateTest extends TestCase
 
         $admin->assignRole('master');
 
-        $role = Role::create(['name' => 'Test']);
+        $role = Role::create([
+            'name' => 'Test',
+            'description' => 'Test 1'
+        ]);
 
         $response1 = $this->actingAs($admin)->get('/role/' . $role->id);
 
