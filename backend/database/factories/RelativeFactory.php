@@ -1,9 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use Illuminate\Support\Facades\DB as DB;
 use App\Models\Relative;
 use App\Models\City;
+use App\Models\Assisted;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ $factory->define(Relative::class, function (Faker $faker) {
         'marital_status' => 'Solteiro',
         'profession' => 'Teste',
         'note' => null,
-        'assisted_id' => DB::table('assisteds')->inRandomOrder()->first()->id,
+        'assisted_id' => factory(Assisted::class)->create(),
         'addresses' => json_encode([
             [
                 'postcode' => '85015310',

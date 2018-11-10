@@ -87,7 +87,10 @@ class RoleTableSeeder extends Seeder
             'delete-attendmentType',
             'register-counterPart',
             'update-counterPart',
-            'delete-counterPart'
+            'delete-counterPart',
+            'register-relative',
+            'update-relative',
+            'delete-relative'
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
@@ -124,7 +127,10 @@ class RoleTableSeeder extends Seeder
             'delete-assisted',
             'register-counterPart',
             'update-counterPart',
-            'delete-counterPart'
+            'delete-counterPart',
+            'register-relative',
+            'update-relative',
+            'delete-relative'
         );
         $role = Role::create(['name' => 'administrative-technician']);
         $role->givePermissionTo(
@@ -152,7 +158,10 @@ class RoleTableSeeder extends Seeder
             'delete-assisted',
             'register-counterPart',
             'update-counterPart',
-            'delete-counterPart'
+            'delete-counterPart',
+            'register-relative',
+            'update-relative',
+            'delete-relative'
         );
         $role = Role::create(['name' => 'social-worker']);
         $role->givePermissionTo(
@@ -278,7 +287,10 @@ class RoleTableSeeder extends Seeder
             'delete-assisted',
             'register-counterPart',
             'update-counterPart',
-            'delete-counterPart'
+            'delete-counterPart',
+            'register-relative',
+            'update-relative',
+            'delete-relative'
         );
         $role = Role::create(['name' => 'psychologist']);
         $role->givePermissionTo(

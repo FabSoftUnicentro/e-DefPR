@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Assisted;
+namespace App\Http\Requests\Relative;
 
 use App\Http\Requests\BaseRequest;
 
@@ -25,8 +25,8 @@ class UpdateRequest extends BaseRequest
     {
         return [
             'name' => 'string',
-            'email' => 'email|unique:assisteds',
-            'cpf' => 'unique:assisteds',
+            'email' => 'email|unique:relatives',
+            'cpf' => 'unique:relatives',
             'rg' => 'string',
             'rg_issuer' => 'string',
             'gender' => 'string',

@@ -83,7 +83,7 @@ Route::prefix('city')->group(function () {
     });
 });
 
-// Assisted route
+// Assisted routes
 Route::prefix('assisted')->group(function () {
     Route::get('/', 'Api\Assisted\AssistedList')->middleware('auth:api');
     Route::get('/{assisted}', 'Api\Assisted\AssistedShow')->middleware('auth:api');
@@ -99,7 +99,7 @@ Route::prefix('assisted')->group(function () {
     });
 });
 
-// Role route
+// Role routes
 Route::prefix('role')->group(function () {
     Route::get('/{role}/permissions', 'Api\Role\RoleAllPermissions')->middleware('auth:api');
 
@@ -126,7 +126,7 @@ Route::prefix('role')->group(function () {
     });
 });
 
-// Permission route
+// Permission routes
 Route::prefix('permission')->group(function () {
     Route::group(['middleware' => ['permission:list-permission']], function () {
         Route::get('/', 'Api\Permission\PermissionList')->middleware('auth:api');
@@ -144,7 +144,7 @@ Route::prefix('permission')->group(function () {
     });
 });
 
-// AttendmentType route
+// AttendmentType routes
 Route::prefix('attendmentType')->group(function () {
     Route::group(['middleware' => ['permission:list-attendmentType']], function () {
         Route::get('/', 'Api\AttendmentType\AttendmentTypeList')->middleware('auth:api');
@@ -164,7 +164,7 @@ Route::prefix('attendmentType')->group(function () {
     });
 });
 
-// Attendments route
+// Attendments routes
 Route::prefix('attendment')->group(function () {
     Route::group(['middleware' => ['permission:list-attendment']], function () {
         Route::get('/', 'Api\Attendment\AttendmentList')->middleware('auth:api');
@@ -187,7 +187,7 @@ Route::prefix('postcode')->group(function () {
     Route::get('/{postcode}', 'Api\Postcode\PostcodeSearch');
 });
 
-// CounterPart route
+// CounterPart routes
 Route::prefix('counter-part')->group(function () {
     Route::get('/', 'Api\CounterPart\CounterPartList')->middleware('auth:api');
     Route::get('/{counterPart}', 'Api\CounterPart\CounterPartShow')->middleware('auth:api');
@@ -200,5 +200,21 @@ Route::prefix('counter-part')->group(function () {
     });
     Route::group(['middleware' => ['permission:delete-counterPart']], function () {
         Route::delete('/{counterPart}', 'Api\CounterPart\CounterPartDestroy')->middleware('auth:api');
+    });
+});
+
+// Relative routes
+Route::prefix('relative')->group(function () {
+    Route::get('/', 'Api\Relative\RelativeList')->middleware('auth:api');
+    Route::get('/{relative}', 'Api\Relative\RelativeShow')->middleware('auth:api');
+
+    Route::group(['middleware' => ['permission:register-relative']], function () {
+        Route::post('/', 'Api\Relative\RelativeStore')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:update-relative']], function () {
+        Route::put('/{relative}', 'Api\Relative\RelativeUpdate')->middleware('auth:api');
+    });
+    Route::group(['middleware' => ['permission:delete-relative']], function () {
+        Route::delete('/{relative}', 'Api\Relative\RelativeDestroy')->middleware('auth:api');
     });
 });
