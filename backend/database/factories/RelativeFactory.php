@@ -2,7 +2,6 @@
 
 use Faker\Generator as Faker;
 use App\Models\Relative;
-use App\Models\City;
 use App\Models\Assisted;
 
 /*
@@ -22,7 +21,7 @@ $factory->define(Relative::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'cpf' => $faker->numberBetween(999999999),
         'birth_date' => $faker->date(),
-        'birthplace' => factory(City::class)->create(),
+        'birthplace' => '1100056',
         'rg' => $faker->unique()->text(11),
         'rg_issuer' => 'SSP',
         'gender' => 'M',
