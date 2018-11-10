@@ -27,7 +27,8 @@ class StoreTest extends TestCase
         $admin->assignRole('master');
 
         $permission = [
-            "name"=> "Test 1"
+            "name"=> "Test 1",
+            'description' => 'Test 1'
         ];
 
         $response = $this->actingAs($admin)->post('/permission/', $permission);
