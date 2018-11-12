@@ -3,6 +3,7 @@
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\DB as DB;
 use App\Models\Relative;
+use App\Models\City;
 use App\Models\Assisted;
 
 /*
