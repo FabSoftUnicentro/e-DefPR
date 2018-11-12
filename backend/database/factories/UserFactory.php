@@ -2,6 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\Models\User;
+use App\Models\City;
 
 /*
 |--------------------------------------------------------------------------
