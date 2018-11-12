@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\DB as DB;
 use App\Models\Attendment;
 use App\Models\AttendmentType;
 use App\Models\User;
@@ -20,8 +21,8 @@ use App\Models\Assisted;
 $factory->define(Attendment::class, function (Faker $faker) {
     return [
         'description' => $faker->paragraph(),
-        'type_id' => factory(AttendmentType::class)->create(),
-        'user_id' => factory(User::class)->create(),
-        'assisted_id' => factory(Assisted::class)->create()
+        'type_id' => DB::table('attendment_types')->exists() ? DB::table('attendment_types')->inRandomOrder()->first()->id : factory(AttendmentType::class)->create(),
+        'user_id' => DB::table('users')->exists() ? DB::table('users')->inRandomOrder()->first()->id : factory(User::class)->create(),
+        'assisted_id' => DB::table('assisteds')->exists() ? DB::table('assisteds')->inRandomOrder()->first()->id : factory(Assisted::class)->create()
     ];
 });

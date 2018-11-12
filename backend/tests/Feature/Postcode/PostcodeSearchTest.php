@@ -14,6 +14,7 @@ class PostcodeSearchTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
+        $this->artisan('key:generate');
         $this->artisan('passport:install');
     }
 

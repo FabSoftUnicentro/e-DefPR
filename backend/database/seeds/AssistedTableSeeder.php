@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Assisted;
 
 class AssistedTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class AssistedTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Assisted::class, 10)->create();
+        factory(Assisted::class, 10)->create();
     }
 }

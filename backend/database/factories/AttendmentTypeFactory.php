@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Models\AttendmentType;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\AttendmentType::class, function (Faker $faker) {
+$factory->define(AttendmentType::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->name,
         'description' => $faker->unique()->sentence
