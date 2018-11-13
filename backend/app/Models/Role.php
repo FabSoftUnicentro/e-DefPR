@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Spatie\Permission\Guard;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Role as BaseRole;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
- 
-class CustomRole extends Role
+
+class Role extends BaseRole
 {
     public $guarded = ['id'];
 
