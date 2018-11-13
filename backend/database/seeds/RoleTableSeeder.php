@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Models\Permission;
+use App\Models\Role;
 
 class RoleTableSeeder extends Seeder
 {
@@ -147,7 +147,7 @@ class RoleTableSeeder extends Seeder
             'Excluir Papel',
             'Atribuir Permissão a Funcionário',
             'Desatribuir Permissão a Funcionário',
-            'Atribuir Permissão a Pepel',
+            'Atribuir Permissão a Papel',
             'Desatribuir Permissão a Papel',
             'Atribuir papel a Funcionário',
             'Desatribuir papel a Funcionário',
