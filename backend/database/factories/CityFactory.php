@@ -2,6 +2,8 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\DB as DB;
+use App\Models\City;
+use App\Models\State;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,9 @@ use Illuminate\Support\Facades\DB as DB;
 |
 */
 
-$factory->define(App\Models\City::class, function (Faker $faker) {
+$factory->define(City::class, function (Faker $faker) {
     return [
         'name' => $faker->city,
-        'state_id' => factory(App\Models\State::class),
+        'state_id' => DB::table('states')->exists() ? DB::table('states')->inRandomOrder()->first()->id : factory(State::class)->create(),
     ];
 });

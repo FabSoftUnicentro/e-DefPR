@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Illuminate\Support\Facades\DB as DB;
+use App\Models\CounterPart;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB as DB;
 |
 */
 
-$factory->define(App\Models\CounterPart::class, function (Faker $faker) {
+$factory->define(CounterPart::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
