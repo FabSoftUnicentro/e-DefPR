@@ -28,6 +28,7 @@ class StoreTest extends TestCase
 
         $role = [
             "name"=> "test",
+            'description' => 'Test 1',
             "guard_name"=> "api"
         ];
 
