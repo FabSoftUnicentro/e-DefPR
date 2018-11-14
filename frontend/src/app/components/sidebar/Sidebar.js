@@ -25,6 +25,10 @@ class Sidebar extends Component {
         <Menu.Item key='/'><Icon type='home' /> <Link to='/'>Visão geral</Link></Menu.Item>
         <Menu.Item key='/assisted'><Link to='/assisted' /><Icon type='team' /> Assistidos</Menu.Item>
         <Menu.Item key='a-3'><Icon type='solution' /> Processos</Menu.Item>
+        <Menu.SubMenu key='sub3' title={<span><Icon type='audit' /><span>Atendimento</span></span>}>
+          <Menu.Item key='/attendmentType'><Icon type='cluster' /><Link to='/attendmentType'>Tipo de Atendimento</Link></Menu.Item>
+          <Menu.Item key='/attendment'><Icon type='audit' />Atendimento</Menu.Item>
+        </Menu.SubMenu>
         <Menu.SubMenu key='sub1' title={<span><Icon type='profile' /><span>Triagens</span></span>}>
           <Menu.Item key='b-1'>Triagem inicial</Menu.Item>
           <Menu.Item key='b-2'>Triagem socioeconômica</Menu.Item>
