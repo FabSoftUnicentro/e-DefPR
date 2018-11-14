@@ -13,7 +13,7 @@ class Role extends BaseRole
     public function __construct(array $attributes = [])
     {
         $attributes['guard_name'] = $attributes['guard_name'] ?? config('auth.defaults.guard');
-        $attributes['description'] = $attributes['description'] ?? config('auth.default.guard');
+        $attributes['description'] = $attributes['description'] ?? config('');
 
         parent::__construct($attributes);
 
@@ -23,7 +23,7 @@ class Role extends BaseRole
     public static function create(array $attributes = [])
     {
         $attributes['guard_name'] = $attributes['guard_name'] ?? Guard::getDefaultName(static::class);
-        $attributes['description'] = $attributes['description'] ?? Guard::getDefaultName(static::class);
+        $attributes['description'] = $attributes['description'] ?? '';
 
         if (static::where('name', $attributes['name'])->where('guard_name', $attributes['guard_name'])->first()) {
             throw RoleAlreadyExists::create($attributes['name'], $attributes['description'], $attributes['guard_name']);
