@@ -13,7 +13,7 @@ class Permission extends BasePermission
     public function __construct(array $attributes = [])
     {
         $attributes['guard_name'] = $attributes['guard_name'] ?? config('auth.defaults.guard');
-        $attributes['description'] = $attributes['description'] ?? config('auth.default.guard');
+        $attributes['description'] = $attributes['description'] ?? config('');
 
         parent::__construct($attributes);
 
@@ -23,7 +23,7 @@ class Permission extends BasePermission
     public static function create(array $attributes = [])
     {
         $attributes['guard_name'] = $attributes['guard_name'] ?? Guard::getDefaultName(static::class);
-        $attributes['description'] = $attributes['description'] ?? Guard::getDefaultName(static::class);
+        $attributes['description'] = $attributes['description'] ?? '';
 
         $permission = static::getPermissions()->filter(function ($permission) use ($attributes) {
             return $permission->name === $attributes['name'] && $permission->description === $attributes['description'] && $permission->guard_name === $attributes['guard_name'];
