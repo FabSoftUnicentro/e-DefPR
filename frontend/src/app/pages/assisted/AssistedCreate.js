@@ -62,6 +62,11 @@ class AssistedCreate extends Component {
           >
             <WizardForm.Page icon='idcard' title='Informações pessoais'>
               <PersonalInformationForm />
+              <WizardForm.TextField
+                label='Profissão'
+                name='profession'
+                required
+              />
             </WizardForm.Page>
 
             <WizardForm.Page icon='home' title='Endereço'>

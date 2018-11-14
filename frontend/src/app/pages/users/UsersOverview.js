@@ -25,7 +25,6 @@ class UsersOverview extends Component {
         marital_status: '',
         rg: '',
         rg_issuer: '',
-        profession: '',
         email: '',
         addresses: []
       }
@@ -96,8 +95,7 @@ class UsersOverview extends Component {
           }}
           columns={[
             { title: 'Nome', dataIndex: 'name', key: 'name' },
-            { title: 'E-mail', dataIndex: 'email' },
-            { title: 'Profissão', dataIndex: 'profession' }
+            { title: 'E-mail', dataIndex: 'email' }
           ]}
           pagination={{
             total,
@@ -126,9 +124,6 @@ class UsersOverview extends Component {
           </Row>
           <Row>
             <DescriptionItem title='RG' content={`${selected.rg} | ${selected.rg_issuer}`} />
-          </Row>
-          <Row>
-            <DescriptionItem title='Profissão' content={selected.profession} />
           </Row>
           <Divider />
           <p style={pStyle}>
