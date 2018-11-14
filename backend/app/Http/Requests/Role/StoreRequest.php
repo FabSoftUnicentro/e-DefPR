@@ -25,6 +25,7 @@ class StoreRequest extends BaseRequest
     {
         return [
             'name' => 'required|string',
+            'description' => 'required|string',
             'guard_name' => 'nullable|string'
         ];
     }
@@ -38,6 +39,7 @@ class StoreRequest extends BaseRequest
     {
         return [
             'name' => 'escape|trim',
+            'description' => 'escape|trim',
             'guard_name' => 'escape|trim'
         ];
     }

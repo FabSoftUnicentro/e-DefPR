@@ -26,7 +26,10 @@ class AssignPermissionTest extends TestCase
 
         $admin->assignRole('master');
 
-        $role = Role::create(['name' => 'Test 1']);
+        $role = Role::create([
+            'name' => 'Test 1',
+            'description' => 'Test 1'
+        ]);
 
         $permission = 'register-activities';
 
@@ -54,7 +57,10 @@ class AssignPermissionTest extends TestCase
 
         $admin->assignRole('master');
 
-        $role = Role::create(['name' => 'Test 1']);
+        $role = Role::create([
+            'name' => 'Test 1',
+            'description' => 'Test 1'
+        ]);
 
         $permissions = [
             'register-activities',

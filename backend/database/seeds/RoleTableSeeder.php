@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Models\Permission;
+use App\Models\Role;
 
 class RoleTableSeeder extends Seeder
 {
@@ -92,13 +92,102 @@ class RoleTableSeeder extends Seeder
             'update-relative',
             'delete-relative'
         ];
-        foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+        $descriptions = [
+            'Registrar Atividades',
+            'Registro Geral de Atividades',
+            'Abrir Processo',
+            'Visualizar Processo',
+            'Abrir Protocolo',
+            'Excluir Protocolo',
+            'Visualizar E-mail',
+            'Autorizar Consulta a Atendimento de Assistente Social',
+            'Registrar documentos',
+            'Encaminhar Atendimento',
+            'Gerar e-mail',
+            'Corrigir Petição',
+            'Triagem Inicial',
+            'Triagem Socioeconômica',
+
+            'Registrar Atendimento Legal',
+
+            'Confeccionar Petição',
+            'Atendimento Psicológico',
+            'Gerar Relatório Geral de Atividades',
+            'Registrar Funcionário',
+            'Atualizar Funcionário',
+            'Visualizar Funcionário',
+            'Excluir Funcionário',
+            'Apensar Protocolo ao Processo',
+            'Registrar Atividade',
+            'Enviar Petição para Análise pelo Defensor',
+            'Atendimento Social',
+            'Visualizar Atendimento',
+            'Registrar Estado',
+            'Atualizar Estado',
+            'Excluir Estado',
+            'Registrar Cidade',
+            'Atualizar Cidade',
+            'Excluir Cidade',
+            'Registrar Assistido',
+            'Atualizar Assistido',
+            'Excluir Assistido',
+            'Atendimento Psicológico',
+            'Autorizar Consulta a Atendimento Psicológico',
+            'Gerar Relatório Individual de Atividades',
+            'Excluir Atendimento',
+
+            'Excluir Registro',
+
+            'Ajuizar Petição',
+            'Despacho de Instauração',
+            'Transferir Correção de Petição',
+            'Registrar Papel',
+            'Atualizar Papel',
+            'Visualizar Papel',
+            'Excluir Papel',
+            'Atribuir Permissão a Funcionário',
+            'Desatribuir Permissão a Funcionário',
+            'Atribuir Permissão a Papel',
+            'Desatribuir Permissão a Papel',
+            'Atribuir papel a Funcionário',
+            'Desatribuir papel a Funcionário',
+            'Visualizar Permissão',
+            'Registrar Permissão',
+            'Atualizar Permissão',
+            'Excluir Permissão',
+            'Visualizar Atendimento',
+            'Visualizar Minhas Permissões',
+            'Visualizar Todas as Permissões',
+            'Registrar Atendimento',
+            'Atualizar Atendimento',
+            'Excluir Atendimento',
+            'Visualizar Tipo de Atendimento',
+            'Registrar Tipo de Atendimento',
+            'Atualizar Tipo de Atendimento',
+            'Excluir Tipo de Atendimento',
+            'Registrar Parte Contrária',
+            'Atualizar Parte Contrária',
+            'Excluir Parte Contrária',
+            'Registrar Parente',
+            'Atualizar Parente',
+            'Excluir Parente'
+            ];
+        foreach (array_combine($permissions, $descriptions) as $permission => $description) {
+            Permission::create([
+                'name' => $permission,
+                'description' => $description
+            ]);
         }
         // create roles and assign created permissions
-        $role = Role::create(['name' => 'master']);
+        $role = Role::create([
+            'name' => 'master',
+            'description' => 'master'
+        ]);
         $role->givePermissionTo(Permission::all());
-        $role = Role::create(['name' => 'juridical-administrative-technician']);
+        $role = Role::create([
+            'name' => 'juridical-administrative-technician',
+            'description' => 'Técnico Administrativo Jurídico'
+        ]);
         $role->givePermissionTo(
             'register-activities',
             'register-individual-activities',
@@ -132,7 +221,10 @@ class RoleTableSeeder extends Seeder
             'update-relative',
             'delete-relative'
         );
-        $role = Role::create(['name' => 'administrative-technician']);
+        $role = Role::create([
+            'name' => 'administrative-technician',
+            'description' => 'Técnico Administrativo'
+            ]);
         $role->givePermissionTo(
             'register-activities',
             'open-process',
@@ -163,7 +255,10 @@ class RoleTableSeeder extends Seeder
             'update-relative',
             'delete-relative'
         );
-        $role = Role::create(['name' => 'social-worker']);
+        $role = Role::create([
+            'name' => 'social-worker',
+            'description' => 'Assistente Social'
+            ]);
         $role->givePermissionTo(
             'register-activities',
             'open-process',
@@ -185,7 +280,10 @@ class RoleTableSeeder extends Seeder
             'list-attendment',
             'register-attendment'
         );
-        $role = Role::create(['name' => 'lawyer-intern']);
+        $role = Role::create([
+            'name' => 'lawyer-intern',
+            'description' => 'Estagiário de Direito'
+        ]);
         $role->givePermissionTo(
             'register-activities',
             'read-process',
@@ -205,7 +303,10 @@ class RoleTableSeeder extends Seeder
             'list-attendment',
             'register-attendment'
         );
-        $role = Role::create(['name' => 'legal-adviser']);
+        $role = Role::create([
+            'name' => 'legal-adviser',
+            'description' => 'Assessor Juridico'
+        ]);
         $role->givePermissionTo(
             'register-activities',
             'read-process',
@@ -228,7 +329,10 @@ class RoleTableSeeder extends Seeder
             'list-attendment',
             'register-attendment'
         );
-        $role = Role::create(['name' => 'high-school-intern']);
+        $role = Role::create([
+            'name' => 'high-school-intern',
+            'description' => 'Estagiário de Ensino Médio'
+        ]);
         $role->givePermissionTo(
             'register-activities',
             'read-attendance',
@@ -240,7 +344,10 @@ class RoleTableSeeder extends Seeder
             'list-attendment',
             'register-attendment'
         );
-        $role = Role::create(['name' => 'public-defender']);
+        $role = Role::create([
+            'name' => 'public-defender',
+            'description' => 'Defensor Público'
+        ]);
         $role->givePermissionTo(
             'register-activities',
             'register-general-activities',
@@ -292,7 +399,10 @@ class RoleTableSeeder extends Seeder
             'update-relative',
             'delete-relative'
         );
-        $role = Role::create(['name' => 'psychologist']);
+        $role = Role::create([
+            'name' => 'psychologist',
+            'description' => 'Psicólogo'
+        ]);
         $role->givePermissionTo(
             'register-activities',
             'read-process',

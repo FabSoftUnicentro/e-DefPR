@@ -26,16 +26,20 @@ class UpdateTest extends TestCase
 
         $admin->assignRole('master');
 
-        $role = Role::create(['name' => 'Test']);
+        $role = Role::create([
+            'name' => 'Test 1',
+            'description' => 'Test 1'
+        ]);
 
         $response1 = $this->actingAs($admin)->get('/role/' . $role->id);
 
         $response1->assertSuccessful();
 
-        $this->assertEquals('Test', $response1->json()['data']['name']);
+        $this->assertEquals('Test 1', $response1->json()['data']['name']);
 
         $response2 = $this->actingAs($admin)->put('/role/' . $role->id, [
-            'name' => 'Test2'
+            'name' => 'Test 2',
+            'description' => 'Test 2'
         ]);
 
         $response2->assertSuccessful();
@@ -44,6 +48,6 @@ class UpdateTest extends TestCase
 
         $response3->assertSuccessful();
 
-        $this->assertEquals('Test2', $response3->json()['data']['name']);
+        $this->assertEquals('Test 2', $response3->json()['data']['name']);
     }
 }

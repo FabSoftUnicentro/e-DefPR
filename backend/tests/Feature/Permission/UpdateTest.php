@@ -27,7 +27,8 @@ class UpdateTest extends TestCase
         $admin->assignRole('master');
 
         $permission = Permission::create([
-            'name' => 'Test 1'
+            'name' => 'Test 1',
+            'description' => 'Test 1'
         ]);
 
         $response1 = $this->actingAs($admin)->get('/permission/' . $permission->id);
@@ -38,7 +39,7 @@ class UpdateTest extends TestCase
 
         $response2 = $this->actingAs($admin)->put('/permission/' . $permission->id, [
             'name' => 'Test 2',
-            'guard_name' => 'api'
+            'description' => 'Test 2'
         ]);
 
         $response2->assertSuccessful();
