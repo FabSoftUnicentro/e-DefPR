@@ -9,6 +9,7 @@ import Assisted from './pages/assisted/Assisted'
 import Role from './pages/role/Role'
 import Permission from './pages/permission/Permission'
 import Users from './pages/users/Users'
+import AttendmentType from './pages/attendmentType/AttendmentType'
 import { authentication } from './services'
 
 import './App.css'
@@ -27,6 +28,7 @@ const Home = ({ pathname }) => (
         <Route path='/users' component={Users} />
         <Route path='/role' component={Role} />
         <Route path='/permission' component={Permission} />
+        <Route path='/attendmentType' component={AttendmentType} />
       </Switch>
     </main>
   </div>
