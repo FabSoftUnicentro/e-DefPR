@@ -1,0 +1,11 @@
+Rolling back: 2018_11_08_005231_create_relatives_table
+Rolled back:  2018_11_08_005231_create_relatives_table
+Rolling back: 2018_09_26_010117_create_counter_part_table
+Rolled back:  2018_09_26_010117_create_counter_part_table
+Rolling back: 2018_09_26_010116_create_sessions_table
+Rolled back:  2018_09_26_010116_create_sessions_table
+Rolling back: 2018_09_05_235542_create_attendments_table
+Rolled back:  2018_09_05_235542_create_attendments_table
+Rolling back: 2018_09_04_210244_create_attendment_types_table
+Rolled back:  2018_09_04_210244_create_attendment_types_table
+Rolling back: 2018_08_01_235800_create_assisted_table

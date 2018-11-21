@@ -27,16 +27,12 @@ $factory->define(CounterPart::class, function (Faker $faker) {
         'document_type' => 'cpf',
         'document_number' => $faker->numberBetween(999999999),
         'fantasy_name' => null,
-        'addresses' => json_encode([
-            [
-                'postcode' => '85015310',
-                'street' => 'Teste',
-                'number' => 1,
-                'uf' => 'PR',
-                'city' => 'Guarapuava',
-                'neighborhood' => 'Batel',
-                'complement' => ''
-            ]
-        ]),
+        'uf' => 'PR',
+        'city' => 1,
+        'number' => '123',
+        'street' => 'Teste',
+        'postcode' => '85015310',
+        'complement' => '',
+        'neighborhood' => 'Batel',
     ];
 });

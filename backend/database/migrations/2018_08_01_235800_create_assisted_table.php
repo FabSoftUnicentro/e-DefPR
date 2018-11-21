@@ -19,8 +19,6 @@ class CreateAssistedTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('cpf', 11)->unique();
             $table->date('birth_date');
-            $table->integer('birthplace')->unsigned();
-            $table->foreign('birthplace')->references('id')->on('cities');
             $table->string('rg');
             $table->string('rg_issuer');
             $table->enum('gender', ['M', 'F']);
@@ -28,7 +26,13 @@ class CreateAssistedTable extends Migration
             $table->string('profession');
             //$table->string('counter_part');
             $table->text('note')->nullable();
-            $table->json('addresses');
+            $table->string('uf', 2);
+            $table->string('city');
+            $table->string('number');
+            $table->string('street');
+            $table->string('postcode');
+            $table->string('complement')->nullable();
+            $table->string('neighborhood')->nullable();
             $table->timestamps();
         });
     }

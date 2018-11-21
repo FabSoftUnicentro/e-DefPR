@@ -42,26 +42,26 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Exception $exception
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
-    }
+        if ($this->isHttpException($exception)) {
+            switch ($exception->getStatusCode()) {
+                case 404:
+                    return redirect()->route('404');
+                    break;
+                case 500:
+                    return redirect()->route('500');
+                    break;
+                default:
+                    return $this->renderHttpException($exception);
+                    break;
+            }
+        }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param AuthenticationException $exception
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
-     */
-    public function unauthenticated($request, AuthenticationException $exception)
-    {
-        return response()->json([
-            'message' => 'Unauthenticated'
-        ], 401);
+        return parent::render($request, $exception);
     }
 }

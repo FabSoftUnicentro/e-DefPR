@@ -23,7 +23,6 @@ $factory->define(Relative::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'cpf' => $faker->numberBetween(999999999),
         'birth_date' => $faker->date(),
-        'birthplace' => DB::table('cities')->exists() ? DB::table('cities')->inRandomOrder()->first()->id : factory(City::class)->create(),
         'rg' => $faker->unique()->text(11),
         'rg_issuer' => 'SSP',
         'gender' => 'M',
@@ -31,16 +30,12 @@ $factory->define(Relative::class, function (Faker $faker) {
         'profession' => 'Teste',
         'note' => null,
         'assisted_id' => DB::table('assisteds')->exists() ? DB::table('assisteds')->inRandomOrder()->first()->id : factory(Assisted::class)->create(),
-        'addresses' => json_encode([
-            [
-                'postcode' => '85015310',
-                'street' => 'Teste',
-                'number' => 1,
-                'uf' => 'PR',
-                'city' => 'Guarapuava',
-                'neighborhood' => 'Batel',
-                'complement' => ''
-            ]
-        ]),
+        'uf' => 'PR',
+        'city' => 1,
+        'number' => '123',
+        'street' => 'Teste',
+        'postcode' => '85015310',
+        'complement' => '',
+        'neighborhood' => 'Batel',
     ];
 });

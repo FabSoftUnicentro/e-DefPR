@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Mail\UserPasswordResetted;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -27,11 +26,17 @@ class User extends Authenticatable
         'password',
         'cpf',
         'birth_date',
-        'birthplace',
         'rg',
         'rg_issuer',
         'gender',
         'marital_status',
+        'uf',
+        'city',
+        'number',
+        'street',
+        'postcode',
+        'complement',
+        'neighborhood',
         'profession',
         'note',
         'birthplace',
@@ -60,16 +65,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Generate json for the addresses attribute
-     *
-     * @param $value
-     */
-    public function setAddressesAttribute($value)
-    {
-        $this->attributes['addresses'] = json_encode($value);
-    }
-
-    /**
      * Get all of the attendments for the user.
      */
     public function attendments()
@@ -78,15 +73,13 @@ class User extends Authenticatable
     }
 
     /**
-     * @throws \Exception
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
      */
-    public function resetPassword()
+    public function sendPasswordResetNotification($token)
     {
-        $temporaryPassword = uniqid(time());
-        $this->password = $temporaryPassword;
-        $this->must_change_password = true;
-        $this->save();
-
-        Mail::to($this)->queue(new UserPasswordResetted($this, $temporaryPassword));
+        $this->notify(new ResetPasswordNotification($token));
     }
 }

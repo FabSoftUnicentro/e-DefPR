@@ -26,7 +26,13 @@ class CreateCounterPartTable extends Migration
             $table->text('document_type');
             $table->integer('document_number');
             $table->text('fantasy_name')->nullable();
-            $table->json('addresses');
+            $table->string('uf', 2);
+            $table->string('city');
+            $table->string('number');
+            $table->string('street');
+            $table->string('postcode');
+            $table->string('complement')->nullable();
+            $table->string('neighborhood')->nullable();
             $table->timestamps();
         });
     }

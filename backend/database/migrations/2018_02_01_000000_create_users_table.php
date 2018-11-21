@@ -20,15 +20,18 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('cpf', 11)->unique();
             $table->date('birth_date');
-            $table->integer('birthplace')->unsigned();
-            $table->foreign('birthplace')->references('id')->on('cities');
             $table->string('rg');
             $table->string('rg_issuer');
             $table->enum('gender', ['M', 'F']);
-            // $table->foreign() cidade
             $table->string('marital_status');
+            $table->string('uf', 2);
+            $table->string('city');
+            $table->string('number');
+            $table->string('street');
+            $table->string('postcode');
+            $table->string('complement')->nullable();
+            $table->string('neighborhood')->nullable();
             $table->text('note')->nullable();
-            $table->json('addresses');
             $table->boolean('must_change_password')->default(true);
             $table->rememberToken();
             $table->timestamps();

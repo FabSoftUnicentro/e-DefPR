@@ -36,22 +36,4 @@ class Relative extends Model
         'created_at',
         'updated_at'
     ];
-
-    /**
-     * Generate json for the addresses attribute
-     *
-     * @param $value
-     */
-    public function setAddressesAttribute($value)
-    {
-        $this->attributes['addresses'] = json_encode($value);
-    }
-
-    /**
-     * Get the city that the relative was born.
-     */
-    public function city()
-    {
-        return $this->hasOne(City::class);
-    }
 }

@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'pt-BR',
+    'locale' => 'pt-br',
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +91,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'pt-br',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +162,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class
     ],
 
     /*
@@ -213,6 +213,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Sanitizer' => Waavi\Sanitizer\Laravel\Facade::class,
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class
     ],
 
 ];

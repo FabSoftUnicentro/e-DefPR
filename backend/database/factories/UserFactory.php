@@ -28,17 +28,13 @@ $factory->define(User::class, function (Faker $faker) {
         'gender' => 'M',
         'marital_status' => 'Solteiro',
         'note' => null,
-        'addresses' => json_encode([
-            [
-                'postcode' => '85015310',
-                'street' => 'Teste',
-                'number' => 1,
-                'uf' => 'PR',
-                'city' => 'Guarapuava',
-                'neighborhood' => 'Batel',
-                'complement' => ''
-            ]
-        ]),
+        'uf' => 'PR',
+        'city' => 1,
+        'number' => '123',
+        'street' => 'Teste',
+        'postcode' => '85015310',
+        'complement' => '',
+        'neighborhood' => 'Batel',
         'remember_token' => str_random(10),
         'must_change_password' => (string) 1
     ];

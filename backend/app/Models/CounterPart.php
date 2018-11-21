@@ -38,12 +38,4 @@ class CounterPart extends Model
     ];
 
     protected $table = 'counterpart';
-
-    /**
-     * Get the city that the counter part lives or resides.
-     */
-    public function city()
-    {
-        return $this->hasOne(City::class);
-    }
 }

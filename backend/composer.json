@@ -13,6 +13,8 @@
         "freshbitsweb/laravel-log-enhancer": "^1.0",
         "fzaninotto/faker": "^1.4",
         "guzzlehttp/guzzle": "^6.3",
+        "jeroennoten/laravel-adminlte": "^1.24",
+        "kris/laravel-form-builder": "^1.15",
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
@@ -22,6 +24,7 @@
         "spatie/laravel-permission": "^2.12"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "filp/whoops": "^2.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",

@@ -17,23 +17,18 @@ class UsersTableSeeder extends Seeder
             'email' => 'juridico@edefpr.com',
             'password' => 'secret',
             'cpf' => '1318510005',
-            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'addresses' => json_encode([
-                [
-                    'uf' => 'PR',
-                    'city' => 'Guarapuava',
-                    'number' => 1,
-                    'street' => 'Teste',
-                    'postcode' => '85015310',
-                    'complement' => '',
-                    'neighborhood' => 'Batel'
-                ]
-            ]),
+            'uf' => 'PR',
+            'city' => 1,
+            'number' => '123',
+            'street' => 'Teste',
+            'postcode' => '85015310',
+            'complement' => '',
+            'neighborhood' => 'Batel',
             'must_change_password' => 0,
             'remember_token' => 'KjF6hUIZ2d'
         ]);
@@ -44,23 +39,18 @@ class UsersTableSeeder extends Seeder
             'email' => 'administrative@edefpr.com',
             'password' => 'secret',
             'cpf' => '2318510005',
-            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerato.',
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'addresses' => json_encode([
-                [
-                    'uf' => 'PR',
-                    'city' => 'Guarapuava',
-                    'number' => 1,
-                    'street' => 'Teste',
-                    'postcode' => '85015310',
-                    'complement' => '',
-                    'neighborhood' => 'Batel'
-                ]
-            ]),
+            'uf' => 'PR',
+            'city' => 1,
+            'number' => '123',
+            'street' => 'Teste',
+            'postcode' => '85015310',
+            'complement' => '',
+            'neighborhood' => 'Batel',
             'must_change_password' => 0,
             'remember_token' => 'KjF6hUIZ2d'
         ]);
@@ -71,23 +61,18 @@ class UsersTableSeeder extends Seeder
             'email' => 'assistente.social@edefpr.com',
             'password' => 'secret',
             'cpf' => '3318510005',
-            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'addresses' => json_encode([
-                [
-                    'uf' => 'PR',
-                    'city' => 'Guarapuava',
-                    'number' => 1,
-                    'street' => 'Teste',
-                    'postcode' => '85015310',
-                    'complement' => '',
-                    'neighborhood' => 'Batel'
-                ]
-            ]),
+            'uf' => 'PR',
+            'city' => 1,
+            'number' => '123',
+            'street' => 'Teste',
+            'postcode' => '85015310',
+            'complement' => '',
+            'neighborhood' => 'Batel',
             'must_change_password' => 0,
             'remember_token' => 'KjF6hUIZ2d'
         ]);
@@ -98,23 +83,18 @@ class UsersTableSeeder extends Seeder
             'email' => 'estagiario.advogado@edefpr.com',
             'password' => 'secret',
             'cpf' => '4318510005',
-            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'addresses' => json_encode([
-                [
-                    'uf' => 'PR',
-                    'city' => 'Guarapuava',
-                    'number' => 1,
-                    'street' => 'Teste',
-                    'postcode' => '85015310',
-                    'complement' => '',
-                    'neighborhood' => 'Batel'
-                ]
-            ]),
+            'uf' => 'PR',
+            'city' => 1,
+            'number' => '123',
+            'street' => 'Teste',
+            'postcode' => '85015310',
+            'complement' => '',
+            'neighborhood' => 'Batel',
             'must_change_password' => 0,
             'remember_token' => 'KjF6hUIZ2d'
         ]);
@@ -125,23 +105,18 @@ class UsersTableSeeder extends Seeder
             'email' => 'assessor.juridico@edefpr.com',
             'password' => 'secret',
             'cpf' => '5318510005',
-            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'addresses' => json_encode([
-                [
-                    'uf' => 'PR',
-                    'city' => 'Guarapuava',
-                    'number' => 1,
-                    'street' => 'Teste',
-                    'postcode' => '85015310',
-                    'complement' => '',
-                    'neighborhood' => 'Batel'
-                ]
-            ]),
+            'uf' => 'PR',
+            'city' => 1,
+            'number' => '123',
+            'street' => 'Teste',
+            'postcode' => '85015310',
+            'complement' => '',
+            'neighborhood' => 'Batel',
             'must_change_password' => 0,
             'remember_token' => 'KjF6hUIZ2d'
         ]);
@@ -152,23 +127,18 @@ class UsersTableSeeder extends Seeder
             'email' => 'estagiario.ensinomedio@edefpr.com',
             'password' => 'secret',
             'cpf' => '6318510005',
-            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'addresses' => json_encode([
-                [
-                    'uf' => 'PR',
-                    'city' => 'Guarapuava',
-                    'number' => 1,
-                    'street' => 'Teste',
-                    'postcode' => '85015310',
-                    'complement' => '',
-                    'neighborhood' => 'Batel'
-                ]
-            ]),
+            'uf' => 'PR',
+            'city' => 1,
+            'number' => '123',
+            'street' => 'Teste',
+            'postcode' => '85015310',
+            'complement' => '',
+            'neighborhood' => 'Batel',
             'must_change_password' => 0,
             'remember_token' => 'KjF6hUIZ2d'
         ]);
@@ -179,23 +149,18 @@ class UsersTableSeeder extends Seeder
             'email' => 'defensor.publico@edefpr.com',
             'password' => 'secret',
             'cpf' => '7318510005',
-            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'addresses' => json_encode([
-                [
-                    'uf' => 'PR',
-                    'city' => 'Guarapuava',
-                    'number' => 1,
-                    'street' => 'Teste',
-                    'postcode' => '85015310',
-                    'complement' => '',
-                    'neighborhood' => 'Batel'
-                ]
-            ]),
+            'uf' => 'PR',
+            'city' => 1,
+            'number' => '123',
+            'street' => 'Teste',
+            'postcode' => '85015310',
+            'complement' => '',
+            'neighborhood' => 'Batel',
             'must_change_password' => 0,
             'remember_token' => 'KjF6hUIZ2d'
         ]);
@@ -206,23 +171,18 @@ class UsersTableSeeder extends Seeder
             'email' => 'psicologo@edefpr.com',
             'password' => 'secret',
             'cpf' => '8318510005',
-            'birthplace' => '1100056',
             'birth_date' => '2001-02-07',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'addresses' => json_encode([
-                [
-                    'uf' => 'PR',
-                    'city' => 'Guarapuava',
-                    'number' => 1,
-                    'street' => 'Teste',
-                    'postcode' => '85015310',
-                    'complement' => '',
-                    'neighborhood' => 'Batel'
-                ]
-            ]),
+            'uf' => 'PR',
+            'city' => 1,
+            'number' => '123',
+            'street' => 'Teste',
+            'postcode' => '85015310',
+            'complement' => '',
+            'neighborhood' => 'Batel',
             'must_change_password' => 0,
             'remember_token' => 'KjF6hUIZ2d'
         ]);
@@ -233,23 +193,18 @@ class UsersTableSeeder extends Seeder
             'email' => 'master@edefpr.com',
             'password' => 'secret',
             'cpf' => '0000000000',
-            'birthplace' => '1100056',
             'birth_date' => '2018-01-01',
             'rg' => 'Quaerat.',
             'rg_issuer' => 'SSP',
             'gender' => 'M',
             'marital_status' => 'Solteiro',
-            'addresses' => json_encode([
-                [
-                    'uf' => 'PR',
-                    'city' => 'Guarapuava',
-                    'number' => 1,
-                    'street' => 'Teste',
-                    'postcode' => '85015310',
-                    'complement' => '',
-                    'neighborhood' => 'Batel'
-                ]
-            ]),
+            'uf' => 'PR',
+            'city' => 1,
+            'number' => '123',
+            'street' => 'Teste',
+            'postcode' => '85015310',
+            'complement' => '',
+            'neighborhood' => 'Batel',
             'must_change_password' => 0,
             'remember_token' => 'KjF6hUIZ2d'
         ]);
